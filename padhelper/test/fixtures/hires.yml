@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  hired_helper_id: 1
+  hiring_user_id: 1
+
+two:
+  user_id: 1
+  hired_helper_id: 1
+  hiring_user_id: 1

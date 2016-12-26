@@ -1,0 +1,68 @@
+
+
+
+  <!-- Begin page content -->
+  <div class="container">
+
+
+      <div class="container-fluid">
+			<div class="row-fluid">
+			<div class="span2">
+			<!--Sidebar content-->
+				
+				<%= render :partial => "settings/left_nav"%>
+				
+			<!--Body content-->
+			
+			
+			
+					<div class = "container-header"><p>Card Credit Info</p></div>
+					
+					<%= simple_form_for(@company, :url => update_company_path(@company), :html => { :class => 'form-horizontal'}) do |f| %>
+					  <div class="control-group"> 
+					    <%= f.input :name,lable:  'Company Name:', :autofocus => true, :placeholder =>"Enter the Company namee", :class=> 'input-block-level',:input_html => { :class => "span5" }%>
+					  </div>
+					 <div class="control-group string required"> 
+					    <%= f.input :subdomain,lable:  'Company Name:', :placeholder =>"Enter the sub domain", :class=> 'string required span6' ,:input_html => { :class => "span5" }%>
+					  </div>      
+					   <div class="control-group"> 
+					    <%= f.input :state,lable:  'Company Name:', :placeholder =>"State", :class=> 'input-block-level span5' ,:input_html => { :class => "span5" }%>
+					  </div>
+					   <div class="control-group"> 
+					    <%= f.input  :city,lable:  'Company Name:', :placeholder =>"Enter your city", :class=> 'input-block-level span5' ,:input_html => { :class => "span5" }%>
+					  </div>
+					   <div class="control-group"> 
+					    <%= f.input :state,lable:  'Company Name:', :placeholder =>"Enter your State", :class=> 'input-block-level span5' ,:input_html => { :class => "span5" }%>
+					  </div>
+					   <div class="control-group"> 
+					    <%= f.input :website,lable:  'Company Name:', :placeholder =>"Enter your website", :class=> 'input-block-level span5' ,:input_html => { :class => "span5" }%>
+					  </div>
+					   <div class="control-group"> 
+					    <%= label(:user, :password)%>
+					    <%= password_field :user, :password, :placeholder =>"Enter your password", :class=> 'input-block-level span5' %>
+					  </div>
+					   <div class="control-group"> 
+					    <%= label(:user, :password_confirmation)%>
+					    <%= password_field :user, :password_confirmation, :placeholder =>"Enter your password again", :class=> 'input-block-level span5' %>
+					  </div>
+					      <%= f.submit "Update", :class=> "btn btn-primary", :id => "company_update", :style=>"margin-left:325px;"  %>
+					  <% end %>
+					
+					
+					
+
+			</div>
+			</div>
+	  </div>
+
+  <div id="push"></div>
+</div>
+
+
+
+
+
+
+
+
+

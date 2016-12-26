@@ -1,0 +1,11 @@
+=form_tag sessions_path, class: "login-form", method: :post do
+  %p
+    = text_field_tag :username_or_email, nil, placeholder: I18n.t('controllers.sessions.new.username_or_email')
+    %br
+    = password_field_tag :password, nil, placeholder: I18n.t('controllers.sessions.new.password')
+    %br
+    %span#legal
+      = check_box_tag :remember, nil, true
+      = label_tag I18n.t('controllers.sessions.new.remember_me')
+  %p
+    = submit_tag I18n.t('controllers.sessions.new.submit'), class: 'btn'

@@ -1,0 +1,67 @@
+
+
+
+<% if user_signed_in? %>
+
+<%= render 'layouts/nav/homenav' %>
+
+
+<% else %>
+<div class="row">
+  <center>
+    <h1><strong><font color="#e74c3c">Free Video Reveals Top 3 Breaking Tips</font></strong></h1>
+  </center>
+</div>
+
+<div class="row">
+
+  <div class="visible-xs visible-sm col-md-8">
+
+  </div>
+
+
+  <div class="col-md-8">
+    <iframe src="//player.vimeo.com/video/79754078?title=0&amp;byline=0&amp;portrait=0&amp;color=cf112d&amp;autoplay=1" width="500" height="284" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <br>
+    <div class="panel panel-default visible-md visible-lg panelbg">
+      <!-- Default panel contents -->
+      <div class="panel-heading panelfont"><b>Join today to recieve videos!</b></div>
+      <div class="panel-body">
+
+            <%= render 'layouts/submitform' %> 
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-md-4">
+
+    <h2><strong>RECEIVE POWERFUL COACHING</strong></h2>
+    <div id="arrow-list">
+      <ul>
+        <li>&#8220;B.S.T,&#8221; an unorthodox training method that will increase your stamina twice as fast&#8230; no running required.</li>
+        <li>&#8220;The Groove,&#8221; two dance exercises that will improve your rhythm and flow&#8230;for  beginners and experienced dancers.</li>
+        <li>Watch a short interview with a dance icon and legend. Find out what we talked about and discover a whole new approach on musicality.</li>
+      </ul>
+    </div>
+
+    <div class="visible-md">
+    <%= image_tag "http://aws-cdn.hottopicmedia.com/dyd/static/images/global/red-arrow.png", width: '50%' %>
+    </div>
+    <div class="visible-lg">
+    <%= image_tag "http://aws-cdn.hottopicmedia.com/dyd/static/images/global/red-arrow.png", :class =>"img-responsive" %>
+    </div>
+  </div>
+
+     <div class="panel panel-default visible-xs visible-sm panelbg">
+      <!-- Default panel contents -->
+      <div class="panel-heading panelfont"><b>Join today to recieve videos!</b></div>
+      <div class="panel-body">
+
+            <%= render 'layouts/submitform' %> 
+      </div>
+    </div>
+</div>
+
+
+<% end %>

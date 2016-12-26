@@ -1,0 +1,22 @@
+.admin-associate_intake_forms.section.single
+
+	h3 Associate Intake Forms
+
+	.reload = link_to 'Reload Data from Type Form', admin_reload_intake_forms_path
+	= link_to 'Students missing forms', admin_typeforms_missing_path
+	.stats #{@lookup.count} intake forms
+
+	= form_tag
+		table
+			tr
+				th Type Form Name
+				th OEC User
+			- for entry in @lookup
+				tr
+					= hidden_field_tag "frame_id_#{entry[:fid]}", entry[:fid]
+					td = entry[:fname]
+					td
+						= select_tag "user_id_#{entry[:fid]}", options_from_collection_for_select(@users, 'id', 'name', entry[:fuid]), :prompt => "-"
+
+		= submit_tag 'Save Changes', :class => 'btn btn-primary'
+	br

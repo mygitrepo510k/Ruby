@@ -1,0 +1,29 @@
+h1 Tags
+
+ol.breadcrumb
+  li= link_to 'Admin', admin_path
+  li.active= 'Tags'
+
+= link_to 'Add New', new_admin_tag_path
+
+table.table.table-striped
+  tr
+    th= 'Name'
+    th= 'Type'
+    th= 'Added by'
+    th= 'Added at'
+    th= 'Contents'
+    th= 'Edit'
+    th= 'View'
+
+  - @tags.each do |tag|
+    tr
+      td= tag.name
+      td= Tag::TYPE[tag.tag_type.to_i].capitalize
+      td= tag.added_by.name
+      td= tag.created_at.to_formatted_s(:short)
+      td= tag.contents.count
+      td= link_to 'Edit', edit_admin_tag_path(tag)
+      td= link_to 'View', admin_tag_path(tag)
+
+= will_paginate @tags, renderer: BootstrapPagination::Rails

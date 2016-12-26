@@ -1,0 +1,162 @@
+/ Body Start here
+.bodyWapper
+	.tabBox
+		= link_to 'General', :parent_profile
+		= link_to 'Occupational', :parent_occupational, :class=>'tabSelected'
+		= link_to 'Financial', :parent_financial
+		= link_to 'Policies', :parent_policies
+		.CL
+	.tabContainer
+		.tabAction
+		.infoContainer
+			%p.padLeft10 
+				Last Updated:
+				=@occupation.updated_at.to_formatted_s(:short)
+			.formMainRow
+				.formTitle Occupation:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit','#linkObj','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj{:href => "#.", :onclick => "showEdit('#showEdit','#linkObj','.viewEdit')"}= @occupation.occupation.nil? ? 'Please select from dropdown' : @occupation.occupation
+					#showEdit.editBox
+						.jqSmallform
+							%select{:name => "occupation", :style => "width:100px;"}
+								%option Doctor
+								%option Accountant
+								%option Engineer
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit','#linkObj','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit','#linkObj','.viewEdit'); saveProfileAttribute('p', 'occupation', '#showEdit', 'occupation');setValue('#linkObj', '#showEdit', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Company Name:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit2','#linkObj2','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj2{:href => "#.", :onclick => "showEdit('#showEdit2','#linkObj2','.viewEdit')"}= @occupation.company_name.nil? ? 'Click to add' : @occupation.company_name
+					#showEdit2.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text", :value=>@occupation.company_name}/
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit2','#linkObj2','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit2','#linkObj2','.viewEdit'); saveProfileAttribute('p', 'company_name', '#showEdit2', 'occupation');setValue('#linkObj2', '#showEdit2', 'input');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Industry:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit3','#linkObj3','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj3{:href => "#.", :onclick => "showEdit('#showEdit3','#linkObj3','.viewEdit')"}= @occupation.industry.nil? ? 'Please select from dropdown' : @occupation.industry
+					#showEdit3.editBox
+						.jqSmallform
+							%select{:name => "industry", :style => "width:100px;"}
+								%option Financial
+								%option Services
+								%option Healthcare
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit3','#linkObj3','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit3','#linkObj3','.viewEdit'); saveProfileAttribute('p', 'industry', '#showEdit3', 'occupation');setValue('#linkObj3', '#showEdit3', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Country of Residence:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit4','#linkObj4','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj4{:href => "#.", :onclick => "showEdit('#showEdit4','#linkObj4','.viewEdit')"}= @occupation.country.nil? ? 'Please select from dropdown' : @occupation.country
+					#showEdit4.editBox
+						.jqSmallform
+							%select{:name => "country", :style => "width:100px;"}
+								%option India
+								%option UK
+								%option US
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit4','#linkObj4','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit4','#linkObj4','.viewEdit'); saveProfileAttribute('p', 'country', '#showEdit4', 'occupation');setValue('#linkObj4', '#showEdit4', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle State:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit5','#linkObj5','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj5{:href => "#.", :onclick => "showEdit('#showEdit5','#linkObj5','.viewEdit')"}= @occupation.state.nil? ? 'Please select from dropdown' : @occupation.state
+					#showEdit5.editBox
+						.jqSmallform
+							%select{:name => "salute", :style => "width:100px;"}
+								%option Dehli
+								%option UP
+								%option Haryana
+								%option Maharashtra
+								%option MP
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit5','#linkObj5','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit5','#linkObj5','.viewEdit'); saveProfileAttribute('p', 'state', '#showEdit5', 'occupation');setValue('#linkObj5', '#showEdit5', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle City:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit6','#linkObj6','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj6{:href => "#.", :onclick => "showEdit('#showEdit6','#linkObj6','.viewEdit')"}= @occupation.city.nil? ? 'Please select from dropdown' : @occupation.city
+					#showEdit6.editBox
+						.jqSmallform
+							%select{:name => "city", :style => "width:100px;"}
+								%option Select
+								%option Delhi
+								%option Noida
+								%option Lucknow
+								%option Ghaziabad
+								%option Gurgaon
+								%option Chandigarh
+								%option Mumbai
+								%option Pune
+								%option Bhopal
+								%option Indore
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit6','#linkObj6','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit6','#linkObj6','.viewEdit'); saveProfileAttribute('p', 'city', '#showEdit6', 'occupation');setValue('#linkObj6', '#showEdit6', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Address Line 1:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit7','#linkObj7','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj7{:href => "#.", :onclick => "showEdit('#showEdit7','#linkObj7','.viewEdit')"}= @occupation.address_line1.nil? ? 'Click to add' : @occupation.address_line1
+					#showEdit7.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text", :value=>@occupation.address_line1}/
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit7','#linkObj7','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit7','#linkObj7','.viewEdit'); saveProfileAttribute('p', 'address_line1', '#showEdit7', 'occupation');setValue('#linkObj7', '#showEdit7', 'input');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Address Line 2:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit8','#linkObj8','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj8{:href => "#.", :onclick => "showEdit('#showEdit8','#linkObj8','.viewEdit')"}= @occupation.address_line2.nil? ? 'Click to add' : @occupation.address_line2
+					#showEdit8.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text", :value=>@occupation.address_line2}/
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit8','#linkObj8','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit8','#linkObj8','.viewEdit'); saveProfileAttribute('p', 'address_line2', '#showEdit8', 'occupation');setValue('#linkObj8', '#showEdit8', 'input');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Pin code:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit9','#linkObj9','.viewEdit')", :title => "Edit"}
+					%a.show_val#linkObj9{:href => "#.", :onclick => "showEdit('#showEdit9','#linkObj9','.viewEdit')"}= @occupation.pin_code.nil? ? 'Click to add' : @occupation.pin_code
+					#showEdit9.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text", :value=>@occupation.pin_code}/
+						%span.FL
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit9','#linkObj9','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit9','#linkObj9','.viewEdit'); saveProfileAttribute('p', 'pin_code', '#showEdit9', 'occupation');setValue('#linkObj9', '#showEdit9', 'input');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+/ Body Start End

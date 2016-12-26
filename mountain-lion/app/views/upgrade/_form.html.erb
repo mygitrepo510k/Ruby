@@ -1,0 +1,68 @@
+<%= form_for @payment, url: upgrade_payment_path do |f| %>
+  <fieldset>
+    <table width="222" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><%= f.hidden_field :email, required: true, value: current_user.email %></td>
+      </tr>
+      <tr>
+        <td><%= f.text_field :first_name, required: true, placeholder: 'First Name' %></td>
+      </tr>
+      <tr>
+        <td><%= f.text_field :last_name, required: true, placeholder: 'Last Name' %></td>
+      </tr>
+      <tr>
+        <td><%= f.text_field :address, required: true, placeholder: 'Address' %></td>
+      </tr>
+      <tr>
+        <td><%= f.text_field :zip_code, required: true, placeholder: 'Zip Code', class: 'input-small' %></td>
+      </tr>
+      <tr>
+        <td>
+          <%= f.country_select :country_code, ['us', 'am', 'fr', 'ca', 'ir', 'lb'], { iso_codes: true } %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= image_tag "credit-card-logos.png", vspace: "2", border: "0" %>
+        </td>
+      </tr>
+      <tr>
+        <td><%= f.text_field :credit_card_number, required: true, placeholder: 'Credit Card Number' %>
+      </tr>
+      <tr>
+        <td>Expiration
+          <%= select_month(14, {field_name: :expiry_month, prefix: 'payment', add_month_numbers: true}, { class: 'input-mini' }) %>
+          <%= f.select :expiry_year, [*Date.today.year..(Date.today.year)+8], {}, class: 'input-small' %>
+        </td>
+      </tr>
+      <tr>
+        <td>Security Code
+          <%= f.text_field :security_code, required: true, placeholder: 'CVV2', class: 'input-mini' %>
+          <%= link_to '#' do %>
+            <i class='icon-question-sign'></i>
+          <% end %>
+        </tr>
+        <tr><td><button type="submit" class="btn btn-success btn-block">Upgrade Me</button></td></tr>
+        <tr>
+          <td align="center"><small>Note: Your Credit Card will be billed as <strong>Search Singles, Inc.</strong></small></td>
+        </tr>
+        <tr><td align="center"><small><a href="#terms-modal" role="button" data-toggle="modal">Terms & Conditions</a> | <a href="#privacy-modal" role="button" data-toggle="modal">Privacy Policy</a></small></td></tr>
+      </table>
+    </fieldset>
+  <% end %>
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function() {
+        var img = '<div style="height:240px; width: 145px;"><%= image_tag("cvv2.jpg") %></div>';
+        $('input#payment_security_code').popover({
+          html: true, trigger: 'manual', content: img,
+          title : '<span><strong>Security Code</strong></span>'+
+          '<button type="button" id="close" class="close" onclick="$(&quot;input#payment_security_code&quot;).popover(&quot;hide&quot;);">&times;</button>',
+          placement: 'top'});
+        $('a[href=#]').click(function() {
+          $('input#payment_security_code').popover('toggle');
+          });
+title : '<span class="text-info"><strong>title</strong></span>'+
+'<button type="button" id="close" class="close" onclick="$(&quot;#example&quot;).popover(&quot;hide&quot;);">&times;</button>'
+});
+</script>

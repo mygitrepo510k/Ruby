@@ -1,0 +1,20 @@
+<%= form_for(@video, multipart: true) do |f| %>
+  <% if @video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@video.errors.count, "error") %> prohibited this video from being uploaded:</h2>
+
+      <ul>
+      <% @video.errors[:mov].each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+		<%= f.file_field :mov, style: "padding-left:18px;" %><br><br>
+    <label>Title</label><br><%= f.text_field :title, style: "padding-left:18px;" %><br><br>
+<!--     <label>Description</label><br><#%= f.text_field :description, style: "padding-left:18px;" %><br><br> -->
+    <%= f.submit "Upload Video", style: "padding-left:18px;" %>
+  </div>
+<% end %>

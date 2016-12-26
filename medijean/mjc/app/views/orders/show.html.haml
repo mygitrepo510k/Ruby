@@ -1,0 +1,63 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.nav-top-bar
+      =render "users/dashboard-nav"
+    .row.oh-page-container
+      .row.title
+        .span8
+          = link_to "&#8592; ".html_safe+t("general.back"), orders_path, :class => "btn gb-btn pg-float-left", :style => "width : 20%;"
+          .span4.pg-float-left
+            %label.page-title
+              = t("order.show.order_no")
+              = @order.id
+      .row.page-content
+        %table.table.dashboard-table
+          %tr.th-bckgrnd
+            %th.homepg-header
+              = t("order.show.medicine_name")
+            %th.homepg-header
+              = t("order.show.quantity")
+            %th.homepg-header
+              = t("order.show.price")
+            %th
+            %th.homepg-header
+              = t("order.show.total")
+          %tr
+            %td
+              = @order.prescription.medicine.name
+            %td
+              = @order.prescription.dosage.quantity
+              grams
+            %td
+              = number_to_currency(@order.prescription.medicine.price)
+            %td
+            %td
+              = number_to_currency(@order.sub_total)
+          %tr
+            %td
+            %td
+            %td
+            %th.homepg-header
+              = t("order.show.tax")
+            %td
+              = number_to_currency(@order.tax)
+          %tr
+            %td.border-none
+            %td.border-none
+            %td.border-none
+            %th.homepg-header
+              = t("order.show.shipping")
+            %td
+              = number_to_currency(50)
+          %tr
+            %td.border-none
+            %td.border-none
+            %td.border-none
+            %th.homepg-header
+              = t("order.show.sub_total")
+            %td
+              = number_to_currency(@order.total + 50)
+    .row
+      .span2.offset8
+        /= link_to t("order.show.cancel_order"), nil, :class=> "btn btn-inverse"
+    .row.empty-row

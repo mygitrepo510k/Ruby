@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  h1bemp: 
+  filingType: MyString
+  filingYear: MyString
+  filingStatus: MyString
+  filingCount: MyString
+
+two:
+  h1bemp: 
+  filingType: MyString
+  filingYear: MyString
+  filingStatus: MyString
+  filingCount: MyString

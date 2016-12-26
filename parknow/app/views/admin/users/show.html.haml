@@ -1,0 +1,28 @@
+.row
+  %h5 User Information
+  %h5 
+    User Email : 
+    = @user.email
+
+.row
+  %table.table.table-striped.table-hover.sortable-head
+    %thead
+      %tr
+        %th Device ID
+        %th Device Type
+        %th App TYpe
+        %th Actrions
+    %tbody
+      - @user.auth_tokens.each do |author|
+        %tr
+          %td= author.device_id
+          %td= author.device_type
+          %td= author.app_type
+          %td
+            = link_to(admin_edit_auth_token_path(author), class: 'btn btn-mini') do
+              %i.icon-pencil
+            = link_to(admin_destroy_auth_token_path(author), class: 'btn btn-mini', method: :delete, data: {confirm: "Are you sure"}) do
+              %i.icon-trash
+
+  .row.last-row
+    = link_to t('.back', :default => t("helpers.links.back")), admin_users_path, :class => 'btn btn-warning offset5'

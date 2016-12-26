@@ -1,0 +1,32 @@
+.container
+  .row.first-row
+    .span2
+      %h3 All Events
+  .row    
+    %table.table.table-hover.table-condensed.table-bordered.table-striped
+      %thead
+        %tr
+          %th Event Name
+          %th Location
+          %th Date
+          %th Event's User
+          %th Invited Friends
+          %th Action
+      %tbody
+        - @events.each do |event|
+          %tr
+            %td= event.name
+            %td= event.location
+            %td= event.date
+            %td= event.user.present? ? event.user.user_name : ''
+            %td= event.friends.count
+            %td
+              = link_to(admin_event_path(event), class: 'btn btn-mini') do
+                %i.icon-book
+              /= link_to(admin_event_path(event), class: 'btn btn-mini', method: :delete, data: {confirm: "Are you sure"}) do
+              /  %i.icon-trash
+      %tfoot
+        %tr
+          %td{:colspan=>6}
+            = will_paginate @events if @events.present?
+    

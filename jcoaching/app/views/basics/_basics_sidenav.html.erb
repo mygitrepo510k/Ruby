@@ -1,0 +1,35 @@
+
+<h4>Basics Training</h4>
+  	<div class="list-group">
+
+
+  	<% if current_page?(basics_stretches_path) %>
+  	<%= link_to 'Stretches', basics_stretches_path, {:class=>"list-group-item active"} %>
+  	<% else %>
+  	<%= link_to 'Stretches', basics_stretches_path, {:class=>"list-group-item"} %>
+  	<% end %>
+
+  	<% if current_page?(basics_wriststretches_path) %>
+  	<%= link_to 'Wrist Stretches', basics_wriststretches_path, {:class=>"list-group-item active"} %>
+  	<% else %>
+  	<%= link_to 'Wrist Stretches', basics_wriststretches_path, {:class=>"list-group-item"} %>
+  	<% end %>
+
+  	<% if current_page?(basics_foundationprinciples_path) %>
+  	<%= link_to 'Foundation Princples', basics_foundationprinciples_path, {:class=>"list-group-item active"} %>
+  	<% else %>
+  	<%= link_to 'Foundation Princples', basics_foundationprinciples_path, {:class=>"list-group-item"} %>
+  	<% end %>
+
+	</div>
+
+	<% if current_page?(basics_foundationprinciples_path)%>
+		<div class="list-group">
+			<h4>Next Section</h4>
+			<%= link_to 'Core Training ->', core_path, {:class=>"list-group-item"} %>
+		</div>
+	<% end %>
+
+		<div class="list-group">
+			<%= link_to '<- Back to index', root_path, {:class=>"list-group-item"} %>
+		</div>

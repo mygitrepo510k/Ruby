@@ -1,0 +1,109 @@
+// Place all the styles related to the Sessions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.sign_in {
+	@include centered;
+    @include box-shadow (1px,1px,2px,0,rgba($bl,.2),false);
+    color: $dgrey;
+    background: $box-bgcolor;
+    border: solid rgba($wh,.5);
+    border-width: 1px 0 0 1px;
+	margin: 17% auto 1em;
+	padding: 1em 3em 5em;
+	position: relative;
+
+	.glyphicon-user {
+		@extend text-center;
+		@include centered;
+		@include radius(100em);
+    	font-size: 5em;
+    	color: $wh;
+		background-color: $logincolor;
+	    border: .075em solid $box-bgcolor;;
+	    position: absolute;
+		top: -1.25em;
+		width: 1.75em;
+		height: 1.75em;
+		padding: .3em;
+		left: 50%;
+		margin-left: -1em;
+	}
+
+	form  {
+		[type='email'],
+		[type='password'] {
+			width: 100%;
+			color: $dgrey;
+			background-color: $logincolor;
+			border: 1px solid $wh;
+			margin: .5em 0;
+
+			&::-moz-placeholder {
+				color: $dgrey;
+			}
+			
+			&:-ms-input-placeholder {
+				color: $dgrey;
+			}
+
+			&::-webkit-input-placeholder {
+				color: $dgrey;
+			}
+		}
+
+		[type='submit'] {
+			@extend .pull-left;
+			@extend .btn;
+			background-color: $logincolor;
+			margin: .5em 1em 0 0;
+
+			&:hover {
+				background-color: $logincolor - #111;				
+			}
+		}
+
+		.field {
+			position: relative;
+
+			input {
+				padding: .5em 1em .5em 3em; 
+			}
+	
+			.glyphicon {
+				position: absolute;
+				left: .15em;
+				line-height: 2.2;
+				color: $wh;
+			}
+		}
+
+		.rememberme {
+			@extend .pull-left;
+			position: relative;
+			top: 1em;
+		}
+	}
+
+	a {
+		position: relative;
+		top: 1.5em;
+	}
+}
+
+.sign_in_above {
+	img {
+		margin: 13% auto 1em;
+		width: 15em;
+		border: 0;
+	}
+}
+
+.sign_in_under {
+	@include centered;
+	@extend .text-center;
+	margin-top: 2em;
+
+	a {
+		color: $dgrey;
+	}
+}

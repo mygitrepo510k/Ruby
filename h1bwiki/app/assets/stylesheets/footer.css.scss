@@ -1,0 +1,90 @@
+@font-face{
+	font-family:bitter-regular;
+	src: url(fonts/Bitter-Regular.otf);
+}
+@font-face{
+	font-family:bitter-bold;
+	src: url(fonts/Bitter-Bold.otf);
+}
+@font-face{
+	font-family:bitter-italic;
+	src: url(fonts/Bitter-Italic.otf);
+}
+.footer{
+	.content{
+		width: 1000px;
+		margin: 0 auto;
+	}
+	.footer-first-row{
+		height: 480px;
+		background-color: #232728;
+		.content{
+			height: 264px;
+			.row{
+				.span3{
+					width: 300px;
+				}
+				h3{
+					color: white;
+	  			margin-top: 40px;
+	  			font-size:22px;
+				}
+				p{
+					color: #898989;
+					margin-bottom: 0px;
+					span{
+						color: white;
+					}
+				}
+				label.orange{
+					color: #ef831e;
+				}
+				.pluginSkinLight{
+					a.uiLinkSubtle{
+						color: whtie;
+					}				
+				}
+				.face-boook-content{
+					height: 250px;
+					border: solid 1px #eeeff4; 
+					margin-top: 13px;
+					a, p, label, span{
+						color: white;
+					}
+					.head{
+						background-color: #eeeff4;
+						padding:5px;
+						label{
+							color: black;
+							margin-bottom: 0px;
+						}
+					}
+				}
+			}
+			.fs-icon{
+				width: 40px;
+				height: 37px;
+				background: url('footer-a.png');
+				background-position: 0px 0px;		
+			}
+			.sc-icon{
+				width: 40px;
+				height: 37px;
+				background: url("footer-a.png") repeat scroll -38px 0 transparent;
+			}
+			.th-icon{
+				width: 40px;
+				height: 37px;
+				background: url("footer-a.png") repeat scroll -75px 0 transparent;
+			}
+		}
+	}
+	.footer-last-row{
+		height: 80px;
+		background-color: #5088b2;
+		.content{
+			height: 44px;
+			padding-top: 30px;
+		}
+	}	
+}

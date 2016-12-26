@@ -1,0 +1,71 @@
+source 'https://rubygems.org'
+
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+ruby '2.1.0'
+gem 'rails', '4.1.0'
+gem 'pg'
+gem 'sass-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-ui-rails'
+gem 'jquery-rails'
+gem 'jquery-timepicker-addon-rails'
+gem 'fullcalendar-rails'
+gem 'tooltipster-rails'
+#gem 'event-calendar', :require => 'event_calendar'
+#gem 'calendar_date_select', '~> 2.0.0'
+gem 'jbuilder', '~> 1.2'
+gem 'bcrypt', '~> 3.1.2'
+gem 'slim'
+gem 'slim-rails'
+gem 'devise'
+gem 'carrierwave'
+gem 'fog'
+gem 'unf'
+gem 'protected_attributes'
+gem 'multipart-post'
+gem 'mime-types'
+gem "bootstrap-sass", ">= 2.2.2.0"
+gem 'unicorn'
+gem 'redcarpet'
+gem 'mini_magick'
+gem 'ipsum'
+gem 'placeholder'
+gem 'rails-timeago'
+gem 'link_thumbnailer'
+gem 'validate_url'
+gem 'carrierwave_direct'
+gem 'will_paginate'
+gem 'filepicker-rails'
+gem 'rails4-autocomplete'
+gem 'will_paginate-bootstrap'
+gem 'shadowbox-rails'
+gem 'bootstrap-x-editable-rails'
+
+gem 'delayed_job_active_record'
+#gem 'delayed_job'
+
+group :production do
+	gem 'rails_12factor'
+  gem 'rails_serve_static_assets'
+end
+
+group :development do
+	gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'rails_layout'
+  gem 'debugger'
+  gem 'letter_opener'
+  #gem 'recipient_interceptor'
+	gem 'powder'
+end
+
+# Use Capistrano for deployment
+# gem 'capistrano', group: :development
+# Use debugger
+# gem 'debugger', group: [:development, :test]
+
+# OpenID stuff
+#gem 'ruby-openid'
+#gem 'rack-openid'

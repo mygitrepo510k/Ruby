@@ -1,0 +1,4 @@
+--abc-glob **/*.rb
+--style-measure 1000
+--no-readme 
+--max-violations 219

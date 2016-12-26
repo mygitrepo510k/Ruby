@@ -1,0 +1,16 @@
+.course_content.section.single
+	h3 Course Content
+	- for cg in @node.content_groups
+		.course_content_group
+			= render partial: 'content_groups/show', locals: { content_group: cg.contents_by_type, desc: cg.description }
+			- if current_user.admin?
+				.admin
+					| Admin Only: 
+					= link_to 'Delete', delete_course_content_group_path(id: cg.id)
+
+	- if current_user.admin?
+		.add.admin_only
+			h3 Add another group of content...
+			= render partial: 'content_groups/new',
+				locals: {	redirect: course_content_path, belongs_to: @node.id, belongs_to_type: @node.class.name, has_privacy: false, custom_desc_placeholder: "Title for this Group of Content", custom_submit_text: "Add Content Group" }
+	br 

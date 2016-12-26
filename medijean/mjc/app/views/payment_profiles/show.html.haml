@@ -1,0 +1,61 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .payment-profile-page
+      .row.payment-show-page
+        .row.title
+          %label.page-title
+            = t("settings.title")
+            = "-" 
+            = params[:action].capitalize
+        .row.content
+          .span3.left-side-bar
+            = render "shared/settings_left_side_navbar"
+          .span7.page-content.form-horizontal
+            - if @card_data.present?
+              %label.sub-page-title= t("settings.payment.title3")
+              .row.form-row.name-row
+                .control-group
+                  %label.control-label{:for => "card_name"}= t("settings.payment.name_on_card")
+                  .controls
+                    = @card_data.name if @card_data.present?
+              .row.form-row.card-number
+                .control-group
+                  %label.control-label{:for=>"card_number"}= t("settings.payment.card_id")
+                  .controls
+                    = "#{@card_data.type} ************#{@card_data.last4}" if @card_data.present?
+              .row.last-row
+              %label.sub-page-title= t("settings.payment.title4")
+              .row.form-row.billing-row
+                .control-group
+                  %label.control-label{:for => "billing_street"}= t("settings.payment.street_address")
+                  .controls
+                    = @card_data.address_line1 if @card_data.present?
+              .row.form-row.billing-row
+                .control-group
+                  %label.control-label{:for => "billing_apartment"}= t("settings.payment.apartment")
+                  .controls
+                    = @card_data.address_line2 if @card_data.present?
+              .row.form-row.billing-row
+                .control-group
+                  %label.control-label{:for => "billing_city"}= t("settings.payment.city")
+                  .controls
+                    = @card_data.address_city if @card_data.present?
+              .row.form-row.province-row
+                .control-group
+                  %label.control-label{:for => "billing_province"}= t("settings.payment.province")
+                  .controls
+                    = @card_data.address_state if @card_data.present?
+                .control-group
+                  %label.control-label{:for => "billing_postal_code"}= t("settings.payment.postal_code")
+                  .controls
+                    = @card_data.address_zip if @card_data.present?
+
+            .row.last-row
+            - if @payment_profile.nil?
+              .span3.offset2
+                = link_to "Add Payment Profile", :new_payment_profile, :class=>"btn gb-btn-gray"
+            - else
+              .span3
+                = link_to "Update Payment Information", edit_payment_profile_path(@payment_profile), :class=>"btn gb-btn-gray"
+              .span3
+                = link_to "New Payment Information", :new_payment_profile, :class=>"btn gb-btn-gray"

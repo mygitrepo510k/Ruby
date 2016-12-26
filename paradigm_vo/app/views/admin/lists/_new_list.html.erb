@@ -1,0 +1,36 @@
+<div id="facebox">
+<span class="close"></span>
+<div class="main_div">
+	<h3>Make A New List</h3>
+
+	<%= form_for [:admin, @list] do |f| %>
+		<p><%= f.label "Name Your List" %>&nbsp;&nbsp;
+		<%= f.text_field :name %></p>
+		<p><%= f.label "Recipient Name" %>&nbsp;
+		<%= f.text_field :recipient_name %></p>
+		<p><%= f.label "Recipient Email" %>&nbsp;
+		<%= f.text_field :recipient %></p>
+		<p><%= f.submit "New List" %></p>
+	<% end %>
+
+<% if current_admin.lists.exists? %>	
+
+	<h3>Add Selection To Existing List</h3>
+<%= form_tag(admin_list_path(id: @list.id), method: :put, remote: true) %>
+
+    
+	<% if admin_signed_in? && current_admin.lists.present? %>
+		<% current_admin.lists.all.each do |l| %>
+			<%= check_box_tag "admin[lists][]", l.id, checked = false %>
+			<%= link_to l.name, list_path(l.id) %>
+		<% end %>
+	<% end %>
+
+<br><br>
+<%= submit_tag "Add To Existing List" %>
+
+<% end %>
+
+</div>	
+	
+</div>

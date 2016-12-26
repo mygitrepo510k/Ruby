@@ -1,0 +1,24 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.notification-profile-page
+      .notification-setting-page
+        .row.title
+          %label.page-title
+            = t("settings.title")
+            = "-" 
+            = params[:action].capitalize
+        .row.content
+          .span3.left-side-bar
+            = render "shared/settings_left_side_navbar"
+          .span7.page-content                      
+            %label.option-title= t("settings.notifications.option_title")
+
+            = simple_form_for @notification, :url=>'/profiles/notification', html: { class: 'form-inline' } do |f|
+              = f.error_notification
+              .row
+                = f.input :receive_message, as: :boolean, :label=>t("settings.notifications.receive_message")
+                = f.input :has_news, as: :boolean, :label=>t("settings.notifications.has_news")
+                = f.input :has_tagged_me, as: :boolean, :label=>t("settings.notifications.has_tagged_me")
+                = f.input :receive_prescription, as: :boolean, :label=>t("settings.notifications.receive_prescription")
+              .row.last-row
+                = f.submit t("general.save_change")

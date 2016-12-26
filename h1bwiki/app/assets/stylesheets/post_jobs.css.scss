@@ -1,0 +1,173 @@
+// Place all the styles related to the PostJobs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div.post-main-page{
+	div.edit-box{
+		margin-top:50px;
+    background-color: #f2f2f2;
+    border: solid 1px #ccc;
+    width:1000px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    .page-title{
+      text-align: center;
+      margin-top: 40px;
+    }
+    form{
+      margin-bottom: 0px;
+      .control-group{
+        margin-left: 100px;
+        input[type="text"]{
+          padding-top: 8px;
+          padding-bottom: 8px;
+        }
+        .controls{
+          label{
+            font-family: serif, arial, sans-serif, times;
+          }
+        }
+      }
+      .form-actions{
+        margin-bottom: 0px;
+      }
+    }
+	}
+  div.post-jobs-box{
+    padding-left:20px;
+    padding-right:20px;
+  }
+}
+
+div.post-job-page{
+	margin-top: 30px;
+	input{
+		width:225px;
+	}
+	select{
+		width:225px;
+	}
+	input.large-field{
+		width:525px;
+	}
+	textarea{
+		width:525px;
+		height: 225px;
+	}
+	
+	.form-horizontal .controls {
+	    margin-left: 0px;
+	}
+
+	div.custom-select {
+		position: relative;
+		display: inline-block;
+	}
+
+  .custom-select select {
+      display: inline-block;
+      border: 1px solid #bbb;
+      padding: 4px 3px 3px 5px;
+      margin: 0;
+      font: inherit;
+      outline:none; /* remove focus ring from Webkit */
+      line-height: 1.2;
+      -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 3px;
+      height: 38px;
+      padding-bottom: 6px;
+      padding-top: 10px;
+  }
+
+  /* for Webkit's CSS-only solution */
+  @media screen and (-webkit-min-device-pixel-ratio:0) { 
+      .custom-select select {
+          padding-right:30px;    
+      }
+  }
+  
+  /* Since we removed the default focus styles, we have to add our own */
+  .custom-select select:focus {
+      -webkit-box-shadow: 0 0 3px 1px #52a8ec;
+      -moz-box-shadow: 0 0 3px 1px #52a8ec;
+      box-shadow: 0 0 3px 1px #52a8ec;
+  }
+  
+  /* Select arrow styling */
+  .custom-select:after {
+    background: url("/assets/icon-down.png") no-repeat scroll 2px 10px white;
+    border-radius: 0 3px 3px 0;
+    bottom: 0;
+    color: white;
+    content: " \'\'\'";
+    font-size: 60%;
+    height: 30px;
+    margin-right: 2px;
+    margin-top: 6px;
+    padding: 0 7px;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }  
+  .no-pointer-events .custom-select:after {
+      content: none;
+  }	
+  ul.token-input-list-facebook{
+    width:400px;
+    border-radius: 4px;
+    border-color: #ccc;
+    display: inline-block;
+    float: none;
+  }
+}
+
+#forward_modal{
+  #forward_form{
+    .first-row{
+      .control-group{
+        .control-label{
+          width: 80px;          
+        }
+        .controls{
+          margin-left: 80px;
+          input{
+            width: 90%;
+          }
+          #msg_content{
+            background-color: rgb(255, 255, 255);
+            border-bottom-color: rgb(207, 207, 207);
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-image-outset: 0px;
+            border-image-repeat: stretch;
+            border-image-slice: 100%;
+            border-image-source: none;
+            border-image-width: 1;
+            border-left-color: rgb(207, 207, 207);
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-right-color: rgb(207, 207, 207);
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-top-color: rgb(207, 207, 207);
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            border-top-style: solid;
+            border-top-width: 1px;
+            color: rgb(64, 78, 78);
+            display: block;
+            font-size: 15px;
+            height: 230px;
+            line-height: normal;
+            overflow-x: hidden;
+            overflow-y: auto;
+          }
+        }
+      }
+    }
+  }
+}	

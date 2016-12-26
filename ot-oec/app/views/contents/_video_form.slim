@@ -1,0 +1,14 @@
+.fieldset.content#wistia-upload-widget
+	a href='#' data-remove-fieldset=''
+		span.glyphicon.glyphicon-remove
+
+	javascript:
+		var widget = new wistia.UploadWidget({ divId: 'wistia-upload-widget', publicProjectId: 'gfnci3ha4j',
+		callbacks: { 'uploadSuccess': function(json) {
+		  	$('#content__wistia_id').val(json.hashed_id)
+		}}});
+
+	= fields_for 'content[]', Content.new do |vid|
+		= vid.text_field :name, placeholder: 'Name'
+		= vid.text_area :description, placeholder: 'Description'
+		= vid.hidden_field :wistia_id

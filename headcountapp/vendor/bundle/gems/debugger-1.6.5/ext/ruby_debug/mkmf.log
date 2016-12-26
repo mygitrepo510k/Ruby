@@ -1,0 +1,116 @@
+have_struct_member: checking for rb_method_entry_t.called_id in method.h... -------------------- no
+
+"gcc-4.2 -o conftest -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby-2.0.0-p481 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib -L. -L/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib      -lruby-static  -lpthread -ldl -lobjc "
+/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib/ruby/2.0.0/mkmf.rb:373: warning: Insecure world writable dir /Volumes/Work in PATH, mode 040777
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc-4.2 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby-2.0.0-p481 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe   -c conftest.c"
+conftest.c:3:20: error: method.h: No such file or directory
+conftest.c:6: error: ‘rb_method_entry_t’ undeclared here (not in a function)
+conftest.c:6: error: expected expression before ‘)’ token
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <method.h>
+ 4: 
+ 5: /*top*/
+ 6: int s = (char *)&((rb_method_entry_t*)0)->called_id - (char *)0;
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &s);
+11:   }
+12: 
+13:   return 0;
+14: }
+/* end */
+
+--------------------
+
+have_struct_member: checking for rb_control_frame_t.method_id in method.h... -------------------- no
+
+"gcc-4.2 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby-2.0.0-p481 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe   -c conftest.c"
+conftest.c:3:20: error: method.h: No such file or directory
+conftest.c:6: error: ‘rb_control_frame_t’ undeclared here (not in a function)
+conftest.c:6: error: expected expression before ‘)’ token
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <method.h>
+ 4: 
+ 5: /*top*/
+ 6: int s = (char *)&((rb_control_frame_t*)0)->method_id - (char *)0;
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &s);
+11:   }
+12: 
+13:   return 0;
+14: }
+/* end */
+
+--------------------
+
+have_struct_member: checking for rb_method_entry_t.called_id in method.h... -------------------- no
+
+"gcc-4.2 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby-2.0.0-p481  -O3 -Wno-error=shorten-64-to-32  -pipe   -c conftest.c"
+conftest.c:3:20: error: method.h: No such file or directory
+conftest.c:6: error: ‘rb_method_entry_t’ undeclared here (not in a function)
+conftest.c:6: error: expected expression before ‘)’ token
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <method.h>
+ 4: 
+ 5: /*top*/
+ 6: int s = (char *)&((rb_method_entry_t*)0)->called_id - (char *)0;
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &s);
+11:   }
+12: 
+13:   return 0;
+14: }
+/* end */
+
+--------------------
+
+have_struct_member: checking for rb_control_frame_t.method_id in method.h... -------------------- no
+
+"gcc-4.2 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby-2.0.0-p481  -O3 -Wno-error=shorten-64-to-32  -pipe   -c conftest.c"
+conftest.c:3:20: error: method.h: No such file or directory
+conftest.c:6: error: ‘rb_control_frame_t’ undeclared here (not in a function)
+conftest.c:6: error: expected expression before ‘)’ token
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: #include <method.h>
+ 4: 
+ 5: /*top*/
+ 6: int s = (char *)&((rb_control_frame_t*)0)->method_id - (char *)0;
+ 7: int main(int argc, char **argv)
+ 8: {
+ 9:   if (argc > 1000000) {
+10:     printf("%p", &s);
+11:   }
+12: 
+13:   return 0;
+14: }
+/* end */
+
+--------------------
+

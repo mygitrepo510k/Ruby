@@ -1,0 +1,26 @@
+%tr
+  %th{:align => "left", :width => "25%"} Title*
+  %th{:align => "left", :width => "15%"} Date*
+  %th{:align => "left", :width => "14%"} Amount(INR)
+  %th{:align => "left", :width => "46%"} Description  
+- @advances_paids.each do |advance_paid|
+  %tr{:id=>'actRow'+advance_paid.id}
+    %td{:align => "left", :valign => "top"}
+      %a.greenTxt{:href => "#."}= advance_paid.title
+    %td{:align => "left", :valign => "top"}= advance_paid.date
+    %td{:align => "left", :valign => "top"}= advance_paid.amount
+    %td.actionBox{:align => "left", :valign => "top"}
+      = link_to("", "javascript:delete_val('#{advance_paid.id}')", :method=> :delete, :confirm => "Are you sure?", :class => "deleteIcon", :title=>"Delete")
+      %a.editIcon{:href => "javascript://", :onclick => "showObj('#modifyRow#{advance_paid.id}');$('#actRow#{advance_paid.id}').hide()", :title => "Edit"}
+      = advance_paid.description
+  %tr.editRow{:style => "display:none;", :id=>'modifyRow'+advance_paid.id}
+    %td{:align => "left", :valign => "top"}
+      %input.inputField{:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :type => "text", :value =>advance_paid.title, :id=>'val1_'+advance_paid.id}/
+    %td{:align => "left", :valign => "top"}
+      %input.inputField{:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :type => "text", :value =>advance_paid.date, :id=>'val2_'+advance_paid.id}/
+    %td{:align => "left", :valign => "top"}
+      %input.inputField{:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:80px;", :type => "text", :value => advance_paid.amount, :id=>'val3_'+advance_paid.id}/
+    %td{:align => "left", :valign => "top"}
+      %input.inputField{:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:250px;", :type => "text", :value => advance_paid.description, :id=>'val4_'+advance_paid.id}/
+      %a.closeBigBtn.FR{:href => "#.", :onclick => "showObj('#actRow#{advance_paid.id}');$('#modifyRow#{advance_paid.id}').hide()"}
+      %input.saveBtn{:onclick => "showObj('#actRow');$('#modifyRow#{advance_paid.id}').hide();edit_advaces_paids('#{advance_paid.id}')", :type => "submit", :value => "save"}/

@@ -1,0 +1,97 @@
+tr.claim-profile:hover {
+  color: green;
+}
+
+tr.invite-patient:hover {
+  color: green;
+}
+
+.show-btn {
+  display: block;
+}
+
+.hide-btn {
+  display: none;
+}
+
+.top-bar {
+  background: none repeat scroll 0 0 #F5F5F5;
+  min-height: 80px;
+
+  h1{
+    padding-top:20px;
+    font-size: 28.5px;
+  }
+}
+
+.dashboard-action {
+  margin-top:40px;
+
+  img {
+    float: left;
+    height: 100px;
+    width: 100px;
+  }
+
+  button {
+    width: 200px;
+  }
+
+  .action-info {
+
+    a {
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    p {
+      margin-top:5px;
+    }
+  }
+}
+
+.patient-profile-pic {
+  height: 125px;
+  width: 125px;
+}
+
+.patient-profile-tab {
+
+  a {
+    color: black;
+  }
+}
+
+.patient-profile-table {
+
+  th, td {
+    border-bottom: 1px solid #DDDDDD;
+  }
+
+  a {
+    color: black;
+  }
+}
+
+.accord-inner-tbl {
+  border-top: none;
+
+  th, td {
+  border-top: none;
+  border-bottom: none;
+  }
+}
+
+.claim-profile-search {
+  margin-top: 30px;
+}
+
+.phone-number-small {
+  width: 30px;
+}
+
+.phone-number-big {
+  width: 35px;
+}

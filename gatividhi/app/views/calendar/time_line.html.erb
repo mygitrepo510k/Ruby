@@ -1,0 +1,29 @@
+
+<div class="bodyWapper">
+  <div class="tabBox">    
+    <div class="CL"></div>
+  </div>
+  <div class="tabContainer">
+    <div class="tabAction">      
+      <div class="CL"></div>
+    </div>
+    <div class="time-line-box">
+      <div id="timeline-embed"></div>      
+    </div>
+  </div>
+</div>
+
+  <!-- BEGIN Timeline Embed -->
+<script type="text/javascript" src="/assets/storyjs-embed.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    createStoryJS({
+      type: 'timeline',
+      width: '100%',
+      height: '100%',
+      source: 'time_line_data',
+      embed_id: 'timeline-embed',
+      debug: true
+    });
+  });
+</script>

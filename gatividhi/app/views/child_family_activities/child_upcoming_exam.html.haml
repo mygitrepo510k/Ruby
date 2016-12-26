@@ -1,0 +1,66 @@
+.bodyWapper
+  .tabBox
+    = link_to "Exams", :child_upcoming_exam, :class=>"tabSelected"
+    = link_to "Exam Results", :child_exam_result
+    .CL
+  .tabContainer
+    .tabAction
+      .activityAction.FL{:style => "padding-left:10px;"}
+      .activityAction
+        .jqSmallform.FL
+          %select#select-scool{:name => "select", :style => "margin-right:8px;width:60px;"}
+            %option All
+            %option School
+            %option Non-school
+          %select#select-filter{:name => "select", :style => "margin-right:8px; margin-left: 8px;width:60px;"}
+            %option Upcoming
+            %option Past
+      .CL
+    %table.tableGride{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+      %thead
+        %tr.examHead
+          %th{:align => "left", :valign => "top", :width => "4%"}
+            %input{:type => "checkbox"}/
+          %th{:align => "left", :valign => "top", :width => "10%"} Title
+          %th{:align => "left", :valign => "top", :width => "9%"} Class
+          %th{:align => "left", :valign => "top", :width => "9%"} Exam Category
+          %th{:align => "left", :valign => "top", :width => "10%"} Start Date
+          %th{:align => "left", :valign => "top", :width => "10%"} End Date
+          %th{:align => "left", :valign => "top", :width => "8%"} Start Time
+          %th{:align => "left", :valign => "top", :width => "8%"} End Time
+          %th{:align => "left", :valign => "top", :width => "8%"} Subject
+          %th{:align => "left", :valign => "top", :width => "7%"} Type
+          %th{:align => "left", :valign => "top", :width => "8%"} Date finalised
+          %th{:align => "left", :valign => "top", :width => "8%"} Outcome
+      %tbody.exam-content
+        = render :partial => "child_exam_list"
+          
+    %p.padLeft10
+      %a.greyBtn.new_exam{:href => "create_exam?id=#{params[:id]}", :rel => "facebox"} add new exam
+    %p  
+/ Body Start End
+:javascript
+  $( document ).ready(function() {
+    $('a.new_exam').facebox();
+    function delete_schedule(id){
+      var url = '/delete_exam_schedule';
+      $.post( url, {
+        id: id,
+      }).success(function() {
+        $('#schedule_'+id).remove();
+      }).error(function() {
+        console.log(id)
+      });
+    }
+    $(function(){
+      $("ul.ac_scroll li a").click(function(){
+        var filter_val = $(this).text();
+        $.ajax({
+          url: "/show_exam?opt="+ filter_val,
+        }).done(function(data) {
+          $("tbody.exam-content").html(data);
+        });
+        return false; //prevent default browser action
+      });
+    })
+  });

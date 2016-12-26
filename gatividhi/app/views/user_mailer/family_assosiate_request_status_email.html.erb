@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Dear <%= @family_member.first_name %></h1>,
+    <p>
+      Your request to join <%= @family_member.family.family_name %>  is <%= @family_member.status %>ed.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

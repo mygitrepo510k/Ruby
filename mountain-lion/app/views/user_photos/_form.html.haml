@@ -1,0 +1,6 @@
+= simple_form_for [current_user, @user_photo] do |f|
+  %legend Upload a New Photo
+  = f.hidden_field :user_id
+  = f.input :image
+  = f.input :description
+  = f.submit "Upload", class: 'btn btn-success', disable_with: 'Please Wait...'

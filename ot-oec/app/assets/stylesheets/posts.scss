@@ -1,0 +1,37 @@
+// Place all the styles related to the Posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.search-results {
+	.search-result {
+		padding-bottom: 1em; 
+
+		.result_user {
+			font-size: 1em;
+			display: inline-block;
+			font-weight: 700;
+		}
+	}
+}
+
+.post_edit_form {
+  display: none;
+  form {
+    display: inline-block;
+   	width: calc(100% - 5em);
+  }
+}
+
+.post_edit_tools {
+  a:last-child {
+    margin-left: 10px;
+  }
+}
+
+.post_read_more_link {
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.back_to_dash_link {
+	margin: 8px 0px 4px 0px;
+}

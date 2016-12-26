@@ -1,0 +1,49 @@
+/ **** only for debugging purposes
+/= stylesheet_link_tag 'content_groups'
+/= javascript_include_tag 'application'
+/ ***
+
+.content_group
+	#video-player
+
+	.frame_text
+		- if desc
+			.description = desc
+
+	- if content_group['video']
+		- content_group['video'].each do |vid|
+			.wistia
+				h4 = vid.name
+				-if !vid.get_player
+					.video_placeholder
+						| Video coming soon
+				= vid.get_player
+
+	.boxes
+		- if content_group['image']
+			- content_group['image'].each do |img|
+				-if !img.image.url
+					.content = link_to image_tag(img.filepicker_url, class: 'content-thumb'), img.filepicker_url, rel: 'shadowbox'
+				-if img.image
+					.content = link_to image_tag(img.image.profile.url), img.image.url, rel: 'shadowbox'
+
+	- if content_group['link']
+		.links
+			- content_group['link'].each do |link|
+				.link
+					= link_to link.name, link.url, target: '_blank'
+					| &nbsp;
+					span class='glyphicon glyphicon-link'
+					= link.description
+
+	- if content_group['file']
+		.files
+			- content_group['file'].each do |f|
+				.link
+					-if !f.file
+						= link_to f.name, f.filepicker_url, target: '_blank'
+					-if f.file
+						= link_to f.name, f.file.url, target: '_blank'
+					| &nbsp;
+					span class='glyphicon glyphicon-paperclip'
+					= f.description

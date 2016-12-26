@@ -1,0 +1,25 @@
+.span3#rightsidebar
+  - unless current_user.premium
+    #upgrade
+      = link_to 'Upgrade to premium', upgrade_path, class: "btn btn-large btn-primary pull-right", type: "button"
+      %ul.tabs-stacked
+        %li Send Unlimited Mails
+        %li Upload Unlimited Photos
+        %li Use Advanced Search Features
+        %li Add Another Star to your Rating
+    %hr
+  #basic-search
+    = form_tag search_simple_path, method: :get do
+      %legend Search Profiles
+      Find me a match within...
+      = select_tag :search_distance, options_for_select(%w{ 50 100 250 500 1000+ }), class: 'span5'
+      miles.
+      = submit_tag 'Go', class: "btn btn-small btn-success pull-right", id: "go-search"
+  %hr
+  #advanced-search
+    %h4 Advanced Search
+    - if current_user.premium
+      = link_to "Search", search_advanced_path
+    - else
+      = link_to "Upgrade Now", upgrade_path
+  %hr

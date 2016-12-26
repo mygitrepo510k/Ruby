@@ -1,0 +1,73 @@
+-if params[:plan]=='coach' or params[:plan]=='counselor'
+	%p.payment-page-title Coach/Counselor Payment Page
+-else
+	%p.payment-page-title Member Payment Page
+.span5.offset3
+	.row
+		.span1.cost-label
+			%label Monthly Total:
+		.span1.coast-box
+			%input#balance{:value=>User::MEMBER_AMOUNT[params[:plan].to_sym], :readonly=>true, :style=>"width:100%;"}
+	%strong Make Payment with the Following:	
+	.row
+		%p
+			%label.checkbox.pull-left{style:"width:120px;"}
+				%input.chk-payment-credit-card{:type=>'checkbox', :name=>'payment_mode', :value=>'credit_card'}
+				Credit Card
+		.clearfix
+		.credit-card-payment
+			%br/
+			= text_field_tag :card_number, nil, name: nil, :placeholder=>"Credit Card Number", :value=>"4242424242424242"
+			%br/
+			= text_field_tag :card_code, nil, name: nil, :placeholder=>"CCV Number", :value=>"123"
+			%br/
+			= select_month nil, {add_month_numbers_true: true}, {name: nil, id: "card_month", :style=>"width: 100px;"}
+			= select_year nil, {start_year: Date.today.year+1, end_year: Date.today.year+15}, {name: nil, id: "card_year", :style=>"width: 100px;"}
+
+		%br/
+		%input#payment_token{:type=>"hidden", :name=>"payment_token"}
+		%p
+			%label.checkbox.pull-left{style:"width:120px;"}
+				%input.chk-payment-paypal{:type=>'checkbox', :name=>'payment_mode', :value=>'paypal'}
+				Paypal
+		.clearfix
+		.paypal-payment
+			%input.input-large{:type=>'text', :placeholder=>"Paypal ID"}
+			%br/			
+		.clearfix
+
+
+:javascript
+	$('.btn-credit-cancel').click(function(){
+		$('.message-dialog-content').html(coins_dialog_html);
+	});
+
+	$('.chk-payment-paypal').change(function(){
+		$('.credit-card-payment *').attr('disabled', true);
+		if($(this)[0].checked){
+			payment_mode = "paypal";
+			$('.paypal-payment *').attr('disabled', false);
+			$('.chk-payment-credit-card')[0].checked = false;
+		}else{
+			payment_mode = "";
+			$('.paypal-payment *').attr('disabled', true);
+		}
+	});
+
+	$('.chk-payment-credit-card').change(function(){
+		$('.paypal-payment *').attr('disabled', true);
+		if($(this)[0].checked){
+			payment_mode = "credit_card";
+			$('.credit-card-payment *').attr('disabled', false);
+			$('.chk-payment-paypal')[0].checked = false;
+		}else{
+			payment_mode = "";
+			$('.credit-card-payment *').attr('disabled', true);
+
+		}
+	});
+	var payment_mode = "";
+	$(function(){
+		$('.credit-card-payment *').attr('disabled', true);
+		$('.paypal-payment *').attr('disabled', true);
+	});

@@ -1,0 +1,25 @@
+%ul
+  - if current_page?settings_profile_path
+    %li.active
+      = link_to "Profile", :settings_profile
+  - else
+    %li
+      = link_to "Profile", :settings_profile
+  - if current_page?settings_account_path
+    %li.active
+      = link_to "Account", :settings_account
+  - else
+    %li
+      = link_to "Account", :settings_account
+  - if current_page? settings_payment_path or current_page? new_payment_profile_path
+    %li.active
+      = link_to "Payment", :settings_payment
+  - else
+    %li
+      = link_to "Payment", :settings_payment
+  - if current_page? settings_notification_path 
+    %li.active
+      = link_to "Notifications", :settings_notification
+  - else
+    %li
+      = link_to "Notifications", :settings_notification

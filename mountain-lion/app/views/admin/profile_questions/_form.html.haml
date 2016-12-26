@@ -1,0 +1,27 @@
+= form_for [:admin, @profile_question], :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :question, :class => 'control-label'
+    .controls
+      = f.text_field :question, :class => 'text_field'
+  .control-group
+    = f.label :reverse_question, :class => 'control-label'
+    .controls
+      = f.text_field :reverse_question, :class => 'text_field'
+  .control-group
+    = f.label :profile_section_id, :class => 'control-label'
+    .controls
+      = f.select :profile_section_id, ProfileSection.all.map {|ps| [ps.name, ps.id]}, :class => 'text_field'
+  .control-group
+    = f.label :answer_type, :class => 'control-label'
+    .controls
+      = f.select :answer_type, ProfileQuestion::ANSWER_TYPES, :class => 'text_field'
+  .control_group
+    %h3 "Answers"
+    #profile_answers
+      = f.fields_for :profile_answers do |answer|
+        = render "admin/profile_questions/profile_answer_fields", f: answer
+      .links
+        = link_to_add_association 'Add Answer', f, :profile_answers
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_profile_questions_path, :class => 'btn'

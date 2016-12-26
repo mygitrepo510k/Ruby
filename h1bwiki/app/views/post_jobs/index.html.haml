@@ -1,0 +1,37 @@
+.container-fluid
+	.row.post-main-page
+		=render "layouts/nav-link-secondary"
+		.row.first-row
+			.row
+				.span12.post-jobs-box
+					.page-header
+						%h1 Post Jobs
+					%table.table.table-striped
+						%thead
+							%tr
+								%th{:width=>"5%"} ID
+								%th{:width=>"20%"} Title
+								%th{:width=>"10%"} Type
+								%th{:width=>"30%"} Description
+								%th{:width=>"10%"} Skills
+								%th{:width=>"10%"} Create At
+								%th{:width=>"10%"}=t '.actions', :default => t("helpers.actions")
+						%tbody
+							- @post_jobs.each do |post_job|
+								%tr
+									%td= post_job.id, post_job_path(post_job)
+									%td= post_job.job_title
+									%td= post_job.get_jobtype
+									%td= post_job.job_description
+									%td= post_job.get_skill
+									%td=l post_job.created_at, :format =>"%Y-%m-%d %H:%M"
+									%td
+										= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_job_path(post_job), :class => 'btn btn-mini'
+										= link_to t('.destroy', :default => t("helpers.links.destroy")), post_job_path(post_job), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+							%tr
+								%td{:colspan=>"6"}= will_paginate @post_jobs
+					.row.last-row
+						.span10.control-box
+							= link_to 'New Registry', new_post_job_path, :class => 'm-btn blue'
+	:javascript 
+		$('ul.nav-tabs li').eq(1).addClass('isCurrent');

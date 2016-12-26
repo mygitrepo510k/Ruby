@@ -1,0 +1,43 @@
+.members.section.single
+	-if current_user.leader?
+		.row.user_counts
+			.col-sm-6.col-md-3
+				ul.list-group
+					li.list-group-item
+						span.badge= @users.select { |u| u.student? current_user.current_program }.count
+						| Students
+					li.list-group-item
+						span.badge= @users.select { |u| u.pod_leader? current_user.current_program }.count
+						| Pod Leaders
+			.col-sm-6.col-md-3
+					li.list-group-item
+						span.badge= @users.select { |u| u.staff? current_user.current_program }.count
+						| Staff
+					li.list-group-item
+						span.badge= @users.select { |u| u.admin? current_user.current_program }.count
+						| Admins
+			.col-sm-6.col-md-3
+					li.list-group-item
+						span.badge= @users.select { |u| u.player? current_user.current_program }.count
+						| Players
+
+	.row
+		- for u in @users
+			.col-xs-6.col-sm-4.col-md-3.member.text-center
+				= link_to image_tag(u.avatar.profile.url), u
+				h2 = link_to u.name, u
+
+				/a href=''
+					img src='http://m1.behance.net/rendition/projects/16448569/orig/df06fa15451c5796406c807d0963bf59.jpeg'
+					h2
+						| User Name
+
+				.pod_leader 
+					- if u.pod
+						span.glyphicon.glyphicon-user
+						= link_to u.pod.leader.name, u.pod.leader
+				
+					/ - if u.last_frame
+					 	.last_mission
+					 		= (u.last_frame.private ? u.last_frame : link_to(u.last_frame.challenge.name, u.last_frame))
+				br

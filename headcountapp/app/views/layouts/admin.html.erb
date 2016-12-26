@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Headcountapp</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="<%= params[:controller].gsub("/","_")%>_<%= params[:action]%>">
+  
+  <div class="navbar navbar-fixed-top">
+    <nav class="navbar-inner">
+      <div class="container">
+        <%= render 'layouts/admin_nav' %>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <%= render 'layouts/messages'%>
+  </div>
+  <div id="main_content">
+    <div class="container">
+      <%= yield %>
+    </div>        
+  </div>
+  <footer>
+    <%= render 'layouts/footer'%>
+  </footer>
+</body>
+</html>

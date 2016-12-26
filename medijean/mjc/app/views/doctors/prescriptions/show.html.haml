@@ -1,0 +1,81 @@
+.row
+  .span12.wrapper
+    .row
+      .span10.offset1.wrap
+        .row.empty-row
+        .row.main-row
+          .span4.offset3
+            %h3.homepg-header
+              = "Prescription No. "
+              =  @prescription.id
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              = t("doctor_flow.prescription.prescribing_doctor_attr")
+          .span4
+            =  @prescription.prescribing_doctor
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              = t("doctor_flow.prescription.prescription_no_attr")
+          .span4
+            =  @prescription.id
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              Strain
+          .span4
+            =  @prescription.medicine.name
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              Quantity
+          .span4
+            =  @prescription.dosage.quantity.to_s + ' ' + @prescription.dosage.unit.to_s+ ' ' + @prescription.dosage.frequency.to_s
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              Recommended Ingestion Method
+          .span4
+            =  @prescription.administration_method
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              = t("doctor_flow.prescription.issue_date_attr")
+          .span4
+            =  l(@prescription.issue_date, :format => :long)
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              = t("doctor_flow.prescription.expiration_attr")
+          .span4
+            =  l(@prescription.expiration, :format => :long)
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              = t("doctor_flow.prescription.symptom_attr")
+          .span4
+            =  @prescription.prescription_symptom
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              = t("doctor_flow.prescription.current_usage_habits_attr")
+          .span4
+            =  @prescription.current_usage_habits
+        %hr
+        .row
+          .span2.offset1
+            %p.bold-txt
+              = t("doctor_flow.prescription.description_attr")
+          .span4
+            =  @prescription.description
+        .row.empty-row

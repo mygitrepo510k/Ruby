@@ -1,0 +1,42 @@
+// Place all the styles related to the Forms controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+input, textarea, select, label {
+	font-weight: 300;	
+}
+
+textarea {
+	height: 2.5em;
+
+	&:focus	{
+		height: auto;
+	}
+}	
+
+input[type='text'], textarea {
+	width: 100%;			
+	padding: .3em .5em;
+	border:	1px solid $lgrey;
+	@include radius($default-site-radius); 
+
+	&:focus	{
+		outline: none;
+	}
+}
+
+[type='submit'],
+.btn {
+	@include transition-duration(.25s);
+	@include radius($default-site-radius); 
+	font-style: normal;
+	font-weight: 400;
+	text-shadow: none;
+	outline: none;
+}
+
+label {
+	font-size: 90%;
+	margin-bottom: .5em;
+	@include opacity(80);
+}

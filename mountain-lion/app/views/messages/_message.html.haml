@@ -1,0 +1,5 @@
+%tr{id: "message_#{message.id}", "data-id" => message.id, class: "#{"strong" if (!message.read? && subject == 'sender') }" }
+  %td#message-delete= check_box_tag "messages[]", message.id
+  %td= message.try(subject.to_sym).display_username
+  %td= message.subject
+  %td= message.created_at.strftime('%m/%d/%Y')

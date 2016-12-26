@@ -1,0 +1,129 @@
+<script type="text/javascript">
+$(function(){
+  //alert($('select').width()) jqGreenForm
+  $('.jqGreenForm').jqTransform({imgPath:'images/'}); 
+  $('.jqSmallform').jqTransform({imgPath:'images/'}); 
+  //$('.jqSmallform').jqTransform({imgPath:'images/'}); 
+  $('.filterRow .txt').click(function(){
+    $(this).parent().parent().find('.selectedRow').removeClass('selectedRow')
+    $(this).parent().addClass('selectedRow')    
+  })
+})
+function showEdit(obj){
+  var currentvalue = $(obj).parent().parent().find('.valueCollecter').text()
+  $(obj).parent().parent().parent().find('.editContainer > .inputField').val(currentvalue)
+  
+  $('.filterBox').find('.selectedRow').removeClass('selectedRow')
+  $(obj).parent().parent().parent().parent().addClass('selectedRow')
+  
+  $(obj).parent().parent().toggle();
+  $(obj).parent().parent().parent().find('.editContainer').toggle() 
+}
+function showLoader(obj){
+  //$(obj).hide();
+  //$(obj).next().show();
+  var object_id = $(obj).next().val();
+  var object_val = $(obj).prev().prev().val();
+  $.ajax({
+    url: "/child_profile_health_value_update?id=" + object_id + "&value=" + object_val ,
+  }).done(function(data) {
+    $('#child_profile_health_div').html(data);
+  });
+
+  $(obj).parent().prev().children().first().html(object_val.replace("positive", "+").replace("negative", "-"));
+  $(obj).parent().hide();
+  $(obj).parent().prev().show();
+  //setTimeout(function(){hideLoader('viewContainer','editContainer')},1000);
+}
+function hideLoader(objView,objEdit,objVal){
+  $('.'+objEdit).hide();
+  $('.'+objView).show();
+}
+</script>
+
+<!-- Body Start here-->
+<div id="child_profile_health_div" class="bodyWapper">
+  <div class="tabBox">
+      <a href="/child_profile_health?id=<%= params[:id] %>" class="tabSelected">General</a>
+      <a href="/child_profile_health_record?id=<%= params[:id] %>">Health Records</a>
+      <a href="/child_profile_health_test_reports?id=<%= params[:id] %>">Test & Reports</a>
+      <a href="/child_profile_health_vaccination_medication?id=<%= params[:id] %>">Vaccination & Medication</a>
+      
+    <div class="CL"></div>
+  </div>
+  <div class="tabContainer">
+    <div class="tabAction">&nbsp;</div>
+    <div class="infoContainer" style="padding-bottom:20px; padding-left:5px; padding-right:5px;">
+      <div class="chartFilter">
+        <div class="filterBox">
+          <% @family_member_health.each do |single_family_member_health| %>
+            <div class="filterRow">
+            <div class="txt"><%= single_family_member_health.name  %></div>
+            <div class="action">
+              <div class="viewContainer">
+                <div class="valueCollecter"><%= single_family_member_health.value.gsub("positive",'+').gsub("negative",'-')   %></div>
+                <div class="editView"> <a href="javascript://" class="editIcon" title="Edit" onClick="showEdit(this)"></a><br>
+                  Last Updated:<%= single_family_member_health.updated_at.strftime("%d %b %y") if !single_family_member_health.updated_at.blank?%></div>
+              </div>
+              <div class="editContainer">
+                <% if single_family_member_health.name == "Blood Group" %>
+                  <select class="inputField" id="getValueselected" name="bloodgroup" style="width:50px; height:30px;">
+                    <% ['B','Bpositive','Bnegative','O','Onegative'].each do |single_group| %>
+                      <% if single_group == single_family_member_health.value %>
+                        <option value = '<%=single_group%>' selected="selected" ><%=single_group.gsub("positive",'+').gsub("negative",'-') %></option>
+                      <% else %>
+                        <option value = '<%=single_group%>'><%=single_group.gsub("positive",'+').gsub("negative",'-') %></option>
+                      <% end %>
+                    <% end %>
+                  </select>
+                <% else %>
+                  <input type="text" value="<%= single_family_member_health.value  %>" id="getValue" class="inputField" onClick="this.style.color='#000'" onBlur="this.style.color='#979797'">
+                <% end %>
+                <a href="#." class="closeBigBtn FR" onClick="hideLoader('viewContainer','editContainer')"></a>
+                <input type="submit" value="save" class="saveBtn FR" onClick="showLoader(this)">
+                <input type="hidden" value="<%= single_family_member_health.id  %>" >
+                <img src="images/green_loader.png" width="23" height="24" alt="" style="display:none; float:right;">
+                <div class="CL"></div>
+              </div>
+            </div>
+            <div class="CL"></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="FL" style=" background:url(images/height-title.png) left top; width:10px; height:57px; margin-top:300px;"></div>
+      <div class="chartContainer"><div id="graph">Chart come here</div></div>
+      <div style="margin-left:445px; float:left; position:relative; margin-top:-20px;">Age</div>
+      <div class="CL"></div>
+    </div>
+  </div>
+</div>
+<!-- Body Start End -->
+<script type="text/javascript">
+  var myChart = new JSChart('graph', 'line');
+  myChart.setDataArray([[0, 0],[4, 20],[6, 80],[8, 65],[10, 50],[11, 50],[12, 60],[14, 80] ,[16, 80],[18, 80]]);
+  myChart.setTitle('');
+  myChart.setTitleFontSize(11);
+  myChart.setAxisNameX('');
+  myChart.setAxisNameY('');
+  myChart.setAxisColor('#dcdcdc');
+  myChart.setAxisValuesColor('#939292');
+  myChart.setAxisPaddingLeft(20);
+  myChart.setAxisPaddingRight(10);
+  myChart.setAxisPaddingTop(0);
+  myChart.setAxisPaddingBottom(20);
+  myChart.setAxisValuesDecimals(0);
+  myChart.setAxisValuesNumberX(0);
+  myChart.setGridColor('#dcdcdc');
+  myChart.setLineColor('#2d2d2d');
+  myChart.setLineWidth(2);
+  myChart.setFlagColor('#f57f00');
+  myChart.setFlagRadius(4);
+  myChart.setFlagWidth(4)
+  myChart.setFlagFillColor('#FFF')
+  myChart.setTooltipBackground('#FFF')
+  myChart.setTooltipOpacity(1)
+  myChart.setTooltip([4, 'Height: 126.2<br>Age: 12 years 8 months<br>Updated: 03 jan 2013']);
+  myChart.setSize(520, 380);
+  myChart.draw();
+</script>

@@ -1,0 +1,55 @@
+.popupWindow{:style => "width: 380px; height: 265px;"}
+  .popupHead
+    .popupTitle Add album image
+    .CL
+  .popupContaint
+    %p.pageSubTitle Add album image
+    .popupSmForm
+      = form_tag "/album/add_photo?test_report_id=#{@album.blank? ? " " : @album.id }",:id=>'add_photo_form', :multipart => true do
+        - @album = ''
+        - @name = @album.blank? ? "name" : @album.name
+        - @order_no = @album.blank? ? "1" : '1'
+        - @status = @album.blank? ? "true" : 'true'
+        .formRow
+          %label Name
+          %input#test_reports_name.inputField{:name => "test_reports[name]", :onblur => "if(this.value==''){ this.value='#{@name}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@name}'){ this.value=''; this.style.color='#000'}", :style => "width: 200px; color: rgb(151, 151, 151);", :type => "text", :value => @name}/
+
+          %p.errorMsgLeft
+          .CL
+        %input#test_reports_order_no.inputField{:name => "test_reports[order_no]", :onblur => "if(this.value==''){ this.value='#{@order_no}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@order_no}'){ this.value=''; this.style.color='#000'}", :style => "width: 200px; color: rgb(151, 151, 151);", :type => "hidden", :value => @order_no}/
+        .formRow
+          %label Photo:
+          = file_field_tag "test_reports[photo]",:style =>"width: 200px; color: rgb(151, 151, 151);", :size=>6
+          \ *
+          %p.errorMsgLeft
+          .CL
+        .formRow
+          %label  
+          %input.submitBtn{:type => "submit", :value => "submit"}/
+          %input.cancelBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;", :type => "submit", :value => "cancel"}/
+          .CL
+
+:javascript
+  $("#test_reports_photo").change(function(){
+    //$("#test_reports_name").val($("#test_reports_photo").val());
+  });
+  $("#add_photo_form").submit(function() {
+    if ($('#test_reports_name').val() == "" || $('#test_reports_name').val() == "name"){
+      $('#test_reports_name').next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#test_reports_name').next().html("");
+    }
+    if ($('#test_reports_photo').val() == ""){
+      $('#test_reports_photo').next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#test_reports_photo').next().html("");
+    }
+    
+    if (chec_error == true){
+      return false;
+    }else{
+      return true;
+    }
+  });  

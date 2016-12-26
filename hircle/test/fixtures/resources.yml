@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  name: requirment file of project
+  label: requirment
+  pointer: url  
+  user_id: 1
+  department_id: 1
+  attach_content_type: pdf
+  attach_file_name: requirment.pdf
+  attach_file_size: 10245
+  conversation_id: 1
+  update_at: 2013-04-17 16:33:20
+
+resource2:
+  id: 2
+  name: design file 
+  label: design
+  pointer: url2 
+  user_id: 2
+  department_id: 1
+  attach_content_type: doc
+  attach_file_name: design.doc
+  attach_file_size: 480
+  conversation_id: 1
+  update_at: 2013-04-17 16:33:20

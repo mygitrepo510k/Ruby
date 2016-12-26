@@ -1,0 +1,6 @@
+.header
+  = link_to image_tag('main_03.png', title: "Hye Dating", border: 0, height: 70, width: 331, align: "left"), root_path
+  - if current_user
+    = link_to image_tag('static_05.png', border: 0, height: 45, width: 226, align: "right"), users_path
+  - else
+    = link_to image_tag('main_05.png', border: 0, height: 45, width: 226, align: "right"), login_path

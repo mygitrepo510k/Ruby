@@ -1,0 +1,108 @@
+%script{:type=>"text/javascript", :src=>"https://js.stripe.com/v2/"}
+.wrapper
+  .row.container.center-div-no-bg
+    .row.oh-page-container
+      .row.empty-row
+      .row.main-row
+        %h3.text-center
+          = t("patient_flow.upload_prescription.title")
+      .row
+        %p.text-center.homepg-txt
+          = t("patient_flow.upload_prescription.text1")
+      %hr
+      =form_for @prescription, :url => "/prescriptions/create", :method => "post", :html => { :multipart => true } do |f|
+        .row.empty-row
+        .row
+          .span4
+            %p 
+              /  
+                = t("patient_flow.upload_prescription.prescription_image")
+            /
+              = f.file_field :prescription_image
+            .fileupload.fileupload-new{"data-provides" => "fileupload"}
+              .fileupload-preview.thumbnail
+              %div
+                %span.btn.btn-file
+                  %span.fileupload-new
+                    = t("patient_flow.prescription.upload")
+                  %span.fileupload-exists
+                    = t("patient_flow.prescription.change")
+                  %input{:type => "file", :id => "prescription_prescription_image", :name => "prescription[prescription_image]"}/
+                %a.btn.fileupload-exists{"data-dismiss" => "fileupload", :href => "#"}
+                  = t("patient_flow.prescription.remove")
+              = errors_for @prescription, :prescription_image
+
+        .row.empty-row
+        .row
+          .span4
+            %p 
+              = t("patient_flow.upload_prescription.presc_doctor")
+            = f.text_field :doctor_name, :placeholder => "Start typing doctor's name", :class => "input-xlarge"
+            = errors_for @prescription, :doctor_name
+        .row.empty-row
+        .row
+          .span4
+            %p 
+              = t("patient_flow.upload_prescription.reason")
+            - unless params[:prescription].blank?
+              = f.select :symptom, options_for_select(sort_except_other(Prescription::SYMPTOMS), params[:prescription][:symptom]), :prompt => "Please Select"
+              = f.text_field :symptom, :class => "input-medium" if  params[:prescription][:symptom] == "Other"
+            - else
+              = f.select :symptom, options_for_select(sort_except_other(Prescription::SYMPTOMS)), :prompt => "Please Select"
+            = errors_for @prescription, :symptom
+          .span4
+            %p 
+              = t("patient_flow.upload_prescription.habits")
+            = f.select :current_usage_habits, options_for_select(Prescription::USAGE_HABITS), :prompt => "Please Select"
+            = errors_for @prescription, :current_usage_habits
+        .row.empty-row    
+        .row
+          .span4
+            %p 
+              = t("patient_flow.review.strain")
+            = f.select :medicine_id, Medicine.order('name ASC').collect {|c| [ c.name, c.id ] },:prompt => "Please Select"
+            = errors_for @prescription, :medicine_id
+          .span4
+            %p 
+              = t("patient_flow.prescription.recommended_method")
+            = f.select :administration_method, options_for_select(capitalize_array(Prescription::ADMINISTRATION_METHODS)),:prompt => "Please Select"
+        .row.empty-row
+        .row
+          .span4
+            %p 
+              = t("patient_flow.review.quantity")
+            - unless params[:prescription].blank?
+              = f.select :dosage, options_for_select(Prescription::DOSAGES,@prescription_dosage_select)
+              - if  @prescription_dosage_select == "Other"
+                #prescription_dosage_other_div
+                  %input#prescription_other_dosage.input-medium{:name => "prescription[other_dosage]", :size => "30", :type => "text", :value => "#{@prescription_dosage_other}"}/
+                  g/day
+            - else
+              = f.select :dosage, options_for_select(Prescription::DOSAGES)
+            
+        .row.empty-row
+        .row
+          .span4.prescription-date-select
+            %p 
+              = t("patient_flow.upload_prescription.issue_date")
+            = f.date_select :issue_date, :order => [:month, :day, :year],:prompt => { :month => "MM", :day => "DD", :year => "YYYY"}
+            = errors_for @prescription, :issue_date
+          .span4.prescription-date-select
+            %p 
+              = t("patient_flow.upload_prescription.expiry_date")
+            = f.date_select :expiration, :order => [:month, :day, :year], :prompt => { :month => "MM", :day => "DD", :year => "YYYY"}
+            = errors_for @prescription, :expiration
+        .row.empty-row
+        .row
+          .span8
+            %p 
+              = t("patient_flow.upload_prescription.notes")
+            = f.text_area :description, :class => "input-block-level", :rows => "5"
+            = errors_for @prescription, :description
+        %hr
+        .row.empty-row
+        .row
+          .span2
+            = f.submit t("patient_flow.upload_prescription.next_button"), :class=>"btn btn-block gb-btn"
+          .span2
+            =link_to t("general.cancel") , prescriptions_path, :class => "btn btn-block gb-btn-gray"

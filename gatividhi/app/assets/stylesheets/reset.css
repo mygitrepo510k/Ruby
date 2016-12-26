@@ -1,0 +1,40 @@
+*{ margin:0px; padding:0px; font-size:100%; outline:none;}
+body {
+	line-height: 1.2;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.CL{ clear:both;}
+.CL-Fix{ clear:both; height:0px; font-size:0px;}
+.FL{ float:left !important;}
+.FR{ float:right !important;}
+a{ color:#545454; text-decoration:none; cursor:pointer;}
+a:hover{ text-decoration:underline; color:#545454; cursor:pointer;}

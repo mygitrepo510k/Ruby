@@ -1,0 +1,454 @@
+:css
+  br { display:none; }
+  #test_reports_start_on-gldp{
+    background-color: white;
+  }
+  .jqTransformRadioWrapper{
+    clear:both;
+  }
+- @title = @childprofileactivity.blank? ? "title" : @childprofileactivity.title
+- @description = @childprofileactivity.blank? ? "description" : @childprofileactivity.description
+- @end_date = @childprofileactivity.blank? ? Time.now.to_date : @childprofileactivity.end_date
+- @start_date = @childprofileactivity.blank? ? Time.now.to_date : @childprofileactivity.start_date
+- @start_time = @childprofileactivity.blank? ? Time.now.to_time : @childprofileactivity.start_time
+- @end_time = @childprofileactivity.blank? ? Time.now.to_time : @childprofileactivity.end_time
+
+= form_tag "/add_child_activities_list?id=#{@family_member.id}&test_report_id=#{@childprofileactivity.blank? ? '' : @childprofileactivity.id}",:id=>'add_member_form', :multipart => true do
+  #activity_input_form.popupWindow{:style => "width: 800px; height: 650px;"}
+    .popupHead
+      .popupTitle Add Activity
+      .closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+      .CL
+    .popupContaint
+      .popupSmForm
+        .halfBox.FL
+          .formRow.jqBigform
+            %label Title:
+            %input#test_reports_title.inputField{:name => "test_reports[title]", :onblur => "if(this.value==''){ this.value='#{@title}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@title}'){ this.value=''; this.style.color='#000'}", :style => "width:200px; margin-left:10px;", :type => "text", :value => @title}/
+            %p.errorMsgLeft
+            .CL
+          .formRow
+            %label Description:
+            %textarea#test_reports_description.inputField{:name => "test_reports[description]", :onblur => "if(this.value==''){ this.value='#{@description}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@description}'){ this.value=''; this.style.color='#000'}", :style => "width: 200px; margin-left:10px; color: rgb(151, 151, 151);", :value => @description}= @description
+            %p.errorMsgLeft
+            .CL
+          .formRow.jqBigform.select_category
+            %label Category:
+            %select#test_reports_category.inputField{:name => "test_reports[category]", :style => "width:175px; margin-left:10px;"}
+              - ['Select','Academic','Sports','Visual&performing arts', 'Public speaking/Interaction','Personal/Family','Voluntary/Social contribution'].each do |single_group|
+                - if !@childprofileactivity.blank? && single_group == @childprofileactivity.category
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+            .CL
+          .formRow.jqBigform.subject_select
+            %label Subject:
+            %select#test_reports_subject.inputField{:name => "test_reports[subject]", :style => "width:175px; margin-left:10px;"}
+              - ['Select','Maths','Science','Hindi'].each do |single_group|
+                - if !@childprofileactivity.blank? && single_group == @childprofileactivity.subject
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+            .CL
+          .formRow.jqBigform
+            %label Type:
+            %select#test_reports_type.inputField{:name => "test_reports[type]", :style => "width:175px; margin-left:10px;"}
+              - ['Select','Class','Event','Trip'].each do |single_group|
+                - if !@childprofileactivity.blank? && single_group == @childprofileactivity.type
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+            .CL
+        .halfBox.FR
+          .formRow
+            %span.formRow.jqBigform.smallCheckbox
+              %label School Activity:
+              - if !@childprofileactivity.blank?
+                - if @childprofileactivity.school_activity == true
+                  %input#checkbox{:checked => "", :name => "test_reports[school_activity]", :type => "checkbox", :value => "true"}/
+                - else
+                  %input#checkbox{:name => "test_reports[school_activity]", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox.inputField{:name => "test_reports[school_activity]", :onblur => "this.style.color='#979797'", :type => "checkbox", :value => "true"}/
+            .CL
+          .formRow
+            %span.formRow.jqBigform.smallCheckbox
+              %label All day activity:
+              - if !@childprofileactivity.blank?
+                - if @childprofileactivity.day_activity == true
+                  %input#checkbox2{:checked => "", :name => "test_reports[day_activity]", :type => "checkbox", :value => "true"}/
+                - else
+                  %input#checkbox2{:name => "test_reports[day_activity]", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox2{:name => "test_reports[day_activity]", :type => "checkbox", :value => "true"}/
+            .CL
+          .formRow
+            %label Start Date:
+            %input#date1.dateBox.inputField{:name => "test_reports[start_date]", :onblur => "if(this.value==''){this.value='#{@start_date}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@start_date}'){ this.value=''; this.style.color='#000'}", :type => "text", :value => @start_date}/
+            %span.formRow.jqSmallform.FR
+              %select#select.inputField{:name => "test_reports[start_time]", :style => "width:85px;margin-left:5px;", :value => @start_time}
+                - (1..24).each do |h|
+                  %option= h
+                
+            .CL
+          .formRow
+            %label End Date:
+            %input#date2.dateBox.inputField{:name => "test_reports[end_date]", :onblur => "if(this.value==''){this.value='#{@end_date}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@end_date}'){ this.value=''; this.style.color='#000'}", :type => "text", :value => @end_date}/
+            %span.formRow.jqSmallform.FR
+              %select#select.inputField{:name => "test_reports[end_time]", :style => "width:85px;margin-left:5px;", :value => @end_time}
+                - (1..24).each do |h|
+                  %option= h                
+            .CL
+          .formRow
+            %span.formRow.jqBigform.smallCheckbox
+              %label Add to timeline:
+              - if !@childprofileactivity.blank?
+                - if @childprofileactivity.add_to_timeline == true
+                  %input#checkbox3{:checked => "", :name => "test_reports[add_to_timeline]", :type => "checkbox", :value => "true"}/
+                - else
+                  %input#checkbox3{:name => "test_reports[add_to_timeline]", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox3{:name => "test_reports[add_to_timeline]", :type => "checkbox", :value => "true"}/
+            .CL
+          .formRow
+            %span.formRow.jqBigform.smallCheckbox.repeate_checkbox
+              %label Repeat:
+              - if !@childprofileactivity.blank?
+                - if @childprofileactivity.repeat_activity == true
+                  %input{:checked => "", :name => "test_reports[repeat_activity]", :onchange => "showFunctionAlert(this);", :type => "checkbox", :value => "true"}/
+                - else
+                  %input#checkbox{:name => "test_reports[repeat_activity]", :onchange => "showFunctionAlert(this);", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox{:name => "test_reports[repeat_activity]", :onchange => "showFunctionAlert(this);", :type => "checkbox", :value => "true"}/
+            .CL
+          #repeatShow{:style => "width:100%; height:157px; display:none; border-top:1px solid #a8a8a8; overflow:auto;"}
+            .formRow.jqBigform
+              %label Repeats:
+              %select#select5{:name => "test_reports[repeats]", :style => "width:170px;"}
+                - ['Select','Every Week','Alternate Week','Every Month'].each do |single_group|
+                  - if !@childprofileactivity.blank? && single_group == @childprofileactivity.repeats
+                    %option{:selected => "selected", :value => single_group}= single_group
+                  - else
+                    %option{:value => single_group}= single_group
+              .CL
+            .formRow.jqBigform
+              %label Repeats every:
+              %select#select10{:name => "test_reports[repeats_every]", :style => "width:55px; margin-left:5px;"}
+                - ['Select','1','2','3'].each do |single_group|
+                  - if !@childprofileactivity.blank? && single_group == @childprofileactivity.repeats_every
+                    %option{:selected => "selected", :value => single_group}= single_group
+                  - else
+                    %option{:value => single_group}= single_group
+              %select#select11{:name => "test_reports[repeats_start]", :style => "width:55px; margin-left:5px;"}
+                - ['Select','15:00min','30:00min','1 Hour'].each do |single_group|
+                  - if !@childprofileactivity.blank? && single_group == @childprofileactivity.repeats_start
+                    %option{:selected => "selected", :value => single_group}= single_group
+                  - else
+                    %option{:value => single_group}= single_group
+              .CL
+            .formRow.jqBigform
+              %label Repeats on:
+              %span.groupCheck.FL
+                - if !@childprofileactivity.blank?
+                  - if @childprofileactivity.repeats_onM == true
+                    %input{:checked => "checked", :name => "test_reports[repeats_onM]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} M
+                  - else
+                    %input{:checked => "checked", :name => "test_reports[repeats_onM]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} M
+                  - if @childprofileactivity.repeats_onT == true
+                    %input{:checked => "checked", :name => "test_reports[repeats_onT]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} T
+                  - else
+                    %input{:name => "test_reports[repeats_onT]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} T
+                  - if @childprofileactivity.repeats_onW == true
+                    %input{:checked => "checked", :name => "test_reports[repeats_onW]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} W
+                  - else
+                    %input{:name => "test_reports[repeats_onW]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} W
+                  - if @childprofileactivity.repeats_onTt == true
+                    %input{:checked => "checked", :name => "test_reports[repeats_onTt]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} T
+                  - else
+                    %input{:name => "test_reports[repeats_onTt]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} T
+                  .CL
+                  - if @childprofileactivity.repeats_onF == true
+                    %input{:checked => "checked", :name => "test_reports[repeats_onF]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} F
+                  - else
+                    %input{:name => "test_reports[repeats_onF]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} F
+                  - if @childprofileactivity.repeats_onS == true
+                    %input{:checked => "checked", :name => "test_reports[repeats_onS]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} S
+                  - else
+                    %input{:name => "test_reports[repeats_onS]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} S
+                  - if @childprofileactivity.repeats_onSs == true
+                    %input{:checked => "checked", :name => "test_reports[repeats_onSs]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} S
+                  - else
+                    %input{:name => "test_reports[repeats_onSs]", :type => "checkbox", :value => "true"}/
+                    %label{:style => "width: 1px !important;"} S
+                - else
+                  %input{:checked => "checked", :name => "test_reports[repeats_onM]", :type => "checkbox", :value => "true"}/
+                  %label{:style => "width: 1px !important;"} M
+                  %input#checkbox{:name => "test_reports[repeats_onT]", :type => "checkbox", :value => "true"}/
+                  %label{:style => "width: 1px !important;"} T
+                  %input#checkbox{:name => "test_reports[repeats_onW]", :type => "checkbox", :value => "true"}/
+                  %label{:style => "width: 1px !important;"} W
+                  %input#checkbox{:name => "test_reports[repeats_onTt]", :type => "checkbox", :value => "true"}/
+                  %label{:style => "width: 1px !important;"} T
+                  .CL
+                  %input#checkbox{:name => "test_reports[repeats_onF]", :type => "checkbox", :value => "true"}/
+                  %label{:style => "width: 1px !important;"} F
+                  %input#checkbox{:name => "test_reports[repeats_onS]", :type => "checkbox", :value => "true"}/
+                  %label{:style => "width: 1px !important;"} S
+                  %input#checkbox{:name => "test_reports[repeats_onSs]", :type => "checkbox", :value => "true"}/
+                  %label{:style => "width: 1px !important;"} S
+              .CL
+            .row
+            .formRow
+              %label{:style=>"margin-bottom: 0px;"} Start On:
+              %input#test_reports_start_on.dateBox.inputField{:name => "test_reports[start_on]", :onblur => "if(this.value==''){this.value='#{@start_date}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@start_date}'){ this.value=''; this.style.color='#000'}", :type => "text", :value => @start_date}/
+              %span.formRow.jqSmallform.FR
+                %select#select.inputField{:name => "test_reports[start_on_time]", :style => "width:85px;margin-left:5px;", :value => @start_time}
+                  - (1..24).each do |h|
+                    %option= h
+              .CL
+            .formRow.jqBigform
+              %label Ends on:
+              .FL{:style => "width:215px;"}
+                - if !@childprofileactivity.blank?
+                  - if @childprofileactivity.ends_on == true
+                    %input#checkbox3{:checked => "", :name => "test_reports[ends_on]", :type => "checkbox", :value => "true"}/
+                  - else
+                    %input#checkbox3{:name => "test_reports[ends_on]", :type => "checkbox", :value => "true"}/
+                - else
+                  %input#checkbox3{:name => "test_reports[ends_on]", :type => "checkbox", :value => "true"}/
+                .jqTransformRadio{:style => "height:5px;"}
+                %span.freeTxtInput  
+                %input{:name => "test_reports[activity_days]", :type => "radio", :value => "100 days"}/
+                %span.freeTxtInput{:style => "padding-left:5px;"} 100 only
+                .jqTransformRadio{:style => "height:5px;"}
+                %span.freeTxtInput  
+                %input{:name => "test_reports[activity_days]", :type => "radio", :value => "1 year"}/
+                %span.freeTxtInput{:style => "padding-left:5px;"} max 1 year
+              .CL
+        .CL
+      %p.greenTxt{:style => "font-size:14px; font-weight:bold; padding-top:0px;"} Advanced details:
+      .popupFormBox
+        .halfBox.FL
+          .formRow.jqBigform
+            .checkBoxTitle Child's Role:
+            .childRoleWrap
+              .childRole
+                - if !@childprofileactivity.blank?
+                  - if @childprofileactivity.role_participant == true
+                    %input{:checked => "", :name => "test_reports[role_participant]", :type => "checkbox", :value => "true"}/
+                    %label Participant
+                    .CL
+                  - else
+                    %input{:name => "test_reports[role_participant]", :type => "checkbox", :value => "true"}/
+                    %label Participant
+                    .CL
+                  - if @childprofileactivity.role_organizer == true
+                    %input{:checked => "", :name => "test_reports[role_organizer]", :type => "checkbox", :value => "true"}/
+                    %label Organizer
+                    .CL
+                  - else
+                    %input{:name => "test_reports[role_organizer]", :type => "checkbox", :value => "true"}/
+                    %label Organizer
+                    .CL
+                  - if @childprofileactivity.role_captain == true
+                    %input{:checked => "", :name => "test_reports[role_captain]", :type => "checkbox", :value => "true"}/
+                    %label Captain/Leader
+                    .CL
+                  - else
+                    %input{:name => "test_reports[role_captain]", :type => "checkbox", :value => "true"}/
+                    %label Captain/Leader
+                    .CL
+                  - if @childprofileactivity.role_anchor == true
+                    %input{:checked => "", :name => "test_reports[role_anchor]", :type => "checkbox", :value => "true"}/
+                    %label Anchor
+                    .CL
+                  - else
+                    %input{:name => "test_reports[role_anchor]", :type => "checkbox", :value => "true"}/
+                    %label Anchor
+                    .CL
+                - else
+                  %input{:name => "test_reports[role_participant]", :type => "checkbox", :value => "true"}/
+                  %label Participant
+                  .CL
+                  %input{:name => "test_reports[role_organizer]", :type => "checkbox", :value => "true"}/
+                  %label Organizer
+                  .CL
+                  %input{:name => "test_reports[role_captain]", :type => "checkbox", :value => "true"}/
+                  %label Captain/Leader
+                  .CL
+                  %input{:name => "test_reports[role_anchor]", :type => "checkbox", :value => "true"}/
+                  %label Anchor
+                  .CL
+            .CL
+          .formRow.jqBigform
+            %label Important:
+            %select#test_reports_importance.inputField{:name => "test_reports[importance]", :style => "width:175px; margin-left:10px;"}
+              - ['Select','High','Medium','Low'].each do |single_group|
+                - if !@childprofileactivity.blank? && single_group == @childprofileactivity.importance
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+            .CL
+        .halfBox.FL
+          .formRow.jqBigform{:style=>"margin-bottom: 15px;"}
+            %label Level:
+            %select#test_reports_level.inputField{:name => "test_reports[level]", :style => "width:175px; margin-left:10px;"}
+              - ['Select','School','District','State'].each do |single_group|
+                - if !@childprofileactivity.blank? && single_group == @childprofileactivity.level
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+            .CL
+          .formRow.jqBigform
+            .checkBoxTitle Team Activity:
+            - if !@childprofileactivity.blank?
+              - if @childprofileactivity.team_activity == true
+                %input#checkbox3{:checked => "", :name => "test_reports[team_activity]", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox3{:name => "test_reports[team_activity]", :type => "checkbox", :value => "true"}/
+            - else
+              %input#checkbox3{:name => "test_reports[team_activity]", :type => "checkbox", :value => "true"}/
+            .CL
+          .formRow.jqBigform
+            .checkBoxTitle Competitive:
+            - if !@childprofileactivity.blank?
+              - if @childprofileactivity.competitive == true
+                %input#checkbox3{:checked => "", :name => "test_reports[competitive]", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox3{:name => "test_reports[competitive]", :type => "checkbox", :value => "true"}/
+            - else
+              %input#checkbox3{:name => "test_reports[competitive]", :type => "checkbox", :value => "true"}/
+            .CL
+        .CL
+      .CL
+      .formRow.popActionBtn{:style => "text-align:right;"}
+        %input.submitBtn{:type => "submit", :value => "submit"}/
+        %input.cancelBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;", :type => "submit", :value => "cancel"}/
+
+:javascript
+  $(function() {
+    $('.jqBigform').jqTransform(); 
+    $('.jqSmallform').jqTransform(); 
+    
+    $("#date1").glDatePicker({
+        leftMargin: 55,
+        topMargin: -8
+    });
+    $("#date1").val("#{@start_date.to_s}");
+    $("#date2").glDatePicker({
+        leftMargin: 55,
+        topMargin: -10
+    });
+    $("#date2").val("#{@end_date.to_s}");
+    $("#test_reports_start_on").glDatePicker({
+        leftMargin: 55,
+        topMargin: -10
+    });
+    $("#test_reports_start_on").val("#{@start_date.to_s}");
+
+
+
+    $('div.select_category ul li a').click(function(){
+      var cat = $(this).text();
+      //'Academic','Sports','Visual&performing arts', 'Public speaking/Interaction','Personal/Family','Voluntary/Social contribution'
+      var aca_subject = ["Select", "Maths", "Science", "Hindi", "English"];
+      var sports_subject = ["Select", "Swimming", "Gymnastics", "Yoga", "Cricket", "Football", "Other"];
+      var vp_a_subject = ["Select", "Drama", "Paintings", "Drawing", "Music", "Crafts", "Sculpture", "Other"];
+      var ps_subject = ["Select", "Debate", "Group", "Discussion", "Anchoring", "Other"];
+      var pf_subject = ["Select", "Holiday", "Birthday", "Other"];
+      var v_subject = ["Select", "Teaching", "Other"];
+      if(cat == "Academic"){
+        $("#test_reports_subject option").remove();
+        change_subject(aca_subject);
+      }else if(cat=="Sports"){
+        $("#test_reports_subject option").remove();
+        change_subject(sports_subject);
+      }else if(cat=="Visual&performing arts"){
+        $("#test_reports_subject option").remove();
+        change_subject(vp_a_subject);
+      }else if(cat=="Public speaking/Interaction"){
+        $("#test_reports_subject option").remove();
+        change_subject(ps_subject);
+      }else if(cat=="Personal/Family"){
+        $("#test_reports_subject option").remove();
+        change_subject(pf_subject);
+      }else if(cat=="Voluntary/Social contribution"){
+        $("#test_reports_subject option").remove();
+        change_subject(v_subject);
+      }
+    });
+    function change_subject(obj){
+      $("div.subject_select ul.ac_scroll li").each(function(){
+        $("div.subject_select ul.ac_scroll li").eq(1).remove();
+      });
+      
+      $.each(obj, function(index, value){
+        $("#test_reports_subject").append($('<option>',{
+          value:value,
+          text: value
+        }));
+        if(index!=0)
+          $("div.subject_select ul.ac_scroll .jspPane").append('<li><a name="'+value+'" index="'+index+'" href="#">'+value+'</a></li>');
+      });
+      $("div.subject_select ul.ac_scroll li a").click(function(){
+        $("div.subject_select div.jqTransformSelectWrapper span").text($(this).text());
+        $("div.subject_select ul.ac_scroll").hide();
+        $("#test_reports_subject").val($(this).text());
+      });
+    }
+
+
+
+
+  })
+
+  $("#add_member_form").submit(function() {
+    if ($('#test_reports_title').val() == "" || $('#test_reports_title').val() == "title"){
+      $('#test_reports_title').parent().parent().next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#test_reports_title').parent().parent().next().html("");
+    }
+    if ($('#test_reports_category').val() == "" || $('#test_reports_category').val() == "Select"){
+      $('#test_reports_category').parent().next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#test_reports_category').parent().next().html("");
+    }
+    if (chec_error == true){
+      return false;
+    }else{
+      if ($('#test_reports_description').val() == "description"){
+        $('#test_reports_description').val('');
+      }
+      return true;
+    }
+  });      
+  
+  $(".repeate_checkbox .jqTransformCheckbox").click(function(){
+    if($(this).hasClass('jqTransformChecked')){
+      $('#activity_input_form').height(820);
+      $('#repeatShow').show();      
+    }else{
+      $('#activity_input_form').height(650);
+      $('#repeatShow').hidde();      
+    }
+  })

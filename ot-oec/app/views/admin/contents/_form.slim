@@ -1,0 +1,24 @@
+= form_for [:admin, @content] do |f|
+  - f.object.errors.messages.each do |msg|
+    .alert.alert-error= msg.join(' is ')
+  .field
+    = f.text_field :name, placeholder: 'Name', class: 'form-control'
+  .field
+    = f.text_area :description, placeholder: 'Description', class: 'form-control'
+  .field
+    = f.select(:content_type, options_for_select(Content::CONTENT_TYPES, selected: f.object.content_type))
+  .field
+    = f.select(:month, options_for_select([*1..12].map{|m| [Date::MONTHNAMES[m], m]}, selected: f.object.content_type))
+  .field
+    = f.select(:option, options_for_select(Content::CONTENT_OPTIONS.map{|ct| [ct, Content::CONTENT_OPTIONS.index(ct)]}, selected: f.object.content_type))
+  .field
+    = f.select(:time_tag, options_for_select(Tag.time_tags.map{|t| [t.name, t.id]}, selected: f.object.content_type))
+  .field
+    = f.select(:category_tag, options_for_select(Tag.category_tags.map{|t| [t.name, t.id]}, selected: f.object.content_type))
+  .field  
+    = f.file_field :file, class: 'form-control'  
+  .field
+    = f.text_field :url, placeholder: 'URL', class: 'form-control'
+  
+  .submit
+    = f.submit 'Submit', class: 'form-control'

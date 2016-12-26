@@ -1,0 +1,5 @@
+- @items.each do |item|
+	-if item.class == Post
+		= render partial: 'post', locals: { post: item, feed: true }
+	-if item.class == Experience
+		= render partial: 'experience_frame', locals: { exp: item }

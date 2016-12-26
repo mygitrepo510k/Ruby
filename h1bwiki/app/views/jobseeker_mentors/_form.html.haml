@@ -1,0 +1,19 @@
+= form_for @jobseeker_mentor, :html => { :class => 'form-horizontal', 'data-validate' => 'parsley', :id => 'job_post_form'	} do |f|
+	= f.hidden_field :user_id, :value=>current_user.id
+	.control-group
+		= f.label :job_title, :class => 'control-label'
+		.controls
+			= f.text_field :job_title, :class => 'text_field large-field', 'data-required'=>'true', 'data-rangelength'=>'[5,50]'
+	.control-group
+		= f.label :support, 'Job / Interview Support:', :class => 'control-label'
+		.controls.custom-select
+			= f.select(:support,[['Yes',1],['No',0]] )
+	.control-group
+		= f.label :job_description, :class => 'control-label'
+		.controls
+			= f.text_area :job_description, :class => 'text_area large-field', :rows => '5', 'data-required'=>'true', 'data-rangelength'=>'[5,250]'
+	.form-actions
+		= link_to( '< Back ', jobseeker_post_main_path, :class => "m-btn" ) 
+		= f.submit 'Submit', :class => 'm-btn blue', :id => "btn_post_create"
+		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_preview"
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), jobseeker_posts_path, :class => 'm-btn'

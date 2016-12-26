@@ -1,0 +1,33 @@
+// Place all the styles related to the Challenge controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.challenge,
+.challenge_frame {
+	.description {
+		margin: 1em 0;
+	}
+
+	.frames {	
+		margin: 1em 0;
+    display: inline-block;
+    .whopic {
+      height: 30px;
+      width: 30px;
+      float: left;
+    }
+	}
+
+	.new_frame {
+		.row {
+			margin: 0;
+		}
+	}
+
+	.student {
+		.comment_feed {
+			margin: 1em 0;
+		}
+	}
+}

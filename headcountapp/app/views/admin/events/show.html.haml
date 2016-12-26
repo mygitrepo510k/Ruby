@@ -1,0 +1,46 @@
+.container
+  .row.first-row
+    .span5
+      %h3 Event name : #{@event.name}
+  .row
+    .span5
+      %h5 Location : #{@event.location}
+    .span5
+      %h5 Event Date : #{@event.date}
+  .row.content
+    .span5
+      .row.friend-list{style:'margin-left: 0px;'}
+        .row
+          .span10    
+            %h5 Invited friends
+            - @event.invited_friends.each do |i_f|
+              %label= i_f.name        
+        .row    
+          .span10
+            %h5 Accepted friends
+            - @event.accepted_friends.each do |a_f|
+              %label= a_f.name
+        .row
+          .span10
+            %h5 UnAccepted friends
+            - @event.unaccepted_friends.each do |ua_f|
+              %label= ua_f.name
+    .span5
+      .row.main-img{style:'margin-left:0px;'}
+        = image_tag(@event.main_img, style:'width: 300px;height:300px')
+  
+  .row.shared-images
+    %ul#bxslider
+      - @event.shared_photos.each do |sp|
+        %li
+          = image_tag(sp.photo_url)
+
+
+
+:javascript
+  $("#bxslider").bxSlider({ 
+    minSlides: 3,
+    maxSlides: 4,
+    slideWidth: 350,
+    slideMargin: 10
+  });        

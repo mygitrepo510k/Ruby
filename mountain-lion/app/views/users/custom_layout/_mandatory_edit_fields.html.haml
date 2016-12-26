@@ -1,0 +1,42 @@
+= simple_form_for @user do |f|
+  .row-fluid
+    .span4
+      %h3.alert= @user.username
+
+      %fieldset
+      = f.hidden_field :id
+      = f.simple_fields_for :user_profile do |up|
+        %p
+          %b= I18n.t('active_record.attributes.user_profile.title')
+          %br
+          %small (10 Words or Less)
+        = up.input :title, label: false, placeholder: "Ex. Educated, Family-Oriented guy looking for a great girl."
+        %p
+          %b= I18n.t('active_record.attributes.user_profile.about_me')
+          %br
+          %small (40 Words or Less)
+        = up.input :about_me, label: false, placeholder: "Ex. I love to cook. I'm addicted to the rush I feel when experiencing new things.  I will surprise you.  I play basketball on the weekends.  Love outdoor activites like going to the beach, hiking or bike riding."
+        %p
+          %b= I18n.t('active_record.attributes.user_profile.looking_for')
+          %br
+          %small (40 Words or Less)
+        = up.input :looking_for, label: false, placeholder: "Ex. An adventurous and spontaneous person who loves the outdoors.  Someone who is confident in themselves and willing to make the best of any situation.  Career oriented a plus!"
+      %hr
+    .span7.offset1
+      .accordion#accordion2
+        = f.hidden_field :id
+        - @profile_sections.each do |ps|
+          .accordion-group
+            .accordion-heading
+              = link_to "##{ps.slug}", class: "accordion-toggle", "data-toggle" => "collapse", "data-parent" => "#accordion2" do
+                = ps.name
+            %div{id: ps.slug, class: "accordion-body collapse #{"in" if ps == @profile_sections.first}" }
+              .accordion-inner
+                - ps.profile_questions.includes(:profile_answers).each do |pq|
+                  %h5= pq.question
+                  = dynamic_field(pq, get_answer_value(pq, @user))
+        %hr
+      = f.submit I18n.t('links.next'), id: "next-submit", rel: "next-popover", data: {title:"#{popover_title}", content: "#{popover_msg}"}, class: "btn btn-primary btn-large pull-right"
+      = link_to I18n.t('links.skip'), new_user_user_photo_path(current_user), id: "skip-upload", class: "btn btn-primary btn-large pull-right"
+      %span{class: "pull-right", id: "popover-display", data: {title:"#{popover_title}", content: "#{popover_msg}"}} &nbsp;
+

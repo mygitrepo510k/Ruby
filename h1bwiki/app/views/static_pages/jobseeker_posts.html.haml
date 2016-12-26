@@ -1,0 +1,102 @@
+.container-fluid
+	.row.post-main-page
+		=render "layouts/nav-link-secondary"
+		.row.first-row			
+			.span12.show-postings-tab-box
+				.row
+					%p.page-title My Postings
+				.row		
+					#content
+						%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
+							%li.active
+								%a{"data-toggle" => "tab", :href => "#jobs"} Jobs
+							%li
+								%a{"data-toggle" => "tab", :href => "#trainings"} Trainings/Placement
+							%li{style: 'float: right'}
+								= link_to "Post a Job / Training", '/post_main', class: 'btn btn-primary', style: 'border-radius: 4px 4px 4px 4px;margin-bottom: 20px;margin-top: -5px;position: absolute;width: 160px;'
+							/%li
+							/	%a{"data-toggle" => "tab", :href => "#mentors"} Mentor Assitance
+						#my-tab-content.tab-content
+							#jobs.tab-pane.active
+								.span12.post-jobs-box
+									%table.table.table-striped
+										%thead
+											%tr
+												%th{:width=>"50%"} Title
+												%th{:width=>"20%"} Type
+												%th{:width=>"15%"} Create At
+												%th{:width=>"15%"}=t '.actions', :default => t("helpers.actions")
+										%tbody
+											- @jobseeker_jobs.each do |jobseeker_job|
+												%tr
+													%td= link_to jobseeker_job.job_title, edit_jobseeker_job_path(jobseeker_job), :class=>"link-job-title"
+													%td Jobs Wanted
+													%td=l jobseeker_job.created_at, :format =>"%Y-%m-%d %H:%M"
+													%td
+														= link_to edit_jobseeker_job_path(jobseeker_job), :class => 'btn btn-mini' do
+															%i.icon-edit &nbsp;Edit
+														= link_to jobseeker_job, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
+															%i.icon-trash &nbsp;Delete
+											%tr
+												%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @jobseeker_jobs, :param_name => 'job_page'
+
+							#trainings.tab-pane
+								.span12			
+									%table.table.table-striped
+										%thead
+											%tr
+												%th{:width=>"50%"} Title
+												%th{:width=>"20%"} Type
+												%th{:width=>"15%"} Created At
+												%th{:width=>"15%"}=t '.actions', :default => t("helpers.actions")
+										%tbody
+											- @jobseeker_trainings.each do |jobseeker_training|
+												%tr
+													%td= link_to jobseeker_training.job_title, edit_jobseeker_training_path(jobseeker_training), :class=>"link-job-title"
+													%td Trainings Wanted
+													%td=l jobseeker_training.created_at, :format =>"%Y-%m-%d %H:%M"
+													%td
+														= link_to edit_jobseeker_training_path(jobseeker_training), :class => 'btn btn-mini' do
+															%i.icon-edit &nbsp;Edit
+														= link_to jobseeker_training, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
+															%i.icon-trash &nbsp;Delete
+											%tr
+												%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @jobseeker_trainings, :param_name => 'trining_page'
+							/#mentors.tab-pane
+							/	.span12.show-box
+							/		%table.table.table-striped
+							/			%thead
+							/				%tr
+							/					%th{:width => "50%"} Title
+							/					%th{:width => "20%"} Type
+							/					%th{:width => "15%"} Created At
+							/					%th{:width => "15%"}=t '.actions', :default => t("helpers.actions")
+							/			%tbody
+							/				- @jobseeker_mentors.each do |jobseeker_mentor|
+							/					%tr
+							/						%td= link_to jobseeker_mentor.job_title, edit_jobseeker_mentor_path(jobseeker_mentor), :class=>"link-job-title"
+							/						%td Mentor Assistance Wanted
+							/						%td=l jobseeker_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
+							/						%td
+							/							= link_to edit_jobseeker_mentor_path(jobseeker_mentor), :class => 'btn btn-mini' do
+							/								%i.icon-edit &nbsp;Edit
+							/							= link_to jobseeker_mentor, :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-mini btn-danger' do
+							/								%i.icon-trash &nbsp;Delete
+							/				%tr
+							/					%td{:colspan=>"3", :class=>"pagenate"}=will_paginate @jobseeker_mentors, :param_name => 'mentor_page'
+:javascript 
+	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
+	$('div.nav-link ul li').eq(1).removeClass('current-tab');
+	$('div.nav-link ul li').eq(0).addClass('current-tab');	
+
+	var cur_tab = #{session[:cur_tab].presence || 0}
+
+	$("#tabs li").each(function(){
+		$(this).removeClass("active");
+	});
+	$("#my-tab-content div").each(function(){
+		$(this).removeClass("active");
+	});	
+	
+	$("#tabs li").eq(cur_tab).addClass("active");
+	$("#my-tab-content div.tab-pane").eq(cur_tab).addClass("active");

@@ -1,0 +1,41 @@
+.container
+  .row.first-row
+    .span8
+      %h3 HeadCount Users
+    .span4{style:'margin-top:20px;'}
+      = form_tag admin_users_path, method: 'get', :class=>'form-search', :id=>'user_search_form' do
+        .input.input-prepend{style:'width:80%;'}
+          %button{type:'submit',class:'btn'} 
+            &nbsp;
+            %i.icon-search{:onclick=>'javascript:$("#user_search_form").submit()',style:'margin-left: -5px;margin-top:4px;'}
+          = text_field_tag 'search', params[:search], :class=>'span3 search-query', style:'padding-left:5px;padding-right:5px;width:100%;'
+          %span.fornav-end
+            %i.icon-remove-sign{:onclick=>'javascript:$("#user_search_form .search-query").val(""); $("#user_search_form").submit()'}
+  .row.customers-contents
+    %table.table.table-striped.table-hover.table-bordered
+      %thead
+        %tr
+          %th Email            
+          %th User Name            
+          %th Logged in via            
+          %th App Visits            
+          %th Event's Count
+          %th Actions
+      %tbody
+        - @users.reject{|u| User::ROLES.include?(u.role)}.each do |u|
+          %tr
+            %td= u.email.index('@')==49 ? u.email[13..21]+'@twitter.com' : u.email
+            %td= u.user_name
+            %td= u.social_state
+            %td= u.sign_in_count
+            %td= u.events.count
+            %td
+              = link_to(admin_edit_user_path(u), class: 'btn btn-mini', :"data-no-turbolink"=>true) do
+                %i.icon-book
+
+              = link_to(admin_delete_user_path(u), class: 'btn btn-mini', method: :delete, data: {confirm: "Are you sure"}) do
+                %i.icon-trash
+      %tfoot
+        %tr
+          %td{colspan: 11}
+            = will_paginate @users

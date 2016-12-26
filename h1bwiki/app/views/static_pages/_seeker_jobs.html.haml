@@ -1,0 +1,30 @@
+- @search_seeker_jobs.each do |search_seeker_job|
+	.row
+		.span12.search-result-item
+			.row.title-row
+				.span8
+					.row
+						= link_to search_seeker_job.job_title, jobseeker_job_path(search_seeker_job), :class=>"item-title", :target => "_blink", style: 'text-decoration:underline;color:blue;'
+					.row
+						- user = User.find_by_id(search_seeker_job.user_id)
+						- if user.present?
+							%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{user.city}
+				.span4
+					%p.created-date
+						Date Posted:
+						=l search_seeker_job.created_at, :format =>"%Y-%m-%d %H:%M"
+			.row.description
+				.span8
+					.view-details-box.more= raw search_seeker_job.job_description
+				.span4
+					- if false #.button-box
+						-if current_user.present?
+							-if user.id != current_user.id
+								%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_job.job_title}", :type=>"#{user.email}" } Contact
+						-else
+							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_job.job_title}", :type=>"#{user.email}" } Contact
+			.row.last-row
+				.span8
+					/= link_to "View", jobseeker_job_path(search_seeker_job), :class=>"view-details m-btn blue", :target => "_blink"		
+				.span4
+					%p.post-type Jobs Wanted		

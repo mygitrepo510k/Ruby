@@ -1,0 +1,10 @@
+<% if object[:validation] %>
+  <div class="tags">
+    <h4>Validation:</h4>
+    <ul class="see">
+      <% if object[:validation][:required] %>
+        <li>Required</li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

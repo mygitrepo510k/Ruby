@@ -1,0 +1,16 @@
+.admin-experiences-new.section.single
+	h3 Create an experience
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Experiences', admin_experiences_path
+		li.active= 'Add Experience'
+	.row 
+		.col-sm-6
+			= render 'form'
+			br
+
+		.col-sm-6
+			#intake
+
+			br

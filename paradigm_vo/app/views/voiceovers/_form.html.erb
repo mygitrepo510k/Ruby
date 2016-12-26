@@ -1,0 +1,24 @@
+<%= form_for [@artist, @voiceover], :html => { :multipart => true } do |f| %>
+  <% if @voiceover.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@voiceover.errors.count, "error") %> prohibited this voiceover from being saved:</h2>
+
+      <ul>
+      <% @voiceover.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.file_field :voiceover %>
+	<% unless @voiceover.new_record? %>
+		<br><br><%= f.label :file_name %><br>
+		<%= f.text_field :file_name %>
+	<% end %>
+	
+<br><br>
+  <div class="actions">
+    <%= f.submit(@artist.new_record? ? "Upload Voiceover" : "Update Voiceover") %><br><br>
+  </div>
+<% end %>

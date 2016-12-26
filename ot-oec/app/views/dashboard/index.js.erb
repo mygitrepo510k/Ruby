@@ -1,0 +1,6 @@
+$('.post_feed').append('<%= escape_javascript(render partial: "dashboard/posts", :locals => { :posts => @items }) %>');
+$('a.load-more-posts').attr('href', '<%= root_path page: @items.next_page %>');
+ 
+<% unless @items.next_page %>
+  $('a.load-more-posts').remove();
+<% end %>

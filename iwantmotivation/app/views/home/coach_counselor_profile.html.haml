@@ -1,0 +1,154 @@
+- type="Coaching" if @partner.roles.last.name == 'coach' 
+- type="COunselor" if @partner.roles.last.name == 'counselor' 
+
+.row.coach_counselor_profile_page
+	.container
+		.row.first-row
+			.span3.left-pannel
+				.row.categories
+					%label= @partner.category.name
+				.row.picture
+					=image_tag(@partner.image_url('large'))
+				.row.user-info
+					.span1
+						%label= @partner.city
+					.span1
+						%label= @partner.state
+					.span1
+						%label= @partner.country	
+				
+			.span5.center-pannel
+				.row.philosophy
+					%p.user-info-title 
+						#{type} Philosophy
+					%label=@partner.coachcounselor.philosophy
+				.row.experience
+					%p.user-info-title 
+						#{type} Experience
+					%label=@partner.coachcounselor.experience
+				.row.help-people
+					%p.user-info-title How you Help People
+					%label=@partner.coachcounselor.helppeople
+			.span2.right-pannel
+				.row
+					%strong Counseling Sessions
+					%ul
+						%li $60 per one hour session
+						%li $400 for a package of 6 sessions
+				.row
+					%label{:class=>"#{'is-online' if @partner.is_online?}"}= @partner.is_online? ? "On line" : "Off line"
+				.row
+					= link_to( 'Chat Live','#', :class=>"#{ @partner.is_online? ? 'partner btn btn-success' : 'partner btn btn-success disabled'}", "data-email" => @partner.email, "data-recipient-id" => @partner.id, "	data-channel" => @partner.channel )
+				.row
+					%a.btn.btn-info.contact-button{"data-toggle" => "modal", :href => "#email_box", :role => "button", :rel => "#{@partner.coachcounselor.really_name}", :type=>"#{@partner.email}" } Email
+				.row
+					%strong Private Groups
+				.row
+					%strong Public Groups
+- if current_user
+	= render 'shared/pusher_chat_widget'
+					
+:javascript
+	$(function() {
+		widgets = 0;
+
+		if("#{!current_user.nil?}" == "true") {			
+			if("#{Rails.env}" == "development") {
+				Pusher.log = function(message) {
+					if (window.console && window.console.log) window.console.log(message);
+				};
+				// Flash fallback logging - don't include this in production
+				WEB_SOCKET_DEBUG = true;
+			}		
+		
+			var pusher = new Pusher('#{Pusher.key}');
+			var channel_name = "#{@partner.channel}"; 
+			channel = pusher.subscribe(channel_name);
+			channel = pusher.subscribe(channel_name, channel.auth); 
+
+			channel.bind('my-event', function(data) {
+				console.log("channel.bind");
+				var id = "widget_" + data.channel_name;
+				var widget =	$('body').find("#" + id).first(); 
+	
+				if(!widget){
+					var widget = $('#chat-widget').clone().show().attr('id', id);
+					right = widgets * 310 + 30;	
+			
+					widget.css("right", right).appendTo('body');
+					widgets++; 
+
+					//updating widget 
+					widget.first().find('.pusher-chat-widget-current-user-name:first').text(data.name); 
+
+					widget.find('input[name=\"conversation[message][recipient_id]\"]').val(data.recipient_id.toString()); 
+				}
+
+				var activity = $('#chat-widget ul.activity-stream .activity:first').clone().show();
+				activity.find('.screen-name:first').text(data.name);
+				activity.find('.text:first').text(data.message);
+				activity.find('.timestamp span:first').text(data.created_at); 
+
+ 
+				widget.find(".activity-stream").first().append(activity);	 
+
+				//allow message in text field
+				widget.find('.messageTextarea:first').attr('disabled', false); 
+			});
+
+			channel.bind('pusher:subscription_error', function(status) {
+				console.debug('pusher-error=>'+status); 
+			});
+
+			channel.bind('pusher:subscription_succeeded', function() {
+				console.debug('success');
+			}); 
+
+		//click on online users
+		$('.right-pannel a.partner').click(function(e){ 
+			console.log("OK?");
+			if($(this).hasClass('disabled')){
+				return false;
+			}
+			
+			e.preventDefault(); 
+			
+			console.log($(this).data('channel').toString()); 
+			
+			var id = "widget_" + $(this).data('channel'); 
+			console.log(id); 
+			var widget =	$.find("#widget_" + $(this).data('channel').toString()); 
+			var present = widget != '';
+			
+			console.log(widget);
+
+			if(present) {
+				return false;	
+			}
+			var widget = $('#chat-widget').clone().show().attr('id', id).css('visibility','visible');
+			right = widgets * 310 + 30;	
+			
+			widget.css("right", right).appendTo('body');
+			widgets++; 
+
+			//updating widget 
+			widget.find('.pusher-chat-widget-current-user-name:first').text($(this).data('email')); 
+
+			widget.find('input[name=\"conversation[message][recipient_id]\"]').val($(this).data('recipient-id')); 
+			$(".pusher-chat-widget").each(function(){
+				var parent = $(this);
+				$('a.close', $(this)).click(function(){
+						parent.remove();
+						console.log(widgets);
+						if( widgets> 0 )
+							widgets--;
+				})
+			});
+		}); 
+		} 
+	}); 					
+
+	$("a.contact-button").click(function(){		
+		$("#recipients_hiddenfield").val($(this).attr("type"));
+		$("#conversations_subject").val($(this).attr("rel"));			
+	});

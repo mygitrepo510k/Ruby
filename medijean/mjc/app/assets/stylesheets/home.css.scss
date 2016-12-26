@@ -1,0 +1,50 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.row-fluid{
+  .thumbnails{
+    margin-left: 150px;
+    .thumbnail{
+      border:none;
+      box-shadow:none;
+      color: #5A6683;
+      img{
+        width: 80px;
+        height: 120px;
+      }
+      h5{
+        color: #2D2D2D;
+      }
+    }   
+  }
+}
+
+@media screen and (max-width:600px){
+  .thumbnail{
+    border:none;
+    box-shadow:none;
+    color: #5A6683;
+    img{
+      width: 80px;
+      height: 120px;
+    }
+  }
+}
+
+.homepg-txt1 {
+  color: #2D2D2D;
+}
+
+.homepg-txt2 {
+  color: #5A6683;
+}
+
+.homepg-header {
+  color: #36A3A8;
+}
+
+.homepg-txt {
+  color: #8A8A8A;
+  font-size: 16px;
+}

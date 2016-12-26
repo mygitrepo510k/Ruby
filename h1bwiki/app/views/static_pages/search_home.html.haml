@@ -1,0 +1,256 @@
+= javascript_include_tag "http://gdc.indeed.com/ads/apiresults.js"
+.container-fluid
+	.row.search-page-main
+		=render "layouts/nav-link-search-secondary"
+		.row.first-row{style: 'margin-top: 75px;'}
+			.span12.show-search-tab-box
+				.row		
+					#content
+						%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
+							%li.active
+								%a{"data-toggle" => "tab", :href => "#jobs"} Jobs
+							%li
+								%a{"data-toggle" => "tab", :href => "#mentors"} OPT Internships
+							%li
+								%a{"data-toggle" => "tab", :href => "#trainings"} Trainings/Placement
+							 
+						#my-tab-content.tab-content
+							#jobs.tab-pane.active
+								.span12.search-conditions-box
+									.row
+										= form_tag search_home_path, :method => :get do
+											= hidden_field_tag :search_type, '0'
+											.span3{:style=>"width:245px;"}
+												.row
+													= text_field_tag :title, params[:title], :placeholder => "Job Title, Keywords or Company", :style=>"width:245px;height:30px;"
+												.row
+													%label (Job Title, Keywords or Company)
+											.span3
+												.row
+													= text_field_tag :city, params[:city], :placeholder => "City", :style=>"height:30px;"
+												.row
+													%label (Zipcode or City)
+											.span3
+												.row
+													= select_tag(:type, options_for_select([['All Jobs',0],['Jobs Offered',1],['Jobs Wanted',2]], @job_type), :style=>"padding-top: 10px; padding-bottom: 10px; height: 40px;margin-bottom:10px;")
+												.row
+													%label (In: Jobs Offered or Jobs Wanted)
+											.span2
+												.row
+													= submit_tag "Search", :name => nil, :class=>"m-btn blue", :style => "width: 120px; padding-top: 10px; padding-bottom: 10px; height: 40px ! important;"
+												.row
+													%label &nbsp;
+								.span12.search-results-box
+									= render :partial => "emp_job_res" 
+									/= render :partial => "skill_res"
+									/= render :partial => "company_res"
+									= render :partial => "seeker_jobs"
+							#mentors.tab-pane
+								.span12.search-conditions-box
+									.row
+										= form_tag search_home_path, :method => :get, :id=>'indeed_search_form' do
+											= hidden_field_tag :search_type, '1'
+											.span4
+												.row
+													= text_field_tag :job_title, params[:job_title], :placeholder => "What?"
+												.row
+													%label (Job Title, Keywords or Company)
+											.span4
+												.row
+													= text_field_tag :location, params[:location], :placeholder => "Where?"
+													= hidden_field_tag :indeed_page_num, params[:indeed_page_num]
+												.row
+													%label (Zipcode or City)
+											.span2
+												.row
+													= submit_tag "Search", :name => nil, :class=>"m-btn blue"
+												.row
+													%label &nbsp;
+								.span12.search-results-box
+									= render :partial => "internship_emp_job_res"
+							#trainings.tab-pane
+								.span12.search-conditions-box
+									.row
+										= form_tag search_home_path, :method => :get do
+											= hidden_field_tag :search_type, '2'
+											.span3
+												.row
+													= text_field_tag :title, params[:title], :placeholder => "What?"
+												.row
+												%label (Job Title, Keywords or Company)
+											.span3
+												.row
+													= text_field_tag :city, params[:city], :placeholder => "Where?"
+												.row
+													%label (Zipcode or City)												
+											.span3
+												.row
+													= select_tag(:type, options_for_select([['All Trainings',0],[' Trainings Offered',1],['Trainings Wanted',2]], @job_type), style:'margin-bottom:10px;')
+												.row
+													%label (In: Training Offered or Training Wanted)
+											.span2
+												.row
+													= submit_tag "Search", :name => nil, :class=>"m-btn blue"
+												.row
+													%label &nbsp;
+								.span12.search-results-box
+									- @search_emp_trainings.each do |search_emp_training|
+										.row
+											.span12.search-result-item
+												.row.title-row
+													.span8
+														.row
+															= link_to search_emp_training.job_title, post_training_path(search_emp_training), :class=>"item-title", :target => "_blink", style:'color:blue'
+														.row
+															- user = User.find_by_id(search_emp_training.user_id)															
+															%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{search_emp_training.job_city} ,	#{search_emp_training.job_state}
+													.span4
+														%p.created-date
+															Date Posted:
+															=l search_emp_training.created_at, :format =>"%Y-%m-%d %H:%M"
+												.row.description
+													.span8
+														.view-details-box.more= raw search_emp_training.job_description
+													.span4
+														%p.option-tags Technology : #{search_emp_training.get_techtype} | Duration : #{search_emp_training.job_duration} | Accommodation : #{search_emp_training.job_accomodation=="1" ? "Yes" : "No"} | Placement : #{search_emp_training.job_placement=="1" ? "Yes" : "No"}
+														%p.option-tags Instruction Mode : #{search_emp_training.get_instruction_mode}															
+														- if false #.button-box
+															-if current_user.present?
+																-if user.id != current_user.id
+																	%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_training.job_title}", :type=>"#{user.email}" } Contact
+															-else
+																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_training.job_title}", :type=>"#{user.email}" } Contact
+												.row.last-row
+													.span8														
+														/= link_to "View", post_training_path(search_emp_training), :class=>"m-btn blue view-details", :target => "_blink"
+													.span4
+														%p.post-type Trainings Offered
+									-if @search_emp_trainings.present?
+										.row
+											=will_paginate @search_emp_trainings, :param_name => 'page_num'
+									= render :partial => "company_res"
+									- @search_seeker_trainings.each do |search_seeker_training|
+										.row
+											.span12.search-result-item
+												.row.title-row
+													.span8
+														.row
+															= link_to search_seeker_training.job_title, jobseeker_training_path(search_seeker_training), :class=>"item-title", :target => "_blink", style:'color:blue'
+														.row
+															- user = User.find_by_id(search_seeker_training.user_id)
+															- if user.present?
+																%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{user.city}
+													.span4
+														%p.created-date
+															Date Posted:
+															=l search_seeker_training.created_at, :format =>"%Y-%m-%d %H:%M"
+												.row.description
+													.span8
+														.view-details-box.more= raw search_seeker_training.job_description
+													.span4														
+														- if false #.button-box
+															-if current_user.present?
+																-if user.id != current_user.id
+																	%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_training.job_title}", :type=>"#{user.email}" } Contact
+															-else
+																%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_seeker_training.job_title}", :type=>"#{user.email}" } Contact																	
+												.row.last-row
+													.span8
+														/= link_to "View", jobseeker_training_path(search_seeker_training), :class=>"view-details m-btn blue", :target => "_blink"
+													.span4
+														%p.post-type Trainings Wanted
+							
+		.row.second-row
+			.span4.jobseeker-jobs
+				.border
+					.row.first-row
+						%p.caption-title Jobs / H1B Sponsorship
+					.row
+						%label Jobs Offered
+					.row
+						%label Jobs Wanted	
+			.span4.jobseeker-trainings
+				.border
+					.row.first-row
+						%p.caption-title Trainings / Placement
+					.row
+						%label Trainings / Placement Offered
+					.row
+						%label Trainings /Placement Wanted
+			.span4.jobseeker-mentors
+				.row.first-row
+					%p.caption-title Mentor Assistance (Job Support)
+				.row
+					%label Mentor Assistance Offered
+				.row
+					%label Mentor Assistance Wanted
+
+:javascript 
+
+	var cur_tab = #{@search_type}
+	
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
+
+	$('.secodary ul li').eq(0).addClass('current-tab');
+	$('.secodary ul li').eq(1).removeClass('current-tab');
+
+	$("#tabs li").each(function(){
+		$(this).removeClass("active");
+	});
+	$("#my-tab-content div").each(function(){
+		$(this).removeClass("active");
+	});	
+	
+	$("#tabs li").eq(cur_tab).addClass("active");
+	$("#my-tab-content div.tab-pane").eq(cur_tab).addClass("active");
+
+	var login_status = #{user_signed_in? ? 1 : 0 }
+	
+	$("a.contact-button").each(function(){			
+		$(this).click(function(){
+			if (login_status==0){
+				document.location = "/users/sign_in"
+			}
+			$("#recipients_hiddenfield").val($(this).attr("type"));
+			$("#conversation_subject").val($(this).attr("rel"));			
+		})		
+	});
+
+
+	var showChar = 200;
+	var ellipsestext = "...";
+	var moretext = " ";
+	var lesstext = " ";
+	$('.more').each(function() {
+		var content = $(this).html();
+
+		if(content.length > showChar) {
+			var c = content.substr(0, showChar);
+			var h = content.substr(showChar-1, content.length - showChar);
+			var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+			$(this).html(html);
+		}
+
+	});
+
+	$(".morelink").click(function(){
+		if($(this).hasClass("less")) {
+				$(this).removeClass("less");
+				$(this).html(moretext);
+		} else {
+				$(this).addClass("less");
+				$(this).html(lesstext);
+		}
+		$(this).parent().prev().toggle();
+		$(this).prev().toggle();
+		return false;
+	});
+
+:css
+	a.morelink{
+		color:#0254EB; 
+		margin-left:10px;
+	}
+	a.morelink:hover{
+		background-color: transparent;		
+	}

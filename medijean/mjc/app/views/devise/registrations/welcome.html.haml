@@ -1,0 +1,17 @@
+.row
+  .span12.black-box-form
+    .row.main-row
+      .span4
+        %h4
+          = t("#{current_user.roles.first.name if current_user.roles.first.present?}_flow.welcome_screen.title")
+    %hr
+    .row
+      .span6.offset1
+        %p
+          = t("#{current_user.roles.first.name if current_user.roles.first.present?}_flow.welcome_screen.text1")
+.row.empty-row
+- if current_user.role?(:patient)
+  .row
+    .span4
+      =link_to t("patient_flow.welcome_screen.next_button") , registrations_profile_path, :class => "btn btn-inverse"
+.row.empty-row

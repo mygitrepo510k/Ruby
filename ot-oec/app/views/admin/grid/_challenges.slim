@@ -1,0 +1,15 @@
+table.table
+	tr
+		th Name
+		th Status
+		- for c in @challenges
+			th = c.name
+	- for u in @users
+		tr
+			td = link_to u.name, u
+			- safeword = u.user_programs.find_by(program: current_user.current_program).safeword
+			td class=("safeword %s" % safeword) = safeword
+			- for c in @challenges
+				td
+					- frames = u.challenge_frames.to_a.map(&:serializable_hash)
+					- frame = frames.select {|x| x['challenge_id'] == c.id}.last

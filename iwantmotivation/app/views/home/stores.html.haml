@@ -1,0 +1,33 @@
+.row.sotre-veiw-page
+	.container
+		.row.stores
+			.span2
+				.row.programs-category
+					%label Programs
+					-Category::program_categories.each do |cat|
+						%ul
+							%li
+								=link_to(cat[0], '/home/store/'+cat[1].to_s)
+				.row.authors-category
+					%label Authors
+					-Store::get_authors.each do |autho|
+						%ul
+							%li
+								=link_to(autho.author, '/home/store/'+autho.author)
+			.span8.store-box
+				-@stores.each_with_index do |store, i|
+					.span3.store-item
+						.row
+							%label.store-title= store.title
+						.row
+							%span by
+							%span.store-author= store.author
+						.row								
+							.span3.store-contet
+								= image_tag(store.picture.image.url(:small), :align=>"left") if store.picture.present?
+								= store.content
+						.row.price-box
+							%span.old-price= store.price
+							%span.new-price= store.sell_price
+							%button.btn.btn-warning ADD TO CART
+

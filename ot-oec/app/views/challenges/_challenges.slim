@@ -1,0 +1,41 @@
+.challenge.edit.section
+	h2
+		| Challenge: #{@challenge.name}
+
+	p
+		.cover = image_tag @challenge.filepicker_url
+		.description = @challenge.description
+		.clearfix
+		- if @challenge.frames.where(user: current_user).count > 0
+			= link_to "View Your Frame", @challenge.frames.where(user: current_user).last, class: 'btn btn-primary'
+		- else
+			= link_to "Submit a Frame", new_challenge_frame_path(challenge: @challenge.id), class: 'btn btn-primary'
+
+	.frames
+		- for f in @challenge.frames.submitted
+			.whopic
+				- if f.private
+					= image_tag(f.user.avatar.post.url)
+				- else
+					= link_to image_tag(f.user.avatar.post.url), f
+		.count = "%s frame%s" % [@challenge.frames.submitted.count, @challenge.frames.submitted.count == 1 ? '' : "s"]
+
+	- if @challenge.content_group
+		hr
+		.current_frame
+			h3 More About This Challenge
+			= render partial: 'content_groups/show', locals: { content_group: @challenge.content_group.contents_by_type, desc: @challenge.content_group.description }
+
+	- if current_user.admin?
+		hr
+		.new_frame
+			h3 Add media to this Challenge
+			= render partial: 'content_groups/new',
+				locals: {	redirect: challenge_path(@challenge), belongs_to: @challenge.id,
+                  belongs_to_type: @challenge.class.name, has_privacy: false, custom_submit_text: "Add Media" }
+                  
+	hr
+	
+	.student
+		h3 Comment on this Challenge
+		= render partial: 'comments/commentfeed', locals: { commentable: @challenge, scope: 'public' }

@@ -1,0 +1,14 @@
+= render 'application/static_top'
+.main
+  %table{background: asset_path('main_08.jpg'), border: "0", cellpadding: "0", cellspacing: "0", width: "999"}
+    %tr
+      %td{align: "left", height: "100", valign: "top", width: "600"} &nbsp;
+      %td{align: "left", valign: "top"} &nbsp;
+    %tr
+      %td{align: "left", height: "339", valign: "top"} &nbsp;
+      %td{align: "left", height: "339", valign: "top"}
+        #signup
+          = render partial: 'users/signup_one'
+  %p
+    = I18n.t('views.homepage.text_message')
+  = render 'application/static_bottom'

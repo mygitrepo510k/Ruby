@@ -1,0 +1,166 @@
+.account-setup-page{
+	background-color: #f2f2f2;
+	padding: 0 50px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	.page-title{
+		font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding: 20px 0;    
+    text-align: center;
+	}
+
+	.company-info-row{			
+		.control-group{
+			margin-bottom: 5px;
+			input.long-text{
+				width: 100%;
+			}
+			.control-label{
+				text-align:right !important;
+			}
+		}
+	}
+	.contact-info-row{
+		.control-group{
+			margin-bottom: 5px;
+		}
+	}
+	.company-details-row{
+		.control-group{
+			margin-bottom: 10px;
+			.custom-radio { 
+				position: relative; 
+				input {
+			    position: absolute;
+			    left: 2px;
+			    top: 3px;
+			    margin: 0;
+			    z-index: 0;
+			  }
+			  input[type="radio"]{
+			  	opacity:0;
+			  }
+			  label {
+			    display: block;
+			    position: relative;
+			    z-index: 1;
+			    font-size: 1.3em;
+			    padding-right: 1em;
+			    line-height: 1;
+			    padding: .3em 0 .5em 30px;
+			    margin: 0 0 .3em;
+			    cursor: pointer;
+			    font-size: 14px;
+			    font-weight: 300;
+			  }
+			  label { 
+			  	background: url(radiobutton.png) no-repeat; 
+			  	background-position: -10px -14px;
+			  	&:hover, &:focus{
+			  		background-position: -10px -114px;
+			  		outline: 1px dotted #ccc;
+			  	}
+			  }
+			  label.checked {
+			    background-position: -10px -214px;
+			  }
+			}
+		}
+	}
+
+	.head-row{
+		background-color: #c3c3c3;
+		margin-bottom: 30px;
+		.item-title{
+			font-size: 20px;
+	    font-weight: bold;
+	    height: 20px;
+	    margin: 0;
+	    padding: 10px 20px;
+		}
+	}
+}
+
+.account-details-page{
+	background-color: #f2f2f2;
+	padding: 0 50px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	.page-title{
+		font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding: 20px 0;    
+    text-align: center;
+	}
+
+	.head-row{
+		background-color: #c3c3c3;
+		margin-bottom: 30px;
+		.item-title{
+			font-size: 20px;
+	    font-weight: bold;
+	    height: 20px;
+	    margin: 0;
+	    padding: 10px 20px;
+		}
+	}
+	.control-group{
+		margin-bottom: 5px;
+		float: left;
+		width: 100%;
+		input.long-text{
+			width: 100%;
+		}
+		.control-label{
+			width: 190px;
+			float: left;
+			.controls{
+
+			}
+		}
+	}	
+}
+
+.change-password-page{
+	background-color: #f2f2f2;
+	padding: 0 50px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	.page-title{
+		font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding: 20px 0;    
+    text-align: center;
+	}
+
+	.head-row{
+		background-color: #c3c3c3;
+		margin-bottom: 30px;
+		.item-title{
+			font-size: 20px;
+	    font-weight: bold;
+	    height: 20px;
+	    margin: 0;
+	    padding: 10px 20px;
+		}
+	}
+	.control-group{
+		margin-bottom: 5px;
+		float: left;
+		width: 100%;
+		input.long-text{
+			width: 100%;
+		}
+		.control-label{
+			width: 190px;
+			float: left;
+			.controls{
+
+			}
+		}
+	}	
+}

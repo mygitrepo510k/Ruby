@@ -1,0 +1,84 @@
+<div class="signup-b signup_forms_employer signup_forms" style="display:none;">
+  <%=  image_tag("landing-page/popup-bg.png", :height=>"380", :style=>"height: 406px;") %>
+    <div id="professional">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "form-horizontal") do |f| %>          
+            <div class="form-fname emp-sigin-form-item">
+                <ul>
+                    <li>
+                        <label>First Name</label>
+                        <input name="first_name" type="text">
+                    </li>
+                </ul>
+            </div>
+            <div class="form-lname emp-sigin-form-item">
+                <ul>
+                    <li>
+                      <label>Last Name</label>
+                      <input name="last_name" type="text">                    </li>
+                </ul>
+            </div>
+            <div class="form-email emp-sigin-form-item">
+                <ul>
+                    <li>
+                        <label>Email</label>
+                        <input name="email" type="text">
+                    </li>
+                </ul>
+            </div>
+            <div class="form-password emp-sigin-form-item">
+                <ul>
+                    <li>
+                      <label>Password</label>
+                      <input name="password" type="text">                    </li>
+                </ul>
+            </div>
+            <div class="form-cpassword emp-sigin-form-item">
+                <ul>
+                    <li>
+                      <label>Confirm Password</label>
+                      <input name="confirm_password" type="text">                    </li>
+                </ul>
+            </div>
+            <div class="form-company emp-sigin-form-item">
+                <ul>
+                  <li style="text-align: left;">
+                    <label>Company name:</label>
+                    <input name="company_name" type="text" placeholder="Company" style="margin-left:20px;width:120px;">
+                    <label style="float:right;">@hircle.com</label>
+                  </li>
+                </ul>
+            </div>
+            <div class="button-siginup" style="top: 320px">
+              <div class="span3" style="text-align:left;">
+                <label class="checkbox">
+                  <input type="checkbox"> Click here if you agree with our term and privacy
+                </label>
+              </div>
+               <div class="rit">
+                    <%= f.submit("Register", :class => "btn btn-primary") %>
+               </div>
+            </div>
+        <% end %>
+    </div>
+<!--
+  <div class="social-icons">
+    <ul>
+        <li>
+          <a href="#">
+            <%=  image_tag("landing-page/fb.png") %>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+          <%=  image_tag("landing-page/plus.png") %>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <%=  image_tag("landing-page/linkedin.png") %>
+          </a>
+        </li>
+    </ul>
+  </div>
+-->
+</div>

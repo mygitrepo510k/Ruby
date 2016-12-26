@@ -1,0 +1,94 @@
+<script>
+  $("#add_family_form").submit(function() {
+  	if ($('#family_family_name').val() == "What would you like to call the family"){
+  		$('#family_family_name').next().html("can't be blank");
+  		return false;
+  	}
+  });
+  $("#associate_family_form").submit(function() {
+  	if ($('#family_id').val() == "Please enter an existing Family id"){
+  		$('#family_id').next().html("can't be blank");
+  		return false;
+  	}
+  });
+  $('.jqSmallform').jqTransform(); 
+</script>
+
+<div class="popupWindow" style="width: 380px; height: 465px;">
+	<div class="popupHead">
+		<div class="popupTitle">Create New Family!</div>
+      <div onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;" class="closeBtn"></div>
+        <!-- <div onclick="disablePopup()" class="close closeBtn"></div> -->
+        <div class="CL"></div>
+     </div>
+     <div class="popupContaint">
+     	<p class="pageSubTitle">Create New Family</p>
+ <div class="popupSmForm">
+  <%= form_tag '/add_new_family',:id => "add_family_form", :multipart => true do %>
+  <!-- <div class="formRow">
+   -->  <!-- <label>Family ID:</label>
+     --><!--<input type="text" class="inputField" value="0123456789" readonly="readonly" style="width:200px;" onClick="if(this.value=='Please enter a Family ID'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='Please enter a Family ID'; this.style.color='#979797'}" />-->
+    <!-- 0123456789 -->
+    <!-- <div class="CL"></div>
+  </div> -->
+  <div class="formRow">
+    <label>Family Name:</label>
+    <input type="text" class="inputField" minlength="1" maxlength="15" id='family_family_name' name = "family[family_name]" value="What would you like to call the family" style="width:200px;" onclick="if(this.value=='What would you like to call the family'){ this.value=''; this.style.color='#000'}" onblur="if(this.value==''){ this.value='What would you like to call the family'; this.style.color='#979797'}">
+    &nbsp;*
+    <p class="errorMsgLeft"></p>
+    <div class="CL"></div>
+  </div>
+  <div class="formRow jqSmallform">
+    <label>Your Role:</label>
+    <select name = "family[role_name]" id="select" style="width:180px;">
+      <!-- <option value="">Select</option> -->
+	  <option value="Mother">Mother</option>
+	  <option value="Father">Father</option>
+	  <option value="Grandparent">Grandparent</option>
+    </select>
+<div class="CL"></div>
+  </div>
+  <div class="formRow">
+    <label>&nbsp;</label>
+    <input type="submit" class="submitBtn" value="submit">
+    <input type="submit" class="cancelBtn" value="cancel" onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;">
+    <div class="CL"></div>
+  </div>
+</div>
+<% end %>
+     </div>
+
+
+<p class="pageSubTitle" style="line-height: 1; padding-left: 0px; margin-bottom: 0px;">&nbsp;&nbsp;&nbsp;Associate with an existing Family</p>
+<div class="popupSmForm" style="border:0px;">
+<%= form_tag '/associate_to_family',:id => "associate_family_form", :multipart => true do %>
+  <div class="formRow">
+    <label>Family ID:</label>
+    <input type="text" min=1000000000 max=9999999999 id='family_id' name='family_id' class="inputField" value="Please enter an existing Family id" style="width:200px;" onclick="if(this.value=='Please enter an existing Family id'){ this.value=''; this.style.color='#000'}" onblur="if(this.value==''){ this.value='Please enter an existing Family id'; this.style.color='#979797'}">
+    <p class="errorMsgLeft"></p>
+    <div class="CL"></div>
+  </div>
+  <div class="formRow jqSmallform">
+    <label>Your Role:</label>
+    <select name="role_name" id="select" style="width:180px;">
+      <!-- <option value="">Select</option> -->
+	  <option value="Mother">Mother</option>
+	  <option value="Father">Father</option>
+	  <option value="Grandparent">Grandparent</option>
+    </select>
+<div class="CL"></div>
+  </div>
+  <div class="formRow">
+    <label>&nbsp;</label>
+    <input type="submit" class="submitBtn" value="submit" id="new_family_save" >
+    <input type="submit" class="cancelBtn" value="cancel" onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;">
+    <div class="CL"></div>
+  </div>
+<% end %>
+</div>
+
+
+
+ </div>
+
+

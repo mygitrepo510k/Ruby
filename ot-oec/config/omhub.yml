@@ -1,0 +1,14 @@
+# use prod settings even in development, since it is read-only
+# this way it does not require local OMHub dev setup
+#base_url: 'http://omhub.dev/api/'
+#token: '1d0e2d5f44f109b5f5defdc2dd6350d3'
+
+development:
+#  base_url: 'http://omhub.dev/api/'
+#  token: 'c3c7dc34b2eb2b9a47ee7772a4f46ae3'
+  base_url: 'https://omhub.us/api/'
+  token: 'c46296d0553067a66668890a0b56e5dd'
+
+production:
+  base_url: 'https://omhub.us/api/'
+  token: 'c46296d0553067a66668890a0b56e5dd'

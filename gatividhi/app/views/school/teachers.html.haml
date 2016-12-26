@@ -1,0 +1,95 @@
+/ Body Start here
+.bodyWapper
+	.tabBox
+		= link_to "General", school_general_path
+		= link_to "Timetable", school_timetable_path
+		= link_to "Assignments", school_assignments_path
+		= link_to "Feedback", school_feedback_path
+		= link_to "Teachers", school_teachers_path, :class=>'tabSelected'
+		= link_to "Holidays", school_holidays_path
+		.CL
+	.tabContainer
+		.tabAction
+			.activityAction.FR{:style => "padding-left:10px;"}
+				.jqSmallform
+					%select#select{:name => "select", :style => "margin-right:8px;"}
+						%option All						
+			.CL
+		%table.tableGride{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+			%tr
+				%th{:align => "left", :valign => "top", :width => "24%"} Teacher's Name
+				%th{:align => "left", :valign => "top", :width => "13%"} Position
+				%th{:align => "left", :valign => "top", :width => "15%"} Email
+				%th{:align => "left", :valign => "top", :width => "13%"} Phone number
+				%th{:align => "left", :valign => "top", :width => "29%"} Other details
+			%tbody#body_content
+				=render :partial =>"teacher_list"
+			%tr#viewObject1{:style => "display:none;"}
+				=form_for Teacher.new, :as=>:teacher, :url =>'' do |f|
+					%td{:align => "left", :valign => "top"}
+						= f.text_field :name, :class=>"inputField", :onblur => "if(this.value==''){ this.value='teacher name'; this.style.color='#979797'}", :onclick => "if(this.value=='teacher name'){ this.value=''; this.style.color='#000'}", :style => "width:200px;", :type => "text", :value => "teacher name"
+					%td{:align => "left", :valign => "top"}
+						= f.text_field :position, :class=>"inputField", :onblur => "if(this.value==''){ this.value='position'; this.style.color='#979797'}", :onclick => "if(this.value=='position'){ this.value=''; this.style.color='#000'}", :style => "width:100px;", :type => "text", :value => "position"
+					%td{:align => "left", :valign => "top"}
+						= f.text_field :email, :class=>"inputField", :onblur => "if(this.value==''){ this.value='email'; this.style.color='#979797'}", :onclick => "if(this.value=='email'){ this.value=''; this.style.color='#000'}", :style => "width:180px;", :type => "email", :value => "email" 
+					%td{:align => "left", :valign => "top"}
+						= f.text_field :phone_number, :class=>"inputField", :onblur => "if(this.value==''){ this.value='phone number'; this.style.color='#979797'}", :onclick => "if(this.value=='phone number'){ this.value=''; this.style.color='#000'}", :style => "width:100px;", :type => "text", :value => "phone number" 
+					%td{:align => "left", :valign => "top"}
+						= f.text_field :other_details, :class=>"inputField FL", :onblur => "if(this.value==''){ this.value='other details'; this.style.color='#979797'}", :onclick => "if(this.value=='other details'){ this.value=''; this.style.color='#000'}", :style => "width:100px;", :type => "text", :value => "other details"
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideObj('#viewObject1')"}
+						%input.saveBtn{:onclick => "hideObj('#viewObject1');saveTeacher()", :type => "button", :value => "save"}/
+		%p.padLeft10
+			%a.greyBtn{:href => "#.", :onclick => "showObj('#viewObject1');"} add new teacher
+/ Body Start End
+:javascript
+	function saveTeacher(){
+		var teacher = []
+		teacher['name']=$("#getValue1").val();
+		teacher['position']=$("#getValue2").val();
+		teacher['email']=$("#getValue3").val();
+		teacher['phone_number']=$("#getValue4").val();
+		teacher['other_details']=$("#getValue4").val();
+		var url = "/school/add_new_teacher"
+		$.ajax({
+			url :url,
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+			},
+			type: "POST",
+			data: $("#new_teacher").serialize(),
+			success :function(data){
+				$("#body_content").html(data);				
+			},
+			done: function(data) {
+				$("#body_content").html(data);				
+			}
+		});
+		return false; //prevent
+	}
+	function editTeacher(id){
+		var url = '/school/edit_teacher';
+		$.post( url, {
+			id: id,
+			val1: $('#val1_'+id).val(),
+			val2: $('#val2_'+id).val(),
+			val3: $('#val3_'+id).val(),
+			val4: $('#val4_'+id).val(),
+			val5: $('#val5_'+id).val()
+		}).success(function(data) {
+			$("#body_content").html(data);
+		}).error(function(data) {
+			
+		});
+	}
+	function deleteTeacher(id){
+		var url = '/school/delete_teacher';
+		$.post( url, {
+			id: id
+		}).success(function() {
+			$('#row_'+id).remove();			
+			$('#showMoreInfo_'+id).remove();
+			$('#modify_row_'+id).remove();
+		}).error(function() {
+			
+		});
+	}

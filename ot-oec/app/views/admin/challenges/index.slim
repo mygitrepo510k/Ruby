@@ -1,0 +1,26 @@
+.admin-challenges.section.single
+  h3 Challenges
+
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li.active= 'Challenges'
+
+  = link_to 'Add New', new_admin_challenge_path
+
+  table.table.table-striped
+    tr
+      th= 'Name'
+      th= 'Description'
+      th= 'Due'
+      th= 'Created by'
+      th= 'Edit'
+
+    - @challenges.each do |challenge|
+      tr
+        td= challenge.name
+        td= truncate challenge.description, length: 35
+        td= challenge.due
+        td= challenge.created_by.name
+        td= link_to 'Edit', edit_admin_challenge_path(challenge.id)
+
+  = will_paginate @collection, renderer: BootstrapPagination::Rails

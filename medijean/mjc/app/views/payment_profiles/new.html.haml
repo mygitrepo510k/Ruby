@@ -1,0 +1,15 @@
+= javascript_include_tag 'https://js.stripe.com/v2/'
+.row.payment-profile-page
+  .wrapper
+    .row.payment-new-page
+      .row.title
+        %label.page-title
+          = t("settings.title")
+          = "-" 
+          = t("settings.payment.title")
+      .row.content
+        .span3.left-side-bar
+          = render "shared/settings_left_side_navbar"
+        .span7.page-content
+          = render "form"
+          .row

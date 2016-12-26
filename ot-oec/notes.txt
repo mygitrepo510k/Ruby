@@ -1,0 +1,153 @@
+project urls
+	code, https://github.com/0netaste/ot-oec
+	sso, http://goo.gl/RoXzzq
+	prd, http://goo.gl/OHTj4c
+	model, http://goo.gl/Gp6INb
+	fields, http://goo.gl/5qvvNg
+	punch, http://goo.gl/EQsJYP
+	live, http://oec.herokuapp.com/
+	local, http://ot-oec.devp
+
+handy code
+	User.create!(name:'bob', email: 'bob4@gmail.com', current_program: Program.first)
+
+offline docs, http://stackoverflow.com/questions/19293776/rails-api-offline-documentation
+	wget -r -k -p http://api.rubyonrails.org/
+
+postgres
+	cat /usr/local/var/postgres/server.log
+	rm /usr/local/var/postgres/postmaster.pid
+	launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+	launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+
+accounts
+	http://cp7.onetaste.us/, coach, cp72013
+	http://wistia.com/, ap@onetaste.us, Slowsex1
+
+	Noah Coad submitted a frame for Challenge: Get 5 Coaching Clients
+	user.name, challenge.name
+
+mockups
+	http://marcquinn.net/cp8_game/single_challenge.html
+	http://marcquinn.net/cp8_game/index.html
+	http://marcquinn.net/cp8_game/profile.html
+	http://marcquinn.net/cp8_game/members.html
+
+pre-coding punchlist
+	cool simple project name
+
+punch list
+	Experience Page Placeholder
+	Experiences on TO DO List
+	Profile Page Placeholder
+
+Heroku
+	git remote add heroku git@heroku.com:oec.git
+	heroku run rake db:reset
+
+typeform
+	api: http://helpcenter.typeform.com/hc/en-us/articles/200071986
+	example
+		https://noahcoad.typeform.com/to/cp6K8u
+		ac32d2dc8240518684241313f2d8d24e6c75a583
+		https://api.typeform.com/v0/form/UID?key=XxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxX&completed=true
+		https://api.typeform.com/v0/form/cp6K8u?key=ac32d2dc8240518684241313f2d8d24e6c75a583&completed=true
+	intake
+		https://renegadecity.typeform.com/to/iJF5rV
+		https://api.typeform.com/v0/form/iJF5rV?key=ec44298991aecce611682827a7c9b91a5a301c49&completed=true
+
+MARC DESIGNS
+	User Profile
+		example: http://ot-oec.dev/users/1
+		file: /app/views/users/show.html.slim
+	Challenge Info
+		example: http://ot-oec.dev/challenges/1
+		file: /app/views/challenge_frames/show.html.slim
+	Challenge Frame
+		example: http://ot-oec.dev/challenge_frames/1
+		file: /app/views/challenge_frames/show.html.slim
+	Dashboard (Main Feed + TODO)
+		example: http://ot-oec.dev/
+		file: /app/views/dashboard/index.html.slim
+	Experiences
+		example: http://ot-oec.dev/experiences/1
+		file: /app/views/experiences/show.html.slim
+	Modual: Comments (tbd)
+	Modual: Submit Content (tbd)
+	Modual: View Content (tbd)
+
+handy command line commands
+	cd ~/.pow && ln -s ~/workspace/ot-eoc
+	lunchy start postgres
+	powder restart
+	powder stop
+	rvm install 2.1.0
+	gem update --system
+	gem which devise
+	rake db:reset
+	sips -Z 640 *.jpg
+
+postgresql commands
+	ALTER TABLE ONLY challenge_frames ALTER COLUMN private SET DEFAULT 'f';
+
+handy rails console commands
+	reload!
+
+Generate Model statements
+	rails g model User name:string email:string password_hash:string super_admin:boolean timezone:string bio:text avatar:string hub_id:integer:index:uniq last_login:datetime auth_token:string password_reset_token:string password_reset_sent_at:datetime
+	rails g model Program name:string avatar:string start_date:date end_date:date hub_group_id:integer:index:uniq
+	rails g migration AddWelcomeEmailToPrograms welcome_email:string
+	rails g model TypeForms user_programs:references typeform_id:integer response:text
+	rails g model CP8Intake users:references birthdate:text live:text book_stranger:text stranger_adventure:text desires:text top_desires:text top_fears:text kidness:text phobias:text therapist:text sex_life:integer purpose:integer emotional:integer honesty:integer love:integer speaking:integer enjoy_challenge:integer trust:integer dark_side:integer gain_trust:text young_old:text what_triggers:text trigger_response:text get_you_once_triggered:text food:text color:text movie:text song:text law:text dream:text knowledgable:text edges:text hard_nos:text people_adversion:text people_trust:text bring_to_game:text anything_else:text 
+
+funky code
+	a=[{id:1, name:'bob'},{id:2, name:'sue'},{id:3, name: 'rose'}]
+	a.select {|x| x[:id] == 1}.last
+	File.write('intake.json', json)
+	a={"utf8"=>"?", "authenticity_token"=>"OFhwq9z+N/tA0a+Txl6pkHHpLqMwFQar17tdWTEsSRA=", "frame_id_58"=>"58", "user_id_58"=>"2", "frame_id_3"=>"3", "user_id_3"=>""}
+	File.write("tmp/response2.json", TypeForm.last.response)
+	File.write("tmp/response.json", form.response)
+
+handy modal working code
+	User.first.user_programs.find_by(program: Program.first).safeword
+	User.first.user_programs.find_by(program: Program.first).update!(role: 'student')
+	ChallengeFrame.find(2).update!(approved_at: nil)
+
+backlog
+	generic content hosting for stuff like styling
+	program specific css
+	page footer: terms of service, support
+	student profile page: avatar, content tbd
+	sub-domain detection, ex: http://cp8.oec.onetaste.com goes to the CP8 Program
+	program configuration page (custom css, invite email template, add students, CSV import)
+		flow:
+			admin creates new program
+			admin adds program-wide initial assignments, like the intake form
+			admin adds user to program, sepecifying email
+			admin creates pods for the program, adding users to the pods
+			client clicks invite in email, is taken to their dashboard with their first assignments
+
+misc notes
+	Noah Coad submitted a frame for Challenge: Get 5 Coaching Clients
+
+project FLOW notes
+	designer starts with workflow designs in Balsamiq
+	team uses bootstrap as baseline styling
+	designer create a single style page to give an idea how site will look
+	devs create models
+	devs create admin to populate models
+	devs create pages with basic css classes and elements
+	designer goes in an applies site look and feel to pages
+
+marcus = User.find_by(email: 'marcus@onetaste.us')
+hamza = User.find_by(email: 'hamza.tayeb@gmail.com')
+noah = User.find_by(email: 'noah@coad.net')
+leah = User.find_by(email: 'leah.mendelson@onetaste.us')
+rachel = User.find_by(email: 'rachel.cherwitz@onetaste.us')
+user = hamza
+prog = user.current_program
+form = TypeForm.joins(:program).joins(:user).where(program: prog, user: user, form: 'intake').last
+File.write("tmp/response.json", form.response)
+
+b=[{"hi"=>123}, {"bobo"=>123}, {"sue"=>123}] 
+c={"hi"=>123, "bobo"=>123, "sue"=>123}

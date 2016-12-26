@@ -1,0 +1,42 @@
+.container-fluid
+	.row.post-main-page
+		=render "layouts/nav-link-secondary"
+		.row.first-row
+			.span12.post-jobs-box
+				.page-header
+					%p.page-title Post a Training / Placement
+				%table.table.table-striped
+					%thead
+						%tr
+							%th{:width=>"5%"} ID
+							%th{:width=>"10%"} Title
+							%th{:width=>"10%"} Technology
+							%th{:width=>"10%"} Instruction Mode
+							%th{:width=>"5%"} Placement
+							%th{:width=>"5%"} Accomodation
+							%th{:width=>"5%"} Duration
+							%th{:width=>"20%"} Description
+							%th{:width=>"10%"} Created At
+							%th=t '.actions', :default => t("helpers.actions")
+					%tbody
+						- @post_trainings.each do |post_training|
+							%tr
+								%td= link_to post_training.id, post_training_path(post_training)
+								%td= post_training.job_title
+								%td= post_training.get_techtype
+								%td= post_training.get_instruction_mode
+								%td= post_training.job_placement == '1' ? 'Yes' : 'No'
+								%td= post_training.job_accomodation == '1' ? 'Yes' : 'No'
+								%td= post_training.job_duration
+								%td= post_training.job_description
+								%td=l post_training.created_at, :format =>"%Y-%m-%d %H:%M"
+								%td
+									= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_training_path(post_training), :class => 'btn btn-mini'
+									= link_to t('.destroy', :default => t("helpers.links.destroy")), post_training_path(post_training), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+						%tr
+							%td{:colspan=>"6"}= will_paginate @post_trainings								
+				.row.last-row
+					.span11.control-box
+						= link_to t('.new', :default => t("helpers.links.new")), new_post_training_path, :class => 'm-btn blue'
+:javascript 
+	$('ul.nav-tabs li').eq(1).addClass('isCurrent');

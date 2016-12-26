@@ -1,0 +1,98 @@
+.row.coach_counselor_profile_page
+	.container
+		= simple_form_for(@partner, :url => registration_path(@partner), :html => {:method => :put,:class => 'card_form_test form-vertical', :multipart => true }, :reomte=>true) do |f|
+			.row.first-row
+				.span3.left-pannel
+					.row.categories
+						%label= @partner.category.name										
+					.row{:style=> "text-align: center;"}
+						%span.btn.btn-success.fileinput-button
+							%i.icon-plus.icon-white
+							%span 
+								Select file...
+								%input{:type=>"file", :onchange=>"loadImageFile();", :name=>"user[pictures_attributes][0][image]", :id=>"user_pictures_attributes_0_image"}
+
+					.row.picture
+						=image_tag(@partner.image_url('large'), :id=>'uploadPreview')
+					.row.user-info
+						.span1{:style=>"margin-left: 0px;"}
+							=f.simple_fields_for :user_info_attributes do |u_info|
+								= u_info.input :city, :label=>false, :input_html=>{:value => @partner.city, :"data-update"=>change_city_user_path(@partner)}
+						.span1
+							=f.simple_fields_for :user_info_attributes do |u_info|
+								= u_info.input :state, :label=>false, :input_html=>{:value => @partner.state, :"data-update"=>change_state_user_path(@partner)}
+						.span1
+							=f.simple_fields_for :user_info_attributes do |u_info|
+								= u_info.country_select :country, ["#{@partner.country}"]
+					
+				.span5.center-pannel
+					.row
+						%p.user-info-title Counselor Philosophy
+						=f.simple_fields_for :coachcounselor_attributes do |u_info|
+							= u_info.input :philosophy, :label=>"Counselor Philosophy", :as=> :text, :input_html=>{:value=>current_user.coachcounselor.philosophy, :cols => 30, :rows => 5, :style=>"max-width: 450px; min-width: 450px; max-height: 120px;", :"data-update"=>change_cch_philosophy_user_path(@partner)}, :required => true, :label=>false
+					.row
+						%p.user-info-title Counselor Experience
+						=f.simple_fields_for :coachcounselor_attributes do |u_info|
+							= u_info.input :experience, :label=>"Counselor Experience", :as => :text, :input_html=>{:value=>current_user.coachcounselor.experience, :cols => 30, :rows => 5, :style=>"max-width: 450px; min-width: 450px; max-height: 120px;", :"data-update"=>change_cch_experience_user_path(@partner)}, :required => true, :label=>false
+					.row
+						%p.user-info-title How you Help People
+						=f.simple_fields_for :coachcounselor_attributes do |u_info|
+							= u_info.input :helppeople, :label=>"How you help people", :as=> :text, :input_html=>{:value=>current_user.coachcounselor.helppeople, :cols => 30, :rows => 5, :style=>"max-width: 450px; min-width: 450px; max-height: 120px;", :"data-update"=>change_cch_helppeople_user_path(@partner)}, :required => true, :label=>false
+				.span2.right-pannel
+					.row
+						%strong Counselor Sessions
+						%ul
+							%li $60 per one hour session
+							%li $400 for a package of 6 sessions
+					.row
+						%label{:class=>"#{'is-online' if @partner.is_online?}"}= @partner.is_online? ? "On line" : "Off line"
+					.row
+						.span1{:style=>"margin-left:0px;"}
+							%a.btn.btn-primary Chat Live
+						.span1
+							%a.btn.btn-danger Disable
+					.row
+						%a.btn.btn-info Email
+					.row.last-row{:style=>"margin-top: 40px;"}
+						- if user_signed_in?
+							%span Unhappy?
+							=link_to "Cancel", registration_path(current_user), :data => { :confirm => "Are you sure you wish to delete your account?" }, :method => :delete, :class => 'btn btn-danger', :style=>"margin-top: 0px;"
+
+:javascript
+	oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+ 
+	oFReader.onload = function (oFREvent) {
+		document.getElementById("uploadPreview").src = oFREvent.target.result;
+	};
+	 
+	function loadImageFile() {
+		if (document.getElementById("user_pictures_attributes_0_image").files.length === 0) { return; }
+		var oFile = document.getElementById("user_pictures_attributes_0_image").files[0];
+		if (!rFilter.test(oFile.type)) { alert("You must select a valid image file!"); return; }
+		oFReader.readAsDataURL(oFile);
+	}
+	
+	$('[data-update]').blur(function() {
+		$this = $(this);
+		$.post($this.data('update'), {
+				update_value: $this.val()
+		}).success(function() {
+			console.log('success');
+		}).error(function() {			
+			$this.addClass('field_with_errors');
+			$this.focuss();
+		});
+	});
+
+	$('#user_user_info_attributes_country').change(function(){
+		$this = $(this);
+		var url = '#{change_country_user_path(@partner)}'
+		$.post(url, {
+			update_value: $this.val()
+		}).success(function() {
+			console.log('success');
+		}).error(function() {			
+			$this.addClass('field_with_errors');
+			$this.focuss();
+		});
+	});

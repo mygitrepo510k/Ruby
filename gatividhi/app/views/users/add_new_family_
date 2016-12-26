@@ -1,0 +1,62 @@
+.popupWindow{:style => "width: 380px; height: 465px;"}
+	.popupHead
+		.popupTitle Create New Family!
+		.closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+		.CL
+	.popupContaint
+		%p.pageSubTitle Create New Family
+		.popupSmForm
+			= form_tag '/add_new_family',:id => "add_family_form", :multipart => true do
+				.formRow
+					%label Family Name:
+					%input#family_family_name.inputField{:maxlength => "15", :minlength => "1", :name => "family[family_name]", :onblur => "if(this.value==''){ this.value='What would you like to call the family'; this.style.color='#979797'}", :onclick => "if(this.value=='What would you like to call the family'){ this.value=''; this.style.color='#000'}", :style => "width:200px;", :type => "text", :value => "What would you like to call the family"}/
+					\ *
+					%p.errorMsgLeft
+					.CL
+				.formRow.jqSmallform
+					%label Your Role:
+					%select#select{:name => "family[role_name]", :style => "width:180px;"}
+						%option{:value => "Mother"} Mother
+						%option{:value => "Father"} Father
+						%option{:value => "Grandparent"} Grandparent
+					.CL
+				.formRow
+					%label	
+					%input.submitBtn{:type => "submit", :value => "submit"}/
+					%input.cancelBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;", :type => "submit", :value => "cancel"}/
+					.CL
+	%p.pageSubTitle{:style => "line-height:1;"}		Associate with an existing Family
+	.popupSmForm{:style => "border:0px;"}
+		= form_tag '/associate_to_family',:id => "associate_family_form", :multipart => true do
+			.formRow
+				%label Family ID:
+				%input#family_id.inputField{:max => "9999999999", :min => "1000000000", :name => "family_id", :onblur => "if(this.value==''){ this.value='Please enter an existing Family id'; this.style.color='#979797'}", :onclick => "if(this.value=='Please enter an existing Family id'){ this.value=''; this.style.color='#000'}", :style => "width:200px;", :type => "text", :value => "Please enter an existing Family id"}/
+				%p.errorMsgLeft
+				.CL
+			.formRow.jqSmallform
+				%label Your Role:
+				%select#select{:name => "role_name", :style => "width:180px;"}
+					%option{:value => "Mother"} Mother
+					%option{:value => "Father"} Father
+					%option{:value => "Grandparent"} Grandparent
+				.CL
+			.formRow
+				%label	
+				%input.submitBtn{:type => "submit", :value => "submit"}/
+				%input.cancelBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;", :type => "submit", :value => "cancel"}/
+				.CL
+
+:javascript
+	$("#add_family_form").submit(function() {
+		if ($('#family_family_name').val() == "What would you like to call the family"){
+			$('#family_family_name').next().html("can't be blank");
+			return false;
+		}
+	});
+	$("#associate_family_form").submit(function() {
+		if ($('#family_id').val() == "Please enter an existing Family id"){
+			$('#family_id').next().html("can't be blank");
+			return false;
+		}
+	});
+	$('.jqSmallform').jqTransform(); 

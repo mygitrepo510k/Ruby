@@ -1,0 +1,20 @@
+-@interest.public_speaking_intereactions.each do |p_s_interaction|
+	.formMainRow.singleRow{:style=>"height: 20px;", :id=>'row_'+p_s_interaction.id}
+		.formAction
+			.viewEdit
+				%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit_#{p_s_interaction.id}','#linkObj_#{p_s_interaction.id}','.viewEdit')", :title => "Edit"}
+				= link_to("", "javascript:delete_interest('#{p_s_interaction.id}')", :method=> :delete, :confirm => "Are you sure?", :class => "deleteIcon", :title=>"Delete")
+			%span{:id=>"linkObj_"+p_s_interaction.id, :onclick => "showEdit('showEdit_#{p_s_interaction.id}','#linkObj_#{p_s_interaction.id}','.viewEdit')"}= p_s_interaction.option_value
+			.editBox{:id=>"showEdit_"+p_s_interaction.id}
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'edit_ps_'+p_s_interaction.id}
+						%option Select
+						%option Debate
+						%option Group
+						%option Discussion
+						%option Anchoring
+						%option Other
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit_#{p_s_interaction.id}','#linkObj_#{p_s_interaction.id}','.viewEdit')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit_#{p_s_interaction.id}','#linkObj_#{p_s_interaction.id}','.viewEdit'); saveChildInterest('edit', 'public_speaking_intereaction', '#showEdit_#{p_s_interaction.id}', '#{p_s_interaction.id}');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+	.CL

@@ -1,0 +1,15 @@
+.row
+	.col-xs-12
+		nav#footernav
+			ul
+				li= link_to 'Dashboard', root_path
+				-if current_user.current_program.has_content
+					li= link_to 'Content', content_path
+				li= link_to 'Members', users_path
+				- if current_user and current_user.leader?
+					li= link_to 'Admin', admin_path
+				li= link_to 'Ethics', 'http://onetaste.us/code-of-conduct/', target: '_blank'
+				li= link_to 'Help', 'mailto:help@onetaste.us'
+
+		#powered
+			= image_tag 'powered.jpg'

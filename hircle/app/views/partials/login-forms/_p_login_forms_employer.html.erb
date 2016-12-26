@@ -1,0 +1,141 @@
+<div class="signup-b login_forms_employer login_forms">
+  <%=  image_tag("landing-page/popup-bg.png", :style=>"height:236px; width: 478px;") %>
+  <div class="employer_tabs">
+    <ul id="myTab">
+        <li><a data-toggle="tab" href="#company" class="active left">Company</a></li>
+        <li><a data-toggle="tab" href="#recruiter" class="">Recruiter</a></li>
+        <li><a data-toggle="tab" href="#college" class="right">College</a></li>
+
+    </ul>
+  </div>
+  <div class="tab-content" id="myTabContent">
+    <div id="company" class="tab-pane">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "form-horizontal") do |f| %>      
+            <div class="emp-login-form-item emp-login-form-email">
+              <ul>
+                  <li>
+                      <label>Email</label>
+                      <%= f.email_field :email, :style => "width:238px;margin-bottom:0px;", :autofocus => true %>
+                  </li>
+              </ul>
+            </div>
+            <div class="emp-login-form-item emp-login-form-password">
+              <ul>
+                  <li>
+                      <label>Password</label>
+                    <%= f.password_field :password %>
+                  </li>
+              </ul>
+            </div>
+            <div class="button-siginup" style="top: 158px;">
+               <p>Join your company's social network</p>
+               <div class="rit">
+                    <%= f.submit("Login", :class => "btn btn-primary") %>
+               </div>
+            </div>
+        <% end %>
+    </div>
+    <div id="college" class="tab-pane fade in active">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "form-horizontal") do |f| %>
+
+        <div class="form-b">
+            <ul>
+              <li><label>JOIN YOUR COLLEGE'S SOCIAL NETWORK</label></li>
+                <li>
+                    <input name="email" type="text" style="width:400px;height:30px;margin-bottom:0px;" placeholder="Enter Your work Email Address">
+                </li>
+            </ul>
+        </div>
+
+          <div class="button-siginup" style="top: 158px;">
+            <div class="span4">
+              <label style=" background-color: white; color: rgb(162, 162, 162); text-align: left; width: 350px;">
+                Only people with a verified company email address can join your company network.
+              </label>
+            </div>
+             <div class="rit">
+                <!-- <%= f.submit("Join", :class => "btn btn-primary btn-join-company") %> -->
+                <a href="#" class="btn btn-primary btn-join-company"> Join </a>
+             </div>
+          </div>
+      <% end %>
+    </div>
+    <div id="recruiter" class="tab-pane fade">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "form-horizontal") do |f| %>
+          <div class="emp-login-form-item emp-login-form-password">
+            <ul>
+              <li>
+                <label>Alumni Email</label>
+                <input name="" type="text">
+                <span>Email address assosiated with your college or university</span>
+              </li>
+            </ul>
+          </div>
+          <div class="form-b" style="padding:10px 15px;">
+           <ul>
+             <li>
+               <label>I'm a Alumni at</label>
+               <div class="input-append">
+                    <input type="text" id="appendedDropdownButton" >
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn dropdown-toggle">
+                            <span class="caret"></span>
+                        </button>
+                         <ul class="dropdown-menu">
+                           <li><a href="#">Action</a></li>
+                           <li><a href="#">Another action</a></li>
+                           <li><a href="#">Something else here</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#">Separated link</a></li>
+                         </ul>
+                    </div><!-- /btn-group -->
+               </div>
+             </li>
+
+          </div>
+           <div class="button-siginup" style="top: 158px;">
+              <p>Join the network for free</p>
+             <div class="rit">
+                <%= f.submit("Sign up", :class => "btn btn-primary") %>
+             </div>
+        </div>
+      <% end %>
+    </div>
+    <!--
+    <div class="social-icons">
+      <ul>
+          <li>
+            <a href="#">
+              <%=  image_tag("landing-page/fb.png") %>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+            <%=  image_tag("landing-page/plus.png") %>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <%=  image_tag("landing-page/linkedin.png") %>
+            </a>
+          </li>
+      </ul>
+    </div>
+  -->
+  </div>
+
+</div>
+
+<script>
+$('a.btn-join-company').click(function(){  
+  $('.login_button').show();
+  $('.signup_button').hide();
+
+  $('.login_forms').hide();
+  $('.signup_forms').hide();
+  $('.signup_forms_professional').hide();
+  $('.signup_forms_job_seeker').hide();
+  $('.signup_forms_employer').show();
+      
+  });
+</script>

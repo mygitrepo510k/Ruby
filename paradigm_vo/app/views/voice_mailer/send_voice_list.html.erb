@@ -1,0 +1,7 @@
+<p><%= @list.recipient_name %>,</p>
+
+<p><%= @list.message if @list.message.present? %></p>
+
+<p><%= link_to 'Click here to view your list', list_url(@list.id) %></p>
+
+<p><%= @list.signature.present? ? @list.signature : @admin.signature if @admin.signature.present? %></p>

@@ -1,0 +1,13 @@
+upload_url: 'https://upload.wistia.com/'
+data_url: 'https://api.wistia.com/v1/'
+
+embed_url: 'http://home.wistia.com/medias/%s?embedType=api&handle=oEmbedVideo&maxwidth=%s'
+embed_endpoint: 'http://fast.wistia.com/oembed.json?%s'
+
+password: a8c1e62d40e335c85a84549c5c848b79db1bb8d8
+
+development:
+  project_id: 5z1mqcww9r
+
+production:
+  project_id: gfnci3ha4j

@@ -1,0 +1,83 @@
+= simple_form_for @payment_profile, :html=>{:class=>"form-inline", :id=>"payment_form"} do |f|
+  - if @payment_profile.errors.any?
+    .error_messages
+      %h4
+        = pluralize(@payment_profile.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @payment_profile.errors.full_messages.each do |msg|
+          %li= msg
+  %label.sub-page-title= t("settings.payment.title1")
+  %br/
+  %label= t("settings.payment.comment1")
+  .row
+    %span.payment-errors
+    .row.form-row.name-row
+      .span4
+        %label.control-label{:for => "name_on_card"}= t("settings.payment.name_on_card")
+        .controls
+          = text_field_tag 'name_on_card', nil, :"data-stripe"=>"name"
+    .row.form-row.card-number
+      .row
+        %label.control-label{:for=>"card_number"}= t("settings.payment.card_number")
+      .row
+        .span4
+          = text_field_tag 'card_number', nil, :class=>"card_number", :"data-stripe" => "number"
+        .span1.cards
+          = image_tag "visa.png", :class=>"visa"
+          = image_tag "master.png", :class=>"master"
+          = image_tag "american.png", :class=>"american"
+    .row.form-row.cvc_number
+      %label.control-label{:for => "cvc_number"}= t("settings.payment.cvc_number")
+      .controls
+        = text_field_tag 'cvc_number', nil, :"data-stripe"=>"cvc", :maxlength=>"4"
+    .row.form-row.expiration-date
+      .row
+        %label= t("settings.payment.exp_date")
+      .row
+        .span2
+          = select_month @card_data.present? ? @card_data.exp_month : nil, {}, {:"data-stripe"=>"exp-month"}
+        .span2
+          = select_year @card_data.present? ? @card_data.exp_year : nil, {start_year: Date.today.year-1, end_year: Date.today.year+10}, {:"data-stripe"=>"exp-year"}
+    .row.form-row
+      .control-group
+        .controls
+          %label.checkbox
+            %input{:type => "checkbox"}/
+            = t("settings.payment.checkbox_1")
+      .control-group
+        .controls
+          %label.checkbox
+            %input{:type => "checkbox"}/
+            = t("settings.payment.checkbox_2")
+    .row.last-row
+    %label.sub-page-title= t("settings.payment.title2")
+    .row.form-row.billing-row
+      .control-group
+        %label.control-label{:for => "billing_street"}= t("settings.payment.street_address")
+        .controls
+          = text_field_tag 'billing[street]', @card_data.present? ? @card_data.address_line1 : nil, :"data-stripe"=>"address-line1"
+    .row.form-row.billing-row
+      .control-group
+        %label.control-label{:for => "billing_apartment"}= t("settings.payment.apartment")
+        .controls
+          = text_field_tag 'billing[apartment]', @card_data.present? ? @card_data.address_line2 : nil, :"data-stripe"=>"address-line2"
+    .row.form-row.billing-row
+      .control-group
+        %label.control-label{:for => "billing_city"}= t("settings.payment.city")
+        .controls
+          = text_field_tag 'billing[city]', @card_data.present? ? @card_data.address_city : nil, :"data-stripe"=>"address-city"
+    .row.form-row.province-row
+      .span4
+        .control-group
+          %label.control-label{:for => "billing_province"}= t("settings.payment.province")
+          .controls
+            /= text_field_tag 'province', nil, :placeholder=>t("settings.payment.province")            
+            = select_tag "billing[province]",options_for_select(["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Ontario","Prince Edward Island","Quebec","Saskatchewan","Northwest Territories","Nunavut","Yukon"],"Alberta"), :"data-stripe"=>"address-state"
+      .span2
+        .control-group
+          %label.control-label{:for => "billing_postal_code"}= t("settings.payment.postal_code")
+          .controls
+            = text_field_tag'billing[postal_code]', @card_data.present? ? @card_data.address_zip : nil, :"data-stripe"=>"address-zip"
+    .row.last-row
+      %input.save_change.pg-float-left{:type => "submit", :value=>t("general.save_change")}

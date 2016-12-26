@@ -1,0 +1,10 @@
+.admin-edit-challenge.section.single
+	h3 Edit Challenge
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Challenges', admin_challenges_path
+		li.active= 'Edit Challenge'
+
+	= render 'form'
+	br

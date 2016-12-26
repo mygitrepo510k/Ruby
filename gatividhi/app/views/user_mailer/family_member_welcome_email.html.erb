@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Dear <%= @family_member.first_name %></h1>,
+    <p>
+      You have an invitation to join a family to ec2-54-244-185-69.us-west-2.compute.amazonaws.com.
+    </p>
+    <p>
+      <%= link_to "Accept", @url + "&status=accepted" %> &nbsp; <%= link_to "Reject", @url + "&status=rejected" %>
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>

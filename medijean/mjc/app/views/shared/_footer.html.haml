@@ -1,0 +1,56 @@
+%footer
+  .row.footer_center.container
+    /
+      .foo_images
+        .foo_images_container
+          .span2
+            %img{:src=>"/assets/home_bg.png", :class=>"foo_sub_images"}
+          .span2
+            %img{:src=>"/assets/home_bg.png", :class=>"foo_sub_images"}
+          .span2
+            %img{:src=>"/assets/home_bg.png", :class=>"foo_sub_images"}
+          .span2
+            %img{:src=>"/assets/home_bg.png", :class=>"foo_sub_images"}
+          .span2
+            %img{:src=>"/assets/home_bg.png", :class=>"foo_sub_images"}
+    - if (controller.controller_name == 'home' && controller.action_name == 'index') || (controller.controller_name == 'registrations' && controller.action_name == 'new')
+      .row.bck-top-align
+        .span12
+          = link_to t("footer.back_top"), '#top', :class => "btn bck-top-btn"
+    .row.empty-row
+    .row.empty-row
+    .row.empty-row
+    .row.empty-row
+    .row
+      .span2.footer-align
+        .foo_header
+          = t("footer.company")
+        %p.foo_p
+          = t("footer.about")
+        %p.foo_p
+          = t("footer.how_it_works")
+        %p.foo_p
+          = t("footer.blog")
+        %p.foo_p
+          = t("general.for_doctors")
+      .span2.footer-align
+        .foo_header
+          = t("footer.resources")
+        %p.foo_p
+          = t("footer.terms_of_service")
+        %p.foo_p
+          = t("general.privacy_policy")
+      .span2.footer-align
+        .foo_header
+          = t("footer.get_in_touch")
+        %p.foo_p
+          = t("footer.newsletter") 
+      .span2.footer-align
+        %p.foo_p
+          = image_tag "facebook.png"
+          = image_tag "twitter.png"
+          = image_tag "linkedin.png"
+    .copy_rights
+      %p
+        = t("footer.copyrights")
+  .row.empty-row

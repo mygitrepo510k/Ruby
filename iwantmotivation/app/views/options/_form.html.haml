@@ -1,0 +1,9 @@
+= simple_form_for @option, :html => { :class => 'form-horizontal' } do |f|
+	- if params[:action]=="edit"
+		= f.input :option_name, :input_html=>{:disabled=>"disabled"}
+	- else
+		= f.input :option_name
+	= f.input :option_value, :input_html=>{ :style=>"max-height: 150px; max-width: 700px; min-height: 150px; min-width: 700px;"}
+	.form-actions
+		= f.button :submit, :class => 'btn-primary'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), options_path, :class => 'btn'

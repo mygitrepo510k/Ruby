@@ -1,0 +1,36 @@
+.row.signin-page
+	.row.signin-page-bar
+		.span4.offset5
+			%h2 Member Login:
+	.container		
+		.span4.login-form
+			.row{:style=>"margin-top: 20px; margin-bottom: 20px;"}
+				%label.title Already a member? Login now
+			.row
+				= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal' }) do |f|
+					= f.input :login, :autofocus => true, :label => "Screen Name:"
+					= f.input :password, :label => "Password:"
+					.text-box{:style=>"margin-left: 180px; width; 250px;"}
+						%p Note: Passwords are case sensitive
+						/ = f.input :remember_me, :as => :boolean if devise_mapping.rememberable?
+						= f.button :submit, "LOGIN", :class => 'btn-primary', :style=>"width: 90px; height: 35px;"
+			.row.last-row{:style=>"margin-top: 20px;"}
+				.span2{:style=>"margin-left: 120px; width; 250px; margin-bottom: 70px;"}
+					= link_to "Forgot your password?", new_password_path(resource_name)
+		.span5.signup-box
+			.row.first-row{:style=>"margin-top: 20px; margin-bottom: 18px;"}
+				%label.title
+					Not a member yet? 
+					= link_to "Join Now!", :signup				
+			.row.second-row
+				%label Join not to take advantage of these benefits:
+				%ul.ul-checkbox
+					%li Live one-on-one chats with other members
+					%li Start Or Join a Group Or Forum
+					%li Participate in a live group chat
+					%li Search and hire a professional coach or counselor
+					%li Discounts on motivational products in the store
+					%li Regular motivational tips, techniques, videos, stories
+					%li FREE motivational tools, and MORE.
+			.row.last-row
+				= link_to "CLICK FOR A FREE MEMBERSHIP", :signup, :class=>"btn btn-primary"

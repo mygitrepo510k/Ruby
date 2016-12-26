@@ -1,0 +1,94 @@
+// Place all the styles related to the admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.home-admin{
+	margin-top: 40px;
+	.btn, .btn-info{
+		color: white;
+	}
+	.left-box{
+		.first-row{
+			margin-left: 0px;
+			.row{
+				margin-left: 0px;			
+			}
+			[class*="span"]{
+				margin-left: 0px;
+			}
+			.image-upload-box{
+				.span2{
+					.row{
+						margin-top: 10px;
+					}
+				}
+				.fileinput-button {
+			    overflow: hidden;
+			    position: relative;
+			    input{
+				    cursor: pointer;
+				    direction: ltr;
+				    font-size: 23px;
+				    margin: 0;
+				    opacity: 0;
+				    position: absolute;
+				    right: 0;
+				    top: 0;
+				    transform: translate(-300px, 0px) scale(4);
+			    }
+				}
+			}
+		}
+		.second-row{
+			margin-left: 0px;
+			margin-top: 20px;
+			.row{
+				margin-left: 0px;
+				margin-top: 16px;
+				.span3{
+					width: 218px;
+				}
+				.span1{
+					margin-top: 22px;
+				}
+			}
+			[class*="span"]{
+				margin-left: 0px;
+			}
+		}
+		.third-row{
+			margin-top: 40px;
+			margin-left: 0px;
+			[class*="span"]{
+				margin-left: 0px;
+			}
+			.row{
+				margin-left: 0px;
+			}
+		}
+	}
+	.right-box{
+		[class*="span"]{
+				margin-left: 0px;
+			}
+		.first-row{
+
+		}
+		.second-row{
+			margin-top: 30px;
+		}
+		.third-row{
+			margin-top: 30px;
+			.span3{
+				width: 230px;
+				margin-left: 10px;
+				.btn{
+					width: 40px;
+				}
+			}
+		}
+	}
+	.fourth-row{
+		margin-top: 40px;
+		margin-left: 0px;
+	}
+}

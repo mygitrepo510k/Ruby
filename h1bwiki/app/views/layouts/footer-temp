@@ -1,0 +1,54 @@
+%footer.footer.navbar-fixed-bottom
+	.row.footer-box{:style => "margin:0 auto;"}
+		.container
+			.span4
+				%ul.top-offset-small
+					%li
+						%a{:href => "/about", :style => "color:white; text-shadow: none;"} About
+					%li
+						%label |
+					%li
+						%a{:href => "/contact", :style => "color:white; text-shadow: none;"} Contact
+					%li
+						%label |
+					%li
+						%a{:href => "/press", :style => "color:white; text-shadow: none;"} Press
+					%li
+						%label |
+					%li
+						%a{:href => "/terms", :style => "color:white; text-shadow: none;"} Terms & Privacy
+			.span5
+				.row
+					.main_label
+						%span{:style => "color:white; text-shadow: none;"}
+							Sign Up for H1BWIKI'S Newsletter
+							%span
+								%br/
+				.row
+					.input_wrapper
+						%form{"accept-charset" => "UTF-8", :action => "/contact/new_subscriber", "data-remote" => "true", :method => "post"}
+							.input-append
+								%input#appendedInputButtons.span2{:placeholder => "Enter your email", :style => "width:320px", :type => "text"}/
+								%button.btn.btn-warning{:type => "button"} Sign up
+						.clear
+			.span3
+				.extra_info
+					%span{:style => "color:white; text-shadow: none;"}
+						%strong Contact us:
+					%span{:style => "color:white; text-shadow: none;"} admin@h1bwiki.com
+	
+- if controller.controller_name != "messagebox" && controller.controller_name != "conversations"
+	#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+		.modal-header
+			%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+			%h3#myModalLabel New Message
+		.modal-body	
+			= simple_form_for :conversation, url: "/conversations", :html => { "data-validate" => "parsley", :id => "contact_form" } do |f|
+				= f.hidden_field :recipients, id: "recipients_hiddenfield"
+				.first-row
+					= f.input_field :subject, :placeholder => "Subject", "data-required"=>"true"
+				.second-row
+					= f.text_area :body, :rows=>"8", :cols => "10", :placeholder => "Message", "data-required"=>"true"
+				.modal-footer	 
+					= f.button :submit, "Send", class: 'm-btn blue'				
+					%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close

@@ -1,0 +1,20 @@
+- @child_profile_awards.each do | child_profile_award |
+	%tr
+		%td{:align => "left", :valign => "top"}
+			%input{:type => "checkbox"}/
+		%td{:align => "left", :valign => "top"}
+			%a.greenTxt{:href => "#.", :onclick => "$(this).parent().parent().next().show('fast');"}= child_profile_award.title
+		%td{:align => "left", :valign => "top"}= child_profile_award.award_date
+		%td{:align => "left", :valign => "top"}= child_profile_award.from
+		%td{:align => "left", :valign => "top"}= child_profile_award.category
+		%td{:align => "left", :valign => "top"}= child_profile_award.subject
+		%td{:align => "left", :valign => "top"}= child_profile_award.description
+		%td.actionBox{:align => "left", :valign => "top"}
+			%a.deleteIcon{:href => "/delete_child_profile_awards?id=#{params[:id]}&award_honour_id=#{child_profile_award.id}", :onclick => "return confirm('Are you sure you want to Delete this row');", :title => "Delete"}
+			%a.editIcon{:href => "/add_child_profile_awards?id=#{params[:id]}&award_honour_id=#{child_profile_award.id}", :rel => "facebox", :title => "Edit"}
+			- if !child_profile_award.photo.blank?
+				%a.greenTxt{:href => "/view_child_profile_photo?award_honour_id=#{child_profile_award.id}", :rel => "facebox"} View
+	%tr.viewRow{:style => "display:none;"}
+		%td{:align => "left", :colspan => "9", :valign => "top"}
+			%a.closeBtn.viewClose{:href => "#.", :onclick => "$(this).parent().parent().hide('fast');"}
+			= child_profile_award.description

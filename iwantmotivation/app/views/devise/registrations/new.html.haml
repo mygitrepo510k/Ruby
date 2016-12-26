@@ -1,0 +1,12 @@
+.row.signup-page
+	.container
+		- if params[:plan] && params[:plan] == "free"
+			= render 'free_signup'
+		-elsif params[:plan] && params[:plan] == "limited"
+			= render 'limited_signup'
+		-elsif params[:plan] && params[:plan] == "full"
+			= render 'full_access_signup'
+		-elsif params[:plan] && params[:plan] == "coach"
+			= render 'coach_signup'
+		-elsif params[:plan] && params[:plan] == "counselor"
+			= render 'counselor_signup'

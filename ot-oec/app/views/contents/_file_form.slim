@@ -1,0 +1,6 @@
+.fieldset.content.file
+	a href='#' data-remove-fieldset=''
+		span.glyphicon.glyphicon-remove
+
+	= fields_for 'content[]', Content.new do |file|
+		- file.hidden_field :filepicker_url

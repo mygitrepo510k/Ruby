@@ -1,0 +1,2 @@
+class LpController < ApplicationController
+end

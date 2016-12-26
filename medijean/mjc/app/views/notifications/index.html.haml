@@ -1,0 +1,26 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.nav-top-bar
+      = render :partial => 'users/dashboard-nav'
+    .row.oh-page-container
+      .row.title
+        .span4.title-span
+          %label.page-title
+            Notifications
+      - @user_notifications.each do |notification|
+        .row.page-content
+          .span1
+            = image_tag "#{notification.notification_type}_notification.png"
+          .span6
+            .row
+              .span5
+                = render_notification(notification)
+            .row
+              .span5.notif-bold
+                = notification.parameters[:sender_name] unless notification.parameters.blank?
+            .row
+              .span5.notif-light
+                =  time_ago_in_words(notification.created_at)
+        %hr
+
+

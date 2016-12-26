@@ -1,0 +1,11 @@
+-if user_signed_in? and @comment.present?
+	.row
+		%p=@comment.body
+
+:javascript
+	$(".average-rate li.show-value").width("#{@width}%");
+	$("#write_reviews li.show-value").width("#{@child_width}%");
+	$("#reviews li.current-#{current_user.id if user_signed_in?}").width("#{@child_width}%");
+	$("div.comment-user#{current_user.id if user_signed_in?}").html($("#comment").val());
+	$('#write_reviews').modal('hide');
+	$("#confirm_comment").modal('show');

@@ -1,0 +1,56 @@
+// Footer style sheet
+footer {
+  //background: lightblue;
+  background: #35A2A7;
+  padding-bottom: 10px;
+  color: #ffffff;
+  width: 100%;
+}
+
+.foo_images {
+  background: gray;
+  min-height: 160px;
+  padding-top: 20px;
+}
+
+.foo_images img {
+  margin: 5px;
+}
+
+.foo_header {
+  font-weight :bold;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.foo_p {
+  font-size: 14px;
+  width: 130px;
+}
+
+.foo_sub_images {
+  width: 250px;
+  height: 120px;
+}
+
+.foo_images_container {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.copy_rights {
+  margin: 0 auto;
+  border-top: 1px solid #50bbc1;
+  width: 95%;
+}
+
+.copy_rights p {
+  margin: 12px auto;
+  text-align: center;
+}
+
+.footer_center {
+  display: block;
+  margin: 0 auto;
+  background: none!important;
+}

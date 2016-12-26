@@ -1,0 +1,55 @@
+<div class="col_6 in">
+<h1>Artists</h1>
+
+<% if admin_signed_in? %>
+<%= link_to 'New Artist', new_artist_path %><br><br>
+<% ('A'..'Z').each do |l| %>
+	<% unless params[:filter].present? %>
+		<% if l == 'A' %>
+			<%= link_to l, artists_path(filter: l), style: 'text-decoration:none;font-weight:bold;' %>
+		<% else %>
+			<%= link_to l, artists_path(filter: l) %>
+		<% end %>
+	<% else %>
+		<% if l == params[:filter] %>
+			<%= link_to l, artists_path(filter: l), style: 'text-decoration:none;font-weight:bold;' %>
+		<% else %>
+			<%= link_to l, artists_path(filter: l) %>
+		<% end %>	
+	<% end %>
+<% end %>
+<br><br><br>
+<% else %>
+<% ('A'..'Z').each do |l| %>
+	<% unless params[:filter].present? %>
+		<% if l == 'A' %>
+			<%= link_to l, artists_path(filter: l), style: 'text-decoration:none;font-weight:bold;' %>
+		<% else %>
+			<%= link_to l, artists_path(filter: l) %>
+		<% end %>
+	<% else %>
+		<% if l == params[:filter] %>
+			<%= link_to l, artists_path(filter: l), style: 'text-decoration:none;font-weight:bold;' %>
+		<% else %>
+			<%= link_to l, artists_path(filter: l) %>
+		<% end %>	
+	<% end %>
+<% end %>
+<br>
+<% end %>
+</div>
+
+<div class="col_6 in" style="max-height:480px;width:550px;overflow:auto;margin-top:-15px;">
+
+<table>
+
+<% @artists.each do |artist| %>
+  <tr>
+    <td><%= link_to artist.name, artist %>&nbsp;&nbsp;&nbsp;</td>
+    <td><%= link_to image_tag("icon_edit.gif"), edit_artist_path(artist) %>&nbsp;&nbsp;&nbsp;</td>
+    <td><%= link_to image_tag("icon_delete.gif"), artist, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+</div>

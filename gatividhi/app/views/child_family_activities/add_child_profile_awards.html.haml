@@ -1,0 +1,192 @@
+:css
+  br { display:none; }
+- @title = @child_profile_awards.blank? ? 'title' : @child_profile_awards.title
+- @award_date = @child_profile_awards.blank? ? Time.now.to_date : @child_profile_awards.award_date
+- @from = @child_profile_awards.blank? ? '' : @child_profile_awards.from
+- @category = @child_profile_awards.blank? ? '' : @child_profile_awards.category
+- @subject = @child_profile_awards.blank? ? '' : @child_profile_awards.subject
+- @add_to_timeline = @child_profile_awards.blank? ? '' : @child_profile_awards.add_to_timeline
+- @description = @child_profile_awards.blank? ? 'description' : @child_profile_awards.description
+.popupWindow#add_awards_honours_wnd{:style => "width: 430px; height: 600px;"}
+  .popupHead
+    .popupTitle Awards & Honours
+    .closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+    .CL
+  .popupContaint
+    .popupSmForm      
+      = form_tag "/add_child_profile_awards?id=#{@family_member.id}&award_honour_id=#{@child_profile_awards.blank? ? '' : @child_profile_awards.id}",:id=>'add_child_profile_awards', :multipart => true do
+        .formRow
+          %label Title*:
+          %input#test_reports_title.inputField{:name => "test_reports[title]", :onblur => "if(this.value==''){ this.value='#{@title}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@title}'){ this.value=''; this.style.color='#000'}", :style => "width: 200px; color: rgb(151, 151, 151);", :type => "text", :value => @title}/
+          %p.errorMsgLeft
+          .CL
+        .formRow.jqBigform
+          %label Award Date*:
+          %input#awardDate.showDate.inputField{:name => "test_reports[award_date]", :onblur => "if(this.value==''){ this.value='#{@award_date}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@award_date}'){ this.value=''; this.style.color='#000'}", :style => "width: 100px; color: rgb(151, 151, 151);", :type => "text", :value => @award_date}/
+          %p.errorMsgLeft
+          .CL
+        .formRow
+          .formRow.jqBigform
+            %label From:
+            %select#test_reports_from.inputField{:name => "test_reports[from]", :style => "width: 170px; color: rgb(151, 151, 151);"}
+              - ['Select','School','Teacher','Other'].each do |single_group|
+                - if !@child_profile_awards.blank? && single_group == @child_profile_awards.from
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+          .CL
+        .formRow
+          %span.formRow.jqBigform.smallCheckbox
+            %label Add to Timeline:
+            - if !@child_profile_awards.blank?
+              - if @child_profile_awards.add_to_timeline == true
+                %input#checkbox{:checked => "", :name => "test_reports[add_to_timeline]", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox{:name => "test_reports[add_to_timeline]", :type => "checkbox", :value => "true"}/
+            - else
+              %input#checkbox.inputField{:checked => "", :name => "test_reports[add_to_timeline]", :onblur => "this.style.color='#979797'", :type => "checkbox", :value => "true"}/
+          .CL
+        .formRow
+          .formRow.jqBigform.select_category
+            %label Category:
+            %select#test_reports_category.inputField{:name => "test_reports[category]", :style => "width: 170px; color: rgb(151, 151, 151);"}
+              - ['Select','Academic','Sports','Visual&performing arts', 'Public speaking/Interaction','Personal/Family','Voluntary/Social contribution'].each do |single_group|
+                - if !@child_profile_awards.blank? && single_group == @child_profile_awards.category
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+          .CL
+        .formRow
+          .formRow.jqBigform.subject_select
+            %label Subject:
+            %select#test_reports_subject.inputField{:name => "test_reports[subject]", :style => "width: 170px; color: rgb(151, 151, 151);"}
+              - ['Select','Maths','Science','Hindi'].each do |single_group|
+                - if !@child_profile_awards.blank? && single_group == @child_profile_awards.subject
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+          .CL
+        .formRow
+          %label Description:
+          %textarea#test_reports_description.inputField{:name => "test_reports[description]", :onblur => "if(this.value==''){ this.value='#{@description}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@description}'){ this.value=''; this.style.color='#000'}", :style => "width: 200px; color: rgb(151, 151, 151);"}= @description
+          %p.errorMsgLeft
+          .CL
+        .formRow
+          %label Upload Photo:
+          = file_field_tag "test_reports[photo]" ,:style=>"width: 200px; color: rgb(151, 151, 151);", :size=>10
+          %p.errorMsgLeft
+          .CL
+        .formRow.popActionBtn{:style => "text-align:right; padding-left:10px;"}
+          %input.submitBtn{:name => "commit", :type => "submit", :value => "save"}/
+          %input.cancelBtn{:name => "commit", :type => "submit", :value => "save & add new award / honour"}/
+          %input.cancelBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;", :type => "submit", :value => "cancel"}/
+:javascript
+  $('.jqGreenForm').jqTransform({imgPath:'images/'}); 
+  $('.jqSmallform').jqTransform({imgPath:'images/'}); 
+  $('.jqBigform').jqTransform({imgPath:'images/'}); 
+  $(function() {
+    $("#awardDate").glDatePicker({
+      leftMargin: 150,
+      topMargin: -10
+    });
+    //$("#awardDate").val("#{@award_date.to_s}");
+    $('div.select_category ul li a').click(function(){
+      var cat = $(this).text();
+      //'Academic','Sports','Visual&performing arts', 'Public speaking/Interaction','Personal/Family','Voluntary/Social contribution'
+      var aca_subject = ["Select", "Maths", "Science", "Hindi", "English"];
+      var sports_subject = ["Select", "Swimming", "Gymnastics", "Yoga", "Cricket", "Football", "Other"];
+      var vp_a_subject = ["Select", "Drama", "Paintings", "Drawing", "Music", "Crafts", "Sculpture", "Other"];
+      var ps_subject = ["Select", "Debate", "Group", "Discussion", "Anchoring", "Other"];
+      var pf_subject = ["Select", "Holiday", "Birthday", "Other"];
+      var v_subject = ["Select", "Teaching", "Other"];
+      if(cat == "Academic"){
+        $("#test_reports_subject option").remove();
+        change_subject(aca_subject);
+      }else if(cat=="Sports"){
+        $("#test_reports_subject option").remove();
+        change_subject(sports_subject);
+      }else if(cat=="Visual&performing arts"){
+        $("#test_reports_subject option").remove();
+        change_subject(vp_a_subject);
+      }else if(cat=="Public speaking/Interaction"){
+        $("#test_reports_subject option").remove();
+        change_subject(ps_subject);
+      }else if(cat=="Personal/Family"){
+        $("#test_reports_subject option").remove();
+        change_subject(pf_subject);
+      }else if(cat=="Voluntary/Social contribution"){
+        $("#test_reports_subject option").remove();
+        change_subject(v_subject);
+      }
+    });
+    function change_subject(obj){
+      $("div.subject_select ul.ac_scroll li").each(function(){
+        $("div.subject_select ul.ac_scroll li").eq(1).remove();
+      });
+      
+      $.each(obj, function(index, value){
+        $("#test_reports_subject").append($('<option>',{
+          value:value,
+          text: value
+        }));
+        if(index!=0)
+          $("div.subject_select ul.ac_scroll .jspPane").append('<li><a name="'+value+'" index="'+index+'" href="#">'+value+'</a></li>');
+      });
+      $("div.subject_select ul.ac_scroll li a").click(function(){
+        $("div.subject_select div.jqTransformSelectWrapper span").text($(this).text());
+        $("div.subject_select ul.ac_scroll").hide();
+        $("#test_reports_subject").val($(this).text());
+      });
+    }
+  });
+  $("#add_child_profile_awards").submit(function() {
+    if ($('#test_reports_title').val() == "" || $('#test_reports_title').val() == "title"){
+      $('#test_reports_title').next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#test_reports_title').next().html("");
+    }
+    /*
+      if ($('#test_reports_from').val() == "" || $('#test_reports_from').val() == "Select"){
+        $('#test_reports_from').parent().next().html("can't be blank");
+        var chec_error = true;
+      }else{
+        $('#test_reports_from').parent().next().html("");
+      }
+
+      if ($('#test_reports_category').val() == "" || $('#test_reports_category').val() == "Select"){
+        $('#test_reports_category').parent().next().html("can't be blank");
+        var chec_error = true;
+      }else{
+        $('#test_reports_category').parent().next().html("");
+      }
+
+      if ($('#test_reports_subject').val() == "" || $('#test_reports_subject').val() == "Select"){
+        $('#test_reports_subject').parent().next().html("can't be blank");
+        var chec_error = true;
+      }else{
+        $('#test_reports_subject').parent().next().html("");
+      }
+    */
+    var test_report_select_from = $('#test_reports_from').prev().prev().children().html();
+    $('#test_reports_from').val(test_report_select_from);
+
+    var test_report_cat = $('#test_reports_category').prev().prev().children().html();
+    $('#test_reports_category').val(test_report_cat);
+
+    var test_report_sub = $('#test_reports_subject').prev().prev().children().html();
+    $('#test_reports_subject').val(test_report_sub);
+
+    if (chec_error == true){
+      return false;
+    }else{
+      $("#add_awards_honours_wnd").height(600);
+      if ($('#test_reports_description').val() == "description"){
+        $('#test_reports_description').val('');
+      }
+      return true;
+    }
+  });

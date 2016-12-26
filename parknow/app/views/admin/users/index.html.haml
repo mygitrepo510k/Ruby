@@ -1,0 +1,33 @@
+.container
+  .row.activity-setting-level-content
+    .row
+      .span3
+        %h2 User List  
+      .span3.pull-right{style:'margin-top: 20px;'}
+        = link_to "Add New User", new_admin_user_path, class:"btn btn-success"
+    .row
+      %table.table.table-striped.table-hover.sortable-head
+        %thead
+          %tr
+            %th Email
+            %th Token Count
+            %th 
+            %th Actrions
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td= user.email
+              %td= user.auth_tokens.count
+              %td
+              %td
+                = link_to(admin_user_path(user), class: 'btn btn-mini') do
+                  %i.icon-book
+
+                = link_to(edit_admin_user_path(user), class: 'btn btn-mini') do
+                  %i.icon-pencil
+
+                = link_to(admin_user_path(user), class: 'btn btn-mini', method: :delete, data: {confirm: "Are you sure"}) do
+                  %i.icon-trash
+
+                = link_to "Add Author", admin_new_auth_token_path(user.id), class:"btn btn-success btn-mini"
+                  

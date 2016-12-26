@@ -1,0 +1,18 @@
+<%= form_for(@user,:url=>"/administrator/create_user") do |f| %>
+    <%= f.hidden_field :role_id, :value=>@invitation.role_id %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.text_field :email,:value=>@invitation.email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Send" %>
+    </div>
+<% end %>

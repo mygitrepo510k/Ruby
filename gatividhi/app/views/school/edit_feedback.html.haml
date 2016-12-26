@@ -1,0 +1,60 @@
+=form_for @feedback, :as=>:feedback, :url =>'/school/edit_feedback', :method=>:post, :html=>{:class=>'new-feedback', :id=>'new_feedback'} do |f|
+	= hidden_field_tag 'id', f.object.id
+	.popupWindow{:style => "width: 560px; height: 475px; z-index: 90; left: 673.5px; top: 90.5px;"}
+		.popupHead
+			.popupTitle Add a New FeedBack
+			.closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+			.CL
+		.popupContaint
+			.popupFormBox
+				.formRow.jqBigform
+					%label Class:
+					=f.select :class_name, @class_names, :style => "width:175px;", :class => "inputField"					
+					.CL
+				.formRow.jqBigform
+					%label Feedback Date: *
+					%input#date2.showDate.inputField{:type=>"text", :name=>'feedback[feedback_date]'}
+					.CL
+				.formRow.jqBigform
+					%label Type:
+					= succeed "*" do
+						%select#select{:name => "feedback[type]", :style => "width:175px;"}
+							%option Select
+							%option Appreciation
+							%option Complaint
+							%option General
+					.CL
+				.formRow.jqBigform
+					%label From:
+					= succeed "*" do
+						%select#select{:name => "feedback[from]", :style => "width:175px;"}
+							%option Select
+							%option School
+							%option Teacher
+							%option Other
+					.CL
+				.formRow
+					%label Your Note:
+					= f.text_area :your_notes, :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style=>"width:390px;max-height:80px;"
+					.CL
+				.formRow.jqBigform
+					%div{:style => "width:115px; float:left; text-align:right; padding-right:10px;"} Important:
+					= f.check_box :important
+					%label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+					.CL
+			.formRow.popActionBtn{:style => "text-align:right; padding-left:10px;"}
+				%input.submitBtn{:type => "submit", :value => "update"}/
+				%input.cancelBtn{:type => "submit", :value => "cancel"}/
+
+
+:javascript
+	$(function() {
+		$("#date2").glDatePicker({
+		leftMargin: 150,
+		topMargin: -10
+		});	
+	})
+	$('.jqGreenForm').jqTransform(); 
+	$('.jqSmallform').jqTransform(); 
+	$('.jqBigform').jqTransform(); 	
+

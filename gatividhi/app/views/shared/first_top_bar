@@ -1,0 +1,44 @@
+.navbar.navbar-fixed-top
+	.navbar-inner
+		.container			
+			.row
+				.span10
+					%a.brand{:href => root_path}
+					.nav-collapse				
+						- if user_signed_in?
+							.span8{:style=>"margin-top: 10px;"}
+								.span4
+									= form_tag "search_job", :method => 'get', :class => "navbar-search" do
+										= text_field_tag :search, params[:search], :class => "searchField", :placeholder=>"Keyword", :style =>"width:340px; padding-left:26px;border-radius:15px;"
+										.icon-search{:style=>"position:absolute;top:7px;left:11px;cursor:pointer;"}
+								.span2
+									%label Welcome #{current_user.name}
+									%small Last logged in #{current_user.last_sign_in_at.to_formatted_s(:short)}
+								.span1.settingBox
+									%a.settingIcon{:href => "#."}
+									.moreSetting
+										= image_tag("top-arrow.png", :height => "10", :width => "18", :class=>"settingArrow" )
+										%a.first-link{:href => "#."} Delete Account
+										%a{:href => "#."} Email Settings
+										- if user_signed_in?
+											= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+										%a{:href => "#."} Payments
+										%a.last-link{:href => "#."} Support History
+										
+										
+						-else
+							.span6
+								= form_for("user", :url => new_user_session_path, :hmtl=>{:class=>"form-inline"}) do |f|
+									.row.input-box
+										.span4
+											= f.email_field :email, :autofocus => true, :placeholder => "Enter email ID"
+											= f.password_field :password, :placeholder => "Password" 
+										.span1
+											= f.submit "Login", :class => "login-btn"
+									.row.controll-box
+										.span2
+											%label.checkbox
+												= f.check_box :remember_me
+												= f.label :remember_me
+										.span2
+											= link_to "Forgot your password?", new_user_password_path

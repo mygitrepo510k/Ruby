@@ -1,0 +1,511 @@
+/ Body Start here
+.bodyWapper
+	.tabBox
+		= link_to "General", school_general_path, :class=>'tabSelected'
+		= link_to "Timetable", school_timetable_path
+		= link_to "Assignments", school_assignments_path
+		= link_to "Feedback", school_feedback_path
+		= link_to "Teachers", school_teachers_path
+		= link_to "Holidays", school_holidays_path
+		.CL
+	.tabContainer
+		.tabAction	
+		.infoContainer
+			%p.padLeft10 
+				Last Updated:
+				= #@school.updated_at.to_formatted_s(:short)
+			.greyBoxPad
+				.jqSmallform.FL{:style => "padding-top:7px;"}
+					%select{:name => "", :style => "width:250px;"}
+						- @school_names.each do |name|						
+							%option= name
+				= link_to("delete school", "javascript:delete_school('#{@school.id}')", :method=> :delete, :confirm => "Are you sure do you want to Delete school?",:title=>"Delete", :style => "margin-left:8px;", :class=>"greyBtn FR")
+				%a.greyBtn.FR{:href => "#.", :onclick => "$('.showViewClass').show(); $('.hideViewClass').hide();"} add new school
+				.CL
+			.formMainRow
+				.formTitle{:style => "margin-top:8px;"} Tenure:
+				.formAction.hideViewClass{:style => "margin-top:8px;"}
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj1{:href => "#.", :onclick => "showEdit('#showEdit1','#linkObj1','.viewEdit')"} Click to add
+					#showEdit1.editBox
+						.formRow{:style => "padding: 0; margin:0;"}
+							%div
+								.span2
+									%span#current_school
+										Current School: 
+										%input#cbxSchoolTenure{:checked => "checked", :onchange => "EnableDisable('cbxSchoolTenure','tenureEndDate')", :type => "checkbox"}/
+								.span3
+									.span1										
+										Start Date:
+									.span2
+										%input#tenureStartDate.showDate.inputField{:type => "text"}/
+								.span3
+									.span1
+										End Date:
+									.span2
+										%input#tenureEndDate.showDate.inputField{:type => "text"}/
+							.CL
+						%span.FL	
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit1','#linkObj1','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit1','#linkObj1','.viewEdit');saveSchoolValue('current_school', '#current_school');saveSchoolValue('start_date', '#start_date');saveSchoolValue('end_date', '#end_date');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Country:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj{:href => "#.", :onclick => "showEdit('#showEdit','#linkObj','.viewEdit')"}
+						= @school.country.nil? ? 'Please select from dropdown' : @school.country
+					#showEdit.editBox
+						.jqSmallform
+							%select{:name => "country", :style => "width:100px;"}
+								%option India
+								%option UK
+								%option USA
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit','#linkObj','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit','#linkObj','.viewEdit');saveSchoolValue('country', '#showEdit');setValue('#showEdit','#linkObj')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle State:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj2{:href => "#.", :onclick => "showEdit('#showEdit2','#linkObj2','.viewEdit')"}
+						= @school.state.nil? ? 'Please select from dropdown' : @school.state
+					#showEdit2.editBox
+						.jqSmallform
+							%select{:name => "state", :style => "width:100px;"}
+								%option Dehli
+								%option Bombay
+								%option Mumbai
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit2','#linkObj2','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit2','#linkObj2','.viewEdit');saveSchoolValue('state', '#showEdit2');setValue('#showEdit2','#linkObj2')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle City:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj3{:href => "#.", :onclick => "showEdit('#showEdit3','#linkObj3','.viewEdit')"}
+						= @school.city.nil? ? 'Please select from dropdown' : @school.city
+					#showEdit3.editBox
+						.jqSmallform
+							%select{:name => "city", :style => "width:100px;"}
+								%option Luknow
+								%option Ghaziabad
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit3','#linkObj3','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit3','#linkObj3','.viewEdit');saveSchoolValue('city', '#showEdit3');setValue('#showEdit3','#linkObj3')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle School:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj4{:href => "#.", :onclick => "showEdit('#showEdit4','#linkObj4','.viewEdit')"}
+						= @school.name.nil? ? 'Click to add' : @school.name
+					#showEdit4.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit4','#linkObj4','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit4','#linkObj4','.viewEdit');saveSchoolValue('name', '#showEdit4');setValue('#showEdit4','#linkObj4')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Enrolment number:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj5{:href => "#.", :onclick => "showEdit('#showEdit5','#linkObj5','.viewEdit')"}
+						= @school.enrolment_number.nil? ? 'Click to add' : @school.enrolment_number
+					#showEdit5.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit5','#linkObj5','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit5','#linkObj5','.viewEdit');saveSchoolValue('enrolment_number', '#showEdit5');setValue('#showEdit5','#linkObj5')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Board:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit6','#linkObj6','.viewEdit')", :title => "Edit"}
+					%a#linkObj6{:href => "#.", :onclick => "showEdit('#showEdit6','#linkObj6','.viewEdit')"}
+						= @school.board.nil? ? 'Please select from dropdown' : @school.board
+					#showEdit6.editBox
+						.jqSmallform
+							%select{:name => "board1", :style => "width:100px;"}
+								%option Select
+								%option CBSE
+								%option ICSE
+								%option UP
+								%option MP
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit6','#linkObj6','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit6','#linkObj6','.viewEdit');saveSchoolValue('board', '#showEdit6');setValue('#showEdit6','#linkObj6')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle House:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj7{:href => "#.", :onclick => "showEdit('#showEdit7','#linkObj7','.viewEdit')"}
+						= @school.house.nil? ? 'Click to add' : @school.house
+					#showEdit7.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit7','#linkObj7','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit7','#linkObj7','.viewEdit');saveSchoolValue('house', '#showEdit7');setValue('#showEdit7','#linkObj7')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Medium:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj8{:href => "#.", :onclick => "showEdit('#showEdit8','#linkObj8','.viewEdit')"}
+						= @school.medium.nil? ? 'Please select from dropdown' : @school.medium
+					#showEdit8.editBox
+						.jqSmallform
+							%select{:name => "board", :style => "width:100px;"}
+								%option Select
+								%option English
+								%option Hindi
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit8','#linkObj8','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit8','#linkObj8','.viewEdit');saveSchoolValue('medium', '#showEdit8');setValue('#showEdit8','#linkObj8')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Category:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj9{:href => "#.", :onclick => "showEdit('#showEdit9','#linkObj9','.viewEdit')"}
+						= @school.category.nil? ? 'Please select from dropdown' : @school.category
+					#showEdit9.editBox
+						.jqSmallform
+							%select{:name => "board", :style => "width:100px;"}
+								%option Select
+								%option Dayschool
+								%option Boarding
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit9','#linkObj9','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit9','#linkObj9','.viewEdit');saveSchoolValue('category', '#showEdit9');setValue('#showEdit9','#linkObj9')", :style => "margin-left:9px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Type:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj10{:href => "#.", :onclick => "showEdit('#showEdit10','#linkObj10','.viewEdit')"}
+						= @school.type.nil? ? 'Please select from dropdown' : @school.type
+					#showEdit10.editBox
+						.jqSmallform
+							%select{:name => "board", :style => "width:100px;"}
+								%option Select
+								%option Boys
+								%option Girls
+								%option Co-ed
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit10','#linkObj10','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit10','#linkObj10','.viewEdit');saveSchoolValue('type', '#showEdit10');setValue('#showEdit10','#linkObj10')", :style => "margin-left:10px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle School Principle:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj11{:href => "#.", :onclick => "showEdit('#showEdit11','#linkObj11','.viewEdit')"}
+						= @school.school_principle.nil? ? 'Click to add' : @school.school_principle
+					#showEdit11.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit11','#linkObj11','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit11','#linkObj11','.viewEdit');saveSchoolValue('school_principle', '#showEdit11');setValue('#showEdit11','#linkObj11')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Child Advisor:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj12{:href => "#.", :onclick => "showEdit('#showEdit12','#linkObj12','.viewEdit')"}
+						= @school.child_advisor.nil? ? 'Click to add' : @school.child_advisor
+					#showEdit12.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit12','#linkObj12','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit12','#linkObj12','.viewEdit');saveSchoolValue('child_advisor', '#showEdit12');setValue('#showEdit12','#linkObj12')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow.showViewClass
+				.formTitle{:style=>"width:166px;height:28px;"}
+				.formAction
+					%input.saveBtn.FL{:onclick => "$('.showViewClass').hide(); $('.hideViewClass').show();", :style => "box-shadow:none;", :type => "submit", :value => "save"}/
+					%a.closeBigBtn.FL{:href => "#.", :onclick => "$('.showViewClass').hide(); $('.hideViewClass').show();"}
+					.CL
+				.CL
+			%p	
+			.greyBoxPad
+				.jqSmallform.FL{:style => "padding-top:7px;"}
+					%select{:name => "", :style => "width:250px;"}
+						- @class_names.each do |cl|
+							%option= cl
+				%a.greyBtn.FR{:href => "#.", :onclick => "confirm('Are you sure do you want to Delete class')", :style => "margin-left:8px;"} delete class
+				%a.greyBtn.FR{:href => "#."} add new class
+				.CL
+			.formMainRow
+				.formTitle Tenure: Current Class:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj13{:href => "#.", :onclick => "showEdit('#showEdit13','#linkObj13','.viewEdit')"} Click to add
+					#showEdit13.editBox
+						.jqSmallform
+							.span1
+								%input#cbxClassTenure{:checked => "checked", :onchange => "EnableDisable('cbxClassTenure','classTenureEndDate')", :type => "checkbox"}/
+							.span3
+								.span1 Start Date:
+								.span2 
+									%input#classTenureStartDate.showDate.inputField{:type => "text"}/
+							.span3
+								.span1 End Date:
+								.span2
+									%input#classTenureEndDate.showDate.inputField{:type => "text"}/
+						%span.FL	
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit13','#linkObj13','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit13','#linkObj13','.viewEdit')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Class:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj14{:href => "#.", :onclick => "showEdit('#showEdit14','#linkObj14','.viewEdit')"} Please select from dropdown
+					#showEdit14.editBox
+						.jqSmallform
+							%select.inputField{:name => "country", :style => "width:100px;"}
+								%option Select
+								%option Nursery
+								%option KG
+								%option I
+								%option II
+								%option III
+								%option IV
+								%option V
+								%option VI
+								%option VII
+								%option VIII
+								%option IX
+								%option X
+								%option XI
+								%option XII
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit14','#linkObj14','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit14','#linkObj14','.viewEdit')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Section:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj16{:href => "#.", :onclick => "showEdit('#showEdit16','#linkObj16','.viewEdit')"} Click to add
+					#showEdit16.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit16','#linkObj16','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit16','#linkObj16','.viewEdit')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Roll Number:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj17{:href => "#.", :onclick => "showEdit('#showEdit17','#linkObj17','.viewEdit')"} Click to add
+					#showEdit17.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit17','#linkObj17','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit17','#linkObj17','.viewEdit')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Class Teacher:
+				.formAction.hideViewClass
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :title => "Edit"}
+					%a#linkObj18{:href => "#.", :onclick => "showEdit('#showEdit18','#linkObj18','.viewEdit')"} Click to add
+					#showEdit18.editBox
+						%input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit18','#linkObj18','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit18','#linkObj18','.viewEdit')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.greyBoxPad{:style => "padding:10px 10px; margin-top:0px; border-top:0px;"}
+				%strong> School:
+				Delhi Public School
+				%strong Class
+				VI
+			.formMainRow
+				.formTitle Subject 1:
+				.formAction
+					.viewEdit
+						%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit3','#linkObj3','.viewEdit')", :title => "Edit"}
+						%a.deleteIcon{:href => "javascript://", :onclick => "confirm('Are sure you want to Delete this subject')", :title => "Delete"}
+					%span
+						%a#linkObj3{:href => "#.", :onclick => "showEdit('#showEdit3','#linkObj3','.viewEdit')"} Maths
+					#showEdit3.editBox
+						.jqSmallform
+							%select{:name => "salute", :style => "width:100px;"}
+								%option Please select
+								%option Mr.
+								%option Ms.
+						%span.FL	 *
+						%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit3','#linkObj3','.viewEdit')"}
+						%input.saveBtn.FR{:onclick => "hideEdit('#showEdit3','#linkObj3','.viewEdit')", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+						.CL
+				.CL
+			.formMainRow
+				.formTitle Subject 2:
+				.formAction English
+				.CL
+			.formMainRow
+				.formTitle Subject 3:
+				.formAction Science
+				.CL
+			.formMainRow
+				.formTitle Subject 4:
+				.formAction History
+				.CL
+			.formMainRow
+				.formTitle Subject 5:
+				.formAction Geography
+				.CL
+			.formMainRow
+				.formTitle Subject 6:
+				.formAction Social Science
+				.CL
+			.formMainRow
+				.formTitle Subject 7:
+				.formAction Drawing
+				.CL
+			#addNewSubject.formMainRow{:style => "display:none;"}
+				.formTitle Subject:
+				.formAction.hideViewClass
+					.jqSmallform
+						%select{:name => "country", :style => "width:100px;"}
+							%option Select
+							%option Maths
+							%option Science
+							%option Hindi
+							%option English
+					%span.FL	 *
+					%a.closeBigBtn.FR{:href => "#.", :onclick => "$('#addNewSubject').hide();"}
+					%input.saveBtn.FR{:onclick => "$('#addNewSubject').hide();", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+					.CL
+				.CL
+			%p.padLeft10
+				%a.greyBtn{:href => "#.", :onclick => "$('#addNewSubject').show();"} add new subject
+/ Body Start End
+:javascript
+	$(function(){
+		//alert($('select').width()) jqGreenForm
+		$('.jqGreenForm').jqTransform();
+		$('.jqSmallform').jqTransform();
+		$('.jqBigform').jqTransform();
+		
+		$('.filterRow .txt').click(function(){
+			$(this).parent().parent().find('.selectedRow').removeClass('selectedRow')
+			$(this).parent().addClass('selectedRow')		
+		})
+					
+		$("#tenureStartDate").glDatePicker({
+				leftMargin: -70,
+				topMargin: -10
+		});			
+			
+		$("#tenureEndDate").glDatePicker({
+				leftMargin: -70,
+				topMargin: -10
+		});
+
+		$("#classTenureStartDate").glDatePicker({
+				leftMargin: -70,
+				topMargin: -10
+		});
+		$("#classTenureEndDate").glDatePicker({
+				leftMargin: -70,
+				topMargin: -10
+		});									
+	})
+	
+	function EnableDisable(eventField, actionfield)
+	{
+		if(document.getElementById(eventField).checked == true){
+				document.getElementById(actionfield).disabled = true;
+		}else{
+			document.getElementById(actionfield).disabled = false;
+		}
+	}
+	
+	function delete_school(id){
+		var url = '';
+		$.post( url, {
+			obj: 'general',
+			id: id,
+			field: field,
+			value: $(real_value).val()
+		}).success(function() {
+			console.log('success');
+		}).error(function() {
+			console.log('failure');
+		});
+	}
+
+	function saveSchoolValue(field, value){
+		var id='#{@school.id}';
+		var url = '/school/save_school'
+		real_value = value + ' input[type="text"]'
+		if($(real_value).val()==null){
+			real_value = value + ' select'
+		}		
+	
+		console.log(real_value);		
+		$.post( url, {
+			obj: 'general',
+			id: id,
+			field: field,
+			value: $(real_value).val()
+		}).success(function() {
+			console.log('success');
+		}).error(function() {
+			console.log('failure');
+		});
+	}
+	function setValue(src, dest){
+		var real_value = src + ' input[type="text"]'
+		console.log(real_value);
+
+		if($(real_value).val()==null){
+			real_value = src + ' select'
+		}		
+		console.log(real_value);
+		
+		$(dest).text($(real_value).val());
+		return true;
+	}

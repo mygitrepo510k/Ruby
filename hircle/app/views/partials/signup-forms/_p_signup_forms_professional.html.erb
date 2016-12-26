@@ -1,0 +1,84 @@
+<div class="signup-b signup_forms_professional signup_forms" style="display:none;">
+  <%=  image_tag("landing-page/popup-bg-pro.png", :style=>"height: 460px;") %>
+    <div id="professional">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "form-horizontal") do |f| %>          
+            <div class="form-fname emp-sigin-form-item">
+                <ul>
+                    <li>
+                        <label>First Name</label>
+                        <input name="first_name" type="text">
+                    </li>
+                </ul>
+            </div>
+            <div class="form-lname emp-sigin-form-item">
+                <ul>
+                    <li>
+                      <label>Last Name</label>
+                      <input name="last_name" type="text">                    </li>
+                </ul>
+            </div>
+            <div class="form-email emp-sigin-form-item">
+                <ul>
+                    <li>
+                        <label>Email</label>
+                        <input name="email" type="text">
+                    </li>
+                </ul>
+            </div>
+            <div class="form-password emp-sigin-form-item">
+                <ul>
+                    <li>
+                      <label>Password</label>
+                      <input name="password" type="text">                    </li>
+                </ul>
+            </div>
+            <div class="form-cpassword emp-sigin-form-item">
+                <ul>
+                    <li>
+                      <label>Confirm Password</label>
+                      <input name="confirm_password" type="text">                    </li>
+                </ul>
+            </div>            
+            <div class="button-siginup" style="top: 270px">
+              <div class="span3" style="text-align:left;">
+                <label class="checkbox">
+                  <input type="checkbox" class="pro-signup-aggre"> Click here if you agree with our term and privacy
+                </label>
+              </div>
+               <div class="rit">
+                    <%= f.submit("Register", :class => "btn btn-primary pro-signup-submit", :disabled=>"disabled") %>
+               </div>
+            </div>
+        <% end %>
+    </div>
+
+  <div class="social-icons">
+    <ul style="margin-top:48px;">
+        <li>
+          <a href="#">
+            <%=  image_tag("landing-page/fb.png") %>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+          <%=  image_tag("landing-page/plus.png") %>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <%=  image_tag("landing-page/linkedin.png") %>
+          </a>
+        </li>
+    </ul>
+  </div>
+
+</div>
+<script>
+$('input.pro-signup-aggre').click(function(){
+  if($(this).is(':checked')){
+    $(".pro-signup-submit").removeAttr("disabled");
+  }else{
+    $(".pro-signup-submit").attr("disabled","disabled");
+  }
+});
+</script>

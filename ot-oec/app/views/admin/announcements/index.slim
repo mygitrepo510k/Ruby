@@ -1,0 +1,26 @@
+.admin-announcements.section.single
+  h3 Announcements
+
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li.active= 'Announcements'
+
+  = link_to 'Add New', new_admin_announcement_path
+
+  table.table.table-striped
+    tr
+      th= 'Subject'
+      th= 'Body'
+      th= 'Created by'
+      th= 'Created at'
+      th= 'Edit'
+
+    - @announcements.each do |a|
+      tr
+        td= a.subject
+        td= truncate a.body, length: 70
+        td= link_to a.created_by.name, a.created_by
+        td= a.created_at.to_formatted_s(:short)
+        td= link_to 'Edit', edit_admin_announcement_path(a)
+
+  = will_paginate @announcements, renderer: BootstrapPagination::Rails

@@ -1,0 +1,580 @@
+:css
+	.fc-header-center { display:none; }
+	.actionButton, .fc-header-right { /* IE 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	
+		/* IE 5-7 */
+		filter: alpha(opacity=50);
+	
+		/* Netscape */
+		-moz-opacity: 0.5;
+	
+		/* Safari 1.x */
+		-khtml-opacity: 0.5;
+	
+		/* Good browsers */
+		opacity: 0.5; }
+	.calendarBox { padding:10px; padding-bottom:0px; }
+	.weekGrid { border:1px solid #a8a8a8; }
+	.weekGrid td { border-bottom:1px solid #a8a8a8; border-right:1px solid #a8a8a8; height:23px; }
+	.weekGrid th { border-bottom:1px solid #dad9d9; border-right:1px solid #a8a8a8; height:23px; }
+	.weekHead{ font-size:18px; color:#777777;}
+	.weekTime td{ height:48px; padding-right:5px;}
+	.eventBox{ background-color:#ceebe6; font-weight:normal; text-align:left;}
+	.eventBox span{ padding-left:5px; cursor:pointer;}
+/ Body Start here
+.bodyWapper
+	.tabBox
+		= link_to "General", school_general_path
+		= link_to "Timetable", school_timetable_path, :class=>'tabSelected'
+		= link_to "Assignments", school_assignments_path
+		= link_to "Feedback", school_feedback_path
+		= link_to "Teachers", school_teachers_path
+		= link_to "Holidays", school_holidays_path
+		.CL
+	.tabContainer
+		.tabAction
+			.activityCalander{:style => "padding-top:4px;"}
+				Schedule Start Date
+				%input.showDateWeek.inputField{:onblur => "if(this.value==''){ this.value='Select'; this.style.color='#979797'}", :onclick => "if(this.value=='Select'){ this.value=''; this.style.color='#000'}", :style => " padding:4px; margin-left:8px; margin-right:10px;", :type => "text", :value => "Select"}/
+				Schedule End Date
+				%input.showDateWeek.inputField{:onblur => "if(this.value==''){ this.value='Select'; this.style.color='#979797'}", :onclick => "if(this.value=='Select'){ this.value=''; this.style.color='#000'}", :style => "padding:4px; margin-left:8px;", :type => "text", :value => "Select"}/
+			.activityAction{:style => "padding-top:5px;"}
+				%a.applyCalender{:href => "#."}
+			.CL
+		.calendarBox
+			#calendar{:style => "display:none;"}
+			%table{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+				%tr
+					%td{:align => "left", :valign => "top", :width => "5%"}
+						%table.weekTime{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+							%tr
+								%td{:align => "left", :style => "height:20px;", :valign => "top"}	
+							%tr
+								%td{:align => "left", :valign => "top"}	
+							%tr
+								%td{:align => "left", :valign => "top"} 7:00am
+							%tr
+								%td{:align => "left", :valign => "top"} 8:00am
+							%tr
+								%td{:align => "left", :valign => "top"}
+									%strong 9:00am
+							%tr
+								%td{:align => "left", :valign => "top"} 10:00am
+							%tr
+								%td{:align => "left", :valign => "top"} 11:00am
+							%tr
+								%td{:align => "left", :valign => "top"} 12:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 1:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 2:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 3:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 4:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 5:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 6:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 7:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 8:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 9:00pm
+							%tr
+								%td{:align => "left", :valign => "top"} 10:00pm
+							%tr
+								%td{:align => "left", :style => "height:auto;", :valign => "top"} 11:00pm
+					%td{:align => "left", :valign => "top", :width => "95%"}
+						%table.weekHead{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+							%tr
+								%td{:align => "center", :width => "14%"} Mon
+								%td{:align => "center", :width => "14%"} Tue
+								%td{:align => "center", :width => "14%"} Wed
+								%td{:align => "center", :width => "14%"} Thu
+								%td{:align => "center", :width => "14%"} Fri
+								%td{:align => "center", :width => "14%"} Sat
+								%td{:align => "center", :width => "14%"} Sun
+						%table.weekGrid{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+							%tr
+								%th{:width => "14%"}	
+								%th{:width => "14%"}	
+								%th{:width => "14%"}	
+								%th{:width => "14%"}	
+								%th{:width => "14%"}	
+								%th{:width => "14%"}	
+								%th{:width => "14%"}	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th{:width => "14%"}	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th.eventGrey
+									%span Maths
+								%th.eventGrey
+									%span English
+								%th.eventGrey
+									%span Maths
+								%th.eventGrey
+									%span English
+								%th.eventGrey.updateAct
+									.updatePop
+										%img{:alt => "", :src => "images/right-arrow-show.png", :style => "position:absolute; top:20px; right:-10px; margin-left:88px;"}/
+										%h3.greenTxt Update Friday Schedule
+										%a.closeBtn.viewTipClose{:href => "#.", :onclick => "hideObj('.updatePop')"}
+										%p{:style => "font-size:9px;"} You've selected to repeat this schedule until 19 Feb 2014
+										%p	
+										%h3.greenTxt{:style => "padding-bottom:8px;"} Add / Edit Class Details
+										.popupFormBox{:style => "border-bottom:0px;"}
+											.jqSmallform.formRow
+												%label{:style => "width:30px; margin-right:8px; display:inline-block;"} From
+												%select#select3{:name => "select3", :style => "width:40px;"}
+													%option 11
+												%select#select3{:name => "select3", :style => "width:40px; margin:0px 5px;"}
+													%option 00
+												%select#select3{:name => "select3", :style => "width:40px;"}
+													%option AM
+													%option PM
+												.CL
+											.jqSmallform.formRow
+												%label{:style => "width:30px; margin-right:8px; display:inline-block;"} To
+												%select#select3{:name => "select3", :style => "width:40px;"}
+													%option 12
+												%select#select3{:name => "select3", :style => "width:40px; margin:0px 5px;"}
+													%option 30
+												%select#select3{:name => "select3", :style => "width:40px;"}
+													%option AM
+													%option{:selected => ""} PM
+												.CL
+											.jqSmallform.formRow
+												%select#select2{:name => "select2", :style => "width:240px"}
+													%option Maths
+												.CL
+											.jqSmallform.formRow
+												%select#select2{:name => "select2", :style => "width:240px"}
+													%option Mr. Ashish Mishra
+												.CL
+										%p	
+										%p
+											%input.submitBtn.FR{:type => "submit", :value => "save"}/
+										%p.CL	
+										%p.centerLine
+											%span.wihteBox OR
+										%p	
+										%p.jqSmallform
+											%select#select2{:name => "select2", :style => "width:240px"}
+												%option Replace Entire Day Schedule with...
+										.CL
+										%p	
+										%p
+											%input.submitBtn.FR{:type => "submit", :value => "save"}/
+									%span Maths
+								%th.updateAct
+									.updatePop>
+										%img{:alt => "", :src => "images/right-arrow-show.png", :style => "position:absolute; top:20px; right:-10px; margin-left:88px;"}/
+										%h3.greenTxt Create Saturday Schedule
+										%a.closeBtn.viewTipClose{:href => "#.", :onclick => "hideObj('.updatePop')"}
+										%p{:style => "font-size:9px;"} You've selected to repeat this schedule until 19 Feb 2014
+										%p	
+										%p.jqSmallform
+											%select#select2{:name => "select2", :style => "width:240px"}
+												%option Replace Entire Day Schedule with...
+										.CL
+										%p	
+										%p
+											%input.submitBtn.FR{:type => "submit", :value => "save"}/
+										%p.CL	
+										%p.centerLine
+											%span.wihteBox OR
+										%p	
+										%h3.greenTxt{:style => "padding-bottom:8px;"} Add / Edit Class Details
+										.popupFormBox{:style => "border-bottom:0px;"}
+											.jqSmallform.formRow
+												%label{:style => "width:30px; margin-right:8px; display:inline-block;"} From
+												%select#select3{:name => "select3", :style => "width:40px;"}
+													%option 11
+												%select#select3{:name => "select3", :style => "width:40px; margin:0px 5px;"}
+													%option 00
+												%select#select3{:name => "select3", :style => "width:40px;"}
+													%option AM
+													%option PM
+												.CL
+											.jqSmallform.formRow
+												%label{:style => "width:30px; margin-right:8px; display:inline-block;"} To
+												%select#select3{:name => "select3", :style => "width:40px;"}
+													%option 12
+												%select#select3{:name => "select3", :style => "width:40px; margin:0px 5px;"}
+													%option 30
+												%select#select3{:name => "select3", :style => "width:40px;"}
+													%option AM
+													%option{:selected => ""} PM
+												.CL
+											.jqSmallform.formRow
+												%select#select2{:name => "select2", :style => "width:240px"}
+													%option Maths
+												.CL
+											.jqSmallform.formRow
+												%select#select2{:name => "select2", :style => "width:240px"}
+													%option Mr. Ashish Mishra
+												.CL
+										%p	
+										%p
+											%input.submitBtn.FR{:type => "submit", :value => "save"}/
+									\ 
+								%th	
+							%tr
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td	
+								%td	
+							%tr
+								%th.eventGrey
+									%span Maths
+								%th.eventGrey
+									%span English
+								%th.eventGrey
+									%span Maths
+								%th.eventGrey
+									%span English
+								%th.eventGrey
+									%span Maths
+								%th	
+								%th	
+							%tr
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td	
+								%td	
+							%tr
+								%th.eventBreak
+									%span Break
+								%th.eventBreak
+									%span Break
+								%th.eventBreak
+									%span Break
+								%th.eventBreak
+									%span Break
+								%th.eventBreak
+									%span Break
+								%th	
+								%th	
+							%tr
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td	
+								%td	
+							%tr
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%th	
+								%th	
+							%tr
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td	
+								%td	
+							%tr
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%th	
+								%th	
+							%tr
+								%th.eventBreak
+									%span Break
+								%th.eventBreak
+									%span Break
+								%th.eventBreak
+									%span Break
+								%th.eventBreak
+									%span Break
+								%th.eventBreak
+									%span Break
+								%td	
+								%td	
+							%tr
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%th	
+								%th	
+							%tr
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td	
+								%td	
+							%tr
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%td.eventGrey
+									%span Maths
+								%th	
+								%th	
+							%tr
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td.eventGrey	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+							%tr
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+								%th	
+							%tr
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+								%td	
+/ Body Start End
+:javascript
+	var selectCall = 1;
+	$(document).ready(function() {
+		$('.updatePop').hide();
+			var date = new Date();
+			var d = date.getDate();
+			var m = date.getMonth();
+			var y = date.getFullYear();
+			
+			$('#calendar').fullCalendar({
+				defaultView: 'agendaWeek',
+				header: {
+					left: '',
+					center: 'prev title next',
+					right: 'agendaDay,agendaWeek,month'
+				},
+				editable: true,
+				events: [
+					{
+						title: 'All Day Event',
+						start: new Date(y, m, 1)
+					},
+					{
+						title: 'Long Event Prashant',
+						start: new Date(y, m, d-1),
+						end: new Date(y, m, d-2)
+					},
+					{
+						id: 99,
+						title: 'Repeating Event',
+						start: new Date(y, m, d-3, 16, 0),
+						allDay: false
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: new Date(y, m, d+4, 16, 0),
+						allDay: false
+					},
+					{
+						title: 'Meeting',
+						start: new Date(y, m, d, 10, 30),
+						allDay: false
+					},
+					{
+						title: 'Lunch',
+						start: new Date(y, m, d, 12, 0),
+						end: new Date(y, m, d, 14, 0),
+						allDay: false
+					},
+					{
+						title: 'Birthday Party',
+						start: new Date(y, m, d+1, 19, 0),
+						end: new Date(y, m, d+1, 22, 30),
+						allDay: false
+					},
+					{
+						title: 'Click for Google',
+						start: new Date(y, m, 28),
+						end: new Date(y, m, 28),
+						url: 'http://google.com/'
+					}
+				]
+			});
+			
+		});

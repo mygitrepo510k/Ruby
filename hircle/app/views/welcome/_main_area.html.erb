@@ -1,0 +1,72 @@
+<div class="" style="margin-left:0px;">
+					<!--Body content-->
+						<div class="content">
+							    <div class="tabbable tabs-below">
+									<div class="tab-content">
+										<div class="tab-pane active" id="1">
+											<p>Start a conversation...</p>
+										</div>
+										<div class="tab-pane" id="2">
+											<p>Start a conversation2...</p>
+										</div>
+									</div>
+									<ul class="nav nav-tabs">
+										<li class="active"><a href="#1" data-toggle="tab"><i class="icon-edit icon-white"></i>Job Status</a></li>
+										<li><a href="#2" data-toggle="tab"><i class="icon-user icon-white"></i>Personal Status</a></li>
+										<li><a href="#" data-toggle="tab"><i class="icon-lock "></i><i class="icon-down-arrow"></i><button class="btn btn-green">Update</button></a></li>
+									</ul>
+								</div>		
+						</div>
+						<div class="content-middle">
+							<div class="accordion-inner">
+									<ul style="margin-left:0px;">
+										<li><img src="/assets/user-img/john taylor.png">
+										</li>
+										<li class="middle"><div><span style="font-weight:normal;">John</span><span style="padding-left:0px; font-weight:bold;">&nbsp; Taylor</span><br><span style="font-weight:bold;">Executive Manager</span></div>
+										</li>
+										<li class="timeAgo1"><i class=" icon-time"></i><span class="hours">21</span>&nbsp;<span>hours ago</span><br>
+											<button class="btn">Comments</button><button class="btn">Share</button>
+										</li>
+									</ul>
+									<div class="bg-color">
+										<img class="btn-L-pos" src="/assets/user-img/john taylor.png"><p class="text-info text-info1">Lee Brown</p>
+										<p class="muted">.&nbsp; I applied for this job. This company produce great professionals. They offered better hours, a promotion from my previous role, better pay and a chance to work.</p>
+									</div>	
+									<input class="" placeholder="Type here"><button class="btn btn-green">Post</button>
+									
+							</div>
+						
+							
+						</div>
+				</div>
+
+
+
+
+  <%current_user.user_followers.each do |user_contact|%>
+  
+    <div class="td-wid-style" style='width:314px;border:1px solid #DDDDDD;margin-left:10px;padding-top:5px'>
+   
+      <div class="people-info1">
+          <ul style ='list-style-type:none'>
+            <li>
+              <img src="/assets/user-img/lucas de castro.png">
+            </li>
+            <li>
+              <div class="info">
+                <strong class="text-info"><%=user_contact.user.id%><%=user_contact.user.full_name%></strong><span>Translator &amp; Conference Interpreter</span>
+              </div>
+              <div class="info">
+                <%=form_tag apccept_networks_path, :method => :post, :class => "form-horizontal connect-form" do |f|%>
+                  <%= hidden_field_tag "user_id", user_contact.user.id%>
+                  <%= hidden_field_tag "contact_id", current_user.id%>
+                  Want to be connect you <input type='submit' class='btn btn-primary' value ='Connect'></span>
+                <%end%>
+              </div>
+            </li>
+          </ul>
+      </div>
+    </div>
+  
+  <%end%>
+

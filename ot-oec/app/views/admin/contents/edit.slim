@@ -1,0 +1,13 @@
+.admin-contents-edit.section.single
+	h2 Edit Content
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Contents', admin_events_path
+		li.active= 'Edit Content'
+
+  	= render 'form'
+
+	= link_to 'Delete', admin_content_path, method: :delete,
+	  data: { confirm: 'Are you sure you want to delete this content?' }
+  	br

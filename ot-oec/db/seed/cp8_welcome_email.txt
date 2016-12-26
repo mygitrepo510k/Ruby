@@ -1,0 +1,4 @@
+Welcome to Coaching Program 8!
+
+Click here to confirm enrollment:
+{comfirm_link}

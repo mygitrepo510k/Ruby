@@ -1,0 +1,179 @@
+- content_for :head do
+	= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
+#stripe_error.alert.alert-error{:style => "display:none"}					 
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put,:class => 'card_form_test form-vertical', :multipart => true }, :reomte=>true) do |f|
+	#coach_form
+		= hidden_field_tag 'plan', params[:plan]
+		= f.hidden_field :ismember, :value=>"0"
+		= f.error_notification
+		= display_base_errors resource
+		.row.first-row{:style=>"text-align: center;"}
+			%h2 Welcome To The I Want Motivation Sign Up Page		
+		.row.second-row
+			.span3
+				.row
+					=f.input :category_id, :list=>true, :collection=>Category::cch_categories, :label=>"Select Category", :include_blank=>false, :input_html=>{:size=>10}
+			.span6
+				.row
+					%h5=get_option(:coach_signup_page_description)
+		.row.third-row
+			.span5.image-upload-box{:style=>"margin-left: 0px;"}
+				.span1{:style=>"margin-left:0px; width:110px;"}
+					= image_tag(current_user.image_url('medium'), :id=>'uploadPreview', :alt=>'Image preview')
+				.span3
+					.row
+						%label Add An Image
+					.row
+						.span1{:style=>"margin-left: 0px;"}
+							%input{:type=>"file", :onchange=>"loadImageFile();", :name=>"user[pictures_attributes][0][image]", :id=>"user_pictures_attributes_0_image"}
+			.span4
+				.row
+					=f.simple_fields_for :coachcounselor_attributes do |u_info|
+						= u_info.input :really_name, :autofocus => true, :label => "Enter Your Name or Business", :required => true, :input_html => {:value=>current_user.really_name}
+					= f.input :email, :required => true, :input_html => {:value=>current_user.email}
+					= f.input :password, :required => true, :label=>false, :placeholder=>"Enter Password", :required => true
+					= f.input :password_confirmation, :required => true, :label=>false, :placeholder => "Re-Enter Password"
+		.row.fourth-row
+			=f.simple_fields_for :user_info_attributes do |u_info|
+				.span3
+					= u_info.input :age, :input_html => {:value=>current_user.age}
+				.span3
+					%label Country
+					= u_info.country_select :country, ["#{current_user.country}"]
+				.span3
+					= u_info.input :state, :input_html => {:value=>current_user.state}
+				.span3
+					= u_info.input :city, :input_html => {:value=>current_user.city}
+		.row.fifth-row
+			.row
+				.span6{:style=>"width: 470px;"}
+					=f.simple_fields_for :coachcounselor_attributes do |u_info|
+						= u_info.input :philosophy, :label=>"Coaching Philosophy", :as=> :text, :input_html=>{:value=>current_user.coachcounselor.philosophy, :cols => 30, :rows => 5, :style=>"max-width: 470px; min-width: 470px; "}, :required => true
+				.span6{:style=>"width: 470px;"}
+					=f.simple_fields_for :coachcounselor_attributes do |u_info|
+						= u_info.input :experience, :label=>"Coaching Experience", :as => :text, :input_html=>{:value=>current_user.coachcounselor.experience, :cols => 30, :rows => 5, :style=>"max-width: 470px; min-width: 470px; "}, :required => true
+			.row
+				.span6{:style=>"width: 470px;"}
+					=f.simple_fields_for :coachcounselor_attributes do |u_info|
+						= u_info.input :helppeople, :label=>"How you help people", :as=> :text, :input_html=>{:value=>current_user.coachcounselor.helppeople, :cols => 30, :rows => 5, :style=>"max-width: 470px; min-width: 470px; "}, :required => true
+				.span6{:style=>"width: 470px;"}
+					=f.simple_fields_for :coachcounselor_attributes do |u_info|
+						= u_info.input :license, :label=>"Group / Assocations / License", :as => :text, :input_html=>{:value=>current_user.coachcounselor.license, :cols => 30, :rows => 5, :style=>"max-width: 470px; min-width: 470px; "}, :required => true
+			.row
+				.span8.offset2
+					.span6{:style=>"width: 500px; height:200px; border:solid 1px;"}
+						%label=get_option(:coach_signup_agreement)			
+	.row.last-controll-box
+		.span2.offset3
+			%label.checkbox
+				%input.accept-aggre{:type=>"checkbox"} Accept the agreement
+		.span2{:style=>"margin-left:70px;"}
+			= f.button :submit, 'Update', :class => 'btn-primary coachsignup-submit', :disabled=>"disabled"
+
+%script{:src => "https://www.paypalobjects.com/js/external/dg.js"}
+
+:css
+	div.container{
+		max-width: 1024px !important;
+		min-width: 1024px !important;
+	}
+
+:javascript
+	
+	$('#payment_info').hide();
+	$('input.coachsignup-submit').click(function(){
+
+	});
+
+	$("input.accept-aggre").click(function(){
+		if($(this).is(':checked')){
+			$(".coachsignup-submit").removeAttr("disabled");
+		}else{
+			$(".coachsignup-submit").attr("disabled","disabled");
+		}
+	});
+
+	oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+ 
+	oFReader.onload = function (oFREvent) {
+		document.getElementById("uploadPreview").src = oFREvent.target.result;
+	};
+	 
+	function loadImageFile() {
+		if (document.getElementById("user_pictures_attributes_0_image").files.length === 0) { return; }
+		var oFile = document.getElementById("user_pictures_attributes_0_image").files[0];
+		if (!rFilter.test(oFile.type)) { alert("You must select a valid image file!"); return; }
+		oFReader.readAsDataURL(oFile);
+	}
+
+	function validate(){
+		if(!$("#user_coachcounselor_attributes_really_name").val()){
+			alert("Please input Really name");
+			$("#user_coachcounselor_attributes_really_name").focus();
+			return false;
+		}
+		if(!$("#user_email").val()){
+			alert("Please input email");
+			$("#user_email").focus();
+			return false;
+		}
+		if(!$("#user_picture_attributes_image").val() && $("#user_picture_attributes_image").val() < 10){
+			alert("Please select image");
+			$("#user_picture_attributes_image").focus();
+			return false;
+		}
+		if(!$("#user_password").val() && $("#user_password").val() < 8){
+			alert("Please input Password");
+			$("#user_password").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_age").val()){
+			if($("#user_user_info_attributes_age").val().length != 2 || !isNumber($("#user_user_info_attributes_age").val())){
+				alert("Please check your Age");
+			}else{
+				alert("Please input Age");
+			}			
+			$("#user_user_info_attributes_age").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_state").val()){
+			alert("Please input State");
+			$("#user_user_info_attributes_state").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_city").val()){
+			alert("Please input City");
+			$("#user_user_info_attributes_city").focus();
+			return false;
+		}
+		if(!$("#user_coachcounselor_attributes_philosophy").val()){
+			alert("Please input Coaching Philosophy");
+			$("#user_coachcounselor_attributes_philosophy").focus();
+			return false;
+		}
+		if(!$("#user_coachcounselor_attributes_experience").val()){
+			alert("Please input Coaching Experience");
+			$("#user_coachcounselor_attributes_experience").focus();
+			return false;
+		}
+		if(!$("#user_coachcounselor_attributes_helppeople").val()){
+			alert("Please input How you help people");
+			$("#user_coachcounselor_attributes_helppeople").focus();
+			return false;
+		}
+		if(!$("#user_coachcounselor_attributes_license").val()){
+			alert("Please input Group / Assocations / License");
+			$("#user_coachcounselor_attributes_license").focus();
+			return false;
+		}
+		return true;
+	}
+
+	$('form#edit_user').submit(function(){
+		if (validate()){
+			$(this).submit();
+			return false;	
+		}else{
+			return false;
+		}
+	});

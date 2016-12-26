@@ -1,0 +1,31 @@
+<% if @patients.length: %>
+    <div class="span8">
+    <table class="table table-hover">
+      <tbody>
+       <tr>
+         <td width="40%"><strong> Patient </strong></td>
+         <td width="40%"><strong> Location </strong></td>
+         <td width="20%"></td>
+       </tr>
+       <% for patient in @patients: %>
+       <tr class="invite-patient">
+         <td width="40%"> <%= patient.first_name %> <%= patient.last_name %></td>
+         <td width="40%"> Vancouver, BC </td>
+         <td width="20%" class="text-right"><a href="#myModal" data-toggle="modal" class="btn-invite-patient btn btn-inverse hide-btn" >Invite</a></td>
+       </tr>
+       <% end %>         
+      </tbody>
+    </table>
+  </div>
+    <div class="span3">
+      <img alt="Map" src="/assets/map.png">
+      <div style="margin-top:15px; background-color:#F5F5F5; padding:20px;">
+        Can't find your patient?Click below if you don't see your patient. <br><br> 
+        <input type="button" class="btn btn-inverse" value="Find Patient">
+    </div>
+  </div>
+<% else: %>
+  <div class='span12' style='margin-top:100px; margin-left:310px;'>
+    <p> No results were found. Is there a doctor we were missing? Let us know </p>
+  </div>
+<% end %>

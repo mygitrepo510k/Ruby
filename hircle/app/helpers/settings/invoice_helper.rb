@@ -1,0 +1,2 @@
+module Settings::InvoiceHelper
+end

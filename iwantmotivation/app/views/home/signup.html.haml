@@ -1,0 +1,35 @@
+#welcome.row
+	.container
+		.row.first-row		
+			.span1
+			.span8
+				%p.price-page-title IWM Free Trial Membership
+				%label.price-page-description= get_option(:price_page_description)
+				/ = link_to 'Join Now', new_user_registration_path(:plan => 'free'), :class => 'btn btn-primary'					
+			.span2
+		.row.plans.second-row		
+			.span3{:style=>"width:310px;"}				
+			.span3{:style=>"width:310px;"}
+				%p.plan-title IWM Free Trial Membership
+				.well
+					%ul
+						%li Free No More Stress Ebook 
+						%li Free Motivation Ebook
+						%li Weekly Motivation Tips, Techniques, Videos, Stories and More
+						%li Free Webinars
+						%li Discounts on Guest Webinars
+						%li Full Access to Groups, Private Chats, Group Chats, Coaches and Counselors
+						%li One on One Partner Instant Messaging
+						%li Discounts on IWM Products in the Store
+						%li Free Motivational Tools - Coming Soon
+						%li Direct To Text Partner Reminders - Coming Soon
+					%h3{:style=>"margin-top: 22px;"} 1st Month Free $9.95/month
+					= link_to 'Join Now', new_user_registration_path(:plan => 'full'), :class => 'btn btn-primary'
+			.span3{:style=>"width:310px;"}					
+
+:css
+	div.container{
+		max-width: 1024px !important;
+		min-width: 1024px !important;
+	}
+	

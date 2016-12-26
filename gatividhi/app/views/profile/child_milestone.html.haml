@@ -1,0 +1,98 @@
+:javascript
+  $(function(){
+    //alert($('select').width()) jqGreenForm
+    $('.jqGreenForm').jqTransform({imgPath:'images/'}); 
+    $('.jqSmallform').jqTransform({imgPath:'images/'}); 
+    //$('.jqSmallform').jqTransform({imgPath:'images/'}); 
+    $('.filterRow .txt').click(function(){
+      $(this).parent().parent().find('.selectedRow').removeClass('selectedRow')
+      $(this).parent().addClass('selectedRow')    
+    })
+  })
+/ Body Start here
+.bodyWapper
+  .tabBox
+    = link_to 'General',    :child_profile
+    = link_to 'Milestones', :child_milestone, :class=>'tabSelected'
+    = link_to 'Interest',   :child_interest
+    .CL
+  .tabContainer
+    .tabAction  
+    .infoContainer
+      %p.padLeft10
+        Last Updated:
+        -if @milestone.present? and @milestone.updated_at.present?
+          = @milestone.updated_at.to_formatted_s(:short)           
+      .formMainRow
+        .formTitle Title:
+        .formAction
+          .viewEdit
+            %a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit2','#linkObj2','.viewEdit')", :title => "Edit"}
+          %a.show_val#linkObj2{:href => "#.", :onclick => "showEdit('#showEdit2','#linkObj2','.viewEdit')"}= @milestone.title.nil? ? 'Click to add' : @milestone.title
+          #showEdit2.editBox
+            %input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+            %span.FL   *
+            %a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit2','#linkObj2','.viewEdit')"}
+            %input.saveBtn.FR{:onclick => "hideEdit('#showEdit2','#linkObj2','.viewEdit'); saveProfileAttribute('c', 'title', '#showEdit2', 'milestone');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+            .CL
+        .CL
+      .formMainRow
+        .formTitle Category:
+        .formAction
+          .viewEdit
+            %a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit10','#linkObj10','.viewEdit')", :title => "Edit"}
+          %a.show_val#linkObj10{:href => "#.", :onclick => "showEdit('#showEdit10','#linkObj10','.viewEdit')"}
+            = @milestone.category.nil? ? 'Please select from dropdown' : @milestone.category
+          #showEdit10.editBox
+            .jqSmallform
+              %select{:name => "country", :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:100px;"}
+                %option Walk
+                %option Talk
+                %option Words
+                %option School
+                %option Activity
+                %option Award
+                %option Other
+            %span.FL   *
+            %a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit10','#linkObj10','.viewEdit')"}
+            %input.saveBtn.FR{:onclick => "hideEdit('#showEdit10','#linkObj10','.viewEdit'); saveProfileAttribute('c', 'category', '#showEdit10', 'milestone');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+            .CL
+        .CL
+      .formMainRow
+        .formTitle Add to timeline:
+        .formAction
+          .viewEdit
+            %a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit5','#linkObj5','.viewEdit')", :title => "Edit"}
+          %a.show_val#linkObj5{:href => "#.", :onclick => "showEdit('#showEdit5','#linkObj5','.viewEdit')"}
+            = @milestone.time_line.nil? ? 'Click to add' : @milestone.time_line
+          #showEdit5.editBox
+            .jqSmallform
+              %input{:checked => "checked", :type => "checkbox"}/
+            %a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit5','#linkObj5','.viewEdit')"}
+            %input.saveBtn.FR{:onclick => "hideEdit('#showEdit5','#linkObj5','.viewEdit'); saveProfileAttribute('c', 'time_line', '#showEdit5', 'milestone');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+            .CL
+        .CL
+      .formMainRow
+        .formTitle Description:
+        .formAction
+          .viewEdit
+            %a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit7','#linkObj7','.viewEdit')", :title => "Edit"}
+          %a.show_val#linkObj7{:href => "#.", :onclick => "showEdit('#showEdit7','#linkObj7','.viewEdit')"}
+            = @milestone.description.nil? ? 'Click to add' : @milestone.description
+          #showEdit7.editBox
+            %input.inputField.FL{:onclick => "this.style.color='#000'", :style => "width:82%;", :type => "text"}/
+            %span.FL   *
+            %a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit7','#linkObj7','.viewEdit')"}
+            %input.saveBtn.FR{:onclick => "hideEdit('#showEdit7','#linkObj7','.viewEdit'); saveProfileAttribute('c', 'description', '#showEdit7', 'milestone');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+            .CL
+        .CL
+      .formMainRow
+        .formTitle Photo:
+        .formAction
+          = form_tag 'profile/upload', :multipart=> true, :style=>'margin: 0px;', :remote=>true, :id=>'upload_form' do
+            = file_field_tag "profile[photo]", :id=>'picture_upload', :name=>'profile[photo]'
+            = hidden_field_tag 'type', 'milestone'
+            = submit_tag 'Upload', :confirm => "Are you sure?", :class=>'saveBtn'
+
+        .CL
+/ Body Start End

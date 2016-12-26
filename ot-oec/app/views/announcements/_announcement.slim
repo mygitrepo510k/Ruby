@@ -1,0 +1,22 @@
+.announcement.section
+	.subject
+		h3 = announcement.subject
+	.created_at
+		= announcement.created_at.to_formatted_s(:long)
+	.announced_by
+		| by 
+		= link_to announcement.created_by
+			/.avatar_mini= image_tag announcement.created_by.avatar.mini
+			= announcement.created_by.name
+	hr
+	.body
+		= simple_format announcement.body
+
+	.like_comment
+		= like_count(announcement)
+		a href='#' class='like_link' data-likeable=JSON.generate({likeable_id: announcement.id, likeable_type: "Announcement"})
+			= like_link(announcement)
+		
+		= comment_count(announcement)
+
+	= render partial: 'comments/commentfeed', locals: { commentable: announcement, scope: nil }

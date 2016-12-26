@@ -1,0 +1,60 @@
+.row
+	.container.coachcounselor-payment-page.form-horizontal
+		= simple_form_for(@user, :url => registration_path(@user), :html => {:class => 'card_form form-vertical' }) do |f|
+			.row.first-row
+				.span8.offset1
+					%p.page-title Coach / Counselor Payment Page
+			.row.second-row
+				.span8.offset1
+					.control-group
+						%label.control-label{:for=>"balance"} Monthly Total:
+						.controls
+							%input#balance{:value=>"9.95",:placeholder=>"$9.95"}
+			.row.third-row.pay-info-row
+				.span8.offset1
+					= render "payment_form"
+
+:javascript
+	var paypal_started = false;
+	$('form#new_fund').submit(function(){
+		if(payment_mode==""){
+			alert("Please enter the payment information properly.");
+			return false;
+		}
+		switch(payment_mode){
+			case "credit_card":
+				var card = {
+					number: $('#card_number').val(),
+					cvc: $('#card_code').val(),
+					expMonth: $('#card_month').val(),
+					expYear: $('#card_year').val()
+				};
+				//Stripe.createToken(card, handleStripeResponse);
+				//$('input[type=submit]').attr('disabled', true);
+				alert('Coming soon for credit card...');
+				return false;
+			break;
+			case "paypal":
+				var sandbox = #{Paypal.sandbox?.to_json};
+				var submit_id = 'paypayl_submit_1';
+				//$('form#new_fund input[type=submit]').attr({id: submit_id});
+				flow_config = {};
+				if (sandbox) flow_config.stage = sandbox;
+				window.paypal_flows = [];
+				window.paypal_flows.push(new PAYPAL.apps.DGFlow(flow_config));
+				var url = $('form#new_fund').attr('action')+"?"+$('form#new_fund').serialize();
+				window.paypal_flows[0].startFlow( url );
+			break;
+		}
+		return false;
+	});
+
+	var handleStripeResponse = function(status, response) {
+		if (status === 200) {
+			$('#fund_stripe_card_token').val(response.id);
+			$('form#new_fund')[0].submit();
+		} else {
+			alert(response.error.message);
+			$('input[type=submit]').attr('disabled', false);
+		}
+	}

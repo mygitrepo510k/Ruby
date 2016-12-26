@@ -1,0 +1,33 @@
+.row 
+  .col-sm-12
+    -if belongs_to_type == 'Challenge'
+      - custom_desc_placeholder = 'Describe this content'
+
+    = form_for ContentGroup.new, html: { multipart: true } do |f|
+      = f.text_area :description, placeholder: custom_desc_placeholder || 'Give a frame...'
+      = hidden_field_tag 'redirect', redirect
+      = hidden_field_tag 'belongs_to', belongs_to
+      = hidden_field_tag 'belongs_to_type', belongs_to_type  
+
+      ul#field_groups
+
+      ul.inline-list
+        li
+          = f.submit (defined? custom_submit_text and custom_submit_text) || 'Submit your Frame', class: 'btn btn-primary submit_content_group'
+
+        -if has_privacy
+          li
+            = label_tag do
+              = check_box_tag 'private'
+              | &nbsp;Keep this private?
+
+        li.add_field_link
+          a href='#' class='filepicker_multi' 
+            .glyphicon.glyphicon-camera data-toggle='tooltip' data-placement='bottom' title='Add photos, videos, or other files'
+
+        li.add_field_link
+          a href='#' data-add-fields='link'
+            .glyphicon.glyphicon-link  data-toggle='tooltip' data-placement='bottom' title='Add a link'
+
+  .col-sm-12
+    ul#file_names

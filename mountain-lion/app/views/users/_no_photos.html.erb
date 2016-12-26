@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalLabel">Upload a Profile Photo</h3>
+</div>
+<div class="modal-body">
+  <a href="<%= new_user_user_photo_path(current_user.username) %>">
+    <%= image_tag 'upload-photos.jpg' %>
+  </a>
+</div>
+<div class="modal-footer">
+  <%= link_to 'Upload Photos', new_user_user_photo_path(current_user.username), class: 'btn btn-primary' %>
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>

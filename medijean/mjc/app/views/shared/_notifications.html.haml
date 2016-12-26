@@ -1,0 +1,23 @@
+%button.close ×
+%h5 Notification
+- @current_user_notifications.each do |notification|
+  %li
+    .row.page-content
+      .span1
+        = image_tag "#{notification.notification_type}_notification.png"
+      .span2
+        .row
+          .span3.txt
+            = render_notification(notification)
+        .row
+          .span2.notif-bold
+            = notification.parameters[:sender_name] unless notification.parameters.blank?
+        .row
+          .span2.notif-light
+            =  time_ago_in_words(notification.created_at)
+    %hr
+%li.last
+  .span4.notf-all
+    See All Notifications
+
+

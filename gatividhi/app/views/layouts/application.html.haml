@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+      %title= content_for?(:title) ? yield(:title) : "Nurtury"
+      %meta{:content => content_for?(:description) ? yield(:description) : "Gatividhi", :name => "description"}
+        = stylesheet_link_tag "application", :media => "all"
+        = javascript_include_tag "application"
+        = csrf_meta_tags
+        = yield(:head)
+  %body{:class => "#{controller_name} #{action_name}"}
+    #container.container
+      %header
+        = render 'shared/top_head_bar'
+        = render 'layouts/messages'
+      #main{:role => "main"}
+        .container
+          = render 'layouts/after_login_navigation_links' unless current_user.nil?
+          = yield
+      %footer
+        = render 'shared/footer'
+    / ! end of #container

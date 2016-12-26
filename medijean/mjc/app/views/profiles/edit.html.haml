@@ -1,0 +1,31 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.patient-profile-page
+      .row.title
+        %label.page-title
+          = t("settings.title")
+          = "-" 
+          = params[:action].capitalize
+      .row.content
+        .span3.left-side-bar
+          = render "shared/settings_left_side_navbar"
+        .span7.page-content          
+          = simple_form_for @profile, :url=>'/profile/update' do |f|
+            = f.error_notification
+            .row
+              .span3
+                = f.input :first_name
+              .span3
+                = f.input :last_name
+            .row
+              = f.input :date_of_birth
+            .row
+              = f.input :gender, as: :select, collection: [['Male', 'male'], ['Female', 'female']], :input_html=>{:style=>"width: 180px;"}, include_blank: false
+            .row
+              %p= t("patient_flow.complete_profile.text4")
+              %p
+                -(0..2).each do |i|
+                  = text_field_tag "profile[phone][]",@phone.nil? ? nil : @phone[i],:class=>"input-mini",:placeholder=>"",:maxlength=>i%3==2 ? "4" : "3", :required => true
+
+            .row.last-row
+              = f.submit t("general.save_change")

@@ -1,0 +1,143 @@
+// Place all the styles related to the User controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new_avatar_form {
+  label { margin: 0px; }
+  button {
+    font-size: 8px;
+  }
+}
+
+.profile {
+	.avatar {
+		float: left;
+		background: rgba($offwh,.3);
+		margin: 1.25em 1em 1px 0;
+		max-width: emCalc(160px);
+	}
+
+	.name {
+		.status {
+			display: none;
+
+			&.active {
+				display: block;
+			}
+
+			&.green { 
+				color: $gr; 
+			}     
+
+			&.yellow { 
+				color: $ye; 
+			}
+
+			&.red { 
+				color: $red; 
+			}
+		}
+	}
+
+	.safewords {
+		height: 1em; 
+		overflow: hidden;
+		& * {
+			margin: 0; padding: 0;
+		}
+
+		.status { 
+			width: 1em; 
+			height: 1em; 
+			display: inline-block; 
+			border: 0;
+
+			&.green { 
+				background: $gr; 
+			}     
+
+			&.yellow { 
+				background: $ye; 
+			}
+
+			&.red { 
+				background: $red; 
+			}
+
+			&.active { 
+				width: calc(100% - 2em);
+			}
+		}   
+	}
+
+	.comments, 
+	.admin-only {
+		width: 100%;
+	}
+}	
+
+.members {
+	padding: 2em 1em !important;
+
+  .user_counts div {
+    margin: 0px 6px 0px 6px;
+  }
+
+	.member {
+		> a {
+			text-align: center;
+
+			&:before {
+				@extend .glyphicon;
+				@extend .glyphicon-user;
+				position: absolute;
+				font-size: 5em;
+				top: .5em;
+				left: 33%;
+				color: $offwh;
+			}
+
+			img {
+				@include radius(1000em);
+				@include transition-duration(.5s);
+				@include opacity(90);
+				width: emCalc(160px);
+				height: emCalc(160px);
+				border: 1px solid;
+				border-color: rgba($lgrey,.25);
+				padding: .5em;
+				margin: 0 0 .5em;
+
+			}
+
+			h2 {
+				color: $lblue !important;
+				font-size: 1.25em;
+				margin: 0 !important;
+			}
+		}
+	}
+}
+
+.intake_form {
+	form {
+		width: 100%;
+		margin: 0 0 3em;
+		padding: 0;
+		float: left;
+
+		.field {
+			margin-right: 2em;
+		}
+	}
+}
+
+.profile_name {
+	font-weight: 700; 
+}
+
+.admin_links {
+  li {
+    display: block;
+  }
+}

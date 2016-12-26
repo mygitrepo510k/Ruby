@@ -1,0 +1,34 @@
+.admin-contents.section.single
+  h2 Contents
+
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li.active= 'Contents'
+
+  = link_to 'Add New', new_admin_content_path
+
+  table.table.table-striped
+    tr
+      th= 'Name'
+      th= 'Description'
+      th= 'Month'
+      th= 'Track'
+      th= 'Created by'
+      th= 'Content Type'
+      th= 'Created at'
+      th= 'Edit'
+      th= 'View'
+
+    - @contents.each do |content|
+      tr
+        td= content.name
+        td= truncate content.description, length: 35
+        td= content.month.present? ? Date::MONTHNAMES[content.month] : ''
+        td= content.option.present? ? Content::CONTENT_OPTIONS[content.option.to_i] : ''
+        td= content.created_by.name
+        td= content.content_type
+        td= content.created_at.to_formatted_s(:short)
+        td= link_to 'Edit', edit_admin_content_path(content)
+        td= link_to 'View', admin_content_path(content)
+
+  = will_paginate @contents, renderer: BootstrapPagination::Rails

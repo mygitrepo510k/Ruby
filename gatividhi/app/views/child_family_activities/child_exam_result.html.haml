@@ -1,0 +1,130 @@
+/ Body Start here
+.bodyWapper
+  .tabBox
+    = link_to "Exams", :child_upcoming_exam
+    = link_to "Exam Results", :child_exam_result, :class=>"tabSelected"
+    .CL
+  .tabContainer
+    .tabAction
+      .activityAction.FL{:style => "padding-left:10px;"}
+        .jqSmallform
+          %select#select{:name => "select", :style => "margin-right:8px;"}
+            %option DPS,R.K. Puram
+            %option VI
+          %select#select{:name => "select", :style => "margin-right:8px; width:40px;"}
+            %option VI
+      .activityAction
+        .jqSmallform.FL
+          %select#select{:name => "select", :style => "margin-right:8px;"}
+            %option School
+            %option School
+            %option School
+          %select#select{:name => "select"}
+            %option Outcome
+            %option Outcome
+      .CL
+    %table.tableGride{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+      %tr.examHead
+        %th{:align => "left", :height => "33", :valign => "top", :width => "7%"} Class
+        %th{:align => "left", :valign => "top", :width => "14%"} Subject
+        %th{:align => "left", :valign => "top", :width => "15%"} Category
+        %th{:align => "left", :valign => "top", :width => "19%"} School / Non-School
+        %th{:align => "left", :valign => "top", :width => "29%"} School Name
+        %th{:align => "left", :valign => "top", :width => "7%"} Board
+        %th{:align => "left", :valign => "top", :width => "9%"} Results (%)
+      %tr
+        %td{:align => "left", :valign => "top"} V
+        %td{:align => "left", :valign => "top"} Hindi
+        %td{:align => "left", :valign => "top"} Unit Test 1
+        %td{:align => "left", :valign => "top"} School
+        %td{:align => "left", :valign => "top"} Lorem ipsum dolor sit amet, consectetur ...
+        %td{:align => "left", :valign => "top"} C.B.S.E.
+        %td{:align => "left", :valign => "top"} 90%
+      %tr
+        %td{:align => "left", :valign => "top"} V
+        %td{:align => "left", :valign => "top"} Hindi
+        %td{:align => "left", :valign => "top"} Unit Test 2
+        %td{:align => "left", :valign => "top"} School
+        %td{:align => "left", :valign => "top"} Lorem ipsum dolor sit amet, consectetur ...
+        %td{:align => "left", :valign => "top"} C.B.S.E.
+        %td{:align => "left", :valign => "top"} 90%
+      %tr
+        %td{:align => "left", :valign => "top"} VI
+        %td{:align => "left", :valign => "top"} Hindi
+        %td{:align => "left", :valign => "top"} Unit Test 3
+        %td{:align => "left", :valign => "top"} School
+        %td{:align => "left", :valign => "top"} Lorem ipsum dolor sit amet, consectetur ...
+        %td{:align => "left", :valign => "top"} C.B.S.E.
+        %td{:align => "left", :valign => "top"} 90%
+      %tr
+        %td{:align => "left", :valign => "top"} VI
+        %td{:align => "left", :valign => "top"} Hindi
+        %td{:align => "left", :valign => "top"} Unit Test 1
+        %td{:align => "left", :valign => "top"} Non-School
+        %td{:align => "left", :valign => "top"} Lorem ipsum dolor sit amet, consectetur ...
+        %td{:align => "left", :valign => "top"} C.B.S.E.
+        %td{:align => "left", :valign => "top"} 90%
+      %tr
+        %td{:align => "left", :valign => "top"} VI
+        %td{:align => "left", :valign => "top"} Hindi
+        %td{:align => "left", :valign => "top"} Unit Test 2
+        %td{:align => "left", :valign => "top"} School
+        %td{:align => "left", :valign => "top"} Lorem ipsum dolor sit amet, consectetur ...
+        %td{:align => "left", :valign => "top"} C.B.S.E.
+        %td{:align => "left", :valign => "top"} 90%
+      %tr
+        %td{:align => "left", :valign => "top"} VI
+        %td{:align => "left", :valign => "top"} Hindi
+        %td{:align => "left", :valign => "top"} Unit Test 3
+        %td{:align => "left", :valign => "top"} School
+        %td{:align => "left", :valign => "top"} Lorem ipsum dolor sit amet, consectetur ...
+        %td{:align => "left", :valign => "top"} C.B.S.E.
+        %td{:align => "left", :valign => "top"} 90%
+      %tr
+        %td{:align => "left", :valign => "top"} VI
+        %td{:align => "left", :valign => "top"} Hindi
+        %td{:align => "left", :valign => "top"} Half Yearly
+        %td{:align => "left", :valign => "top"} School
+        %td{:align => "left", :valign => "top"} Lorem ipsum dolor sit amet, consectetur ...
+        %td{:align => "left", :valign => "top"} C.B.S.E.
+        %td{:align => "left", :valign => "top"} 90%
+      %tr
+        %td{:align => "left", :valign => "top"} VI
+        %td{:align => "left", :valign => "top"} Hindi
+        %td{:align => "left", :valign => "top"} Semi Final
+        %td{:align => "left", :valign => "top"} School
+        %td{:align => "left", :valign => "top"} Lorem ipsum dolor sit amet, consectetur ...
+        %td{:align => "left", :valign => "top"} C.B.S.E.
+        %td{:align => "left", :valign => "top"} 90%
+/ Body Start End
+:javascript
+  $(function(){
+    //alert($('select').width()) jqGreenForm
+    $('.jqGreenForm').jqTransform({imgPath:'images/'}); 
+    $('.jqSmallform').jqTransform({imgPath:'images/'}); 
+    //$('.jqSmallform').jqTransform({imgPath:'images/'}); 
+    $('.filterRow .txt').click(function(){
+      $(this).parent().parent().find('.selectedRow').removeClass('selectedRow')
+      $(this).parent().addClass('selectedRow')    
+    })
+  })
+  function showEdit(obj){
+    var currentvalue = $(obj).parent().parent().find('.valueCollecter').text()
+    $(obj).parent().parent().parent().find('.editContainer > .inputField').val(currentvalue)
+    
+    $('.filterBox').find('.selectedRow').removeClass('selectedRow')
+    $(obj).parent().parent().parent().parent().addClass('selectedRow')
+    
+    $(obj).parent().parent().toggle();
+    $(obj).parent().parent().parent().find('.editContainer').toggle() 
+  }
+  function showLoader(obj){
+    $(obj).hide();
+    $(obj).next().show();
+    setTimeout(function(){hideLoader('viewContainer','editContainer')},1000)
+  }
+  function hideLoader(objView,objEdit,objVal){
+    
+    $('.'+objEdit).hide()
+    $('.'+objView).show()
+  }

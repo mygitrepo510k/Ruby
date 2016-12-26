@@ -1,0 +1,3 @@
+add link to user's OMHUB profile page
+limit showing the safeword on the profile page to: you, admins, pod leader
+

@@ -1,0 +1,43 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .patient-account-page
+      .row.title
+        %label.page-title
+          = t("settings.title")
+          = "-" 
+          = params[:action].capitalize
+      .row.content
+        .span3.left-side-bar
+          = render "shared/settings_left_side_navbar"
+        .span7.page-content
+          = simple_form_for @user, :url=>'/profiles/account', html: {id: "change_account_form"} do |f|
+            = f.error_notification
+            = f.hidden_field :id, :value=> @user.id
+            .row
+              = f.input :email, :label =>"Email Address"
+            .row
+              .password-input-errors-row
+              .span4
+                .password-box
+                  /%label ********
+                  /This code is commented and new code is added to increase the readability.
+                  = label_tag 'Password', 'Password', :class => "control-label"
+                  = text_field_tag 'Password', '********', disabled: true
+                .change-password-box
+                  = f.input :old_password
+                  = f.input :new_password
+                  = f.input :confirm_new_password
+              .span4.control-box
+                .password-box
+                  = link_to t("settings.account.change_password"), t("settings.account.javascript_link"), :id=>"change_password", :class=>"btn pg-float-left gb-btn-gray"
+                .change-password-box                  
+                  = link_to t("settings.account.saveh_changes"), :profiles_change_password, :class=>"btn pg-float-left gb-btn-gray btn-change-password", :id =>"change_password_button"
+                  = link_to t("settings.account.close"), t("settings.account.javascript_link"), :id=>"cloase_change_password", :class=>"btn pg-float-left gb-btn-gray btn-change-password"
+            - if @user.role? :patient
+              .row
+                = f.simple_fields_for :profile do |profile|
+                  = profile.input :health_card_number
+            .row.last-row
+              = f.submit t("general.save_change"), :id=>"btn_"+@user.roles.first.name
+
+  

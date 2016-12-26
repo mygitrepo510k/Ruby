@@ -1,0 +1,33 @@
+.row
+  .span12.login-img
+    %br
+    %br
+    %br
+    .row
+      .span3
+      .span5.login-tab-bg
+        = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f|
+          %h2.center-txt.homepg-header.bck-h2
+            Resend confirmation instructions
+          %br
+          .row
+            .span1
+            .span4
+              = f.label :email, t("devise.email")
+              = f.email_field :email, :autofocus => true, :placeholder => "john@smith.com"
+          .row
+            .span1
+            .span4
+              = f.submit "Resend confirmation instructions", :class => "btn-orange"
+          %br
+          .row
+            .span1
+            .span3
+              %p.center-txt
+              /
+                = render "devise/shared/links"
+            .span1
+    %br
+    %br
+    %br
+

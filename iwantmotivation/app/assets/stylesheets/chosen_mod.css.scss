@@ -1,0 +1,87 @@
+.chzn-container-single {
+  font-size: 15px;
+
+  .chzn-single {
+    background-image: none;
+    filter: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border: 1px solid transparent;
+    color: #333;
+    padding: 10px 20px;
+
+    div {
+      right: 20px;
+      b {
+        background: url("chosen-sprite-mod.png") -16px -75px no-repeat;
+      }
+    }
+  }
+
+  .chzn-search {
+    padding: 3px 10px;
+    margin-bottom: 10px;
+
+    input {
+      background: #f3f3f3 url("chosen-sprite-mod.png") 100% -140px no-repeat;
+      padding: 10px 35px 10px 12px;
+      border: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+  }
+
+  .chzn-drop {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
+  .nano {
+    height: 240px;
+    .chzn-results {
+      margin-right: 0;
+      padding-right: 4px;
+
+      .highlighted {
+        background: none;
+        color: #A0889E;
+        filter: none;
+      }
+
+      li {
+        padding: 8px;
+        font-size: 14px;
+      }
+    }
+
+    & > .pane {
+      background: #f3f3f3;
+      bottom: 10px;
+      right: 10px;
+      top: 0px;
+
+      & > .slider {
+        background: #6DC7D4;
+      }
+    }
+  }
+}
+
+.chzn-container-active {
+  .chzn-single {
+    -webkit-box-shadow: none;
+    -moz-box-shadow   : none;
+    box-shadow        : none;
+    border: 1px solid #aaa;
+    background: white;
+
+    div {
+      b {
+        background-position: -16px -10px;
+      }
+    }
+  }
+}

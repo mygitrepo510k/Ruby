@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  move_listing_id: 1
+  scout_listing_id: 1
+  applicant_id: 1
+
+two:
+  move_listing_id: 1
+  scout_listing_id: 1
+  applicant_id: 1

@@ -1,0 +1,196 @@
+<script>
+  $(function() {
+    widgets = 0;
+
+    if("<%= !current_user.nil? %>" == "true") {  
+      if("<%= Rails.env %>" == "development") {
+      // Enable pusher logging - don't include this in production
+        Pusher.log = function(message) {
+          if (window.console && window.console.log) window.console.log(message);
+        };
+
+      // Flash fallback logging - don't include this in production
+        WEB_SOCKET_DEBUG = true;
+      }    
+    
+      // var channel_name = "private-#{current_user.nil? ? '' : current_user.email}";
+      // var channel_name = "private-test"; 
+      var pusher = new Pusher('2b4847d7ed52ede8f524');
+
+      var channels = <%= raw(@subscribe_channels.map { |x| x[:channel] }) if current_user %>;
+
+      console.log(channels);
+
+      $.each(channels, function(i, channel_name) {
+        var channel = pusher.subscribe(channel_name);
+        channel = pusher.subscribe(channel_name, channel.auth); 
+        console.log('----------------');
+        console.log(channel); 
+        channel.bind('my-event', function(data) {
+          //alert('An event was triggered with message: ' + data.message);
+          // alert(channel_name); 
+          //clone activity
+          var id = "widget_" + data.channel_name;
+          var widget =  $('body').find("#" + id).first(); 
+        
+
+          if(!widget){
+            var widget = $('#chat-widget').clone().show().attr('id', id).css('visibility','visible');
+            right = widgets * 310 + 30;  
+          
+            widget.css("right", right).appendTo('body');
+            widgets++; 
+
+            //updating widget 
+            widget.first().find('.pusher-chat-widget-current-user-name:first').text(data.name); 
+
+            widget.find('input[name=\"conversation[message][recipient_id]\"]').val(data.recipient_id.toString()); 
+          }
+   
+          var activity = $('#chat-widget ul.activity-stream .activity:first').clone().show();
+          activity.find('.screen-name:first').text(data.name);
+          activity.find('.text:first').text(data.message);
+          activity.find('.timestamp span:first').text(data.created_at); 
+
+   
+          widget.find(".activity-stream").first().append(activity);   
+
+          //allow message in text field
+          widget.find('.messageTextarea:first').attr('disabled', false); 
+        });
+
+        channel.bind('pusher:subscription_error', function(status) {
+          console.debug(status); 
+        });
+
+        channel.bind('pusher:subscription_succeeded', function() {
+          console.debug('success'); 
+        }); 
+      }); 
+    //click on online users
+
+      $('.online-users div.contact div.contact-desc a.user').click(function(e){ 
+        e.preventDefault(); 
+        console.log('00000000000000000000');
+        console.log($(this).data('channel').toString()); 
+        var id = "widget_" + $(this).data('channel'); 
+        console.log(id); 
+        var widget =  $.find("#widget_" + $(this).data('channel').toString()); 
+        var present = widget != '';
+        console.log(widget); 
+        if(present) {
+          return false;  
+        }
+        var widget = $('#chat-widget').clone().show().attr('id', id);
+        right = widgets * 310 + 30;  
+        
+        widget.css("right", right).appendTo('body');
+        widgets++; 
+
+        //updating widget 
+        widget.find('.pusher-chat-widget-current-user-name:first').text($(this).data('email')); 
+
+        widget.find('input[name=\"conversation[message][recipient_id]\"]').val($(this).data('recipient-id')); 
+        $(".pusher-chat-widget").each(function(){
+          var parent = $(this);
+          $('a.close', $(this)).click(function(){
+              parent.remove();
+              console.log(widgets);
+              if( widgets> 0 )
+                widgets--;
+          })
+        });
+
+      });       
+    } 
+  }); 
+</script>
+<!-- <div class="calender-img"></div> -->
+<div id="dp6" data-date="12-02-2012" data-date-format="dd-mm-yyyy"><div class="datepicker datepicker-inline" style=""><div class="datepicker-days" style="display: block;"><table class=" table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">February 2012</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="day old">29</td><td class="day old">30</td><td class="day old">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td></tr><tr><td class="day">5</td><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day">11</td></tr><tr><td class="day">12</td><td class="day">13</td><td class="day active">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td></tr><tr><td class="day">19</td><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td></tr><tr><td class="day">26</td><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day new">1</td><td class="day new">2</td><td class="day new">3</td></tr><tr><td class="day new">4</td><td class="day new">5</td><td class="day new">6</td><td class="day new">7</td><td class="day new">8</td><td class="day new">9</td><td class="day new">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="">Today</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2012</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month active">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="">Today</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table-condensed"><thead><tr><th class="prev" style="visibility: visible;"><i class="icon-arrow-left"></i></th><th colspan="5" class="switch">2010-2019</th><th class="next" style="visibility: visible;"><i class="icon-arrow-right"></i></th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year active">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year old">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="">Today</th></tr></tfoot></table></div></div></div>
+
+<div class="contacts-listing online-users">
+    <h3 class="h3-common">Contacts</h3>
+    <div class="input-append">
+      <input class="border-rad-0" id="appendedInput" type="text" placeholder="Search Contacts...">
+      <span class="add-on border-rad-0">
+        <%= image_tag("contacts/search.png") %>
+      </span>
+    </div>
+  <!-- contact -->
+    <%  if current_user %>
+      <h2> users online </h2>   
+      <% @subscribe_channels.each do |sc| %>
+        <div class="contact"> 
+          <img src="/assets/user-img/helen.png"  width="63px" height="58px" />
+          <div class="contact-desc">
+            <a class="user" data-email = "<%= sc[:email]%>" data-recipient-id = "<%= sc[:recipient_id]%>" data-channel = "<%=sc[:channel]%>" href = "#" >
+              <%= sc[:name]%>
+            </a>
+            <div>President</div>
+          </div>
+          <div class="clear-fix"></div>
+          <div class="seprator"></div>
+        </div>
+      <% end %>
+    <% end %>
+
+    <div class="contact">
+      <img src="/assets/user-img/helen.png"  width="63px" height="58px" />
+      <div class="contact-desc">
+        <h4>Helen Oslen</h4>
+        <div>President</div>
+      </div>
+      <div class="clear-fix"></div>
+      <div class="seprator"></div>
+    </div>
+  <!-- contact -->
+
+  <!-- contact -->
+  <div class="contact">
+    <img src="/assets/user-img/marcjacobs.png"  width="63px" height="58px" />
+    <div class="contact-desc">
+      <h4>Marc Jacobs</h4>
+      <div>Marketing</div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="seprator"></div>
+  </div>
+  <!-- contact -->
+
+  <!-- contact -->
+  <div class="contact">
+    <img src="/assets/user-img/herman.png"  width="63px" height="58px" />
+    <div class="contact-desc">
+      <h4>Herman Melville</h4>
+      <div>CEO</div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="seprator"></div>
+  </div>
+  <!-- contact -->
+
+  <!-- contact -->
+  <div class="contact">
+    <img src="/assets/user-img/helen.png"  width="63px" height="58px" />
+    <div class="contact-desc">
+      <h4>Jennifer B.</h4>
+      <div>Executive Manager</div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="seprator"></div>
+  </div>
+  <!-- contact -->
+
+  <!-- contact -->
+  <div class="contact">
+    <img src="/assets/user-img/helen.png"  width="63px" height="58px" />
+    <div class="contact-desc">
+      <h4>Jennifer B.</h4>
+      <div>Executive Manager</div>
+    </div>
+    <div class="clear-fix"></div>
+    <div class="seprator"></div>
+  </div>
+  <!-- contact -->
+
+</div>

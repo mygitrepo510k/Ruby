@@ -1,0 +1,57 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.facebox
+ *= require_tree .
+*/
+.brand {
+  float: left;
+  padding-right: 8px;
+}
+ul.nav {
+  list-style: none;
+  margin: 0 0 2em;
+  padding: 0;
+}
+ul.nav li {
+  display: inline;
+}
+#flash_notice, #flash_alert {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+#flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+
+.greyBtn {
+  background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(223, 223, 223) 100%) repeat scroll 0 0 transparent;
+  border-bottom: 1px solid rgb(165, 159, 149);
+  border-radius: 18px 18px 18px 18px;
+  border-top: 1px solid rgb(229, 229, 229);
+  box-shadow: 1px 0 1px rgb(153, 153, 153);
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 8px;
+  padding: 3px 15px;
+  &:hover {
+    color: rgb(93, 191, 171);
+    text-decoration: none;
+  }
+}

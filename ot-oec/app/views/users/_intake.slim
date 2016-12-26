@@ -1,0 +1,7 @@
+-if !profile
+	h3 No intake for this student
+-else
+	- for qa in profile
+		.question_answer
+			h4 = qa[:question]
+			p = qa[:answer] ? qa[:answer].gsub("\n", "<br>").html_safe : nil

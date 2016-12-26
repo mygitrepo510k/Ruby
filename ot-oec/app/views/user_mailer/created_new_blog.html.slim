@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    meta content: "text/html; charset=UTF-8" http-equiv="Content-Type" /
+  body
+    h1
+      | Dear 
+      = @user.name
+    br/
+    h2 Created new blog
+    br/
+    br/
+    label= 'Description: ' + @blog.body
+    br/
+    br/
+    br/
+    = link_to "view blog", @link
+    br/
+    br/

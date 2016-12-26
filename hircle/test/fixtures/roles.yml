@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+manager:
+  id: 1
+  name: manager
+
+hr:
+  id: 2
+  name: hr
+
+employee:
+  id: 3
+  name: employee
+  
+admin:
+  id: 4
+  name: admin

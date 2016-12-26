@@ -1,0 +1,13 @@
+panel "History" do
+  # raise assigns[:versions].inspect
+  table_for assigns[:versions] do
+    column :item_id
+    column :item_type
+    column :event
+    column :whodunnit do |version|
+      AdminUser.find(version.whodunnit).name
+    end
+    column :object
+    column :created_at
+  end
+end

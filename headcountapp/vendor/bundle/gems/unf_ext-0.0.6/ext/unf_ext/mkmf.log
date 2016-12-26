@@ -1,0 +1,68 @@
+have_library: checking for main() in -lstdc++... -------------------- yes
+
+"gcc-4.2 -o conftest -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib -L. -L/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib      -lruby-static  -lpthread -ldl -lobjc "
+/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib/ruby/2.0.0/mkmf.rb:373: warning: Insecure world writable dir /Volumes/Work in PATH, mode 040777
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc-4.2 -o conftest -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib -L. -L/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib      -lruby-static -lstdc++  -lpthread -ldl -lobjc "
+conftest.c: In function ‘t’:
+conftest.c:5: error: ‘main’ undeclared (first use in this function)
+conftest.c:5: error: (Each undeclared identifier is reported only once
+conftest.c:5: error: for each function it appears in.)
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { void ((*volatile p)()); p = (void ((*)()))main; return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+"gcc-4.2 -o conftest -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe conftest.c  -L. -L/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib -L. -L/Users/chuigwangming/.rbenv/versions/2.0.0-p481/lib      -lruby-static -lstdc++  -lpthread -ldl -lobjc "
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: extern int t(void);
+ 5: int t(void) { main(); return 0; }
+ 6: int main(int argc, char **argv)
+ 7: {
+ 8:   if (argc > 1000000) {
+ 9:     printf("%p", &t);
+10:   }
+11: 
+12:   return 0;
+13: }
+/* end */
+
+--------------------
+
+have_header: checking for ruby/encoding.h... -------------------- yes
+
+"gcc-4.2 -E -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/x86_64-darwin12.5.0 -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0/ruby/backward -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include/ruby-2.0.0 -I. -I/Users/chuigwangming/.rbenv/versions/2.0.0-p481/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT    -O3 -Wno-error=shorten-64-to-32  -pipe  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <ruby/encoding.h>
+/* end */
+
+--------------------
+

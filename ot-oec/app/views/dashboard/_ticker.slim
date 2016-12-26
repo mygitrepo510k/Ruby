@@ -1,0 +1,15 @@
+.ticker.section.minor
+	h2
+		| Ticker
+
+	- @ticker.each do |t|
+		.activity
+			= link_to t['uname'], t['user_id'] ? user_path(:id => t['user_id']) : users_path
+			span 
+				| submitted a frame for&nbsp;
+				= t['activity']
+
+			- if t['activity'] == 'Experience'
+				= link_to truncate(t['name'], length: 25), controller: "experiences", action: "show", id: t['id']
+			- else
+				= link_to truncate(t['name'], length: 25), controller: "challenge_frames", action: "show", id: t['id']

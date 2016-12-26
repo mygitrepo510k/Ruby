@@ -1,0 +1,12 @@
+.row.signup-page
+	.container
+		- if current_user.role == "free"
+			= render 'free_member_edit'
+		-elsif current_user.role == "limited"
+			= render 'limited_member_edit'
+		-elsif current_user.role == "full"
+			= render 'full_member_edit'
+		-elsif current_user.role == "coach"
+			= render 'coach_edit'
+		-elsif current_user.role == "counselor"
+			= render 'counselor_edit'

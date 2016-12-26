@@ -1,0 +1,81 @@
+#content_wrap.container
+	#left_side
+		= render :partial=>"left_side"
+	#main_area
+		.span10
+			.row.main-area-top-head
+				.span2
+					= link_to raw("<i class=\"icon-new-job\"></i>Add&nbspPerson"), "#/new", :class=>"btn btn-new-job"
+				.span2.offset1
+					.btn-group
+						%button.btn Any Job Type
+						%button.btn.dropdown-toggle{"data-toggle"=>"dropdown"}
+							%span.caret
+						%ul.dropdown-menu
+							%li 								
+								%a Job Type 1
+							%li
+								%a Job Type 2
+							%li
+								%a Job Type 3
+				.span2
+					= form_tag "search_job", :method => 'get', :class => "navbar-search", :style=>"margin-top:0px;" do
+						= text_field_tag :search, params[:search], :class => "search-query", :placeholder=>"Keyword", :style =>"width:150px;padding-left:26px;border-radius:15px;"
+						.icon-search{:style=>"position:absolute;top:7px;left:11px;cursor:pointer;"}
+			.row.main-area-bottom-head>
+				.span2 Showing All
+			.row
+				%table.table.table-hover.table-striped.applicants-list
+					%thead
+						%tr
+							%th Name
+							%th Role
+							%th Project
+							%th Status
+					%tbody
+						%tr
+							%td
+								.span1								
+								Jonathan Moreir
+							%td
+								Front end Developer
+							%td
+								Blue Project
+							%td
+								Active
+						%tr
+							%td
+								.span1
+								Mason Yarnell
+							%td
+								Enginer
+							%td
+								Blue Project
+							%td
+								Active
+						%tr
+							%td
+								.span1	
+								Dann Petty
+							%td
+								Designer
+							%td
+								Blue Project
+							%td
+								Pending
+						%tr
+							%td
+								.span1	
+								Tim Hartmann
+							%td
+								Programmer
+							%td
+								Blue Project
+							%td
+								Active
+	
+:javascript
+	$('ul.sidebar-panel li').each(function(){
+		$(this).removeClass('selected');
+	});
+	$('li.apllicants-item').addClass('selected');

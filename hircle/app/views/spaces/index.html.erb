@@ -1,0 +1,30 @@
+<h1>Listing spaces</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Company_ID</th>
+    <th>Creator_ID</th>
+    <!-- <th>Create_Dt</th> -->
+   
+  </tr>
+
+<% @spaces.each do |space| %>
+  <tr>
+    <td><%= space.name %></td>
+    <td><%= space.description %></td>
+    <td><%= space.company_id%></td>
+    <td><%= space.creator_id %></td>
+    <!-- <td><%#= space.create_at %></td> -->
+  
+    <td><%= link_to 'Show', space %></td>
+    <td><%= link_to 'Edit', edit_space_path(space) %></td>
+    <td><%= link_to 'Destroy', space, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Space', new_space_path %>

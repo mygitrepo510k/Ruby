@@ -1,0 +1,13 @@
+.section.single.program-new
+	h3 Edit program
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Programs', admin_programs_path
+		li.active= 'Edit Program'
+
+	= render 'form'
+
+	= link_to 'Delete', admin_program_path, method: :delete, data: { confirm: 'Are you sure you want to delete this program?' }
+	br
+	br

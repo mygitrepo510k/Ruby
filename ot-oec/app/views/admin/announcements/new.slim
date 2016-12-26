@@ -1,0 +1,10 @@
+.admin-announcements-new.section.single
+	h3 Make an announcement
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Announcements', admin_announcements_path
+		li.active= 'Make Announcement'
+
+  	= render 'form'
+  	br

@@ -1,0 +1,27 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.nav-top-bar
+      = render partial: 'users/dashboard-nav'
+    .row.doctor-profile-page
+      .row.title
+        .span3.title-span
+          %label.page-title= @doctor_patient.name
+        .span2.pg-float
+          = link_to t("doctor_flow.patient_profile.prescribe"), new_doctor_patient_prescription_path(@doctor_patient), :class => "btn gb-btn"
+      .row.content
+        .span3.left-side-bar
+          %ul.nav
+            %li.active
+              = link_to t("doctor_flow.patient_profile.heading"), '#about-patient', :'data-toggle' => 'tab'
+            %li
+              = link_to t("doctor_flow.patient_profile.past_prescriptions"), '#past-prescriptions', :'data-toggle' => 'tab'
+            %li
+              = link_to t("doctor_flow.patient_profile.pathway"), '#pathway', :'data-toggle' => 'tab'
+        .span7
+          .tab-content
+            #about-patient.about-partial.tab-pane.active
+              = render "profile", profile: @profile
+            #past-prescriptions.about-partial.tab-pane
+              = render "history", doctor_patient: @doctor_patient
+            #pathway.about-partial.tab-pane
+              Nothing to see here - move on.

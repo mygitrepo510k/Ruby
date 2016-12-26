@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1 
+  alternate_email: mack@gamil.com
+  phone: 13644557791
+  address: beijing  
+  user_id: 1
+  motto: work hard and quality life
+
+profile2:  
+  alternate_email: yang@gamil.com
+  phone: 13788594460
+  address: beijing  
+  user_id: 2
+  motto: Have a tiger in heart

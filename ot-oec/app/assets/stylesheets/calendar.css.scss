@@ -1,0 +1,12 @@
+// Place all the styles related to the calendar controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.event-calendar {
+	#event_calendar {
+		padding: 0 1em;
+	}
+}
+
+.fc-button {
+	@include radius($default-site-radius);
+}

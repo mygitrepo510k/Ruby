@@ -1,0 +1,113 @@
+
+
+@import url(http://fonts.googleapis.com/css?family=Marck+Script);
+
+$body-bg:                                                   #ffffff;
+$font-family-sans-serif:                'Helvetica Neue', Helvetica, Arial, sans-serif;
+$navbar-height:                                        45px;
+$navbar-default-bg:                          #bdc3c7;
+$navbar-default-brand-color:      #c0392b;
+$brand-primary:                                    #c0392b;
+$jumbotron-bg:                                         #bdc3c7;
+$navbar-default-link-color: #000000;
+
+@import 'bootstrap';
+
+.center {
+  text-align: center;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.container {
+  margin-top: 0px;
+  box-shadow: 0 0 30px black;
+}
+
+#arrow-list li {
+  list-style-image:url('https://s3-us-west-2.amazonaws.com/jskeegraphics/style5.png');
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+
+.navcolor{
+/* IE10 Consumer Preview */ 
+background-image: -ms-radial-gradient(left top, ellipse farthest-corner, #FDE156 0%, #D8B641 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-radial-gradient(left top, ellipse farthest-corner, #FDE156 0%, #D8B641 100%);
+
+/* Opera */ 
+background-image: -o-radial-gradient(left top, ellipse farthest-corner, #FDE156 0%, #D8B641 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(radial, left top, 0, left top, 917, color-stop(0, #FDE156), color-stop(1, #D8B641));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-radial-gradient(left top, ellipse farthest-corner, #FDE156 0%, #D8B641 100%);
+
+/* W3C Markup, IE10 Release Preview */ 
+background-image: radial-gradient(ellipse farthest-corner at left top, #FDE156 0%, #D8B641 100%);
+
+box-shadow: 
+    0 1px 2px #fff,
+    0 -1px 1px #fff, 
+    inset 0 -1px 1px rgba(192,192,192,0.5),  
+    inset 0 1px 1px rgba(255,255,255,0.8);
+}
+
+.navfontsize{
+  font-size:16px;  
+}
+
+.fillnavwidth{
+  margin-right:-15px;
+  margin-left:-15px;
+}
+
+.panelbg {
+
+/* Note: This gradient may render differently in browsers that don't support the unprefixed gradient syntax */
+
+/* IE10 Consumer Preview */ 
+background-image: -ms-linear-gradient(top left, #BDC3C7 0%, #95A5A6 100%);
+
+/* Mozilla Firefox */ 
+background-image: -moz-linear-gradient(top left, #BDC3C7 0%, #95A5A6 100%);
+
+/* Opera */ 
+background-image: -o-linear-gradient(top left, #BDC3C7 0%, #95A5A6 100%);
+
+/* Webkit (Safari/Chrome 10) */ 
+background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #BDC3C7), color-stop(1, #95A5A6));
+
+/* Webkit (Chrome 11+) */ 
+background-image: -webkit-linear-gradient(top left, #BDC3C7 0%, #95A5A6 100%);
+
+/* W3C Markup, IE10 Release Preview */ 
+background-image: linear-gradient(to bottom right, #BDC3C7 0%, #95A5A6 100%);
+}
+
+
+.panelfont {
+  font-size:20px;
+
+}
+
+
+.floatleft{
+  float:left;
+}
+
+.profilecenter{
+display: block;
+    margin-left: auto;
+    margin-right: auto 
+}
+
+.jsig{
+  font-family: 'Marck Script', cursive;
+}

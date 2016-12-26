@@ -1,0 +1,520 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.loginBtn, .saveBtn {
+    background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+    border: 0 none;
+    border-radius: 13px 13px 13px 13px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font: 400 14px 'Open Sans',sans-serif;
+    overflow: visible;
+    padding: 2px 18px;
+}
+.loginBtn, .saveBtn{
+	&:hover{
+		color: black;
+	}
+}
+
+.index-page{
+		.register-box{
+			background: url("register_header.jpg") no-repeat scroll left top rgb(255, 255, 255);
+			border-radius: 10px 10px 10px 10px;
+			font-size: 12px;
+			height: 501px;
+			padding: 22px 22px 22px 556px;
+			.span4{
+
+				margin-left: 0px;
+				.control-group{
+					margin-bottom: 8px;
+					.control-label{
+						display: block;
+						float: left;
+						line-height: 2.9;
+						margin-right: 10px;
+						text-align: right;
+						padding-top: 0px;
+						width: 100px;
+					}
+					.controls{
+						margin-left: 114px;
+						input{
+							margin-top: 1px;
+							background-color: rgb(244, 244, 244);
+							border: 1px solid rgb(204, 204, 204);
+							border-radius: 6px 6px 6px 6px;
+							color: rgb(151, 151, 151);
+							font: 400 12px 'Open Sans',sans-serif;
+							padding: 5px;
+						}
+						.submitBtn{
+							background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+					    border: 0 none;
+					    border-radius: 15px 15px 15px 15px;
+					    color: rgb(255, 255, 255);
+					    cursor: pointer;
+					    font-size: 14px;
+					    font-weight: 400;
+					    overflow: visible;
+					    padding: 3px 18px;
+					    &:hover{
+					    	color: black;
+					    }
+						}
+						.disabled{
+							background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+					    border: 0 none;
+					    border-radius: 15px 15px 15px 15px;
+					    color: #eee;
+					    cursor: pointer;
+					    font-size: 14px;
+					    font-weight: 400;
+					    overflow: visible;
+					    padding: 3px 18px;
+					    &:hover{
+					    	color: #eee;
+					    }
+						}
+						.parsley-error-list{
+							margin-bottom: 0px;
+						}
+						.checkbox-control{
+							margin-left: 0px;
+							margin-right: 5px;							
+					    display: block;
+					    height: 19px;
+					    vertical-align: middle;
+					    width: 19px;
+						}
+						.accept-aggre{
+							background: url("sprite_images.png") no-repeat scroll -271px -209px transparent;
+						}
+						.agree-checked { 
+							background: transparent url(sprite_images.png) no-repeat -326px -209px; 
+						}
+					}					
+				}
+				h1{
+					color: rgb(13, 141, 146);
+					font-size: 29px;
+					font-weight: 400;
+					line-height: 1;
+					padding-bottom: 30px;
+				}
+				h2{
+					font-size: 18px;
+					font-weight: 600;
+					line-height: 1.2;
+				}
+
+			}
+		}
+}
+
+.signup-page{
+	.span4{
+
+		margin-left: 0px;
+		.control-group{
+			margin-bottom: 8px;
+			.control-label{
+				display: block;
+				float: left;
+				line-height: 2.9;
+				margin-right: 10px;
+				text-align: right;
+				padding-top: 0px;
+				width: 100px;
+			}
+			.controls{
+				margin-left: 114px;
+				input{
+					margin-top: 1px;
+					background-color: rgb(244, 244, 244);
+					border: 1px solid rgb(204, 204, 204);
+					border-radius: 6px 6px 6px 6px;
+					color: rgb(151, 151, 151);
+					font: 400 12px 'Open Sans',sans-serif;
+					padding: 5px;
+				}
+				.submitBtn{
+					background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+			    border: 0 none;
+			    border-radius: 15px 15px 15px 15px;
+			    color: rgb(255, 255, 255);
+			    cursor: pointer;
+			    font-size: 14px;
+			    font-weight: 400;
+			    overflow: visible;
+			    padding: 3px 18px;
+			    &:hover{
+			    	color: black;
+			    }
+				}
+				.disabled{
+					background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+			    border: 0 none;
+			    border-radius: 15px 15px 15px 15px;
+			    color: #eee;
+			    cursor: pointer;
+			    font-size: 14px;
+			    font-weight: 400;
+			    overflow: visible;
+			    padding: 3px 18px;
+			    &:hover{
+			    	color: #eee;
+			    }
+				}
+				.parsley-error-list{
+					margin-bottom: 0px;
+				}
+				.checkbox-control{
+					margin-left: 0px;
+					margin-right: 5px;							
+			    display: block;
+			    height: 19px;
+			    vertical-align: middle;
+			    width: 19px;
+				}
+				.accept-aggre{
+					background: url("sprite_images.png") no-repeat scroll -271px -209px transparent;
+				}
+				.agree-checked { 
+					background: transparent url(sprite_images.png) no-repeat -326px -209px; 
+				}
+			}					
+		}
+		h1{
+			color: rgb(13, 141, 146);
+			font-size: 29px;
+			font-weight: 400;
+			line-height: 1;
+			padding-bottom: 30px;
+		}
+		h2{
+			font-size: 18px;
+			font-weight: 600;
+			line-height: 1.2;
+		}
+
+	}
+}
+
+
+
+.footerWapper {
+  border-top: 1px solid rgb(171, 166, 158);
+  margin-top: 32px;
+  padding: 25px 0;
+  a {
+    padding: 0 5px;
+    &:hover{
+    	background-color: transparent;
+    	color: rgb(84,84,84);
+    }
+	}
+}
+
+.forgot-password-new{
+	#user_email{
+		background-color: rgb(244, 244, 244);
+    border: 1px solid rgb(204, 204, 204);
+    border-radius: 6px 6px 6px 6px;
+    color: rgb(151, 151, 151);
+    font: 400 12px 'Open Sans',sans-serif;
+    padding: 5px;
+    width: 150px;
+    &:focus {
+	    border: 2px solid rgb(93, 191, 171);
+	    padding: 4px;
+		}
+	}
+	.btn-send-password{
+	 	background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+    border: 0 none;
+    border-radius: 13px 13px 13px 13px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font: 400 14px 'Open Sans',sans-serif;
+    overflow: visible;
+    padding: 2px 18px;
+    height: 28px;
+    &:hover{
+    	color: #000    	
+    }
+	}
+}
+
+
+#facebox {
+  left: 0;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  z-index: 100;
+  .popup {
+    border: 0px solid transparent;
+    border-radius: 10px;
+    position: relative;
+    .content {
+	    background: none repeat scroll 0 0 transparent;
+	    border-radius: 4px 4px 4px 4px;
+	    display: table;
+	    width: 370px;
+	    padding: 0px;
+	    form{
+	    	margin-bottom: 0px;
+	    }
+	    .popupWindow {
+		    background-color: rgb(255, 255, 255);
+		    border-radius: 10px 10px 10px 10px;
+		    height: 100px;
+		    width: 500px;
+		    label {
+			    display: inline-block;
+			    font-weight: 600;
+			    margin: 0;
+			    padding-right: 8px;
+			    text-align: right;
+			    width: 110px;
+			    font-size:11px;
+				}
+		    .pageSubTitle {
+			    font-size: 18px;
+			    font-weight: 600;
+			    margin: 0;
+			    padding: 10px 0;
+			    color: rgb(13, 141, 146);
+		    	font-size: 23px;
+		    	font-weight: 600;
+		    	margin-bottom: 13px;
+		    	padding-left: 25px;
+				}
+		    .popupContaint {
+			    padding: 15px;	
+			    .gldp-default {
+				    // background: url("calendor-bg.gif") repeat-x scroll center bottom rgb(254, 254, 254);
+				    border: 1px solid rgb(187, 187, 187);
+				    box-shadow: 1px 1px 5px rgb(0, 0, 0);
+				    color: rgb(40, 40, 40);
+				    float: left;
+				    font-family: 'Open Sans',sans-serif !important;
+				    font-size: 12px !important;
+				    padding: 15px;
+				    z-index: 99 !important;
+				    .calTopArrow {
+					    background: url("up-Arrow.png") no-repeat scroll left top transparent;
+					    height: 19px;
+					    margin-left: 130px;
+					    margin-top: -24px;
+					    position: absolute;
+					    width: 39px;
+						}
+						table {
+					    border-bottom: 1px solid rgb(187, 187, 187);
+					    border-collapse: collapse;
+					    tr {
+						    line-height: 1;
+							}
+							.calNavigation{ 
+								.prev {
+							  border-radius: 5px 0 0 5px;
+								}
+								td.gldp-default-monyear {
+							    font-size: 18px !important;
+							    width: auto;
+								}
+								.next {
+							    border-radius: 0 5px 5px 0;
+								}
+							}
+							.gldp-default-dow {
+						    font-size: 0.8em !important;
+						    font-weight: bold;
+						    th {
+							    -moz-border-bottom-colors: none !important;
+							    -moz-border-left-colors: none !important;
+							    -moz-border-right-colors: none !important;
+							    -moz-border-top-colors: none !important;
+							    background-color: rgb(255, 255, 255) !important;
+							    border-color: rgb(218, 217, 217) -moz-use-text-color !important;
+							    border-image: none !important;
+							    border-left: 0 none !important;
+							    border-right: 0 none !important;
+							    border-style: solid none !important;
+							    border-width: 1px 0 !important;
+							    font-size: 11px;
+							    font-weight: normal;
+							    padding: 10px 0 5px;
+							    text-align: center;
+								}
+							}
+							.days{
+								td {
+							    background-color: rgb(255, 255, 255) !important;
+							    border: 0 none !important;
+							    margin: 0;
+							    padding: 7px 8px;
+							    text-align: center;
+								}
+								td.gldp-default-today {
+							    background-color: rgb(206, 235, 230) !important;
+							    border-radius: 5px 5px 5px 5px;
+							    font-weight: 400;
+								}
+								td.gldp-default-today-hover {
+							    background-color: rgb(93, 191, 171) !important;
+							    border-radius: 5px 5px 5px 5px;
+							    cursor: pointer;
+							    font-weight: 400;
+								}
+								td.gldp-default-day-hover {
+							    background-color: rgb(229, 229, 229) !important;
+							    border-radius: 5px 5px 5px 5px;
+							    cursor: pointer;
+							    font-weight: 400;
+								}
+								td.gldp-default-selected {
+							    background-color: rgb(229, 229, 229) !important;
+							    border-radius: 5px 5px 5px 5px;
+								}
+							}
+						}
+					}
+			    
+					.inputField {
+				    background-color: rgb(244, 244, 244);
+				    border: 1px solid rgb(204, 204, 204);
+				    border-radius: 6px 6px 6px 6px;
+				    color: rgb(151, 151, 151);
+				    font: 400 12px 'Open Sans',sans-serif;
+				    padding: 5px;
+				    width: 200px;
+					}
+					.submitBtn {
+				    background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+				    border: 0 none;
+				    border-radius: 15px 15px 15px 15px;
+				    color: rgb(255, 255, 255);
+				    cursor: pointer;
+				    font-size: 14px;
+				    font-weight: 400;
+				    overflow: visible;
+				    padding: 3px 18px;
+				    &:hover{
+				    	color: black;
+				    }
+					}
+					.cancelBtn {
+				    -moz-border-bottom-colors: none;
+				    -moz-border-left-colors: none;
+				    -moz-border-right-colors: none;
+				    -moz-border-top-colors: none;
+				    background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(223, 223, 223) 100%) repeat scroll 0 0 transparent;
+				    border-color: rgb(221, 220, 220) -moz-use-text-color rgb(165, 159, 149);
+				    border-image: none;
+				    border-left: 0 none;
+				    border-radius: 15px 15px 15px 15px;
+				    border-right: 0 none;
+				    border-style: solid none;
+				    border-width: 1px 0;
+				    box-shadow: 1px 0 1px rgb(149, 149, 149);
+				    cursor: pointer;
+				    font-size: 14px;
+				    font-weight: 400;
+				    margin-left: 5px;
+				    overflow: visible;
+				    padding: 3px 18px;
+				    &:hover{
+				    	color: rgb(93,192,172);
+				    	text-decoration: none;
+				    }
+					}
+			    .halfBox {
+					  width: 50%;
+					}
+					.FL{
+					  float: left !important;
+					}
+					.FR{
+						label{							
+							margin-bottom: 10px;
+						}
+					}
+					
+					a.jqTransformCheckbox{
+						&:hover{
+							background-color: transparent;
+						}
+					}
+			  }		    
+				.popupSmForm {
+			    border-bottom: 1px solid rgb(187, 187, 187);
+			    padding-bottom: 8px;
+			    
+					.dateBox {
+				    background: url("calender-icon.png") no-repeat scroll 95% 8px rgb(244, 244, 244);
+				    padding: 8px 5px 7px;
+				    width: 103px !important;
+					}					
+
+			    
+				}
+				.popupFormBox {
+			    border-bottom: 1px solid rgb(187, 187, 187);
+			    padding-bottom: 5px;
+			    padding-top: 5px;
+			    .checkBoxTitle {
+				    color: rgb(38, 38, 38);
+				    float: left;
+				    font-weight: 600;
+				    padding-right: 10px;
+				    text-align: right;
+				    width: 115px;
+				    font-size: 12px;
+				    margin-bottom: 10px;
+					}
+					.childRoleWrap {
+				    background-color: rgb(238, 238, 238);
+				    border-radius: 6px 6px 6px 6px;
+				    float: left;
+				    padding: 10px;
+				    .childRole {
+					    height: 55px;
+					    overflow: auto;
+					    width: 200px;
+					    .jqTransformCheckboxWrapper {
+						    margin: 4px 0;
+						    display: block;
+    						float: left;
+							}
+							label {
+						    float: left;
+						    line-height: 2.2 !important;
+						    padding-left: 5px;
+						    text-align: left;
+						    width: auto;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+.user-signup-page{
+	.fogot-password-link{
+		color: white;
+		&:hover{
+			color: blue;
+			background-color: transparent;
+			text-decoration: none;
+		}
+	}
+}

@@ -1,0 +1,78 @@
+<% if current_user.blank? %>
+<% check_object_values  %>
+<%= form_for(@user) do |f| %>
+  <div class="registerBox">
+    <h1>Register</h1>
+    <h2>Hello Parents!</h2>
+    <p>Gatividhi helps you track &amp; manage your Child's growth.<br>
+      Help us with your details &amp; jump right in...</p>
+    <div class="RegiFormBox">
+      <div class="formRow">
+        <label>First Name</label>
+        <input type="text" id="first_name" name="user[first_name]" class="inputField" onClick="if(this.value=='<%=@user.first_name%>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.first_name%>'; this.style.color='#979797'}" value="<%=@user.first_name%>" >
+        <p class="errorMsgLeft"><%= @user.errors[:first_name][0] if @user.errors.has_key? :first_name %></p>
+		<div class="CL"></div>
+      </div>
+      <div class="formRow">
+        <label>Last Name</label>
+        <input type="text" id="last_name" name="user[last_name]" class="inputField" onClick="if(this.value=='<%=@user.last_name%>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.last_name%>'; this.style.color='#979797'}" value="<%=@user.last_name%>">
+        <p class="errorMsgLeft"><%= @user.errors[:last_name][0] if @user.errors.has_key? :last_name %></p>     
+   		<div class="CL"></div>
+      </div>
+      <div class="formRow">
+        <label>Email</label>
+        <% if !session[:verify_email_register].blank? %>
+        <input type="email" id="email" disabled=disabled  name="user[email]" class="inputField" onClick="if(this.value=='<%=@user.email%>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.email%>'; this.style.color='#979797'}" value="<%=@user.email%>">
+        <input type="hidden" id="email" name="user[email]" class="inputField" onClick="if(this.value=='<%=@user.email%>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.email%>'; this.style.color='#979797'}" value="<%=@user.email%>">
+        <% else %>
+          <input type="email" id="email"  name="user[email]" class="inputField" onClick="if(this.value=='<%=@user.email%>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.email%>'; this.style.color='#979797'}" value="<%=@user.email%>">
+        <% end %>
+        <p class="errorMsgLeft"><%= @user.errors[:email][0] if @user.errors.has_key? :email %></p>
+        <div class="CL"></div>
+      </div>
+      <div class="formRow">
+        <label>Confirm email</label>
+        <% if !session[:verify_email_register].blank? %>
+        <input type="email" id="confirm_email" disabled=disabled  name="user[confirm_email]" class="inputField" onClick="if(this.value=='<%=@user.confirm_email%>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.confirm_email%>'; this.style.color='#979797'}" value="<%=@user.confirm_email%>">
+        <input type="hidden" id="confirm_email" name="user[confirm_email]" class="inputField" onClick="if(this.value=='<%=@user.confirm_email%>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.confirm_email%>'; this.style.color='#979797'}" value="<%=@user.confirm_email%>">
+        <% else %>
+        <input type="email" id="confirm_email" name="user[confirm_email]" class="inputField" onClick="if(this.value=='<%=@user.confirm_email%>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.confirm_email%>'; this.style.color='#979797'}" value="<%=@user.confirm_email%>">
+        <% end %>
+        <p class="errorMsgLeft"><%= @user.errors[:confirm_email][0] if @user.errors.has_key? :confirm_email %></p>
+        <div class="CL"></div>
+      </div>
+      <div class="formRow">
+        <label>Password</label>
+        <input type="password" id="password" name="user[password]" value="<%=@user.password%>" class="inputField" onClick="if(this.value=='<%=@user.password%>'){ this.value=''; this.type='password'; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%=@user.password%>'; this.type='password'; this.style.color='#979797'}">
+        <p class="errorMsgLeft"><%= @user.errors[:password][0] if @user.errors.has_key? :password %></p>       
+ 		<div class="CL"></div>
+      </div>
+      <div class="formRow jqBigform smallCheckbox" style="padding-top:0px;">
+        <input id="term_and_condition" name="user[terms_of_service]" type="checkbox" class="inputField" onBlur="this.style.color='#979797'">   
+        <label>I agree to the <a href="#." class="greenTxt">GATIVIDHI terms</a></label>
+        <div class="CL"></div>
+      </div>
+      <div class="formRow actionPanel">
+        <input type="submit" class="submitBtn1" id="submit_button" value="Register" disabled=disabled >
+      </div>
+    </div>
+  </div>  
+
+<% end %>
+<% end %>
+<script>
+  $("#term_and_condition").click(function() {
+    this.style.color='#000';;
+    var submit_button_attr = $('#submit_button').prop("disabled");
+    if(submit_button_attr){
+      $('#submit_button').removeClass("submitBtn1").addClass("submitBtn");
+      $('#submit_button').removeAttr('disabled');  
+    }else{
+      $('#submit_button').removeClass("submitBtn").addClass("submitBtn1");
+      $('#submit_button').attr('disabled', 'disabled');  
+    }  
+  });
+</script>
+
+
+

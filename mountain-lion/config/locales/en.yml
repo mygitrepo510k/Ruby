@@ -1,0 +1,147 @@
+en:
+  date:
+    formats:
+      default: ! '%m/%d/%Y'
+      long: ! '%B %d, %Y'
+      short: ! '%b %d'
+  active_record:
+    errors:
+      user:
+        too_young: "You must be older than 18 to sign up!"
+    attributes:
+      user:
+        email: "Email"
+        username: "Username"
+        firstname: "First Name"
+        lastname: "Last Name"
+        country: "Country"
+        city: "City"
+        zip_code: "Zip Code"
+        date_of_birth: "Date of Birth"
+        password: "Password"
+        password_confirmation: "Confirm Password"
+        profile_title: "Profile Title"
+        profile_description: "Profile Description"
+        im_looking_for: "I'm Looking For"
+        gender: 'I am a'
+      user_profile:
+        title: "Profile Title"
+        about_me: "Profile Description"
+        looking_for: "I'm Looking For"
+  models:
+    gender:
+      male: 'Male'
+      female: 'Female'
+  emails:
+    activation:
+      subject: "HyeDating.com Account Activation"
+      title: "Thank you for joining HyeDating.com"
+      body: "You have registered an account with HyeDating.com. Please click on the activation link below to activate your account."
+      link: "Activate my account"
+    activation_success:
+      subject: "Welcome to HyeDating.com"
+      body: "You are now an active member of HyeDating.com. We encourage our members to get involved in our lounge and complete your profile by answering all questions and submitting pictures. Remember a picture helps your profile get noticed by other active members. We have a 5 star rating system that helps other members see what kind of profile you have and how serious you are about dating. You can read about the 5 star rating system within the members lounge. We also ask our members to be courteous and respect all as you would want to be respected and treated. We hope that you will find what you are looking for at HyeDating.com."
+      link: "Go to my profile page"
+    password_reset:
+      subject: "HyeDating.com password reset request"
+      title: "HyeDating.com password reset request"
+      body: "You have requested a password reset link for your account at HyeDating.com.\n
+             if you didn't do this, please ignore this e-mail. If you want to reset your password click the link below"
+      link: "Reset my password"
+  controllers:
+    sessions:
+      new:
+        username_or_email: "Username or email"
+        password: "Password"
+        remember_me: "Keep me logged in"
+        submit: "Login"
+        forgotten_password: "Forgot password?"
+      create:
+        success: "Logged in!"
+        failure: "Invalid email/username and password confirmation, please try again."
+      destroy:
+        success: 'Logged out!'
+    users:
+      create:
+        success: "User created, you will shortly receive an e-mail with the activation instructions"
+        failure: "User not created, please review the errors and try again"
+      activate:
+        success: "Almost done.  Please fill out the required profile questions."
+        failure: "Activation token not found or inactive"
+      password_reset:
+        success: "Password reset successful, please enter your new password"
+        failure: "Reset token not found or inactive"
+      update:
+        success: "You have succesfully updated your profile"
+      show:
+        user_not_found: "User you are looking for doesn't exist"
+    user_photos:
+      destroy:
+        success: "Photo succesfully deleted"
+        error: "There was an error deleting your photo, please try again!"
+      show:
+        error: "The photo you are looking for is missing"
+  views:
+    homepage:
+      text_message: "Looking for love in all the wrong places? Look no further, HyeDating.com is here to help you find that special Armenian man or Armenian woman to fulfill your dreams of finding your match. With today’s busy lifestyle, meeting a single man or woman is very challenging.  Hye Dating is specifically for Armenians looking for Armenian girls and guys. Do you live in an area where it’s hard to find Armenian women or men? We’re here to guide you in the right direction of locating your true love.  HyeDating.com the premier Armenian dating site and is your greatest way of finding  the missing link in your life.  Whether you are a 20 something, or a mature single Armenian,  our dating site is here to assist you in finding your love. Upon becoming a free member of Hye Dating, you have the ability to chat with Armenian singles all over the world in cities like Los Angeles, Fresno, San Francisco, New York, Paris, and Armenia."
+      join_now: "Join Now"
+    shared:
+      user_menu:
+        messages: "Messages"
+        who_likes_you: "Who Likes You"
+        who_you_like: "Who You Like"
+        who_looked_at_you: "Who Looked At You"
+        the_lounge: "The Lounge"
+        the_matchmaker: "The Matchmaker"
+        your_matches: "Your Matches"
+    users:
+      lounge:
+        links:
+          wiew_profile: "View Profile"
+          send_flirt: "Send a Flirt"
+          send_message: "Send Message"
+      profile:
+        edit: "Edit profile"
+        sections: "Profile Sections"
+    messages:
+      subject: "Subject"
+      body: "Message"
+      created_at: "Date"
+      create: "Send Message"
+      sender: "Sender"
+      recipient: "Recipient"
+      reply: "Reply with Message"
+      destroy: "Delete"
+      undelete: "Undelete"
+    flirts:
+      create: "Send Flirt"
+      choose: "Choose a flirt message"
+      reply: "Reply with Flirt"
+  links:
+    my_account: "My Account"
+    upgrade: "Upgrade"
+    help: "Help"
+    logout: "Logout"
+    edit: "Edit"
+    save: "Save"
+    next: "Next >>"
+    skip: "Skip"
+    edit_profile: "Edit profile"
+    update_profile: "Update profile"
+    like: "Like this profile"
+    unlike: "No longer interested"
+    my_photos: 'My Photos'
+    my_profile: 'My Profile'
+    messages:
+      inbox: "Inbox"
+      sent: "Sent"
+      deleted: "Deleted"
+  activity_types:
+    photo_upload: "Has uploaded new photos"
+    profile_update: "Has updated the profile"
+    sign_up: "Has signed up"
+    liked_profile: "Has liked your profile"
+    likes_profile: "You have liked this profile"
+    looked_at_you: "Has checked out your profile"
+    profile_photo: "Has changed the profile photo"
+

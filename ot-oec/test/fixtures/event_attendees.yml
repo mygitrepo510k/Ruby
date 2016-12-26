@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  rsvped: 2014-04-15 17:20:14
+  guest_count: 1
+
+two:
+  status: MyString
+  rsvped: 2014-04-15 17:20:14
+  guest_count: 1

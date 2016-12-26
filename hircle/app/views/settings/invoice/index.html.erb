@@ -1,0 +1,189 @@
+
+      <!-- Begin page content -->
+      <div class="container">
+
+       <!-- <div class="page-header">
+          <h1>Sticky footer with fixed navbar</h1>
+        </div>
+        <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
+        <p>Back to <a href="./sticky-footer.html">the sticky footer</a> minus the navbar.</p>
+      </div> -->
+	      <div class="container-fluid">
+				<div class="row-fluid">
+				<div class="span2">
+				<!--Sidebar content-->
+					<%= render :partial => "settings/left_nav"%>
+
+				<!--Body content-->
+						<div class = "container-header"><p>Credit Card Info</p></div>
+					    <div class="form-horizontal">
+							<div class="content-group">
+								<div class="controls control-title">
+									<p class="text-info">Payment Information</p>
+								</div>
+							</div>
+							<div class="content-group">
+								<div class="controls control-info">
+									<strong>Enter Payment Account</strong><div class="float-right"><label class="label">$</label><input type="text"></div>
+								</div>
+							</div>
+							<div class="content-group">
+								<div class="controls control-info">
+									<div class="btn btn-large btn-primary" href="">Total Amount: $<span>0.00</span></div>
+								</div>
+							</div>
+							<div class="content-group">
+								<div class="controls control-info">
+									<strong>Invoice Number</strong><input class="input-info" type="text">
+								</div>
+							</div>
+							<div class="content-group">
+								<div class="controls control-info">
+									<strong>Invoice Number</strong><textarea class="input-info" rows="2">To start the conversation with him and get a first impression.</textarea>
+								</div>
+							</div>
+							<div class="pyment-method"><!-- payment Method -->
+								<div class="content-group">
+									<div class="controls control-title">
+										<p class="text-info">Payment Method</p>
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<a href="#"><div class="brand visa-img"></div></a>
+										<a href="#"><div class="brand master-img"></div></a>
+										<a href="#"><div class="brand"></div></a>
+										<a href="#"><div class="brand"></div></a>
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Pay with<i class="icon-asterisk"></i></strong>
+										<div class="input-info">
+											<ul class="display-ul">
+												<li class="display-li"><input name="optionsRadios" type="radio" value="option1">&nbsp &nbsp Credit Card</input></li>
+												<li class="display-li"><input name="optionsRadios" type="radio" value="option2">&nbsp &nbsp Online Check</input></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Expires<i class="icon-asterisk"></i></strong>
+										<div class="input-info">
+											<ul class="display-ul">
+												<li class="display-li">
+													<select>
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+														<option>4</option>
+														<option>5</option>
+													</select>
+												</li>
+												<li class="display-li"><i class="full-point"></i>
+												</li>
+												<li class="display-li">
+													<select>
+														<option>1</option>
+														<option>2</option>
+														<option>3</option>
+														<option>4</option>
+														<option>5</option>
+													</select>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Security Code<i class="icon-asterisk"></i></strong><input class="input-info" type="text">
+									</div>
+								</div>
+							</div><!--   Payment Method End -->
+							<div class="billing-content"><!-- Billing Content -->
+								<div class="content-group">
+									<div class="controls control-title">
+										<p class="text-info">Billing Address</p>
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Location<i class="icon-asterisk"></i></strong>
+										<div class="input-info">
+											<select>
+												<option>United States of America</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Company</strong><input class="input-info" type="text">
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Name<i class="icon-asterisk"></i></strong><input class="input-info" type="text">
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Street Address<i class="icon-asterisk"></i></strong><input class="input-info" type="text">
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>City/Town<i class="icon-asterisk"></i></strong><input class="input-info" type="text">
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>State/Province<i class="icon-asterisk"></i></strong>
+										<div class="input-info">
+											<select>
+												<option>Select one...</option>
+												<option>2</option>
+												<option>3</option>
+												<option>4</option>
+												<option>5</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>ZIP/Postal Code<i class="icon-asterisk"></i></strong><input class="input-info" type="text">
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Phone<i class="icon-asterisk"></i></strong><input class="input-info" type="text">
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Email<i class="icon-asterisk"></i></strong><input class="input-info" type="text">
+									</div>
+								</div>
+								<div class="content-group">
+									<div class="controls control-info">
+										<strong>Required<i class="icon-asterisk"></i></strong><button class="btn" type="submit"><i class="key-icon">&nbsp</i>Process Transaction Now<i class="arrow-left2">&nbsp</i></button>
+									</div>
+								</div>
+							</div><!-- Billing Content End -->
+						</div><!-- horzntal -->
+
+				</div>
+				</div>
+		  </div>
+
+      <div id="push"></div>
+    </div>
+
+  

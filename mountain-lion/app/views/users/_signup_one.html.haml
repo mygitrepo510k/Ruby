@@ -1,0 +1,59 @@
+= form_for @user, url: signup_one_users_path, remote: true, method: :post, id: 'signup-form' do |f|
+  %table#signup-one{border: "0", cellpadding: "0", cellspacing: "4", width: "356"}
+    - if @ref_user.present?
+      = render 'users/signup_bait', user: @ref_user
+    %tr
+      %td{align: "right", width: 86, class: :lbl}
+        = f.label :gender, I18n.t('active_record.attributes.user.gender')
+      %td{align: "left"}
+        = f.select :gender, gender_select_options, { prompt: 'Select Gender' }, style: "width: 205px; height: 30px;"
+    %tr
+      %td{align: "right", class: :lbl}
+        = f.label :date_of_birth, I18n.t('active_record.attributes.user.date_of_birth')
+      %td{align: "left"}
+        = f.text_field :date_of_birth, class: "datepicker", size: 30, placeholder: I18n.t('active_record.attributes.user.date_of_birth'), readonly: true
+    %tr
+      %td{align: "right", height: 20, class: :lbl}
+        = f.label :username, t('active_record.attributes.user.username')
+      %td{align: "left"}
+        = f.text_field :username, size: 30, placeholder: 'Username'
+    %tr
+      %td{align: "right", width: 86, class: :lbl}
+        = f.label :email, 'Email'
+      %td{align: "left"}
+        = f.email_field :email, autocomplete: :off, placeholder: 'Valid Email Required'
+    %tr
+      %td{align: "right", width: 86, class: :lbl}
+        = f.label :email_confirmation, 'Confirm Email'
+      %td{align: "left"}
+        = f.email_field :email_confirmation, autocomplete: :off, placeholder: 'Confirm Email'
+    %tr
+      %td#legal3{colspan: "2", height: 8}
+    %tr
+      %td#legal{colspan: "2"}
+        By submitting this form you certify you are 18 years or older, you agree to our
+        %a#terms_link{href: "#terms"} terms &amp; conditions
+        and
+        = succeed "." do
+          %a#privacy_link{href: "#privacy"} privacy policy
+    %tr
+      %td#legal4{colspan: 2, align: "left", height: 6}
+    %tr
+      %td#legal2{align: "center", colspan: 2}
+        = f.submit I18n.t('views.homepage.join_now'), class: "btn", remote: true, disable_with: "Submitting..."
+
+%div{style: 'display: none'}
+  #terms
+    = render 'welcome/terms_and_conditions'
+    = link_to 'Close', "#", onclick: "$.fancybox.close();", class: 'btn pull-right'
+
+%div{style: 'display: none'}
+  #privacy
+    = render 'welcome/privacy'
+    = link_to 'Close', "#", onclick: "$.fancybox.close();", class: 'btn pull-right'
+
+:javascript
+  $('a#terms_link, a#privacy_link').fancybox({
+    showLoading: true,
+    scrollable: true
+   });

@@ -1,0 +1,233 @@
+.container-fluid
+	.row.post-main-page
+		.row
+			.row
+				-if @applicant.present?
+					.span10{:style=>"margin-left: 30px;"}
+						%label{:style=>"color: red;font-size: 16px;font-weight: 600;margin-top: 30px;padding-bottom: 5px;padding-top: 5px;"} You already applied this job!
+			.span12.post-jobs-show-box
+				.row
+					.span10
+						%h1= @post_job.job_title
+				.row
+					- user = User.find_by_id(@post_job.user_id)
+					- if user.present?
+						%p.company-name 
+							#{user.company_name.nil? ? user.user_name : user.company_name } -	#{@post_job.job_city} ,	#{@post_job.job_state}
+				.row
+					.span3
+						%strong 
+							Job Type: 
+					.span8
+						%span=@post_job.get_jobtype
+				.row
+					.span3
+						%strong Amount:
+					.span8
+						%label= @post_job.refe_amount
+				.row
+					.span3
+						%strong 
+							City: 
+					.span8
+						%label= @post_job.job_city
+				.row
+					.span3
+						%strong 
+							State: 
+					.span8
+						%label= @post_job.job_state
+				.row
+					.span3
+						%strong 
+							Duration: 
+					.span8
+						%label= @post_job.job_duration
+				.row
+					.span3
+						%strong 
+							Work Authorization: 
+					.span8					
+						-@post_job.work_authorizations.each do |autho|
+							.row{:style=>"padding-left:0px;"}
+								.span1
+									=image_tag("view_tickl.png")
+								.span6
+									%label=autho.desc
+				.row
+					.span3
+						%strong 
+							Description: 
+					.span8
+						%label= markdown @post_job.job_description
+				.row
+					.span3
+						%strong 
+							Skills: 
+					.span8
+						-@post_job.skill_lists.each do |skill_name|
+							%a.h1bwiki-skill{:href=>"#"}=skill_name.name
+				.row.last-row										
+					- if current_user.present? and current_user.is_seeker?
+						.span3.offset1
+							-if @applicant.present?
+								%a.btn.apply-button.disabled{:href => "javascript://", :role => "button", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
+							- else
+								%a.btn.apply-button{"data-toggle" => "modal", :href => "#apply_model", :role => "button", :"data-title" => "#{@post_job.job_title}", :type=>"#{user.email}", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
+					- else
+						.span3.offset1
+							%a.btn.apply-button{:href => "/users/sign_in", :role => "button", :style=>"width: 202px; padding-top: 6px; padding-bottom: 6px;" } Apply
+					.span3
+						%a.btn.m-btn.blue{"data-toggle"=>"modal", :href=>"#forward_modal", :role=>"button", style: 'width: 200px;'} Forward
+					.span3
+						%a.btn{:href=>"#", :onclick=>"window.close(); window.history.back();", :style=>"padding-bottom: 6px;		padding-top: 6px;width: 200px;"} Close
+				%br/
+				%br/
+				%br/
+				%br/
+
+
+#apply_model.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+		%h3#myModalLabel Apply Job
+	.modal-body	
+		= simple_form_for @applicants, url: "/applicants/create", :html => { "data-validate" => "parsley", :id => "apply_form", :multipart=>true } do |f|
+			= f.hidden_field :post_job_id, :value => @post_job.id
+			= f.hidden_field :user_id, :value => current_user.id if current_user.present?
+			.first-row
+				%h4#jobtitle= @post_job.job_title
+			.second-row
+				= f.text_area :bid_sentence, :rows=>"8", :cols => "10", :placeholder => "Message", "data-required"=>"true", :style=>"width:500px;"
+			.third-row{:style=>"padding: 20px 0px; height: 40px;"}
+				.span4
+					%label Upload Resume
+				.span5
+					= f.fields_for :pictures do |picture|
+						=picture.file_field :image
+			.modal-footer	 
+				= f.button :submit, "Send", class: 'm-btn blue'
+				%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close
+
+
+
+#forward_modal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1", style: ''}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+		%h3#myModalLabel Forward Job
+	.modal-body	
+		= simple_form_for :forward, url: "/static_pages/forward", :html => { "data-validate" => "parsley", :id => "forward_form", :multipart=>true, :class=>'form-horizontal' } do |f|
+			= f.hidden_field :post_job_id, :value => @post_job.id
+			%label#sucess_forwarded{style: ' color: blue;font-size: 16px;font-weight: 600;text-align: center;'}
+			#forward-content.first-row
+				.control-group
+					%label.control-label{for: "from_email"} From
+					.controls
+						= email_field_tag :from_email, nil, "data-required"=>"true"
+				.control-group
+					%label.control-label{for: "to_email"} To
+					.controls
+						= email_field_tag :to_email, nil, "data-required"=>"true"
+				.control-group
+					%label.control-label{for: "subject"} Subject
+					.controls
+						= text_field_tag :subject, @post_job.job_title, :readonly => true
+				.control-group
+					%label.control-label{for: "subject"} Message
+					.controls
+						#msg_content.content
+							.row
+								= "Please do find this opportunity at www.h1bwiki.com, which could be helpful in your job search."
+							.row
+								.span4 Job Title
+								.span8= ": "+@post_job.job_title
+							.row
+								.span4 Job Posted On
+								.span8= ": "+@post_job.created_at.strftime("%b %d %y")
+							.row
+								.span4 Required Skills
+								.span8= ": "+@post_job.get_skill.split(' ').join(',')
+							.row
+								=	" Please use the below link, to view details with Apply option. View Complete Job details and Apply click here..."
+							.row
+								= "Posted by American IT Resource Group Inc. Schaumburg,IL"
+							.row
+								= "THanks"
+				.control-group
+					%label.control-label{for: "subject"} Name
+					.controls
+						= text_field_tag :name, nil, "data-required"=>"true"
+				.control-group
+					%label.control-label{for: "captcha_code"} *Code 
+					.controls
+						= text_field_tag :captcha_code, nil, "data-required"=>"true"
+				.control-group
+					%label.control-label{for: "captcha"}
+					.controls
+						#captcha_label{style: 'color: blue;font-size: 16px;font-weight: 600;width: 437px;'}
+							-(0..6).each do |i|
+								= "#{@captcha[i]} "
+				.control-group
+					%label.control-label{for: "captcha"}
+					.controls
+						%label#error_box{style: 'color: pink;text-decoration: blink;width: 437px;'}
+			.modal-footer	 
+				= f.button :submit, "Forward Job", class: 'm-btn blue', style: 'margin-top: 0px;', id: 'forward_button'
+				%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close
+
+
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');
+	$('a.apply-button').click(function(){
+		$('#jobtitle').text($(this).data("title"))
+	});
+	var captcha = "#{@captcha}"
+	$('#forward_button').click(function(){
+		if($('#captcha_code').val() == captcha){
+			$('#error_box').text('');
+			$.post('/static_pages/forward', {from_email:$("#from_email").val(), 
+			to_email:$("#to_email").val(),
+			name: $("#name").val(),
+			post_job_id: $("#forward_post_job_id").val()
+			}).done(function(){
+				$("#sucess_forwarded").text("Your job has been successfully forwarded");
+				$("#sucess_forwarded").css('height','250px');
+				$("#forward_button").hide();
+				$("#forward-content").hide();
+			});
+			return true;
+		}else{
+			$('#error_box').text('Please check captchacode');
+			return false;
+		}
+		
+	})
+
+	$("#applicant_pictures_attributes_0_image").change(function(){
+		console.log("ok?");
+		var file = $(this).val();
+		var i = file.search(".doc");
+		
+		console.log(i);
+
+		if( file.search(".doc") != -1 || file.search(".docx") != -1 || file.search(".pdf") != -1 ){
+			return true;
+		}else{
+			alert("Please select *.doc, *.docx, *.pdf.");
+		}
+	});
+
+	$("#apply_form").submit(function(){
+		
+		var file = $("#applicant_pictures_attributes_0_image").val();
+
+		if( file.search(".doc") != -1 || file.search(".docx") != -1 || file.search(".pdf") != -1 ){
+			return true;
+		}else{
+			alert("Please select *.doc, *.docx, *.pdf.");
+			return false;
+		}
+		return false;
+	});
+/							.span3
+/							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_job.job_title}", :type=>"#{user.email}" } Contact

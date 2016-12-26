@@ -1,0 +1,10 @@
+.login
+  %p
+    = link_to image_tag('main_03.png', title: "Hye Dating", border: 0, height: 70, width: 372), root_path
+    %p
+      %strong{ style: "font: 34px strong"} Reset Password
+  %div{align: 'center'}
+    = render "form"
+
+= content_for :meta_tags do
+  %meta{name: "viewport", content: "width=400"}

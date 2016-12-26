@@ -1,0 +1,146 @@
+// Place all the styles related to the dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ticker {
+	.activity {
+		padding: 0 .5em;
+		@include hsep(.5em,$lgrey);
+
+		a {
+			&:first-child {
+				padding-right: .35em;
+			}
+
+			&:last-child {
+				padding-left: .35em;
+			}
+		}
+	}
+}
+
+.newsfeed {
+	.search_bar {
+		#search_terms {
+			border: 1px solid $lgrey;
+			padding: .5em;
+			background-color: $lgrey;
+			@include transition-duration(.25s);
+
+			&::-moz-placeholder {
+				color: $offwh;
+			}
+			
+			&:-ms-input-placeholder {
+				color: $offwh;
+			}
+
+			&::-webkit-input-placeholder {
+				color: $offwh;
+			}
+
+			&:focus {
+				&::-moz-placeholder {
+					color: $lgrey;
+				}
+
+				&:-ms-input-placeholder {
+					color: $lgrey;
+				}
+
+				&::-webkit-input-placeholder {
+					color: $lgrey;
+				}
+
+				outline: none;
+				border: 1px solid $blue;
+				color: $dgrey;
+				background-color: $wh;
+			}
+		}
+
+		button {
+			position: absolute;
+			right: 1em;
+			padding: .65em .55em .25em .65em;
+			color: $lgrey;
+			background: none;
+
+			.glyphicon {
+				font-size: 1em;
+				margin: 0;
+			}
+		}
+	}
+
+	.status_update {
+		form {
+			textarea {
+				&:focus {
+					border-color: $red;					
+				}
+			}
+		}
+	}
+
+	.post_feed {
+		.post {
+      .wistia_embed, .post_image {
+        margin: 20px 0 10px 0;
+      }
+
+			.news_item_body {
+				&:hover {
+					.post_tools {
+						visibility: visible;
+					}
+				}
+
+				.post_tools {
+					float: right;
+					visibility: hidden;
+
+					span {
+						color: $lgrey;
+						font-size: .8em;
+
+						&:hover {
+							color: $grey;
+						}
+					}
+				}				
+			}
+		}
+	}
+}
+
+/* image avatar reusable */
+.img_ctn {
+	float: left;
+	max-width: 70px;
+	max-height: 70px;
+	margin: 0 .5em 0 0;
+	color: $lgrey;
+	vertical-align: super;
+	font-size: 2.5em;
+	overflow: hidden;
+
+	.comment & {
+		max-width: 50px;
+		max-height: 50px;		
+	}
+}
+
+
+/* timeago reusable */
+.timeago {
+    display: inline-block;
+    color: $grey;
+    font-weight: 700;
+    font-size: emCalc(14px);
+    margin-left: .5em;                     
+
+    &:before {
+        content: ' - ';
+    }    
+}

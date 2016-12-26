@@ -1,0 +1,25 @@
+.row
+  .span9
+    %h2
+      = t("doctor_flow.invite_patient.heading")
+    %p
+      = t("doctor_flow.invite_patient.text1")
+%hr
+= form_tag search_patients_doctors_path,:data => {:eco_template => "patients"} ,:class => "form-inline",:id => "doctor_search_patients_form", :method => :get do
+  .row
+    .span4
+      %p
+        = t("general.fullname")
+      = text_field_tag :search, params[:search], {:class => 'input-xlarge',:id => 'find_patient_name_search_field'}
+    .span4            
+      %p
+        = t("general.city")      
+      %input.input-xlarge
+    .span3
+      = submit_tag t("doctor_flow.invite_patient.new_search"), {:name => nil, :class => "btn btn-inverse", :id => "doctor_search_patients_btn", :class => "btn btn-inverse claim-profile-search"}
+    .clearfix
+    %hr
+  .row
+    .find_patients_response_count 
+    .find_patients_query_response
+      

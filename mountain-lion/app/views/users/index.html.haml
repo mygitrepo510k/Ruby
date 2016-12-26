@@ -1,0 +1,17 @@
+- cache @internal_notification do
+  = render partial: "application/internal_notification", locals: { notification: @internal_notification } if @internal_notification
+- @lounge.each do |feed_item|
+  = render partial: "users/user", locals: { user: feed_item.user.decorate, message: get_user_activity(feed_item.activity_type, feed_item.updated_at) } if feed_item.user.present?
+  %hr
+= paginate @lounge
+
+:coffee
+  $ ->
+    $paginationlinks = $(".pagination a")
+    $paginationlinks.on "click", (e) ->
+      $link = $(this)
+      $nextnum = parseInt($link.attr("href").replace( /^\D+/g, ''))
+      if #{!current_user.premium?} && (parseInt($link.text())>3||$nextnum>3||$link.text()=="Last \u00bb")
+        e.preventDefault()
+        $('#modal-container2').html("#{j(render('layouts/shared/upgrade_premium'))}")
+        $('#modal-container2').modal()

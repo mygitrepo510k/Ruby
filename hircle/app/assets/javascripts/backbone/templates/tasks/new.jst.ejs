@@ -1,0 +1,59 @@
+<div class="content2-m">
+  <div id="demo" class="collapse in">
+    <form id="new-task" name="task" method="POST" action="/tasks">
+      <input type="text" class="space1" name="task[title]" placeholder="+Type here to create a task" required>
+      <textarea placeholder="+Description" style="resize:none;" name="task[description]" class="space1" required>
+      </textarea>
+      <div>
+        <input class="space2" id="addAssigneeTypeAhead" placeholder="+Add more people from your network" type="text" data-provide="typeahead" required>
+        <div class="btn-group">
+          <input type="button" id="assign_btn" value="Assign" class="btn btn-green" data-toggle="dropdown">
+        </div>
+      </div>
+      <div class="space2" id="asignee_list">
+      </div>
+      <div>
+        priority: 
+        <select name="task[priority]" id="priority" required>
+          
+           <option value="heigh">
+             High
+           </option>
+           <option value="medium">
+             Medium
+           </option>
+           <option value="low">
+             Low
+           </option>
+        </select>
+      </div>
+      <div>
+        <input type="file" id="task_document" name="task[document]" value="Browse" required>
+      </div>      
+      <div class="space2">
+        <ul class="date-option ">
+          <li>
+            Due Date:
+          </li>
+          <div class="btn-group bootstrap-select">
+            <input style="width: 65px;" placeholer="month" value="month" type="text" id="month" required>
+            <input style="width: 65px;" placeholer="day" value="day" type="text" id="day" required>
+            <input style="width: 65px;" placeholer="hour" value="hour" type="text" id="hour" required>
+          </div>
+          <input type="hidden" name="task[due_date]">
+        </ul>
+      </div>
+      
+      <div class="span11">
+        <input type="button" value="Add Task" id="create_task_btn" class="btn btn-green btn-R-pos">
+      </div>
+    </form>
+  </div>
+  <!--Simple Button collapse start -->
+  <div class="btn-M-pos" data-toggle="collapse" data-target="#demo">
+    <i class="down-arrow-blue">
+    </i>
+  </div>
+  <!--Simple Button Collapse end -->
+  
+</div>

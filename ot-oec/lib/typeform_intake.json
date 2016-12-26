@@ -1,0 +1,164 @@
+{
+  "questions": [
+    {
+      "id": "textfield_531399",
+      "question": "Name:"
+    },
+    {
+      "id": "textfield_531405",
+      "question": "Birthdate:"
+    },
+    {
+      "id": "textfield_531406",
+      "question": "Where do you live?"
+    },
+    {
+      "id": "list_531653_choice",
+      "question": "Would you prefer to hang out with a new book or a complete stranger?"
+    },
+    {
+      "id": "list_531658_choice",
+      "question": "You\u2019re approached by a stranger on a streetcorner who gives you a stopwatch, already counting down and blueprints for a nearby building, you have 10 seconds to get in and get the goods. Your reaction is:"
+    },
+    {
+      "id": "list_531663_choice",
+      "question": "When someone hurts your feelings, how quickly do they know?"
+    },
+    {
+      "id": "textarea_531704",
+      "question": "Please write 20 desires:"
+    },
+    {
+      "id": "textarea_531737",
+      "question": "What are your top 3 desires?"
+    },
+    {
+      "id": "textarea_531769",
+      "question": "What are your top 5 fears?"
+    },
+    {
+      "id": "textarea_531772",
+      "question": "What gestures of kindness delight you or have delighted you recently?"
+    },
+    {
+      "id": "textfield_531785",
+      "question": "List any phobias, allergies, physical disabilities, etc that may come up and limit you from engaging in an experience:"
+    },
+    {
+      "id": "textfield_791752",
+      "question": "Are you currently seeing any other professional and / or clinical help, such as a therapist, and what for?"
+    },
+    {
+      "id": "statement_531825",
+      "question": "On a scale from 1-10, how would you rate the satisfaction of your life in the following areas:"
+    },
+    {
+      "id": "rating_531821",
+      "question": "Sex life"
+    },
+    {
+      "id": "rating_531851",
+      "question": "Sense of Purpose"
+    },
+    {
+      "id": "rating_531854",
+      "question": "Emotional Connectedness"
+    },
+    {
+      "id": "rating_531855",
+      "question": "Honesty"
+    },
+    {
+      "id": "rating_531856",
+      "question": "Love"
+    },
+    {
+      "id": "rating_531857",
+      "question": "Public Speaking"
+    },
+    {
+      "id": "rating_531867",
+      "question": "Able to Enjoy Challenging Experiences"
+    },
+    {
+      "id": "rating_531869",
+      "question": "Trust"
+    },
+    {
+      "id": "rating_531875",
+      "question": "Connection to Your Dark Side"
+    },
+    {
+      "id": "textarea_531887",
+      "question": "How does someone gain your trust?"
+    },
+    {
+      "id": "textarea_531888",
+      "question": "What would your younger and older self think of you?"
+    },
+    {
+      "id": "textfield_791757",
+      "question": "What are your triggers?"
+    },
+    {
+      "id": "textfield_791758",
+      "question": "How do you respond to your triggers?"
+    },
+    {
+      "id": "textarea_791761",
+      "question": "What's the best way to get you once you're triggered?"
+    },
+    {
+      "id": "textfield_791764",
+      "question": "What is your favorite food?"
+    },
+    {
+      "id": "textfield_791765",
+      "question": "What is your favorite color?"
+    },
+    {
+      "id": "textfield_791767",
+      "question": "What is your favorite movie?"
+    },
+    {
+      "id": "textfield_791769",
+      "question": "What is your favorite song?"
+    },
+    {
+      "id": "textarea_531892",
+      "question": "Describe the last few times you\u2019ve broken the law and what it felt like:"
+    },
+    {
+      "id": "textarea_539422",
+      "question": "What's a dream of yours?"
+    },
+    {
+      "id": "textarea_548029",
+      "question": "What knowledge are you knowledgable about?"
+    },
+    {
+      "id": "textarea_791776",
+      "question": "What are 5 edges that you want to explore?"
+    },
+    {
+      "id": "textarea_791782",
+      "question": "What are your hard No?"
+    },
+    {
+      "id": "textfield_791743",
+      "question": "Who are three people you have an aversion to and why?"
+    },
+    {
+      "id": "textarea_531904",
+      "question": "Who Are 3 People You Trust + Could Help Your Game:"
+    },
+    {
+      "id": "textarea_791789",
+      "question": "What do you bring to the game?"
+    },
+    {
+      "id": "textarea_791795",
+      "question": "Is there anything else you would like us to know?"
+    }
+  ]
+}

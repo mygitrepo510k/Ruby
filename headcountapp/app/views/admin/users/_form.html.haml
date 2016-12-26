@@ -1,0 +1,123 @@
+.row
+	.span2
+		= image_tag(@user.avatar_url, style:'width: 100px;')
+	.span4
+		%h5= @user.user_name
+		%label 
+			Logged in via 
+			%span{style:'color:blue;font-weight:600'}= @user.from_social.capitalize
+.row	
+	= simple_form_for(@user, :url=>admin_update_path, :html=> {class: 'form-horizontal', multipart: true}) do |f|
+		- f.object.errors.messages.each do |msg|
+			.alert.alert-error= msg[1].first
+		= hidden_field_tag :id, @user.id
+		.span4{style:'margin-left: 0px;'}
+			%h3 Settings
+			.row{style:'margin-left: 0px;'}
+				.control-group.string.optional.event_messages_to_your_phone{style:'margin-bottom: 0px;'}
+					%label{ for: "event_messages_to_your_phone", class: "string optional control-label", style:'width:280px' } Push event messages to your phone?
+					.controls{style:'margin-left: 300px;'}
+						= check_box_tag :event_messages_to_your_phone, '1', false, name:'user[event_messages_to_your_phone]'
+				.control-group.string.optional.event_invitations_to_your_phone{style:'margin-bottom: 0px;'}
+					%label{ for: "event_invitations_to_your_phone", class: "string optional control-label", style:'width:280px' } Push event invitations to your phone?
+					.controls{style:'margin-left: 300px;'}
+						= check_box_tag :event_invitations_to_your_phone, '1', false, name:'user[event_invitations_to_your_phone]'
+				.control-group.string.optional.chat_messages_to_your_phone{style:'margin-bottom: 0px;'}
+					%label{ for: "chat_messages_to_your_phone", class: "string optional control-label", style:'width:280px' } Push chat messages to your phone?
+					.controls{style:'margin-left: 300px;'}
+						= check_box_tag :chat_messages_to_your_phone, '1', false, name:'user[chat_messages_to_your_phone]'
+			.row{style:'margin-left: 0px;'}
+				%h5 Reminders
+				.control-group.string.optional.event_messages_to_your_phone{style:'margin-bottom: 0px;'}
+					%label{ for: "validate", class: "string optional control-label", style:'width:280px' } You haven't validated your email address with Head-count. Do you want to do it now?
+					.controls{style:'margin-left: 300px;'}
+						
+				.control-group.string.optional.event_invitations_to_your_phone{style:'margin-bottom: 0px;'}
+					%label{ for: "new_event", class: "string optional control-label", style:'width:280px' } You haven't started your own even yet!
+					.controls{style:'margin-left: 300px;'}
+						
+			.row{style:'margin-left: 0px;'}
+				%h5 Regal Notices
+				%p= @user.legal_notices				
+			.row{style:'margin-left: 0px;'}
+				%h5 Help & FAQ
+				%p= @user.help_faq
+		.span4{style:'margin-left: 0px;'}
+			%h3 Account Settings
+			.row{style:'margin-left: 0px;'}
+				.control-group.string.optional.user_name{style:'margin-bottom: 0px;'}
+					%label{ for: "user_name", class: "string optional control-label"} Headcount Username :
+					.controls{style:'margin-top:5px;'}
+						%strong= @user.user_name
+				.control-group.string.optional.user_name{style:'margin-bottom: 0px;'}
+					%label{ for: "email", class: "string optional control-label"} Email Address :
+					.controls{style:'margin-top:5px;'}
+						%strong= @user.email
+				.control-group.string.optional.user_name{style:'margin-bottom: 0px;'}
+					%label{ for: "phone", class: "string optional control-label"} Phone Number :
+					.controls{style:'margin-top:5px;'}
+						%strong= @user.phone
+				%br/
+				%br/
+				%br/
+				.control-group.string.optional.user_name{style:'margin-bottom: 0px;'}
+					%label{ for: "phone", class: "string optional control-label"} Avatar :
+					.controls{style:'margin-top:5px;'}
+						= f.file_field :avatar
+				= f.submit
+		.span4{style:'margin-left: 0px;'}
+			%h3 Notifications Settings
+			.control-group.string.optional.event_reminders{style:'margin-bottom: 0px;'}
+				%label{ for: "event_reminders", class: "string optional control-label"} Event Reminders
+				.controls
+					= check_box_tag :event_reminders, '1', @user.event_reminders, name:'user[event_reminders]'	
+			.control-group.string.optional.chat_notifications{style:'margin-bottom: 0px;'}
+				%label{ for: "chat_notifications", class: "string optional control-label"} Chat Notifications
+				.controls
+					= check_box_tag :chat_notifications, '1', @user.chat_notifications, name:'user[chat_notifications]'
+			.control-group.string.optional.new_friend_events{style:'margin-bottom: 0px;'}
+				%label{ for: "new_friend_events", class: "string optional control-label"} NewFriend's Events
+				.controls
+					= check_box_tag :new_friend_events, '1', @user.new_friend_events, name:'user[new_friend_events]'
+			.control-group.string.optional.people_joining_events{style:'margin-bottom: 0px;'}
+				%label{ for: "people_joining_events", class: "string optional control-label"} People Joining Events
+				.controls
+					= check_box_tag :people_joining_events, '1', @user.people_joining_events, name:'user[people_joining_events]'
+			.control-group.string.optional.people_leaving_events{style:'margin-bottom: 0px;'}
+				%label{ for: "people_leaving_events", class: "string optional control-label"} People Leaving Events
+				.controls
+					= check_box_tag :people_leaving_events, '1', @user.people_leaving_events, name:'user[people_leaving_events]'
+			.control-group.string.optional.event_changes{style:'margin-bottom: 0px;'}
+				%label{ for: "event_changes", class: "string optional control-label"} Event Changes
+				.controls
+					= check_box_tag :event_changes, '1', @user.event_changes, name:'user[event_changes]'
+.row		
+	%h3 Event List
+	%table.table.table-hover.table-condensed.table-bordered.table-striped
+		%thead
+			%tr
+				%th Event Name
+				%th Location
+				%th Date
+				%th Event's User
+				%th Invited Friends
+				%th Action
+		%tbody
+			- @events.each do |event|
+				%tr
+					%td= event.name
+					%td= event.location
+					%td= event.date
+					%td= event.user.user_name
+					%td= event.friends.count
+					%td 
+						= link_to(admin_event_path(event), class: 'btn btn-mini') do
+							%i.icon-book
+		%tfoot
+			%tr
+				%td{:colspan=>6}
+					= will_paginate @events if @events.present?	
+.row.last-row
+	.form-actions
+		= link_to "Back", admin_users_path, class:'btn btn-danger'		
+

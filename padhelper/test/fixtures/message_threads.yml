@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  thread_user: 1
+  thread_helper: 1
+
+two:
+  user_id: 1
+  thread_user: 1
+  thread_helper: 1

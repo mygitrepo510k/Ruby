@@ -1,0 +1,35 @@
+// Place all the styles related to the Experiences controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.assignments {
+	ul {
+		margin: 0; 
+		padding: 0;
+
+		li {
+			padding: 0 0 .5em 0;
+			width: 100%;
+
+			.img_ctn {
+				width: 50px;
+				max-height: 50px;
+			}
+
+			.assign_name {
+				h5 {
+					@extend .no-margin;
+				}
+
+				div {
+					color: $grey;
+					font-size: .9em;
+				}
+			}
+		}		
+	}
+}
+
+#add_followers_popup {
+  display: none;
+}

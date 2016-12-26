@@ -1,0 +1,15 @@
+-if @announcement.errors.any?
+	#error_explanation
+		= pluralize(@announcement.errors.count, "error")
+ 			| prohibited this announcement from being saved:
+		ul
+			- @announcement.errors.full_messages.each do |msg|
+				li= msg
+
+= form_for [:admin, @announcement] do |f|
+  .field
+    = f.text_field :subject, placeholder: 'Subject', class: 'form-control'
+  .field
+    = f.text_area :body, placeholder: 'Your announcement', class: 'form-control'
+  .submit
+    = f.submit 'Submit', class: 'form-control btn btn-primary'

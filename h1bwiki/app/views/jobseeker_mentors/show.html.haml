@@ -1,0 +1,37 @@
+.container-fluid	
+	.row.post-main-page
+		.row
+			.span10.post-jobs-show-box
+				.row
+					.span10
+						%h1= @jobseeker_mentor.job_title
+				.row
+					- user = User.find_by_id(@jobseeker_mentor.user_id)
+					%p.company-name 
+						#{user.company_name.nil? ? user.user_name : user.company_name }
+				.row
+					.span3
+						%strong 
+							Job / Interview Support: 
+					.span8
+						%span=@jobseeker_mentor.support == 1 ? 'Yes' : 'No'
+				.row
+					.span3
+						%strong 
+							Description: 
+					.span8
+						%label= @jobseeker_mentor.job_description		 
+				.row.last-row
+					.span2.offset3
+						-if current_user.present?
+							-if user.id != current_user.id										
+								%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@jobseeker_mentor.title}", :type=>"#{user.email}" } Contact
+						-else
+							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@jobseeker_mentor.title}", :type=>"#{user.email}" } Contact	
+					.span2
+						%input.m-btn.blue{:type=>"button", :value=>"Forward"}				 
+					.span2
+						%input.m-btn.blue{:type=>"button", :value=>"Close"}
+
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

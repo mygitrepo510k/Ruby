@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Paradigm Voice Over</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'shared/announce' %>
+<div id="container">
+    <a name="top"></a>
+<div id="header">
+  
+<div id="logout">
+    <% if admin_signed_in? %>
+		  <%= link_to('LOG OUT', destroy_admin_session_path, method: :delete) %>
+		<% else %>
+		  <%= link_to('LOG IN', new_admin_session_path)  %>
+		<% end %><br>
+    <span id="phonenumber">Paradigm - (212) 897-6400</span>
+  </div><!--logout-->
+  
+  <div id="pagetitle">
+    <% if admin_signed_in? %>
+	    <%= link_to "Choose List to Send", admin_lists_path %>
+   <% end %>
+   
+  </div><!--pagetitle-->
+  <div class="logo"><%= link_to image_tag("logo_blank.png", width: "271", height: "100", alt: "Paradigm Voice Over", id: "blank"), root_url %></div>
+</div><!--header-->
+
+    <div id="maincontent">
+			<%= render 'shared/nav' %>
+     
+<%= render 'shared/contacts' %>
+     
+<div style="position:relative;left:50px;">
+	<%= yield %>
+</div>
+       <div class="clearfix"></div>
+    </div><!--maincontent-->
+    
+		<div class="clearfix"></div>
+    <div id="footer">
+    <%= link_to "Commercial", browse_path(category: "Commercial") %>&nbsp;|&nbsp;
+    <%= link_to "Promo", browse_path(category: "Promo") %>&nbsp;|&nbsp;
+    <%= link_to "Narration/Documentary", browse_path(category: "Narration/Documentary") %>&nbsp;|&nbsp;
+    <%= link_to "Political", browse_path(category: "Political") %>&nbsp;|&nbsp;
+    <%= link_to "Trailer", browse_path(category: "Trailer") %>&nbsp;|&nbsp;
+    <%= link_to "Animation", browse_path(category: "Animation") %>&nbsp;|&nbsp;
+    <%= link_to "Books", browse_path(category: "Books on Tape") %>&nbsp;|&nbsp;
+    <a href="#top">Top Of Page</a><br /><br />&nbsp;|&nbsp;
+		<%= link_to "Terms of Use", terms_path %><br /><br />
+    &copy; <%= Time.now.year %> Paradigm Agency. All Right Reserved.
+
+    </div>
+    
+  </div><!--container-->
+</body>
+</html>
+</html>

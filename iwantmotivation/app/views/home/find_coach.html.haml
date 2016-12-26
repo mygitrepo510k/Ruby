@@ -1,0 +1,58 @@
+.row.find_coach_counselor
+	.container
+		.row.first-row
+			.span6.offset2
+				%label=get_option(:find_motivational_partner_page_description)
+		.row.second-row.search-option-box
+			.span10
+				.row.first-row
+					%label.search-title Motivational Partner Search
+					%p.search-title-desc Select One Box or Many to Narrow Your Search
+				.row.second-row
+					= form_tag :home_find_motivation_partner, :method => :get do
+						.row
+							.span3.cat-list
+								%label Select a Category
+								= select_tag(:parent_category_id, options_for_select(Category::cch_categories), :size=>12, :id=>'or')
+							.span4.find-options
+								.row
+									= select_tag(:country, options_for_select(UserInfo::registered_country))
+								.row
+									= select_tag(:state, options_for_select(UserInfo::registered_state))
+								.row
+									= select_tag(:city, options_for_select(UserInfo::registered_city))
+								.row
+									= select_tag(:age, options_for_select(UserInfo::registered_age))
+								.row
+									.span3{:style=>"margin-left:0px;"}
+										= text_field_tag :words, params[:words], :placeholder => "Type Search Words Here"
+									.span1{:style=>"margin-left:0px;"}
+										= submit_tag "Search", :name => nil, :class=>"btn btn-primary"
+
+				.row.third-row
+					.span10.item-box
+						-@partners.each do |partner|
+							.row.partner-item
+								.span1.partner-picture
+									=link_to(image_tag(partner.image_url('small')), '/home/coach_counselor_profile/'+partner.id.to_s)
+								.span2.partner-info
+									.row
+										%label.screen-name=partner.name
+									.row
+										%label.category=partner.category.name
+									.row
+										%label.online-state= partner.is_online? ? "Online Now!" : "Offline"
+									.row																			
+										=image_tag "fill-box.png"
+										- if partner.is_online?
+											=image_tag "online-icon.png"
+											= link_to( image_tag("online-chat.png"),'#', :class=>'partner', "data-email" => partner.email, "data-recipient-id" => partner.id, "data-channel" => partner.id )
+										-else
+											=image_tag "offline-icon.png"										
+											=image_tag "offline-chat.png"
+- if current_user
+	= render 'shared/pusher_chat_widget'
+
+				
+:javascript	
+	

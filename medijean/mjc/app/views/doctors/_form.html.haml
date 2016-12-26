@@ -1,0 +1,57 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.oh-page-container
+      .row.center-txt
+        %h3
+          = t("doctor_flow.complete_profile.title")
+      .row.center-txt
+        %p{:style=>"color: gray;font-size: 17px;"}
+          = t("doctor_flow.complete_profile.text1")
+      .row
+        %hr
+      .row
+        .span10 &nbsp;
+
+      = simple_form_for doctor, html: { class: 'edit_doctor' }, validate: true do |d|
+        .row
+          .span10
+            %h3.homepg-header= t('doctor_flow.complete_profile.header1')
+          = d.input :physician_id, wrapper_class: 'span3', required: :required, validate: false
+        .row
+          %hr
+        .row
+          .span10
+            %h3.homepg-header= t('doctor_flow.complete_profile.header2')
+          = d.input :first_name, wrapper_class: 'span3', required: :required, validate: true
+          = d.input :last_name, wrapper_class: 'span3', required: :required, validate: true
+        .row
+          = d.input :gender, as: :select, collection: [['Male', 'male'], ['Female', 'female']], wrapper_class: 'span3', include_blank: false, required: :required, input_html: { style: "width: 184px; height:38px;" }
+          .control-group.span3
+            %label.string.required.control-label{for: "doctor_phone"}
+              %abbr{:title => "required"} *
+              = t('doctor_flow.complete_profile.doctor_phone')
+            .controls.controls-row
+              - 3.times do |i|
+                = text_field_tag "doctor_phone[p#{i+1}]", splitted_phone(d.object.try(:phone) || doctor.try(:phone))[i], class: "#{i==2 ? 'phone-number-big' : 'phone-number-small'}", maxlength: "#{i==2 ? 4 : 3}"
+        .row
+          = d.simple_fields_for :clinic, d.object.clinic || Clinic.new do |c|
+            = c.input :name, wrapper_class: 'span3', label: "Clinic name", required: false
+            = c.input :website, wrapper_class: 'span3', required: false
+            .control-group.span3
+              %label.string.required.control-label{for: "clinic_phone"}
+                %abbr{:title => "required"} *
+                = t('doctor_flow.complete_profile.clinic_phone')
+              .controls.controls-row
+                - 3.times do |i|
+                  = text_field_tag "clinic_phone[p#{i+1}]", splitted_phone(d.object.try(:clinic).try(:phone))[i], :class => "#{i==2 ? 'phone-number-big' : 'phone-number-small'}", maxlength: "#{i==2 ? 4 : 3}"
+        .row
+          = d.simple_fields_for :clinic, d.object.clinic || Clinic.new do |c|
+            = c.simple_fields_for :address, c.object.address || Address.new do |a|
+              = a.input :street, wrapper_class: 'span3', label: "Clinic Address", required: :required
+              = a.input :city, wrapper_class: 'span3', required: :required
+              = a.input :province, wrapper_class: 'span3', required: :required
+        .row
+          %hr
+        .row
+          .controls.span3
+            = d.submit t('doctor_flow.complete_profile.submit_btn'), class: 'btn btn-block gb-btn'

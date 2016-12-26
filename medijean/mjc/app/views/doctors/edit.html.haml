@@ -1,0 +1,49 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .doctor-profile-page
+      .row.title
+        %label.page-title= t("settings.title")
+      .row.content
+        .span3.left-side-bar
+          = render "shared/settings_left_side_navbar"
+        .span7.page-content
+          = simple_form_for @doctor, validate: true do |f|
+            = hidden_field_tag :origin, 'settings'
+            .row
+              .span3
+                = f.input :first_name, :input_html=>{:style=>"width: 220px;"}, validate: true
+              .span3
+                = f.input :last_name, :input_html=>{:style=>"width: 220px;"}, validate: true
+            .row
+              .span3
+                = f.input :physician_id, required: :required, validate: true, :placeholder => "physician number"
+
+              .span3
+                = f.input :gender, as: :select, collection: [['Male', 'male'], ['Female', 'female']], include_blank: false
+            .row
+              .span3
+                %p= t("patient_flow.complete_profile.text7")
+                %p
+                  - 3.times do |i|
+                    = text_field_tag "doctor_phone[p#{i+1}]", splitted_phone(f.object.try(:phone) || doctor.try(:phone))[i], class: 'input-mini', maxlength: "#{i==2 ? 4 : 3}", required: :required
+              .span3
+                = f.simple_fields_for :clinic, f.object.clinic || Clinic.new do |c|
+                  = c.input :name, label: "Clinic name", required: false
+
+            .row
+              .span3
+                %p= t("patient_flow.complete_profile.text4")
+                %p
+                  - 3.times do |i|
+                    = text_field_tag "clinic_phone[p#{i+1}]", splitted_phone(f.object.try(:clinic).try(:phone))[i], :class => 'input-mini', maxlength: "#{i==2 ? 4 : 3}", required: :required
+              .span3
+                = f.simple_fields_for :clinic, f.object.clinic || Clinic.new do |c|
+                  = c.input :website, required: false
+
+            .row
+              = f.simple_fields_for :clinic, f.object.clinic || Clinic.new do |c|
+                = c.simple_fields_for :address, c.object.address || Address.new do |a|
+                  = a.input :full_address, label: "Clinic Address", required: :required, :placeholder => t("settings.profile.doctors.clinic_address")
+
+            .row.last-row
+              = f.submit t("general.save_change")

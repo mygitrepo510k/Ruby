@@ -1,0 +1,8 @@
+.login
+  %p
+    = link_to image_tag('main_03.png', title: "Hye Dating", border: 0, height: 70, width: 372), root_path
+    #signup
+      = render partial: 'users/signup_two'
+
+= content_for :meta_tags do
+  %meta{name: "viewport", content: "width=400"}

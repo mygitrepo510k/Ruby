@@ -1,0 +1,6 @@
+h2 Someone commented on your profile
+p Dear #{@user.name},
+p #{@comment_user.name} wrote - 
+p
+  i= @comment.body
+p= link_to "view comment", @link

@@ -1,0 +1,55 @@
+.container-fluid
+	.row.post-main-page{:style=>"margin-top:20px;margin-bottom:20px;"}
+		.row
+			.span9.page-msg-box
+				%p 
+					If you want to edit your job, Please go back to the Form Window.
+					%a{:href=>"#", :onclick=>"window.close(); window.history.back();"}Close Preview
+		.row
+			.span10.post-jobs-show-box
+				.row
+					.span10
+						%h1= @post_training.job_title
+				.row
+					.span3
+						%strong Technology:
+					.span8
+						%span=@post_training.get_techtype
+				.row
+					.span3
+						%strong Instruction mode: 					
+					.span8
+						%span=@post_training.get_instruction_mode
+				.row
+					.span3
+						%strong Placement:
+					.span8
+						%span=@post_training.job_placement == '1' ? 'Yes' : 'No'
+				.row
+					.span3
+						%strong Accomodation:
+					.span8
+						%label=@post_training.job_accomodation == '1' ? 'Yes' : 'No'
+				.row
+					.span3
+						%strong City:
+					.span8						
+						%span=@post_training.job_city						
+				.row
+					.span3
+						%strong State:
+					.span8						
+						%span=@post_training.job_state						
+				.row
+					.span3
+						%strong Duration:
+					.span8						
+						%span=@post_training.job_duration						
+				.row
+					.span3
+						%strong Job Description:
+					.span8
+						%label= markdown @post_training.job_description
+			
+:javascript 
+	$('ul.nav-tabs li').eq(1).addClass('isCurrent');

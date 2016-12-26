@@ -1,0 +1,4 @@
+class Contact < ActiveRecord::Base
+  attr_accessible :email, :name, :phone_number
+  belongs_to :user
+end

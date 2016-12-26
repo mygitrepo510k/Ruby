@@ -1,0 +1,17 @@
+.admin-events-view.section.single
+  h2 Event name 
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li= link_to 'Events', admin_events_path
+    li.active= 'Event'
+
+  .field
+    label= "Name: " + @event.name
+  .field
+    label= "Description: " + @event.description
+  .field
+    label= "Location: " + @event.place_name
+  .field
+    label= "Start: " + @event.start.strftime("%m/%d/%y %H:%M")
+  .field
+    label= "End: " + @event.end.strftime("%m/%d/%y %H:%M")

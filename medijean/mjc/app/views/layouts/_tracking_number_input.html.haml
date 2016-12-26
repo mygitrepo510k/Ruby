@@ -1,0 +1,5 @@
+= semantic_form_for [:admin, @order] do |f|
+  = f.input :tracking_number
+  = f.input :status, :as => :hidden, :input_html => {:value => :shipped}, :label => false
+  = f.actions do
+    = f.action :submit

@@ -1,0 +1,220 @@
+<%= render :partial => "/layouts/script_check_drop"  %>
+<h2 class="pageTitle">General Health Issues&nbsp;&nbsp;<span title="cipit ornare mi ullamcorper convallis. Nulla facilisi. Sed sed elementum dolor. Nam iaculis elit sit amet libero porta porta. Sed v" class="infoIcon"></span></h2>
+      
+        <table cellspacing="0" cellpadding="0" border="0" width="100%" class="tableGride">
+          <tbody>
+            <tr>
+              <th align="left" width="24%">Health Issues*</th>
+              <th align="left" width="11%">Start Date</th>
+              <th align="left" width="10%">End Date</th>
+              <th align="left" width="44%">Details</th>
+            </tr>
+            <% @general_health_issues.each_with_index do | single_health_issue,index |  %>
+            
+            <tr id="dataRow1" style="display: table-row;">
+              <td align="left" valign="top"><a onclick="$('.viewRow').show('fast')" class="greenTxt" href="#."><%= single_health_issue.health_issue  %></a></td>
+              <td align="left" valign="top"><%= single_health_issue.start_date  %></td>
+              <td align="left" valign="top"><%= single_health_issue.end_date  %></td>
+              <td align="left" valign="top" class="actionBox">
+                <a title="Delete" class="deleteIcon" href="/delete_single_health_issue?id=<%= params[:id]  %>&health_issue_id=<%= single_health_issue.id  %>" onclick="return confirm('Are you sure you want to Delete this row')"></a>
+                <a onclick="$(this).parent().parent().hide();$(this).parent().parent().next().show('fast'); show_data('<%=single_health_issue.id %>')" title="Edit" class="editIcon" href="javascript://"></a><%= single_health_issue.details  %>
+              </td>
+            </tr>
+          
+          <%#= form_tag ({:action => 'child_genral_health_data_update',:id=>single_health_issue.id}), :remote => true do %>
+ 
+            <tr style="display: none;" id="editRow1" class="formRow jqBigform">   
+               <td align="left" valign="top">
+                  <select class="" style="width: 130px;" id="gh_select_<%=single_health_issue.id%>">
+                    <option>Select</option>
+                    <% ['Cold','Ear Infection','Fever'].each do |single_group| %>
+                      <% if single_group == single_health_issue.health_issue %>
+                        <option value = '<%=single_group%>' selected="selected" ><%=single_group %></option>
+                      <% else %>
+                        <option value = '<%=single_group%>'><%=single_group %></option>
+                      <% end %>
+                    <% end %>
+                  </select></div>
+                  
+                </td>
+                <script type="text/javascript">
+                  $(function() {
+                    // Basic date picker with default settings 
+                    $("#dateGhealth<%= index %>").glDatePicker({
+                        leftMargin: -70,
+                        topMargin: -10
+                    });
+    
+                    $("#dateGhealth<%= index %>2").glDatePicker({
+                        leftMargin: -70,
+                        topMargin: -10
+                    });
+                     })
+                </script>
+                <td align="left" valign="middle"><input type="text" onblur="this.style.color = '#979797'" onclick="this.style.color = '#000'" class="showDate inputField" id="gh_st_date_<%= single_health_issue.id %>" value="<%= single_health_issue.start_date %>"></td>
+                <td align="left" valign="middle"><input type="text" onblur="this.style.color = '#979797'" onclick="this.style.color = '#000'" class="showDate inputField" id="gh_ed_date_<%= single_health_issue.id %>" value="<%= single_health_issue.end_date %>"></td>
+                <td align="left" valign="middle"><input type="text" onblur="this.style.color = '#979797'" onclick="this.style.color = '#000'" style="width:130px;" class="inputField" id="gh_detail_<%= single_health_issue.id %>" value="<%= single_health_issue.details %>">
+                <a onclick="$(this).parent().parent().hide();$(this).parent().parent().prev().show('fast');" class="loseBigBtn FR" href="#."></a>
+                <input type="submit" onclick="genral_health_data_save('<%=single_health_issue.id%>');" class="saveBtn" value="save"> 
+                <input type="hidden" value="<%= single_health_issue.id %>"> 
+              </td>
+               
+            </tr>
+
+                               
+            <%# end %>
+           <% end %>
+          <script>
+//         $("#child_genral_health_data").submit(function(){
+//           if ($('#getValuea1').val() == "" || $('#getValuea1').val() == "condition"){
+//             $('#getValuea1').next().html("can't be blank");
+//             var chec_error = true;
+//           }else{
+//             $('#getValuea1').next().html("");
+//           }
+//           if ($('#getValue8').val() == "" || $('#getValue8').val() == "details"){
+//           $('#getValue8').next().html("can't be blank");
+//           var chec_error = true;
+//           }else{
+//             $('#getValue8').next().html("");
+//           }
+//     if (chec_error == true){
+//       return false;
+//     }else{
+//       return true;
+//     }
+//   });  
+ </script>
+        <%= form_tag ({:action => 'child_genral_health_data',:id => params[:id]}),:id=>'child_genral_health_data' do %>
+             <script type="text/javascript">
+                  $(function() {
+                    // Basic date picker with default settings 
+                    $("#date1Ghealth").glDatePicker({
+                        leftMargin: -70,
+                        topMargin: -10
+                    });
+    
+                    $("#date2Ghealth").glDatePicker({
+                        leftMargin: -70,
+                        topMargin: -10
+                    });
+                     })
+                </script>
+            <tr style="display: none;" id="viewObject1" class="editRow">
+              <td align="left" valign="top">
+                <input type="hidden" value="Cold" name="general_health[health_issue]" id="hidden_general_helth_issue" />
+                <div style="width: 167px; margin-left: 0px; margin-right: 0px;" class="formRow jqBigform" id="general_helth_issue">
+                    <select class="" style="width: 130px;" id="helth_issue">
+                      <option value = "" >Select</option>
+                      <option value = "Cold">Cold</option>
+                      <option value = "Ear Infection">Ear Infection</option>
+                      <option value = "Fever">Fever</option>
+                    </select>
+                </div>
+                <p class="errorMsgLeft"></p>
+              </td>
+              <td align="left" valign="middle">
+                <input name="general_health[start_date]" type="text" onblur="if (this.value == '') {
+            this.value = 'start date';
+            this.style.color = '#979797'
+        }" onclick="if (this.value == 'start date') {
+            this.value = '';
+            this.style.color = '#000'
+        }" class="showDate inputField" id="date1Ghealth" value="start date"><p class="errorMsgLeft"></p></td>
+              <td align="left" valign="middle">
+                <input name="general_health[end_date]" type="text" onblur="if (this.value == '') {
+            this.value = 'end date';
+            this.style.color = '#979797'
+        }" onclick="if (this.value == 'end date') {
+            this.value = '';
+            this.style.color = '#000'
+        }" class="showDate inputField" id="date2Ghealth" value="end date">
+              <p class="errorMsgLeft"></p>
+            </td>
+              <td align="left" valign="middle">
+                <input name="general_health[details]" type="text" onblur="if (this.value == '') {
+            this.value = '';
+            this.style.color = '#979797'
+        }" onclick="if (this.value == '') {
+            this.value = '';
+            this.style.color = '#000'
+        }" style="width:130px;" class="inputField" id="getValue8" value="">
+                <a onclick="$(this).parent().parent().hide();" class="closeBigBtn FR" href="#."></a>
+                <input type="button" onclick="genral_data_save($(this).parent().parent());" class="saveBtn" value="save">
+                <p class="errorMsgLeft"></p> 
+                </td>
+                </tr>
+              </tbody></table>
+            <% end %>
+                    <p class="padLeft10"><a onclick="$(this).parent().first().prev().children().children().last().show();" class="greyBtn" href="#.">add a new condition</a></p>
+                    <p>&nbsp;</p>
+
+<script>
+  function genral_health_data_save(id){
+    var health_issue = $("#gh_select_"+id).val();
+    var start_date = $("#gh_st_date_"+id).val();
+    var end_date = $("#gh_ed_date_"+id).val();
+    var details = $("#gh_detail_"+id).val();    
+    var curren_user_id = '<%= current_user.id %>';
+    $.post("/child_genral_health_data_update?id=" + id, { 
+        details: details, 
+        end_date: end_date, 
+        start_date: start_date, 
+        health_issue: health_issue, 
+        curren_user_id: curren_user_id 
+      }).done(function(data) {        
+        $("#general_health_div").html(data);
+      });
+     $(obj).parent().parent().hide();$(obj).parent().parent().prev().show('fast');
+  }
+
+  function genral_data_save(obj){
+    var health_issue = $("#helth_issue").val();
+    var start_date = $("#date1Ghealth").val();
+    var end_date = $("#date2Ghealth").val();
+    var details = $("#getValue8").val();
+    var curren_user_id = '<%= current_user.id %>';
+
+    if(health_issue==""){
+      alert("please select helth issue");
+      return false
+    }
+    if(details=="" || details=="details" ){
+      alert("please input details");
+      return false
+    }
+    var url = "/users/genral_data_save";
+    $.post( url, { 
+      details: details, 
+      end_date: end_date, 
+      start_date: start_date, 
+      health_issue: health_issue, 
+      curren_user_id: curren_user_id 
+    }).done(function(data) {        
+      $("#general_health_div").html(data);
+    });
+    obj.hide();
+  }
+  function show_data(id){
+    var start_date = $("#gh_st_date_"+id);
+    var end_date = $("#gh_ed_date_"+id);
+
+    start_date.glDatePicker({
+      leftMargin: -70,
+      topMargin: -10
+    }); 
+    end_date.glDatePicker({
+      leftMargin: -70,
+      topMargin: -10
+    }); 
+  }
+
+  $(document).ready(function(){
+    $("#general_helth_issue ul.ac_scroll li a").click(function(){
+      $("#hidden_general_helth_issue").val($(this).text());
+    });
+  });
+  
+
+</script>
+

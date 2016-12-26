@@ -1,0 +1,34 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// User Index page style
+.admin_users_index{	
+	.first-row{
+		.form-search{
+			margin-top: 15px;
+			.icon-search{
+				position: absolute; 
+				margin-top: 8px; 
+				margin-left: 7px;
+				cursor: pointer;
+			}
+			.icon-remove-sign{
+				position: absolute; 				
+				margin-left: -21px; 
+				margin-top: 8px;
+			}
+
+			.search-query{
+				padding-left: 22px;
+				padding-right: 22px;
+				width: 86%;
+			}
+		}
+	}
+}
+
+
+
+
+

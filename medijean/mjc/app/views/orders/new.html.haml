@@ -1,0 +1,211 @@
+%script{:type=>"text/javascript", :src=>"https://js.stripe.com/v2/"}
+
+- if @address_errors.present?
+  %div{:class => "alert alert-error"}
+    %a.close{"data-dismiss" => "alert"} ×
+    %ul
+      - @address_errors.each do |msg|
+        %li
+          = msg
+- if @order_errors.present?
+  %div{:class => "alert alert-error"}
+    %a.close{"data-dismiss" => "alert"} ×
+    %ul
+      - @order_errors.each do |msg|
+        %li
+          = msg
+.wrapper
+  .row.container.center-div-no-bg
+    .row.oh-page-container
+      .row.center-txt
+        %h3
+          = t("patient_flow.place_your_order.title")
+      .row.center-txt
+        %p{:style=>"color: gray;font-size: 17px;"} Lorem ipsum dolor sit amet habitant. Donec litora Sed sem urna lobortis.
+      = form_for "order",:method=>"post",:url=> orders_path, :html => { :id => "payment-form",:multipart=>true } do |f|
+        .row
+          .span12 &nbsp;
+        .row
+          %hr
+        .row
+          .span3.title-span
+            %h3.homepg-header
+              = t("patient_flow.place_your_order.text2")
+        .row
+          %table.table.dashboard-table{:style=>"width:100%;"}
+            %tr.th-bckgrnd
+              %th.homepg-header
+                = t("order.show.medicine_name")
+              %th.homepg-header
+                = t("order.show.quantity")
+              %th.homepg-header
+                = t("order.show.price")
+              %th.homepg-header
+                = t("order.show.total")
+            %tr
+              %td
+                = @prescription.medicine.name
+              %td
+                = @prescription.dosage.quantity
+                grams
+              %td
+                = number_to_currency(@prescription.medicine.price)
+              %td
+                = number_to_currency(@total_price)
+            %tr
+              %td
+              %td
+              %td.homepg-header Taxes
+              %td
+                = number_to_currency(@taxes)
+            %tr
+              %td.border-none
+              %td.border-none
+              %td.homepg-header
+                %b Total
+              %td
+                = number_to_currency(@total_amount)
+        .row
+          .span10
+        .row
+          %hr
+        .row
+          .span10
+            %h3.homepg-header
+              = image_tag "lock.png",:height=>20,:width=>20
+              = t("patient_flow.place_your_order.text3")
+        .row
+          .span10
+            .payment-errors{:style=>"color:red;"}
+        .row
+          .span5 Name
+          .span5
+            = text_field_tag :name,nil,:name=>nil,:required=>true
+        .row
+          .span5
+            = t("patient_flow.place_your_order.text5")
+          .span5
+            = text_field_tag :card_number,nil,:name=>nil,:required=>true
+            = image_tag "visa.png",:style=>"opacity:0.2;",:id=>'visa'
+            &nbsp;
+            = image_tag "master-crd.png",:style=>"opacity:0.2;",:id=>'mastercard'
+            &nbsp;
+            = image_tag "amer-exp.png",:style=>"opacity:0.2;",:id=>'amex'
+            .card-number-error{:style=>"color:red;"}
+            = hidden_field_tag :stripe_card_token
+            = hidden_field_tag :prescription_id,@prescription.id
+        .row
+          .form-row
+            %label
+              .span9
+                %span
+                  = t("patient_flow.place_your_order.text6")
+              .span1
+                = text_field_tag :card_code,nil,:name=>nil,:required=>true
+        .row
+          .span8
+            .card-code-error{:style=>"color:red;"}
+        .row
+          .form-row
+            .span5
+              %span
+                = t("patient_flow.place_your_order.text7")
+            %br
+            .span1
+              = select_month nil,{add_month_numbers: true},{name: nil, id: "card_month",:style=>"width:100px;"}
+            .span1
+              = select_year nil,{start_year: Date.today.year, end_year: Date.today.year+15},{name: nil, id: "card_year",:style=>"width:80px;"}
+        .row
+          .span9
+            .card-expiration-error{:style=>"color:red;"}
+        .row
+          .span8
+            %br
+            = check_box_tag "paymentprofile[auto_renew]",0,nil,:style=>"margin: 0px 0 0;"
+            &nbsp;
+            = label_tag "paymentprofile[auto_renew]", t("patient_flow.place_your_order.text10"),:style=>"display:inline;"
+        .row
+          .span8
+            %br
+            = check_box_tag "save_payment",0,nil,:style=>"margin: 0px 0 0;"
+            &nbsp;
+            = label_tag "save_payment", t("patient_flow.place_your_order.text8"),:style=>"display:inline;"
+        .row
+          %hr
+        .row
+          %br
+          .span8
+            %h3.homepg-header
+              = t("patient_flow.place_your_order.text11")
+            %p
+              = t("patient_flow.place_your_order.text12")
+          .row
+            .span3
+              %p
+                = t("general.street")
+              =text_field_tag "address[street]",nil,:class=>"input-xlarge",:placeholder=>"123 Streetville Avenue",:required=>true
+          .row
+            .span3
+              %p
+                = t("general.apartment")
+              =text_field_tag "address[unit]",nil,:class=>"input-xlarge",:placeholder=>"101",:required=>true
+          .row
+            .span3
+              %p
+                = t("general.city")
+              =text_field_tag "address[city]",nil,:class=>"input-xlarge",:placeholder=>"Toronto",:required=>true
+          .row
+            .span4
+              %p
+                = t("general.province")
+              =select_tag "address[province]",options_for_select(["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Ontario","Prince Edward Island","Quebec","Saskatchewan","Northwest Territories","Nunavut","Yukon"],"Alberta")
+            .span4
+              %p
+                = t("general.postal_code")
+              =text_field_tag "address[postal_code]",nil,:class=>"input-small",:placeholder=>"L3T 4A9",:maxlength=>"8",:required=>true
+          .row
+            .span10
+              %hr
+          .row
+            .span8
+              %br
+              %h3.homepg-header
+                = t("general.shipping_address")
+          .row
+            .span8
+              = check_box_tag "shipping_check",1,{checked: true},:style=>"margin: 0px 0 0;"
+              = label_tag "shipping_check", t("patient_flow.place_your_order.text9"),:style=>"display:inline;"
+              %br
+          .shipping_address
+            .row
+              %br
+              .span3
+                %p
+                  = t("general.street")
+                =text_field_tag "shipping_address[street]",nil,:class=>"input-xlarge",:placeholder=>"123 Streetville Avenue"
+            .row
+              .span3
+                %p
+                  = t("general.apartment")
+                =text_field_tag "shipping_address[unit]",nil,:class=>"input-xlarge",:placeholder=>"101"
+            .row
+              .span3
+                %p
+                  = t("general.city")
+                =text_field_tag "shipping_address[city]",nil,:class=>"input-xlarge",:placeholder=>"Toronto"
+            .row
+              .span4
+                %p
+                  = t("general.province")
+                =select_tag "shipping_address[province]",options_for_select(["Alberta","British Columbia","Manitoba","New Brunswick","Newfoundland and Labrador","Nova Scotia","Ontario","Prince Edward Island","Quebec","Saskatchewan","Northwest Territories","Nunavut","Yukon"],"Alberta")
+              .span4
+                %p
+                  = t("general.postal_code")
+                =text_field_tag "shipping_address[postal_code]",nil,:class=>"input-small",:placeholder=>"L3T 4A9",:maxlength=>"8"
+        .row
+          %hr
+        .row
+          .span2
+            = f.submit t("general.next"),:class=>"btn btn-block gb-btn"
+          .span2
+            = link_to t("general.back"),:back,:class=>"btn btn-block gb-btn-gray"

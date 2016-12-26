@@ -1,0 +1,117 @@
+// Place all the styles related to the knowledge_centre controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.nav-top-bar{
+  margin-left: 20px;  
+}
+.kc-page-container{
+  margin-left: 0px;
+  border: solid 2px #e5e4e0;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px;
+  margin: 0% 5%;
+  .row{
+    margin-left: 0px;    
+  }
+  .title{
+    border-bottom: 1px solid rgb(211, 211, 211);
+    margin-top: 20px;
+    padding-bottom: 12px;
+    .page-title{
+      font-size: 30px;
+      color: #409e9d;
+      font-weight: 600;
+      line-height: 25px;
+    }
+  }
+  .page-content{
+    margin-top: 22px;
+    .left-side-bar{
+      margin-left: 0px;
+      ul{
+        margin-left: 0px;
+        li{
+          list-style: none;
+          padding: 15px 5px;
+          a{
+            color: #656565;
+            font-size: 20px;
+            font-weight: 600;
+            &:hover{
+              text-decoration: none;
+            }
+          }
+        }
+        li.active{
+          background-color: #efece7;
+        }
+      }
+    }
+    .getting-started-content{
+      ul{
+        float: left;
+        margin: 0px;
+        li{
+          width: 250px;
+          float:left;
+          list-style: none;
+          margin: 0 10px;
+          img{
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }    
+    .faq-content{
+      ul{
+        li{
+          border-bottom: 1px solid rgb(211, 211, 211);
+          font-size: 15px;
+          margin-top: 10px;
+          padding-bottom: 5px;
+          list-style-image: url("faq_list_style.png");
+        }
+      }
+    }
+    .prescribing-content{
+      ul{
+        float: left;
+        li{
+          width: 250px;
+          float:left;
+          list-style: none;
+          margin-right: 70px;
+          margin-bottom: 20px;
+          img{
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+    .medijean-strains-content{
+      ul{
+        float: left;
+        margin: 0px;
+        li{
+          list-style: none;
+          margin-bottom: 20px;
+          border-bottom: 1px solid rgb(211, 211, 211);    
+        }
+      }  
+    }
+    .benefiets-side-effect-content{
+      ul{
+        float: left;
+        margin: 0px;
+        li{
+          list-style: none;
+          margin-bottom: 20px;
+          padding-bottom: 20px;
+          border-bottom: 1px solid rgb(211, 211, 211);    
+        }
+      }    
+    }
+  }
+}

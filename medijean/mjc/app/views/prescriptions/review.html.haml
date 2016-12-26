@@ -1,0 +1,89 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.oh-page-container
+      .row.empty-row
+      .row.main-row
+        .span10
+          %h3.text-center
+            = t("patient_flow.review.title")
+      .row
+        .span10
+          %p.text-center.homepg-txt
+            = t("patient_flow.review.text1")
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.prescription.prescribing_doctor_attr")
+        .span4
+          =  @prescription.prescribing_doctor
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.prescription.prescription_no_attr")
+        .span4
+          =  @prescription.id
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.review.strain")
+        .span4
+          =  @prescription.medicine.name
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.review.quantity")
+        .span4
+          =  @prescription.dosage.quantity.to_s + ' ' + @prescription.dosage.unit.to_s+ ' ' + @prescription.dosage.frequency.to_s
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.review.recommended_method")
+        .span4
+          =  @prescription.administration_method
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.prescription.issue_date_attr")
+        .span4
+          =  l(@prescription.issue_date, :format => :long)
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.prescription.expiration_attr")
+        .span4
+          =  l(@prescription.expiration, :format => :long)
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.prescription.symptom_attr")
+        .span4
+          =  @prescription.prescription_symptom
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.prescription.current_usage_habits_attr")
+        .span4
+          =  @prescription.current_usage_habits
+      %hr
+      .row
+        .span3
+          %p.bold-txt
+            = t("patient_flow.prescription.description_attr")
+        .span4
+          =  @prescription.description
+      %hr
+        .row
+          .span3
+            = link_to "Accept Prescription", new_order_path(:prescription_id=>@prescription.id), :class => "btn btn-block gb-btn"
+          .span2
+            = link_to "Cancel", prescriptions_path, :class => "btn btn-block gb-btn-gray"
+        .row.empty-row

@@ -1,0 +1,28 @@
+<div id="level2">
+  <table width="320" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+      <td>
+        <%= image_tag 'levelup/header2.jpg', width: '320', height: '41' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <table cellpadding="4" cellspacing="0" style="border-color:#0066FF; border-width:thin">
+          <tr>
+            <td bgcolor="#FFFFFF">
+              <%= image_tag 'levelup/level2.jpg', width: '300', height: '90' %>
+            </td>
+          </tr>
+          <tr>
+            <td bgcolor="#CCCCCC">
+              <p><strong>Your profile is now active!</strong></p>
+              <p><%= link_to "Upload photos", new_user_user_photo_path(current_user.username) %> of yourself and answer your <%= link_to "profile questions", edit_user_path(current_user.username) %></a> to get more stars!</p>
+              <p>The higher you rank, the more visible your profile will be!</p>
+              <p><%= link_to "Upgrade to Premium", upgrade_path %> to receive your final star and a special premium member badge.</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,48 @@
+= simple_form_for [:admin, @user], html:{:"data-validate" => "parsley", multipart: true,} do |f|
+  .row
+    %h5 User Information
+    .form-inputs
+      .span3
+        = f.input :email, input_html: {:"data-required"=>true, :required => true, :autofocus => true}  
+      .span3
+        = f.input :password, input_html: {:autocomplete => "off", :required => false}
+        = f.input :password_confirmation, input_html: {:required => false}
+        - if @user.id.present?
+          = f.input :current_password, input_html: {:required => true}
+  .row
+    %h5 Author Information
+    .form-inputs 
+      - if @user.id.present?
+        %table.table.table-striped.table-hover.sortable-head
+          %thead
+            %tr
+              %th Device ID
+              %th Device Type
+              %th App TYpe
+              %th Actrions
+          %tbody
+            - @user.auth_tokens.each do |author|
+              %tr
+                %td= author.device_id
+                %td= author.device_type
+                %td= author.app_type
+                %td
+                  = link_to(admin_edit_auth_token_path(author), class: 'btn btn-mini') do
+                    %i.icon-pencil
+                  = link_to(admin_destroy_auth_token_path(author), class: 'btn btn-mini', method: :delete, data: {confirm: "Are you sure"}) do
+                    %i.icon-trash
+      - else
+        =f.fields_for :auth_tokens do |auth|
+          .span3
+            = auth.input :device_id, input_html: {:"data-required"=>true, :required => true}
+          .span3
+            = auth.input :device_type, :collection => ['ios','android'], input_html: {:"data-required"=>true, :required => true}
+          .span3  
+            = auth.input :app_type, :collection => AuthToken::APP_TYPE_NAME, input_html: {:"data-required"=>true, :required => true}
+
+
+  .row.last-row
+    .form-actions
+      = f.button :submit, "#{f.object.new_record? ? 'Create User' : 'Update User'}", :class => 'btn btn-primary offset2'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_users_path, :class => 'btn'
+

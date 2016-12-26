@@ -1,0 +1,23 @@
+{
+	"exclude": ["textfield_531399"],
+	"fields": [
+		{ 
+			"id": "list_531658_choice",
+			"data": {
+				"options": ["Excited", "Annoyed", "Scared"]
+			}
+		},
+		{ 
+			"id": "list_531653_choice",
+			"data": {
+				"options": ["New book", "Complete stranger"]
+			}
+		},
+		{ 
+			"id": "list_531663_choice",
+			"data": {
+				"options": ["Quickly", "Not so quickly", "Never"]
+			}
+		}
+	]
+}

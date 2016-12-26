@@ -1,0 +1,74 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.oh-page-container
+      .row.empty-row
+      .row.main-row
+        %h3.text-center
+          = t("doctor_flow.prescribe.title")
+      .row
+        %p.text-center.homepg-txt
+          = t("doctor_flow.prescribe.text1")
+      %hr
+      = simple_form_for @prescription, url: doctor_patient_prescriptions_path, validate: true do |f|
+        = f.input :user_id, as: :hidden
+        .row.empty-row
+        .row
+          .span4
+            %p
+              = t("doctor_flow.prescribe.reason")
+            - unless params[:prescription].blank?
+              = f.input :symptom, as: :select, collection: [Prescription::SYMPTOMS, params[:prescription][:symptom]], :prompt => "Please Select", label: false
+              = f.input :other_symptom, :class => "input-medium", label: false if  params[:prescription][:symptom] == "Other"
+            - else
+              = f.input :symptom, as: :select, collection: Prescription::SYMPTOMS, :prompt => "Please Select", label: false
+          .span4
+            %p
+              = t("doctor_flow.prescribe.habits")
+            = f.input :current_usage_habits, as: :select, collection: Prescription::USAGE_HABITS, :prompt => "Please Select", label: false, include_blank: false
+        .row.empty-row
+        .row
+          .span4
+            %p
+              Strain
+            = f.input :medicine_id, as: :select, collection: Medicine.all.collect {|c| [ c.name, c.id ] }, label: false, prompt: "Please select"
+          .span4
+            %p
+              Recommended Ingestion Method
+            = f.input :administration_method, as: :select, collection: Prescription::ADMINISTRATION_METHODS, :prompt => "Please Select", label: false
+        .row.empty-row
+        .row
+          .span4
+            %p
+              Quantity
+            - unless params[:prescription].blank?
+              = f.input :dosage, as: :select, collection: Prescription::DOSAGES, label: false
+              - if  @prescription_dosage_select == "Other"
+                #prescription_dosage_other_div
+                  %input#prescription_other_dosage.input-medium{:name => "prescription[other_dosage]", :size => "30", :type => "text", :value => "#{@prescription_dosage_other}"}/
+                  g/day
+            - else
+              = f.input :dosage, as: :select, collection: Prescription::DOSAGES, label: false
+          .row.empty-row
+          .row
+            .span4.offset1.prescription-date-select
+              %p
+                = t("doctor_flow.prescribe.issue_date")
+              = f.input :issue_date, as: :date, :order => [:month, :day, :year], :prompt => { :month => "MM", :day => "DD", :year => "YYYY"}, input_html: { class: 'span1' }, label: false
+            .span4.prescription-date-select
+              %p
+                = t("doctor_flow.prescribe.expiry_date")
+              = f.input :expiration, as: :date, :order => [:month, :day, :year], :prompt => { :month => "MM", :day => "DD", :year => "YYYY"}, input_html: { class: 'span1' }, label: false
+          .row.empty-row
+          .row
+            .span8.offset1
+              %p
+                = t("doctor_flow.prescribe.notes")
+              = f.input :description, as: :text, :class => "input-block-level", label: false, input_html: { rows: '5', class: 'span8' }
+          %hr.inner-hr
+          .row.empty-row
+          .row
+            .span6.offset1
+              .span1
+                = f.submit t("doctor_flow.prescribe.next_button"), :class=>"btn btn-block gb-btn"
+              .span1
+                = link_to t("general.cancel") , doctors_dashboard_path, :class => "btn btn-block gb-btn-gray"

@@ -1,0 +1,16 @@
+ol.breadcrumb
+  li= link_to 'Admin', admin_path
+  li= link_to 'Tags', admin_tags_path
+  li.active= 'Tag'
+
+.row
+  .field
+    label= "Name: " + @tag.name
+  .field
+    label= "Type: " + Tag.TYPE[@tag.type.to_i]
+  .field
+    label= "Added BY: " + @tag.added_by.name
+  .field
+    label= "Added at: " + @tag.created_at.strftime("%m/%d/%y")
+  .field
+    label= "Contents: " + @tag.contents.count

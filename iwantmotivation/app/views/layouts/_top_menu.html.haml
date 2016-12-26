@@ -1,0 +1,17 @@
+.row.menu-bar
+  .container.top-nav-bar
+    %ul
+      %li
+        = link_to 'Home', '/'
+      %li
+        =link_to("Find A Motivation Partner",:home_find_motivation_partner, :style=>"padding: 6px 20px 5px;")
+      %li
+        =link_to("Find Motivation Groups", :home_motivation_partner_group, :style=>"padding: 6px 19px 5px;")
+      %li
+        =link_to("Find a Coach/Counselor", :home_find_coach)
+      %li
+        =link_to("Store", :home_stores)
+      %li
+        =link_to("Blog", :home_blog)
+      %li
+        =link_to("Contact Us", :home_contact_us)      

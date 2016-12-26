@@ -1,0 +1,68 @@
+.sign-up-page{
+
+	background: url(pattern.png);
+
+	.sign-in-page{
+	  background-color: #282d33;
+	  border: 1px solid #4c5055;
+	  border-radius: 8px;
+	  padding: 20px;	  
+	  margin-bottom: 50px;
+	  .btn-primary{
+			background-image: linear-gradient(to bottom, rgb(64, 170, 250), rgb(23, 134, 218));
+			&:hover, &:focus{
+				background-color: rgb(23, 134, 218);    
+	    	color: rgb(255, 255, 255);
+			}
+		}
+	}
+}
+
+.emp-sign-up{
+	border: solid 1px #d9d9d9;
+	margin-top: 50px;
+	background-color: #f2f2f2;
+	h2{
+		border-bottom: 1px solid rgb(217, 217, 217);
+    padding-bottom: 11px;
+    text-align: center;
+	}
+	form{
+		margin-top: 40px;
+		.control-group{
+			margin-left: 250px;
+			input[type="text"], input[type="email"], input[type="password"]{
+				padding-bottom: 8px;
+	    	padding-top: 8px;
+	    	width: 250px;
+			}
+		}
+		.row{
+			padding: 10px;
+		}
+	}
+}
+.jobseeker-signup-page{
+	border: solid 1px #d9d9d9;
+	margin-top: 50px;
+	background-color: #f2f2f2;
+	h2{
+		border-bottom: 1px solid rgb(217, 217, 217);
+    padding-bottom: 11px;
+    text-align: center;
+	}
+	form{
+		margin-top: 40px;
+		.control-group{
+			margin-left: 250px;
+			input[type="text"], input[type="email"], input[type="password"]{
+				padding-bottom: 8px;
+	    	padding-top: 8px;
+	    	width: 250px;
+			}
+		}
+		.row{
+			padding: 10px;
+		}
+	}	
+}

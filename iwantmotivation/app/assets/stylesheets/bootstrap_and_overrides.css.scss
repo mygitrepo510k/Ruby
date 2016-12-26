@@ -1,0 +1,80 @@
+@import "bootstrap";
+body { padding-top: 0px; }
+@import "bootstrap-responsive";
+.container{
+	max-width: 998px !important; 
+	min-width: 998px !important;
+}
+.row{
+  margin-left:0px !important;
+}
+
+.row .container{
+  [class*="span"]{
+    margin-left:10px;
+  }  
+} 
+
+.span8{width:770px;}
+.span3{width:320px;}
+ 
+/*  wrapper divs */
+  .custom-checkbox, .custom-radio { position: relative; }
+    
+  /* input, label positioning */
+  .custom-checkbox input, 
+  .custom-radio input.price-type {
+    position: absolute;
+    left: 2px;
+    top: 3px;
+    margin: 0;
+    z-index: 0;
+  }
+
+  .custom-checkbox label, 
+  .custom-radio label {
+    display: block;
+    position: relative;
+    z-index: 1;
+    font-size: 1.3em;
+    padding-right: 1em;
+    line-height: 1;
+    padding: .3em 0 .5em 30px;
+    margin: 0 0 .3em;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+    
+  /* states */
+  .custom-checkbox label { background: url(checkbox.gif) no-repeat; }
+
+  .custom-radio label { background: url(radiobutton.gif) no-repeat; }
+
+  .custom-checkbox label, .custom-radio label {
+    background-position: -10px -14px;
+    
+  }
+
+  .custom-checkbox label.hover,
+  .custom-checkbox label.focus,
+  .custom-radio label.hover,
+  .custom-radio label.focus {
+    background-position: -10px -114px;
+/*    color: #4787ed;*/
+  }
+
+  .custom-checkbox label.checked, 
+  .custom-radio label.checked {
+    background-position: -10px -214px;
+  }
+
+  .custom-checkbox label.checkedHover, 
+  .custom-checkbox label.checkedFocus {
+    background-position: -10px -314px;
+  }
+
+  .custom-checkbox label.focus, 
+  .custom-radio label.focus {
+    outline: 1px dotted #ccc;
+  }

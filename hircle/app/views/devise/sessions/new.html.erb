@@ -1,0 +1,269 @@
+
+<div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+  FB.init({
+    appId      : '130499953811527', // App ID    
+    status     : true, // check login status
+    cookie     : true, // enable cookies to allow the server to access the session
+    xfbml      : true  // parse XFBML
+  	});
+  };
+
+  // Load the SDK asynchronously
+  (function(d){
+   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+   if (d.getElementById(id)) {return;}
+   js = d.createElement('script'); js.id = id; js.async = true;
+   js.src = "//connect.facebook.net/en_US/all.js";
+   ref.parentNode.insertBefore(js, ref);
+  }(document));
+   
+  function testAPI() {
+  	
+  	FB.login();
+  	
+    alert('Welcome!  Fetching your information.... ');
+    FB.api('/me', function(response) {     
+      
+      $.ajax({
+				type : "GET",
+				url : "/save_fb_info",
+				data : {
+					id :response.id,
+					provider: 'facebook',
+					first_name :response.first_name,
+					last_name :response.last_name,
+					email :response.email
+				},
+				success : function(msg) {
+					if (msg){
+						window.location = "/";
+					}
+					else{
+						alert("There was a problem saving your information. Please reload the page.")
+					}
+										
+				}
+			}); 
+    });
+  }
+</script>
+
+<!-- Linkedin Login in -->
+<!-- 1. Include the LinkedIn JavaScript API and define a onLoad callback function -->
+
+<script type="text/javascript" src="http://platform.linkedin.com/in.js">/*
+  api_key: hq9b6pc7pk81
+  onLoad: onLinkedInLoad
+  authorize: true
+*/</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#MyLinkedInButton").click(function () {
+			IN.User.authorize(); 
+			return false;
+		});
+	});	
+  // 2. Runs when the JavaScript framework is loaded
+  function onLinkedInLoad() {
+  	//r = confirm("You are loggedin on Linkedin. Do you want to login with Linkedin?");
+  	//if ( r ){
+  		IN.Event.on(IN, "auth", onLinkedInAuth);
+  	//}    
+  }
+  // 2. Runs when the viewer has authenticated
+  function onLinkedInAuth() {
+    IN.API.Profile("me").fields("id,firstName,lastName,emailAddress").result(displayProfiles);
+  }
+  // 2. Runs when the Profile() API call returns successfully
+  
+  function displayProfiles(profiles) {
+    member = profiles.values[0];
+    IN.User.logout();
+    
+    setTimeout(myFunction, 2000);
+       
+    function myFunction(){
+    	$.ajax({
+				type : "GET",
+				url : "/save_fb_info",
+				data : {
+					id :member.id,
+					provider: 'linkedin',
+					first_name :member.firstName,
+					last_name :member.lastName,
+					email :member.emailAddress
+				},
+				success : function(msg) {
+					if (msg){ 
+						window.location = "/";
+					}
+				}
+			});	
+    } 
+  }
+</script>
+
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/client:plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+
+ $(document).ready(function() {
+ 	$("#MyGooglePlusButton").click(function(){
+ 		auth();
+ 	});    
+ });
+
+
+	var API_KEY = "AIzaSyD62VaOStakMZ58b2TP6A1sPYWl29NmTto";
+	var CLIENT_ID = "273494398358.apps.googleusercontent.com";
+	var scopes = 'https://www.googleapis.com/auth/plus.me';
+
+function auth() {
+    var scopes = 'https://www.googleapis.com/auth/plus.me';
+
+    gapi.client.setApiKey(API_KEY);
+    window.setTimeout(checkAuth, 1000);
+
+    function checkAuth() {
+        gapi.auth.authorize({
+            client_id : CLIENT_ID,
+            scope : scopes,
+            immediate : false
+        }, handleAuthResult);
+    }
+
+    function handleAuthResult(authResult) {
+        if (authResult) {
+            makeApiCall();
+        } else {
+            checkAuth();
+        }
+    }
+
+    function makeApiCall() {
+        gapi.client.load('plus', 'v1', function() {
+            var request = gapi.client.plus.people.get({
+                'userId' : 'me'
+            });
+            request.execute(function(r) {
+            	//alert(resp.toSource());
+            	         $.ajax({
+							type : "GET",
+							url : "/save_linkedin_info",
+							data : {
+								id :r.id,
+								provider: 'google',
+								first_name :r.name.givenName,
+								last_name :r.name.familyName					
+							},
+							success : function(msg) {
+								window.location = "/";
+								}
+							}); 
+            });
+        });
+    }
+  }
+</script>
+
+<%= stylesheet_link_tag "landing-page" %>
+<%= render :partial => "partials/header/landing-page/p_header_landing_page" %>
+
+<!-- Carousel
+================================================== -->
+<div class="carousel">
+	<div class="carousel-inner">
+		<div class="banner">
+			<div class="imge-d">
+				<%= image_tag("landing-page/bnr.jpg") %>
+			</div>
+			<div class="banner-text">
+				<div class="b-text">
+					<div class="banner-title">
+						<h2>Your company private
+						<br>
+						social job network</h2>
+						<h3>power by hircle</h3>
+						<p>
+							Discover companies and network through a social connection
+						</p>
+					</div>
+					<%= render :partial => "partials/login-forms/p_login_forms_job_seeker" %>
+					<%= render :partial => "partials/login-forms/p_login_forms_employer" %>
+					<%= render :partial => "partials/login-forms/p_login_forms_professional" %>
+					
+					<%= render :partial => "partials/signup-forms/p_signup_forms_job_seeker" %>
+					<%= render :partial => "partials/signup-forms/p_signup_forms_employer" %>
+					<%= render :partial => "partials/signup-forms/p_signup_forms_professional" %>
+				
+					<br clear="all" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /.carousel -->
+	<!-- Marketing messaging and featurettes
+	================================================== -->
+	<!-- Wrap the rest of the page in another container to center all the content. -->
+	<div class=" row-d">
+		<div class="row-m">
+			<div class="container">
+
+				<div class="ddd">
+					<!-- Three columns of text below the carousel -->
+
+					<div class="span3">
+						<%= image_tag("landing-page/social-hiring.png") %>
+						<p>
+							We provide tools to create your perfect fit to make the difference in tomorrow's companies
+						</p>
+
+					</div>
+					<!-- /.span4 -->
+					<div class="span3">
+						<%= image_tag("landing-page/experince.png") %>
+
+						<p>
+							Gain experience to build skills, that custom fit to your career
+						</p>
+
+					</div>
+					<!-- /.span4 -->
+					<div class="span3">
+						<%= image_tag("landing-page/network.png") %>
+
+						<p>
+							Get access to professional that want you to succeed
+						</p>
+
+					</div>
+					<div class="span3">
+						<%= image_tag("landing-page/s-communication.png") %>
+
+						<p>
+							Communication so easy, warning…you may spent hours on it
+						</p>
+
+					</div>
+					<!-- /.span4 -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- START THE FEATURETTES -->
+		</div>
+		<!-- /END THE FEATURETTES -->
+
+<!--		<%= render "devise/shared/links" %> -->
+	</div>
+	
+</div>
+
+<!-- <%= render :partial => "partials/footer/p_footer_generic" %> -->
+<%= render :partial => "layouts/footer" %>
+

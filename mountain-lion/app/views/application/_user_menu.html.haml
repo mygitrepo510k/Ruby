@@ -1,0 +1,57 @@
+.span2#leftsidebar
+  .media
+    = link_to(user_photo('media-object img-polaroid', 'thumb', 'thumb'), user_profile_path, class: "pull-left")
+    .media-body
+      %h4.media-heading= current_user.username
+      = link_to t('links.edit_profile'), user_profile_path
+  %hr
+  %ul{class: "nav nav-list"}
+    %li
+      = link_to users_path do
+        %i{class: "icon-glass"}
+        = I18n.t("views.shared.user_menu.the_lounge")
+    %li
+      = link_to inbox_messages_path do
+        %i{class: "icon-envelope"}
+        = I18n.t("views.shared.user_menu.messages")
+        = unread_counter(current_user.unread_message_count)
+    %li
+      = link_to likes_users_path do
+        %i{class: "icon-star"}
+        = I18n.t("views.shared.user_menu.who_likes_you")
+        = unread_counter(current_user.recent_likes)
+    %li
+      = link_to liked_users_path do
+        %i{class: "icon-thumbs-up"}
+        = I18n.t("views.shared.user_menu.who_you_like")
+    %li
+      = link_to views_users_path do
+        %i{class: "icon-eye-open"}
+        = I18n.t("views.shared.user_menu.who_looked_at_you")
+        = unread_counter(current_user.recent_visitors)
+    %li
+      = link_to matches_users_path do
+        %i{class: "icon-fire"}
+        = I18n.t("views.shared.user_menu.your_matches")
+  %hr
+  = link_to(rating_image(current_user), "#", id: 'rating-link')
+
+#rating-popup{style: 'display: none; bottom: 5px; right: 5px; position: fixed;'}
+  = rating_div current_user.rating
+
+
+:coffee
+  show_popup = ->
+    $('#rating-popup').riseUp()
+    #setTimeout (->
+    #  $('#rating-popup').riseDown()
+    #  ), 15000
+
+  if #{@rating.present?}
+    show_popup()
+
+  $('#rating-link').click ->
+    show_popup()
+
+  $('#rating-popup').click ->
+    $(@).riseDown()

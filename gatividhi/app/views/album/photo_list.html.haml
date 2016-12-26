@@ -1,0 +1,32 @@
+:css
+  .memberAlbum {
+    background: none !important;
+    height: 158px;
+    margin-bottom: 32px;
+  }
+.row.first-row  
+  = render 'layouts/after_login_navigation_links'
+.bodyWapper
+  .tabBox
+    %a.tabSelected{:href => "#."}
+      All Photos Of Album #{@album.name}
+    .CL
+  .tabContainer{:style => "padding:14px;float: left;width:100%;"}
+    %br/
+    %ul.memberAlbum
+      - @album_images.each do | single_album_image |
+        %li{:style=>"width: 120px;"}
+          %a.box{:href => single_album_image.image_path(:large), :rel => "facebox"}
+            %img{:alt => "", :height => "110", :src => "#{single_album_image.photo.url(:thumb)} ", :width => "110"}/
+          %a{:href => "#."}= single_album_image.name
+          %a.deleteIcon{:href => "/destroy_photo?id=#{single_album_image.id}", :onclick => "return confirm('Are you sure you want to Delete this row')", :title => "Delete"}
+          %br/
+      %li
+        %a.box{:href => "/album/add_photo?test_report_id=#{@album.id}", :rel => "facebox"}
+          %span.plusIconBig
+          Add
+          %br>/
+          new photo
+
+:javascript
+  $('a[rel*=facebox]').facebox();

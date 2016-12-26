@@ -1,0 +1,55 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.nav-top-bar
+      = render :partial => 'users/dashboard-nav'
+    .row.oh-page-container
+      .row.title
+        .span3.title-span
+          %label.page-title
+            = t("patient_flow.prescription.plural")
+        .span5.pg-float
+          =link_to t("patient_flow.prescription.upload_prescription"), prescriptions_upload_path, :class => "btn gb-btn"
+      .row.page-content
+        %table.table.dashboard-table
+          %tr.th-bckgrnd
+            %th.homepg-header
+              = t("patient_flow.prescription.doctor")
+            %th.homepg-header
+              = t("patient_flow.prescription.prescription_no")
+            %th.homepg-header
+              = t("patient_flow.prescription.issue_date")
+            %th.homepg-header
+              = t("patient_flow.prescription.expiry_date")
+            %th.homepg-header
+              = t("patient_flow.prescription.status")
+            %th.homepg-header
+              = t("patient_flow.prescription.action")
+            - unless @prescriptions.blank? 
+              - @prescriptions.each do |prescription|
+                %tr
+                  %td
+                    =  prescription.prescribing_doctor
+                  %td
+                    =  prescription.id
+                  %td
+                    =  l(prescription.issue_date, :format => :default)
+                  %td
+                    =  l(prescription.expiration, :format => :default)
+                  %td
+                    =  prescription.status
+                  %td
+                    =link_to "View",prescription_path(prescription)
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    =link_to "Order",new_order_path(:prescription_id => prescription.id) unless @ordered_prescriptions_ids.include? prescription.id
+                    =link_to "Reorder",new_order_path(:prescription_id => prescription.id) if @ordered_prescriptions_ids.include? prescription.id
+            - else
+              %tr
+                %td{:colspan => 6} 
+                  %p.text-center
+                    = t("patient_flow.prescription.text1")
+      .row.empty-row
+      .row.empty-row
+      .row.empty-row
+      .row.page-content
+        .right-align
+          = paginate @prescriptions

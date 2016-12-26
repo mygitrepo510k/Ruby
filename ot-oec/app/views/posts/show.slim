@@ -1,0 +1,14 @@
+.row
+	.col-sm-6.col-md-6.col-md-push-3
+		.individual_post.section
+			.back_to_dash_link
+				= link_to root_path
+					span.glyphicon.glyphicon-chevron-left
+					| Back to dashboard
+			= render partial: 'dashboard/post', locals: { post: @post, feed: false }
+
+	.col-sm-6.col-md-3.col-md-pull-6
+		= render 'dashboard/activity'
+	
+	.col-sm-6.col-md-3
+		= render 'dashboard/ticker'

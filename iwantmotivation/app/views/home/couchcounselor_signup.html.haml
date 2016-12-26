@@ -1,0 +1,53 @@
+#welcome_coachcounselor.row
+	.container
+		.row.first-row		
+			.span3
+			.span4
+				%p.coachcounselor-page-title Coach And Counselor Pricing Page
+				%label.price-page-description= get_option(:coachcounselor_page_description)
+			.span2
+		.row.plans.second-row
+			.span4.offset1
+				%p.plan-title Coach
+				.well
+					%ul
+						%li Reach More Potential Clients
+						%li Brand Your Business and Services
+						%li Another Income Stream
+						%li Sell Your Products On Our Site
+						%li Join One of The Largest Online Communities
+						%li Start Conversations with Potential Clients
+						%li Change People's Lives
+						%li Expand Your Reach
+						%li{:style=>"list-style:none; margin-top:10px;"}= get_option(:coach_signup_item_page_description)
+					.plan
+						%h4 Coach
+					
+					%h3 $19.95/month
+					= link_to 'Join Now', new_user_registration_path(:plan => 'coach'), :class => 'btn btn-primary'
+			.span4
+				%p.plan-title Counselor
+				.well
+					%ul
+						%li Reach More Potential Clients
+						%li Brand Your Business and Services
+						%li Another Income Stream
+						%li Sell Your Products On Our Site
+						%li Join One of The Largest Online Communities
+						%li Start Conversations with Potential Clients
+						%li Change People's Lives
+						%li Expand Your Reach	
+						
+						%li{:style=>"list-style:none; margin-top:10px;"}= get_option(:counselor_signup_item_page_description)
+
+					.plan
+						%h4 Counselor
+					%h3 $19.95/month
+					= link_to 'Join Now', new_user_registration_path(:plan => 'counselor'), :class => 'btn btn-primary'
+
+:css
+	div.container{
+		max-width: 1024px !important;
+		min-width: 1024px !important;
+	}
+	

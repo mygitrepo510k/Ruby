@@ -1,0 +1,32 @@
+- owner = current_user == message.sender
+.modal-header
+  %button{type: "button", class: "close", "data-dismiss" => "modal", "aria-hidden" => true}x
+  %h3= message.subject
+.modal-body
+  - if owner
+    = link_to(user_photo('media-object img-polaroid pull-right', 'thumb', 'thumb', message.recipient), user_path(message.recipient.username))
+  - else
+    = link_to(user_photo('media-object img-polaroid pull-right', 'thumb', 'thumb', message.sender), user_path(message.sender.username))
+  %p
+    %b 
+      - if owner
+        To: #{link_to(message.recipient.display_username, user_path(message.recipient.username))}
+      - else
+        From: #{link_to(message.sender.display_username, user_path(message.sender.username))}
+      %br
+      Date: #{message.created_at.strftime('%m/%d/%Y')} 
+  .body= message.body.html_safe
+.modal-footer
+  - unless owner
+    %small.pull-left= link_to 'Report Abuse', abuse_message_path(message), data: { confirm: 'Are you sure you want to flag this message for abuse?' }
+    = link_to I18n.t('views.messages.reply'), new_message_path(recipient: message.sender.id), remote: true, class: "btn btn-primary"
+    = link_to I18n.t('views.flirts.reply'), new_flirt_path(recipient: message.sender.id), remote: true, class: "btn btn-info"
+  %button.btn{ "data-dismiss" => "modal", "aria-hidden" => true}Close
+  - if owner
+    = link_to I18n.t('views.messages.destroy'), message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+  - else
+    - if message.deleted_by_recipient
+      = link_to I18n.t('views.messages.undelete'), message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+    - else
+      = link_to I18n.t('views.messages.destroy'), message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"
+

@@ -1,0 +1,36 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.nav-top-bar
+      = render partial: 'users/dashboard-nav'
+    .row.oh-page-container
+      .row.title
+        .span4.title-span
+          %label.page-title
+            = t("doctor_flow.patients.plural")
+        .span4.pg-float
+          = link_to t("doctor_flow.patients.invite_patients"), '#', onclick: "$('#new-doctor-patient').modal('show')", class: "btn gb-btn"
+      .row.page-content
+        %table.table.dashboard-table
+          %tr.th-bckgrnd
+            %th.homepg-header
+              = t("doctor_flow.patients.patient")
+            %th.homepg-header
+              = t("doctor_flow.patients.health_card_no")
+            %th.homepg-header
+              = t("doctor_flow.patients.patient_email")
+            %th.homepg-header
+              = t("doctor_flow.patients.action")
+            - unless @doctor_patients.empty?
+              = render(partial: 'patient', collection: @doctor_patients)
+            - else
+              %tr
+                %td{colspan: 6}
+                  %p.text-center= t("doctor_flow.patients.no_patients_html", link: link_to(t('doctor_flow.patients.add_your_patients'), '#', onclick: "$('#new-doctor-patient').modal('show')"))
+      .row.empty-row
+      .row.empty-row
+      .row.empty-row
+      .row.page-content
+        .span10
+          = paginate @doctor_patients
+
+= render 'new'

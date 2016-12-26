@@ -1,0 +1,101 @@
+.experience.section
+	h2
+		= @experience.name
+		| &nbsp;experience
+
+	.description 
+		h5 Aspect Looking to Open
+		= @experience.looking_to_open
+		h5 Process
+		= @experience.process
+		hr
+		
+	br 
+	.row
+		.col-sm-3
+			= link_to image_tag(@experience.created_for.avatar.profile.url), @experience.created_for, class: 'img_ctn'
+
+		.col-sm-9
+			.createdfor
+				|	Created for #{link_to @experience.created_for.name, @experience.created_for}
+
+			.scheduledfor Scheduled for #{@experience.scheduled_for.to_formatted_s(:long)}
+			.createdby Created by #{link_to @experience.created_by.name, @experience.created_by} at #{@experience.created_at.to_formatted_s(:long_ordinal)}
+
+			.followers Followers: #{raw @experience.followers.collect { |x| link_to x.name, x }.join(", ")}
+			.add_followers_link
+				a href='#' data-add-followers=true Add followers
+
+			.executed
+				- if @experience.executed_at
+					| Marked as executed by #{link_to @experience.executed_by.name, @experience.executed_by} at #{@experience.executed_at.to_formatted_s(:long_ordinal)}
+				- elsif current_user.admin?
+					= link_to "Mark Executed", experience_executed_path(id: @experience), :class => "btn btn-mini btn-primary"
+
+		-if @experience.executed_at && @experience.frame
+			.col-sm-12
+				.survey_responses
+					h3 What opened up?
+					= @experience.what_came_up
+					h3 What color did it bring you to?
+					= @experience.color.capitalize
+					h3 What emergent behavior arose that surprised you?
+					= @experience.emergent
+					h3 Did you feel seen through this game?
+					= @experience.feel_seen.capitalize
+					h3 What could have had the experience go deeper?
+					= @experience.go_deeper
+				.current_frame
+					hr
+					h2
+						span.glyphicon.glyphicon-edit
+						| Frame
+					= render partial: 'content_groups/show', locals: { content_group: @experience.frame.contents_by_type, desc: @experience.frame.description }
+
+		-if @experience.created_for == current_user
+			.col-sm-12
+				.frame
+					hr
+					h2 
+						span.glyphicon.glyphicon-edit
+						| Submit Your Frame
+
+					.experience_survey
+						= form_for @experience do |f|
+							= f.text_area :what_came_up, rows: 5, placeholder: 'What opened up for you in the game?'
+							= f.label :color, 'What color did it bring you to?'
+							= f.select :color, options_for_select(Experience.colors, Experience.colors[f.object.color])
+							= f.text_area :emergent, rows: 5, placeholder: 'What emergent behavior arose that surprised you?'
+							= f.label :feel_seen, 'Did you feel seen through the game?'
+							= f.select :feel_seen, options_for_select(Experience.feel_seens, Experience.feel_seens[f.object.feel_seen])
+							= f.text_area :go_deeper, rows: 5, placeholder: 'What could have had the experience go deeper?'
+
+					= render partial: 'content_groups/new',
+						locals: {	redirect: experience_path(@experience), belongs_to: @experience.id, belongs_to_type: @experience.class.name, has_privacy: true }
+
+		.col-sm-12
+			.comments
+				.student
+					hr
+					h2
+						span.glyphicon.glyphicon-comment
+						| Comments
+					= render partial: 'comments/commentfeed', locals: { commentable: @experience, scope: 'public' }
+
+				- if current_user.leader?
+					.admin
+						h2
+							span.glyphicon.glyphicon-eye-close
+							| Private Admin Only Comments
+						= render partial: 'comments/commentfeed', locals: { commentable: @experience, scope: 'admin' }
+
+		.col-sm-12
+
+			#add_followers_popup
+				h4 Add a follower
+				= form_for ExperienceFollower.new, url: admin_experience_add_follower_path(@experience) do |f|
+					= f.hidden_field :user
+					= autocomplete_field_tag 'follower_name', '', admin_autocomplete_user_name_path,
+						id_element: '#experience_follower_user', placeholder: 'Follower'
+					= f.submit
+		hr

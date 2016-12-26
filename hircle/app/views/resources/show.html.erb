@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Label:</b>
+  <%= @resource.label %>
+</p>
+
+<p>
+  <b>Pointer:</b>
+  <%= @resource.pointer %>
+</p>
+
+<p>
+  <b>Attachment:</b>
+ 
+  <!--image_tag @resource.attach.url(:original) -->
+  <%= @resource.attach.url(:original) %>
+</p>
+
+
+
+<p>
+  <b>Company:</b>
+  <%= @resource.company_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @resource.user_id %>
+</p>
+
+<p>
+  <b>Update at:</b>
+  <%= @resource.update_at %>
+</p>
+<script>
+	parent.location.hash = 'uploadsuccess/<%= @resource.department_id %>';
+</script>
+
+<%= link_to 'Edit', edit_resource_path(@resource) %> |
+<%= link_to 'Back', resources_path %>

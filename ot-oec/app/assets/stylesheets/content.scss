@@ -1,0 +1,113 @@
+// Place all the styles related to the Content controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.contents-section {
+  .content-item {
+    h2 {
+      margin: 2px 0px 4px 0px;
+      font-size: 20px;
+    }
+    .content-description {
+      margin-top: 6px;
+    }
+  }
+}
+
+.course_content {
+	#field_groups {
+		li {
+			width: 100%;
+			
+			.fieldset {
+				width: 100%;
+				padding: 2.5em 1em 1em;
+				margin: 0 0 1em;
+				background: $offwh;
+
+				[data-remove-fieldset] {
+					position: absolute;
+					top: .75em;
+					right: 1em;
+					z-index: 100 !important;
+					font-size: .65em;
+				}
+
+				input, textarea { 
+					margin: .25em 0;
+				}
+
+				input[type="file"] {
+					margin: .5em 0 0;
+					padding: 0;
+					line-height: 0;
+				}
+			
+				&.wistia-upload-widget {
+					.upload-button {
+						border: 1px dashed $lgrey;
+						@include linear-gradient(180deg,$wh,$offwh);
+						@include radius($default-site-radius);
+						@include transition-duration(.25s);
+
+						&:hover {
+							border: 1px dashed $blue;
+						}
+
+						.upload-media {						
+							color: $lgrey;
+							font-weight: 700;
+							padding: 1em;
+							font-size: 2em;
+							line-height: 0;
+						}
+					}
+
+					.swfu_container {
+						z-index: 10;
+					}
+
+					.upload-status {
+						position: relative;
+
+						.progress {
+							height: 2.25em;
+
+							span {
+								color: $wh;
+							}
+
+							.progress-bar {
+								background: $blue;
+							}
+						}
+
+						a.cancel {
+							position: absolute;
+							right: .5em;
+							top: 1em;
+							font-size: .75em;
+							width: auto;
+							height: auto;
+							color: $blue;
+							@extend .glyphicon;
+							@extend .glyphicon-remove;
+							background-image: none;
+
+							&:hover {
+								background-image: none;
+							}
+						}
+					}
+
+				}
+			}
+		}
+	}
+
+	.add_field_link {
+		.glyphicon {
+			top: .25em;
+		}
+	}	
+}

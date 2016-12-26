@@ -1,0 +1,10 @@
+.admin-challenges-new.section.single
+	h3 Create a challenge
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Challenges', admin_challenges_path
+		li.active= 'Add Challenge'
+
+  	= render 'form'
+  	br

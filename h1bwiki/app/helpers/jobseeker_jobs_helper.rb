@@ -1,0 +1,2 @@
+module JobseekerJobsHelper
+end

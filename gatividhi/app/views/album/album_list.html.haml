@@ -1,0 +1,37 @@
+:css 
+  .memberAlbum {
+    background: none !important;
+    height: 158px;
+    margin-bottom: 32px;
+  }
+
+.bodyWapper
+  .tabBox
+    %a.tabSelected{:href => "#."} All Albums
+    .CL
+  .tabContainer{:style => "padding:14px"}
+    %br/
+    %ul.memberAlbum
+      - @albums.each do | single_album |
+        %li
+          %a.box{:href => "/photo_list?test_report_id=#{single_album.id}"}
+            - if single_album.pictures.blank?
+              = image_tag('sample/profile_img1.jpg', :alt=>'', :height=>'110', :width=>'110') 
+            - else
+              = image_tag(single_album.pictures[0].photo.url :thumb, :alt=>'', :height=>'110', :width=>'110')            
+          %a{:href => "/photo_list?test_report_id=#{single_album.id}"}
+            = single_album.name
+            (#{single_album.pictures.count})
+          %a.deleteIcon{:href => "/destroy_album?id=#{single_album.id}", :onclick => "return confirm('Are you sure you want to Delete this row')", :title => "Delete"}
+          %br/
+      %li
+        %a.box{:href => "/album/add_album", :rel => "facebox"}
+          %span.plusIconBig>
+          Add
+          %br>/
+          new album
+    .CL
+  .CL
+
+:javascript
+  $('a[rel*=facebox]').facebox();

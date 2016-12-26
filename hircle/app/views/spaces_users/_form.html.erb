@@ -1,0 +1,28 @@
+<%= form_for(@spaces_users) do |f| %>
+  <% if @spaces_users.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@spaces_users.errors.count, "error") %> prohibited this spaces_users from being saved:</h2>
+
+      <ul>
+      <% @spaces_users.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </div>
+ 
+  <div class="field">
+    <%= f.label :space_id %><br />
+    <%= f.text_field :space_id %>
+  </div>
+ 
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

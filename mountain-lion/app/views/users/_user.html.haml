@@ -1,0 +1,24 @@
+.media
+  = user.lounge_photo
+  .media-body
+    %p
+      = user.lounge_username_and_age
+      = rating_image(user, 'small', 'right')
+      - if user.premium
+        = image_tag 'profile-premium-badge.png', title: 'Premium Member', class: "pull-right"
+      %br
+      = user.city + ', ' + user.country
+    %p.text-warning
+      %em= message
+    %p
+      = link_to new_message_path(recipient: user.id), class: "btn btn-small btn-info", remote: true do
+        %i.icon-envelope.icon-white
+        Message
+      &nbsp;
+      = link_to new_flirt_path(recipient: user.id), class: "btn btn-small btn-info", remote: true do
+        %i.icon-comment.icon-white
+        Flirt
+      &nbsp;
+      = link_to user_path(user.username), class: "btn btn-small btn-info" do
+        %i.icon-user.icon-white
+        View Profile

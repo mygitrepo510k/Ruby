@@ -1,0 +1,104 @@
+.profile
+	.row
+		.col-sm-6
+			.section
+				.avatar
+					= image_tag @user.avatar.profile.url
+
+					.safewords
+						- if (@user == current_user) or (current_user.admin?) or @user.pod_leader(current_user) == current_user
+							- for word in ['green', 'yellow', 'red']
+								= link_to_if @user == current_user, content_tag(:button, '', class: "status #{word} #{@user_program.safeword == word ? 'active' : ''}"), change_safeword_path(id: @user, word: word)
+				
+				.name
+					- if (@user == current_user) or (current_user.admin?) or @user.pod_leader(current_user) == current_user
+						- for word in ['green', 'yellow', 'red']
+							h2 class="status #{word} #{@user_program.safeword == word ? 'active' : ''}"
+								= @user.name
+								 
+							- if @pod and @pod.leader
+								h4
+									span.glyphicon.glyphicon-user
+									= link_to @pod.leader.name, @pod.leader
+					- else
+						h2= @user.name
+
+				.bio
+					-if @user == current_user
+						a href='#' data-xeditable='true' data-pk=@user.id data-type='textarea' data-model='user' data-name='bio' data-url=user_path(@user) data-title='Enter bio'
+							= @user.bio	
+					-if !(@user == current_user)
+						= simple_format(@user.bio)
+
+				hr
+				.clearfix
+
+				.student
+					h2
+						span.glyphicon.glyphicon-comment
+						| Comments
+					= render partial: 'comments/commentfeed', locals: { commentable: @user, scope: 'public' }
+		
+				- if current_user.leader?
+					.admin-only
+						
+						hr
+
+						h2 Private Admin Only Comments
+						= render partial: 'comments/commentfeed', locals: { commentable: @user, scope: 'admin' }
+
+		.col-md-6
+			.section.minor
+				br 
+
+				ul.nav.nav-tabs 
+					li.active
+						a href='#tab1' data-toggle="tab"
+							span.glyphicon.glyphicon-user
+							| Profile
+					li
+						a href='#tab2' data-toggle="tab"				
+							span.glyphicon.glyphicon-road
+							| Games
+					- if current_user.admin?
+						li
+							a href='#tab3' data-toggle="tab"
+								span.glyphicon.glyphicon-book
+								| Admin
+
+				.tab-content 
+					.tab-pane.fade.in.active.profile#tab1
+						-if @user == current_user or current_user.admin?
+							.new_avatar_form
+								= form_for @user, { :class => 'form-inline', method: 'put' } do |f|
+									= f.label :avatar, 'Upload new photo'
+									= f.file_field :avatar
+									= button_tag(type: 'submit', class: 'btn btn-primary') do
+										span class='glyphicon glyphicon-ok'
+
+						h3 Intake Form
+						- if @profile
+							- if @user == current_user or current_user.admin?
+								a href='#' data-xeditable='true' data-type='checklist' data-source='{"1": "Private"}' data-emptytext='Public' data-pk=@user_program.id data-model='userprogram' data-name='private_intake' data-url=user_program_path(@user_program) data-value="#{@user_program.private_intake ? 1 : 0}"
+
+								.edit = link_to("Edit Answers", edit_intake_path(user_id: @user.id))
+							-if !@user_program.private_intake or @user == current_user or current_user.admin?
+								- for qa in @profile
+									.question_answer
+										h4 = qa[:question]
+										p = qa[:answer] ? qa[:answer].gsub("\n", "<br>").html_safe : nil
+							-else
+								| This student has elected to keep their intake private
+						- else
+							= (@user == current_user or current_user.admin?) ? link_to("Fill Out Intake Form", edit_intake_path(user_id: @user.id)) : "(pending)"
+
+					.tab-pane.fade#tab2
+						.assignments
+							h5 Assignments
+							/= render 'dashboard/activity_items', challenges: @challenges, experiences: @experiences
+
+					.tab-pane.fade#tab3
+						h5 Admin
+						ul.admin_links
+							li= link_to 'Resend Welcome Email', admin_user_resend_welcome_mail_path(@user)
+							li= link_to 'Delete', admin_user_path, method: :delete, data: { confirm: 'Are you sure you want to delete this profile?' }

@@ -1,0 +1,20 @@
+-@interest.academics.each do |academic|
+	.formMainRow.singleRow{:style=>"height: 20px;", :id=>'row_'+academic.id}
+		.formAction
+			.viewEdit
+				%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit_#{academic.id}','#linkObj_#{academic.id}','.viewEdit')", :title => "Edit"}
+				= link_to("", "javascript:delete_interest('#{academic.id}')", :method=> :delete, :confirm => "Are you sure?", :class => "deleteIcon", :title=>"Delete")
+			%span{:id=>"linkObj_"+academic.id, :onclick => "showEdit('showEdit_#{academic.id}','#linkObj_#{academic.id}','.viewEdit')"}= academic.option_value
+			.editBox{:id=>"showEdit_"+academic.id}
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'edit_academic_'+academic.id}
+						%option Select
+						%option Maths
+						%option Science
+						%option Hindi
+						%option English
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit_#{academic.id}','#linkObj_#{academic.id}','.viewEdit')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit_#{academic.id}','#linkObj_#{academic.id}','.viewEdit'); saveChildInterest('edit', 'academic', '#showEdit_#{academic.id}', '#{academic.id}');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+	.CL
+.CL

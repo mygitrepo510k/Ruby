@@ -1,0 +1,19 @@
+.comments
+	-if comments_by_scope(commentable, scope).count > 2
+		a href='#' class='show-hidden-posts' Show all comments...
+	.comment_feed
+		- scope ||= nil
+		- comments_by_scope(commentable, scope).each_with_index do |cmnt, index|
+			-if !cmnt.last_n(2)
+			  	.comment.hidden
+			 		= render partial: 'comments/comment', locals: { comment: cmnt }
+			 		
+			-if cmnt.last_n(2)
+			  	.comment
+			 		= render partial: 'comments/comment', locals: { comment: cmnt }
+	.comment_form
+		= form_for Comment.new(commentable: commentable) do |f|
+			= f.hidden_field :commentable_id, value: commentable.id
+			= f.hidden_field :commentable_type, value: commentable.class.name
+			= f.hidden_field :scope, value: scope
+			= f.text_area :body, class: 'comment_body', placeholder: 'Write a comment...'			

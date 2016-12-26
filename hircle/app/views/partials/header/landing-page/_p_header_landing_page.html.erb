@@ -1,0 +1,89 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+      <%= link_to image_tag("landing-page/logo.png", :style => "max-width:97px;height:67px;"), root_path, :class=>"brand" %>
+      <div class="nav-collapse collapse">
+        <ul class="nav pull-right">
+          <li class="tes">Manage Your Jobs</li>
+          <li>
+            <div class="btn-group profession_type">
+              <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle">Job Seeker <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="#" class="header_landing-page_job-seeker">Job Seeker</a></li>
+                <li><a href="#" class="header_landing-page_professional">Professional</a></li>
+                <li><a href="#" class="header_landing-page_employer">Employer</a></li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div>
+              <button type="submit" class="btn btn-primary login_button">Login</button>
+              <button type="submit" class="btn btn-primary signup_button">Signup</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    $('.profession_type').find('.header_landing-page_job-seeker').click(function () {        
+          $('.profession_type .btn-primary').html($(this).text()+'<span class="caret" style="margin-left: 5px;"></span>');     
+          $('.login_forms').hide();
+          $('.signup_forms').hide();
+          if($('.signup_button').is(':visible')) {
+            $('.login_forms_professional').hide();
+            $('.login_forms_employer').hide();
+            $('.login_forms_job_seeker').show();
+          }else{
+            $('.signup_forms_professional').hide();
+            $('.signup_forms_employer').hide();
+            $('.signup_forms_job_seeker').show();
+          }
+
+      });
+    $('.profession_type').find('.header_landing-page_professional').click(function () {
+          $('.login_forms').hide();
+          $('.signup_forms').hide();      
+          $('.profession_type .btn-primary').html($(this).text()+'<span class="caret" style="margin-left: 5px;"></span>');     
+          if($('.signup_button').is(':visible')) {
+            $('.login_forms_employer').hide();
+            $('.login_forms_job_seeker').hide();
+            $('.login_forms_professional').show();
+          } else{
+            $(this).find('.signup_forms').hide();
+            $('.signup_forms_employer').hide();
+            $('.signup_forms_job_seeker').hide();
+            $('.signup_forms_professional').show();
+          }
+      });
+    $('.profession_type').find('.header_landing-page_employer').click(function () {
+          $('.login_forms').hide();
+          $('.signup_forms').hide();      
+          $('.profession_type .btn-primary').html($(this).text()+'<span class="caret" style="margin-left: 5px;"></span>');
+          if($('.signup_button').is(':visible')) {
+            $('.login_forms_professional').hide();
+            $('.login_forms_job_seeker').hide();
+            $('.login_forms_employer').show();
+          } else {
+            $('.signup_forms_professional').hide();
+            $('.signup_forms_job_seeker').hide();
+            $('.signup_forms_employer').show();
+          }
+      });
+    $('.login_button').click(function () {
+          $(this).hide();
+          $('.login_forms').hide();
+          $('.signup_forms').hide();
+          $('.signup_button').show();
+          $('.login_forms_job_seeker').show();
+      });
+    $('.signup_button').click(function () {
+        $(this).hide();
+        $('.login_forms').hide();
+        $('.signup_forms').hide();      
+        $('.login_button').show();
+        $('.signup_forms_job_seeker').show();
+    });    
+</script>

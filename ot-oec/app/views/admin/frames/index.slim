@@ -1,0 +1,25 @@
+.admin-associate_intake_forms.section.single
+  h3 Frames
+
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li.active= 'Frames'
+
+  table.table.table-striped
+    tr
+      th= 'Challenge Name'
+      th= 'Description'
+      th= 'Submitted by'
+      th= 'Submitted at'
+      th= 'View'
+
+    - @frames.each do |fr|
+      tr
+        td= fr.challenge.name
+        td= truncate fr.challenge.description, length: 35
+        td= link_to fr.user.name, user_path(fr.user)
+        td= fr.content_group ? fr.content_group.created_at.to_formatted_s(:short) : '---'
+        td= link_to 'View', challenge_frame_path(fr)
+
+  = will_paginate @frames, renderer: BootstrapPagination::Rails
+  br

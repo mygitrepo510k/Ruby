@@ -1,0 +1,255 @@
+/ Body Start here
+.bodyWapper
+  .tabBox
+    = link_to 'General', :parent_profile
+    = link_to 'Occupational', :parent_occupational
+    = link_to 'Financial', :parent_financial, :class=>'tabSelected'
+    = link_to 'Policies', :parent_policies
+    .CL
+  .tabContainer
+    .tabAction  
+    .infoContainer.fullWidthCon
+      %p.padLeft10 
+        Last Updated:
+        = @finance.updated_at.to_formatted_s(:short)
+      .formMainRow
+        .formTitle Monthly income (INR):
+        .formAction
+          .viewEdit
+            %a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit','#linkObj','.viewEdit')", :title => "Edit"}
+          %a.show_val#linkObj{:href => "#.", :onclick => "showEdit('#showEdit','#linkObj','.viewEdit')"}= @finance.income.nil? ? 'Please select from dropdown' : @finance.income
+          #showEdit.editBox
+            .jqSmallform
+              %select{:name => "mi", :style => "width:100px;"}
+                %option 0-500000
+                %option 500000+
+            %span.FL
+            %a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit','#linkObj','.viewEdit')"}
+            %input.saveBtn.FR{:onclick => "hideEdit('#showEdit','#linkObj','.viewEdit'); saveProfileAttribute('p', 'income', '#showEdit', 'finance');setValue('#linkObj', '#showEdit', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+            .CL
+        .CL
+      .formMainRow
+        .formTitle Monthly disposable income:
+        .formAction
+          .viewEdit
+            %a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit2','#linkObj2','.viewEdit')", :title => "Edit"}
+          %a.show_val#linkObj2{:href => "#.", :onclick => "showEdit('#showEdit2','#linkObj2','.viewEdit')"}= @finance.disable_income.nil? ? 'Please select from dropdown' : @finance.disable_income
+          #showEdit2.editBox
+            .jqSmallform
+              %select{:name => "mdi", :style => "width:100px;"}
+                %option 0-500000
+                %option 500000+
+            %span.FL
+            %a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit2','#linkObj2','.viewEdit')"}
+            %input.saveBtn.FR{:onclick => "hideEdit('#showEdit2','#linkObj2','.viewEdit'); saveProfileAttribute('p', 'disable_income', '#showEdit2', 'finance');setValue('#linkObj2', '#showEdit2', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+            .CL
+        .CL
+      .formMainRow
+        .formTitle Monthly school fee:
+        .formAction
+          .viewEdit
+            %a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit3','#linkObj3','.viewEdit')", :title => "Edit"}
+          %a.show_val#linkObj3{:href => "#.", :onclick => "showEdit('#showEdit3','#linkObj3','.viewEdit')"}= @finance.school_free.nil? ? 'Please select from dropdown' : @finance.school_free
+          #showEdit3.editBox
+            .jqSmallform
+              %select{:name => "msf", :style => "width:100px;"}
+                %option 0-500000
+                %option 500000+
+            %span.FL
+            %a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit3','#linkObj3','.viewEdit')"}
+            %input.saveBtn.FR{:onclick => "hideEdit('#showEdit3','#linkObj3','.viewEdit'); saveProfileAttribute('p', 'school_free', '#showEdit3', 'finance');setValue('#linkObj3', '#showEdit3', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+            .CL
+        .CL
+      .formMainRow
+        .formTitle Other monthly child expenses:
+        .formAction
+          .viewEdit
+            %a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit4','#linkObj4','.viewEdit')", :title => "Edit"}
+          %a.show_val#linkObj4{:href => "#.", :onclick => "showEdit('#showEdit4','#linkObj4','.viewEdit')"}= @finance.child_expense.nil? ? 'Please select from dropdown' : @finance.child_expense
+          #showEdit4.editBox
+            .jqSmallform
+              %select{:name => "omce", :style => "width:100px;"}
+                %option 0-500000
+                %option 500000+
+            %span.FL
+            %a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit4','#linkObj4','.viewEdit')"}
+            %input.saveBtn.FR{:onclick => "hideEdit('#showEdit4','#linkObj4','.viewEdit'); saveProfileAttribute('p', 'child_expense', '#showEdit4', 'finance');setValue('#linkObj4', '#showEdit4', 'select');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+            .CL
+        .CL
+      %p  
+      %h2.pageTitle Advances Paid
+      #advances_paid
+        %table.tableGride{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+          %tbody#advances_paid_table
+            = render :partial => 'advances_paid'
+          %tr#addBox.editRow{:style => "display:none;"}
+            %td{:align => "left", :valign => "top"}
+              %input#getValue1.inputField{:onblur => "if(this.value==''){ this.value='particulars'; this.style.color='#979797'}", :onclick => "if(this.value=='particulars'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "particulars"}/
+            %td{:align => "left", :valign => "top"}
+              %input#getValue2.showDate.inputField{:onblur => "if(this.value==''){ this.value='date'; this.style.color='#979797'}", :onclick => "if(this.value=='date'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "date"}/
+            %td{:align => "left", :valign => "top"}
+              %input#getValue3.inputField{:onblur => "if(this.value==''){ this.value='amount'; this.style.color='#979797'}", :onclick => "if(this.value=='amount'){ this.value=''; this.style.color='#000'}", :style => "width:80px;", :type => "text", :value => "amount"}/
+            %td{:align => "left", :valign => "top"}
+              %input#getValue4.inputField{:onblur => "if(this.value==''){ this.value='description'; this.style.color='#979797'}", :onclick => "if(this.value=='description'){ this.value=''; this.style.color='#000'}", :style => "width:250px;", :type => "text", :value => "description"}/
+              %a.closeBigBtn.FR{:href => "#.", :onclick => "hideObj('#addBox')"}
+              %input.saveBtn{:onclick => "hideObj('#addBox');save_advaces_paid()", :type => "submit", :value => "save"}/
+        %p.padLeft10
+          %a.greyBtn{:href => "#.", :onclick => "showObj('#addBox')"} add new advance details
+        %p   
+
+        
+      %h2.pageTitle Child related policies
+      #child_related_policies
+        %table.tableGride{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}          
+          %tr
+            %th{:align => "left", :width => "25%"} Policy Name
+            %th{:align => "left", :width => "15%"} Type
+            %th{:align => "left", :width => "14%"} Policy Amount(INR)
+            %th{:align => "left", :width => "46%"} Description
+          %tbody#child_related_policies_body
+            = render :partial => 'child_related_policies', :locals => { :child_related_plicies => @finance.child_related_policies}
+          %tr#cr_addBox.editRow{:style => "display:none;"}
+            %td{:align => "left", :valign => "top"}
+              %input#cr_val1.inputField{:onblur => "if(this.value==''){ this.value='Policy Name'; this.style.color='#979797'}", :onclick => "if(this.value=='Policy Name'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "Policy Name"}/
+            %td{:align => "left", :valign => "top"}
+              .jqSmallform              
+                %select#cr_val2.inputField{:name => "type2", :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'"}
+                  %option{:selected => "selected"} Select
+                  %option Higher Education
+                  %option Education
+                  %option Life
+                  %option Medical
+                  %option Other
+            %td{:align => "left", :valign => "top"}
+              %input#cr_val3.inputField{:onblur => "if(this.value==''){ this.value='amount'; this.style.color='#979797'}", :onclick => "if(this.value=='amount'){ this.value=''; this.style.color='#000'}", :style => "width:80px;", :type => "text", :value => "amount"}/
+            %td{:align => "left", :valign => "top"}
+              %input#cr_val4.inputField{:onblur => "if(this.value==''){ this.value='description'; this.style.color='#979797'}", :onclick => "if(this.value=='description'){ this.value=''; this.style.color='#000'}", :style => "width:250px;", :type => "text", :value => "description"}/
+              %a.closeBigBtn.FR{:href => "#.", :onclick => "hideObj('#cr_addBox')"}
+              %input.saveBtn{:onclick => "hideObj('#cr_addBox');save_cr_policy();", :type => "submit", :value => "save"}/
+        %p.padLeft10
+          %a.greyBtn{:href => "#.", :onclick => "showObj('#cr_addBox')"} add new child related policy
+        %p  
+/ Body Start End
+  
+  
+  
+
+:javascript
+  function save_advaces_paid(){
+    var url_ajax = 'profile/save_advaces_paid'
+    var val1 = $(getValue1).val();
+    var val2 = $(getValue2).val();
+    var val3 = $(getValue3).val();
+    var val4 = $(getValue4).val();
+    $.ajax({
+      url :url_ajax,
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      type: "POST",
+      data: 'val1='+val1+'&val2='+val2+'&val3='+val3+'&val4='+val4,
+      dataType:'script',
+      success :function(){
+      }
+    });
+    return
+  }
+
+  function edit_advaces_paids(id){
+    var url_ajax = 'profile/edit_advances_paid'  
+    var val1 = $('#val1_'+id).val();
+    var val2 = $('#val1_'+id).val();
+    var val3 = $('#val1_'+id).val();
+    var val4 = $('#val1_'+id).val();
+    $.ajax({
+      url :url_ajax,
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      type: "POST",
+      data: 'id='+id+'&val1='+val1+'&val2='+val2+'&val3='+val3+'&val4='+val4,
+      dataType:'script',
+      success :function(){        
+      }
+    });
+    return
+  }
+  function delete_val(id){
+    var url = 'profile/delete_advaces_paid'
+    $.ajax({
+      url :url,
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      type: "POST",
+      data: 'id='+id,
+      dataType:'script',
+      success :function(){
+      }
+    });
+    return
+  }
+
+  function save_cr_policy(){
+    var url_ajax = 'profile/save_child_related_policies'
+    var val1 = $(cr_val1).val();
+    var val2 = $(cr_val2).val();
+    var val3 = $(cr_val3).val();
+    var val4 = $(cr_val4).val();
+    $.ajax({
+      url :url_ajax,
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      type: "POST",
+      data: 'val1='+val1+'&val2='+val2+'&val3='+val3+'&val4='+val4,
+      dataType:'script',
+      success :function(){
+      }
+    });
+    return
+  }
+
+  function edit_cr_policy(id){
+    var url_ajax = 'profile/edit_child_related_policies'    
+    var val1 = $('#cr_val1_'+id).val();
+    var val2 = $('#cr_val2_'+id).val();
+    var val3 = $('#cr_val3_'+id).val();
+    var val4 = $('#cr_val4_'+id).val();
+    $.ajax({
+      url :url_ajax,
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      type: "POST",
+      data: 'id='+id+'&val1='+val1+'&val2='+val2+'&val3='+val3+'&val4='+val4,
+      dataType:'script',
+      success :function(){
+        
+      }
+    });
+    return
+  }
+  function delete_cr_policy(id){
+
+    var url = 'profile/delete_child_related_policies'
+    $.ajax({
+      url :url,
+      beforeSend : function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+      },
+      type: "POST",
+      data: 'id='+id,
+      dataType:'script',
+      success :function(){
+
+      }
+    });
+    return
+  }
+
+  $("#getValue2").glDatePicker({
+      leftMargin: -90,
+      topMargin: -10
+  });
+  

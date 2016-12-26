@@ -1,0 +1,191 @@
+/* px to em */
+$em-base: 16px !default;
+
+@function emCalc($pxWidth) {
+    @return $pxWidth / $em-base * 1em;
+}
+
+/* opacity */
+@mixin opacity($percent) {
+    opacity: $percent/100;
+    -moz-opacity: $percent/100;
+    filter: alpha(opacity=$percent);
+}
+
+/* overall radius value */
+$default-site-radius: 1px;
+
+/* border radius */
+@mixin radius($value) {
+    border-radius: $value;
+    -webkit-border-radius: $value;
+    -moz-border-radius: $value;
+}   
+
+/* horizontal separator */
+@mixin hsep($padding,$color) {
+    margin-bottom: $padding;
+    padding-bottom: $padding;
+    border-bottom: 1px solid rgba($color,.5);
+
+    &:last-child {
+        border: 0;
+    }
+}
+
+/* centered grid */
+@mixin centered {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
+
+/* box appearance */
+@mixin section {
+    position: relative;
+    background: $box-bgcolor;
+    min-height: 10em;
+    border: solid rgba($wh,.5);
+    border-width: 1px 0 0 1px;
+    @include box-shadow (1px,1px,2px,0,rgba($bl,.2),false);
+
+    &.minor {
+        background: rgba($box-bgcolor,.5);
+    }
+}
+
+/* general talk bubble - triangle upwise oriented */
+@mixin talkbubble($size,$color,$paddings) {
+    @include section;
+    @extend .minor;
+    margin: 0 .5em 1em;
+    padding: $paddings;
+
+    &:before {
+        content:"";
+        position: absolute;
+        left: 4%;
+        top: emCalc(-1px) - $size;
+        width: 0;
+        height: 0;
+        border-left: $size/1.5 solid transparent;
+        border-bottom: $size solid $color;
+        border-right: $size/1.5 solid transparent;
+    }
+}
+
+/* box-shadow mixin */
+@mixin box-shadow (
+    $hoff: $bs-h-offset,
+    $voff: $bs-v-offset,
+    $blur: $bs-blur,
+    $spread: $bs-spread,
+    $color: $bs-color,
+    $inner: $inset ) {
+
+    $bs-h-offset: 1px !default;
+    $bs-v-offset: 2px !default;
+    $bs-blur: 3px !default;
+    $bs-spread: 0px !default;
+    $bs-color: $dgrey !default;
+    $inset: false !default;
+
+    @if ($hoff == none ) {
+        box-shadow: none;
+        -webkit-box-shadow: none;    
+    }
+
+    @else {
+        @if ($inner == true) {
+            box-shadow: inset $hoff $voff $blur $spread $color;
+            -webkit-box-shadow: inset $hoff $voff $blur $spread $color;        
+        }
+
+        @else {
+            box-shadow: $hoff $voff $blur $spread $color;
+            -webkit-box-shadow: $hoff $voff $blur $spread $color;    
+        }
+    }
+}
+
+/* linear gradient */
+$color-start: $grey !default;
+$color-stop: $lgrey !default;
+$angle: 0deg !default;
+$direction: 'right top, left top' !default;
+
+@mixin linear-gradient($angle, $color-start, $color-stop) {
+    @if ( $angle == none ) {
+        background: none;
+    }
+
+    @else {
+        background: $color-start;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color-start', endColorstr='$color-stop',GradientType=1 );
+        background: -webkit-linear-gradient($angle,  $color-start 0%, $color-stop 100%);
+        background: -moz-linear-gradient($angle,  $color-start 0%, $color-stop 100%);
+        background: -o-linear-gradient($angle,  $color-start 0%,$color-stop 100%);
+        background: -ms-linear-gradient($angle,  $color-start 0%,$color-stop 100%);
+        background: linear-gradient($angle,  $color-start 0%,$color-stop 100%);
+    }
+}
+
+/* transitions */
+@mixin transition($property, $duration, $ms: false) {
+    -webkit-transition: $property $duration ease-in-out;
+    -moz-transition: $property $duration ease-in-out;
+    -o-transition: $property $duration ease-in-out;
+    @if ($ms) {
+        -ms-transition: $property $duration ease-in-out;
+    }
+    transition: $property $duration ease-in-out;
+}
+
+@mixin transitionLong($property, $duration, $easing:ease-in-out, $delay:false) {
+    @include transitionProperty($property);
+    @include transitionDuration($duration);
+
+    @if($delay) {
+        @include transitionDelay($delay);
+    }
+
+    @if($easing) {
+        @include transitionTimingFunction($easing);
+    }
+}
+
+@mixin transitionDelay($delay) {
+    -webkit-transition-delay: $delay;
+    -moz-transition-delay: $delay;
+    -o-transition-delay: $delay;
+    -ms-transition-delay: $delay;
+    transition-delay: $delay;
+}
+
+@mixin transitionDuration($duration) {
+    -webkit-transition-duration: $duration;
+    -moz-transition-duration: $duration;
+    -o-transition-duration: $duration;
+    -ms-transition-duration: $duration;
+    transition-duration: $duration;
+}
+
+@mixin transitionProperty($property) {
+    -webkit-transition-property: $property;
+    -moz-transition-property: $property;
+    -o-transition-property: $property;
+    -ms-transition-property: $property;
+    transition-property: $property;
+}
+
+@mixin transitionTimingFunction($easing) {
+    -webkit-transition-timing-function: $easing;
+    -moz-transition-timing-function: $easing;
+    -o-transition-timing-function: $easing;
+    -ms-transition-timing-function: $easing;
+    transition-timing-function: $easing;
+}
+
+@mixin single-transition($property, $speed, $ease, $delay) {
+    @include transition(compact($property $speed $ease $delay));
+}

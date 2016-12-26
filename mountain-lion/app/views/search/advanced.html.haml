@@ -1,0 +1,23 @@
+%h3 Advanced search fields
+= form_tag url_for(controller: :search, action: :create) do |f|
+  .search
+    .accordion#accordion2
+      - @profile_sections.each_with_index do |ps, index|
+        .span6{style: "margin-left: 10px;"}
+          .accordion-group
+            .accordion-heading
+              = link_to "##{ps.slug}", class: "accordion-toggle", "data-toggle" => "collapse", "data-parent" => "#accordion2" do
+                = ps.reverse_name.to_s.strip.length == 0 ? ps.name : ps.reverse_name
+              %div{id: ps.slug, class: "accordion-body collapse" }
+                .accordion-inner
+                  %ul.left
+                    - ps.profile_questions.where("answer_type != 'string'").each do |pq|
+                      %li= pq.reverse_question.to_s.strip.length == 0 ? pq.question : pq.reverse_question
+                      %ul.clean
+                        - pq.profile_answers.each do |profile_answer|
+                          %li
+                            = label profile_answer.answer, class: "checkbox inline" do
+                              = check_box_tag "search[#{pq.id}][]", profile_answer.id
+                              = profile_answer.answer
+    .clear{style: "clear: both"}
+    = submit_tag "search"

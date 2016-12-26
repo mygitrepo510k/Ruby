@@ -1,0 +1,31 @@
+/Users/chuigwangming/.rbenv/versions/2.0.0-p481/bin/ruby extconf.rb 
+checking for rb_method_entry_t.called_id in method.h... no
+checking for rb_control_frame_t.method_id in method.h... no
+checking for rb_method_entry_t.called_id in method.h... no
+checking for rb_control_frame_t.method_id in method.h... no
+Makefile creation failed
+**************************************************************************
+No source for ruby-2.0.0-p481 provided with debugger-ruby_core_source gem.
+**************************************************************************
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of necessary
+libraries and/or headers.  Check the mkmf.log file for more details.  You may
+need configuration options.
+
+Provided configuration options:
+	--with-opt-dir
+	--without-opt-dir
+	--with-opt-include
+	--without-opt-include=${opt-dir}/include
+	--with-opt-lib
+	--without-opt-lib=${opt-dir}/lib
+	--with-make-prog
+	--without-make-prog
+	--srcdir=.
+	--curdir
+	--ruby=/Users/chuigwangming/.rbenv/versions/2.0.0-p481/bin/ruby
+	--with-ruby-dir
+	--without-ruby-dir
+	--with-ruby-include=${ruby-dir}/include
+	--with-ruby-lib
+	--without-ruby-lib=${ruby-dir}/

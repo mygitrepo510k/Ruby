@@ -1,0 +1,37 @@
+// Place all the styles related to the ContentGroups controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.content {
+    display: inline-block;
+    position: relative;
+		width: 160px;
+    height: 160px;
+    margin: 4px;
+}
+
+.content-thumb {
+  max-height: 160px;
+  width: auto;
+}
+
+.content > div {
+}
+
+.content-overlay {
+    visibility: hidden;
+    background: $offwh;
+    opacity: 0.5;
+}
+
+.content:hover > .content-overlay {
+    visibility: visible;
+}
+
+.overlay-name {
+    font-weight: 700;
+    margin: .5em;
+    color: $bl;
+    z-index: 100;
+    opacity: 1;
+}

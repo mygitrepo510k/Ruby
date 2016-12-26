@@ -1,0 +1,42 @@
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container      
+      .row
+        .span10{:style=>"width: 955px;"}
+          %a.brand{:href => root_path}
+          .nav-collapse       
+            - if user_signed_in?
+              .loggedIn
+                = form_tag "search_job", :method => 'get', :class => "navbar-search top-searchBox" do                
+                  .searchIcon
+                  = text_field_tag :search, params[:search], :class => "searchField", :onblur => "if(this.value==''){ this.value='Search'; this.style.color='#e8e8e8'}", :onclick => "if(this.value=='Search'){ this.value=''; this.style.color='#FFF'}", :type => "text", :value => "Search"
+                  %div
+                .welcomeTxt{:onclick => "location.href='dashboard.html'"}
+                  %p
+                    Welcome #{current_user.first_name}
+                  = link_to 'Logout', destroy_user_session_path, :method=>'delete', :class=>"forgotLink"
+                .settingBox
+                  %a.settingIcon{:href => "#."}
+                  .moreSetting
+                    %img.settingArrow{:alt => "", :height => "10", :src => "/assets/top-arrow.png", :width => "18"}/
+                    %a.first-link{:href => "#."} Delete Account
+                    %a{:href => "#."} Email Settings
+                    %a{:href => "#."} Payments
+                    %a.last-link{:href => "#."} Support History
+                .CL
+            -else
+              .span6
+                = form_for("user", :url => new_user_session_path, :hmtl=>{:class=>"form-inline"}) do |f|
+                  .row.input-box
+                    .span4
+                      = f.email_field :email, :autofocus => true, :placeholder => "Enter email ID"
+                      = f.password_field :password, :placeholder => "Password" 
+                    .span1
+                      = f.submit "Login", :class => "login-btn"
+                  .row.controll-box
+                    .span2
+                      %label.checkbox
+                        = f.check_box :remember_me
+                        = f.label :remember_me
+                    .span2
+                      = link_to "Forgot your password?", new_user_password_path

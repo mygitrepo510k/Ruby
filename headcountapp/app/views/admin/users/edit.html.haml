@@ -1,0 +1,10 @@
+.container
+  .row.header-row{style:'border-bottom: 1px solid #000000; margin-bottom:20px;'}
+    .span8{style:'margin-left: 0px;'}
+      %h3{style:'margin-bottom: 0px;'} User Profile - Account Info
+    .span3.pull-right{style:'margin-right: 30px;'}
+      %strong.pull-right{style:'font-size: 16px;margin-top: 25px;'}
+        Status :
+        = @user.active == true ? "Active" : "De-Active"
+    .span1.pull-right
+  = render "form"

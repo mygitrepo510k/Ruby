@@ -1,0 +1,53 @@
+<%= form_for(@artist, multipart: true) do |f| %>
+
+  <% if @artist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
+
+      <ul>
+      <% @artist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+		<br> 
+  <div class="actions">
+    <p>
+			<%= f.label 'Name', style: 'margin-right:6px;margin-bottom:16px;' %>
+			<%= f.text_field :name, style: 'margin-bottom:16px;' %>
+		</p>
+
+		<p>
+			<label>
+				Gender
+				<%= radio_button("artist", "gender", "rails") %>
+				<%= radio_button("artist", "gender", "java") %>
+			</label>
+		</p>
+		<br><br>
+		<p>
+			<label>
+				Category
+				<%= f.select :category, ["Commercial", "Promo", "Narration/Documentary", "Political", "Trailer", "Animation", "Books on Tape"] %>
+			</label>
+		</p>
+		<br><br>
+		<div class="uploads">
+			<%= f.fields_for :upload do | upload | %>
+				<div class="row">
+					<%= upload.text_field :upload_file_name	%>
+				</div>
+				<div class="row">
+					<%= upload.text_field :upload_content_type %>
+				</div>
+				<div class="row">
+					<%= upload.text_field :upload_file_size %>
+				</div>			
+			<% end %>
+		</div>
+
+    <p><%= f.submit(@artist.new_record? ? "Save & Continue" : "Save Artist") %></p>
+
+  </div>
+<% end %>

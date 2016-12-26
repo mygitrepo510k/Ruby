@@ -1,0 +1,455 @@
+%script{:src => "https://www.google.com/jsapi", :type => "text/javascript"}
+
+- require 'gchart'
+.container-fluid	
+	.row.search-page-main
+		=render "layouts/nav-link-search-secondary"
+		.row.first-row
+			.span12.show-search-tab-box
+				.row
+					= form_tag :search_employer_h1bemployer, :method => :get, :name=>"search_form" do
+						.row
+							.span8{:style=>"background-color:#EEE"}
+								.span3{:style=>"margin-top: 10px;margin-left:10px;"}
+									%label{:style=>"font-size: 20px; width: 160px; font-weight: 600; padding-top: 5px;"} Search Employer
+								.span8.offset0{:style=>"margin-top: 10px;"}
+									.input-append
+										= autocomplete_field_tag 'h1bemp_name', '', search_employer_h1bemp_name_path(:js), :size=>25, :value=>params[:h1bemp_name], :style=>"height: 26px;"
+										%a{:class=>"btn", :style => "margin-top: 0px; padding: 7px 14px; width: 60px;margin-bottom:10px;", :href =>"javascript:search_form.submit();"}
+											// %i{:class=>"icon-search"}
+											Search
+								.row
+									%label{style:'font-size:20px;margin-left:100px; margin-top: 10px;'} 
+										Looking for an H-1B Sponsor?
+										= link_to "Post Here", "/post_main", class: "btn"
+							.span4{:style=>"border:2px solid #eee;border-radius:4px;margin-top: -45px;"}
+								.row{:style=>"background-color:#eee; padding:5px 10px;"}
+									%label{:style=>"font-size:20px;font-weight:600"} Employer Search Wizard									
+								.row{:style=>"padding: 10px; padding-bottom:0px;"}
+									%label You may search for an employer here to get details about:
+								.row{:style=>"padding: 10px; padding-top: 0px;"}
+									%label.check-icon Employer Background
+									%label.check-icon H-1B and Green Card
+									%label.check-icon Reviews from our Users
+									%label{:style=>"padding-left:20px;"} And more...
+									
+				-if @search_h1bemp.present?
+					.row		
+						#content
+							%ul#tabs.nav.nav-tabs{"data-tabs" => "tabs"}
+								%li.active
+									%a{"data-toggle" => "tab", :href => "#overview"} Overview
+								%li
+									%a{"data-toggle" => "tab", :href => "#h1b_gcstats"} H-1B / GC Stats
+								%li
+									%a{"data-toggle" => "tab", :href => "#top_jobs"} Top Jobs
+								- if current_user.present? and current_user.is_seeker?
+									%li
+										%a{"data-toggle" => "tab", :href => "#reviews"} Reviews
+							#my-tab-content.tab-content
+								#overview.tab-pane.active
+									.span12.search-conditions-box{:style=>"background-color: white;padding-left:0px;"}
+										.row
+											.overview-title
+												%p #{params[:h1bemp_name]} - COMPANY OVERVIEW
+										.row.overview-item
+											.span3
+												%label 
+													Previous H-1B History :
+											.span5
+												=overview_item :h1b_prev, @search_h1bemp.prevh1count.to_i, @search_h1bemp.get_year("H1B")
+										.row.overview-item
+											.span3
+												%label 
+													H-1B Approval Rate :
+											.span5
+												=overview_item :h1b_rate, @search_h1bemp.h1bapprovalrate.to_i, @search_h1bemp.get_year("H1B")
+										.row.overview-item
+											.span3
+												%label 
+													E-Verified :
+											.span5
+												=overview_item :everified, @search_h1bemp.everifiedflag
+										.row.overview-item
+											.span3
+												%label 
+													Previous GC History :
+											.span5
+												=overview_item :prevgccount, @search_h1bemp.prevgccount.to_i, @search_h1bemp.get_year("GC")
+										.row.overview-item{:style=>"border-bottom: solid 1px #dadada;"}
+											.span3
+												%label 
+													GC Approval Rate :
+											.span5
+												=overview_item :gc_approval_rate, @search_h1bemp.gcapprovalrate.to_i, @search_h1bemp.get_year("GC")
+								#h1b_gcstats.tab-pane{:style=>"height:720px;"}
+									.span12.h1b-gcstats
+										.chart-content
+											.row.stats-title
+												%p H-1B and Green cards Statistics											
+											.row
+												.span10
+													#h1b_chart												
+											.row{:style=>"margin-top:40px;"}
+												.span10
+													#gc_chart											
+										.chart-table-content
+								#top_jobs.tab-pane{:style=>"height:720px;"}
+									.span12.top-jobs
+										.row.top-hired
+											.span11
+												#top_hired
+											.span11
+												%table.table.table-hover
+													%thead
+														%tr
+															%th Title
+															%th Total Hired
+															%th Avg Salary
+															%th Rank
+													%tbody
+														-@top_hired_table_data.each do |t_hired_data|
+															%tr
+																%td=t_hired_data[0]
+																%td=t_hired_data[1]
+																%td=t_hired_data[2]
+																%td=t_hired_data[3]
+										.row.top-avg
+											.span11
+												#top_avg
+											.span11
+												%table.table.table-striped.table-hover
+													%thead
+														%tr
+															%th Title
+															%th Total Hired
+															%th Avg Salary
+															%th Rank
+													%tbody
+														-@top_avg_table_data.each do |t_avg_data|
+															%tr
+																%td=t_avg_data[0]
+																%td=t_avg_data[1]
+																%td=t_avg_data[2]
+																%td=t_avg_data[3]
+								- if current_user.present? and current_user.is_seeker?
+									#reviews.tab-pane
+										.span12.reviews
+											.row
+												.review-title
+													%p Employer Review
+											.row
+												.span3
+													=@search_h1bemp.employername
+												.span2.average-rate
+													=ratings_for @search_h1bemp, :static, :dimension=>:company, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
+												.span2
+													%label
+														(
+														=@search_h1bemp.rates("company").count
+														reviews)
+												.span2
+													%a.m-btn.blue.write-review{"data-toggle" => "modal", :href => "#write_reviews", :role => "button", :style=>"margin-top: 0px;"} Write a Review
+											.row
+												#emp_reviews
+													-@reviews.each do |review|
+														.row.review
+															.row
+																.title
+																	%p Title
+															.row
+																.span3
+																	-width = @search_h1bemp.rate_by(User.find(review.user_id), "company").stars.to_i*20
+																	-if user_signed_in? and review.user_id == current_user.id
+																		%ul.ajaxful-rating
+																			%li.show-value{:class=>"current-#{current_user.id}", :style=>"width: #{width.to_s}%"}
+																	-else	
+																		%ul.ajaxful-rating
+																			%li.show-value{:style=>"width: #{width.to_s}%"}
+															.row
+																.span10
+																	.span3.paid{:style=>"border: 1px solid; border-right: none; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																		%p.item-name
+																			Paid On Time - 
+																			=review.paidontime
+																	.span3.placement{:style=>"border: 1px solid; border-right: none; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																		%p.item-name
+																			Placements - 
+																			=review.placement
+																	.span4.legal{:style=>"border: 1px solid; padding-left: 30px; margin-left: 0px;background-color: #00ccff;"}
+																		%p.item-name
+																			H-1B/Legal Support -
+																			=review.legal
+															.row
+																-if user_signed_in? and review.user_id == current_user.id
+																	.comments{:class=>"comment-user#{current_user.id}"}
+																		=@search_h1bemp.root_comments.where(:user_id=>review.user_id).first.body.presence if @search_h1bemp.root_comments.where(:user_id=>review.user_id).first.present?
+																-else
+																	.comments
+																		=@search_h1bemp.root_comments.where(:user_id=>review.user_id).first.body.presence if @search_h1bemp.root_comments.where(:user_id=>review.user_id).first.present?
+
+-if @search_h1bemp.present?
+	#write_reviews.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "write_review", :role => "dialog", :tabindex => "-1"}
+		.span10.offset1.reviews
+			.row
+				.review-title
+					%p Your overall rating of this company
+			.row
+				.span4.offset1
+					=ratings_for @search_h1bemp, :dimension=>:company, :show_user_rating=> true, :remote_options =>{:url => rate_search_employer_path(@search_h1bemp)}
+				.span3
+					.prompt
+						%span.promptText Click to Rate
+
+			.row
+				.span5.offset1
+					%label Paid On Time
+				.span2
+					.review-option.review-option-y.paid-on-time-yes
+				.span2
+					.review-option.review-option-n.paid-on-time-no
+			.row
+				.span5.offset1
+					%label Placements
+				.span2
+					.review-option.review-option-y.placement-yes
+				.span2
+					.review-option.review-option-n.placement-no
+			.row
+				.span5.offset1
+					%label H-1B and Legal Support
+				.span2
+					.review-option.review-option-y.legal-yes
+				.span2
+					.review-option.review-option-n.legal-no
+			.row							
+				.span10.offset1				
+					#comments_content
+						=render :partial => "comments"
+				.row
+					.span3.offset1
+						%label Comments
+				.row
+					.span10.offset1
+						= form_tag add_comment_search_employer_path(@search_h1bemp), :method => :post, :id=>"comment_form", :name =>"write_review" do
+							.row
+								= text_area_tag :comment, params[:comment], :placeholder => "Please input comment", :value=> params[:comment].presence || "", :rows=> 5, :style=>"width: 100%"
+							.row
+								.span3.offset5
+									%a.m-btn.blue.post-comment Post Comment
+
+#confirm_comment.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+		%h3#myModalLabel 
+	.modal-body	
+		%label{style: 'color: blue;font-size: 16px;height: 250px;text-align: center;'} Your review has been submitted
+		.modal-footer	 	
+			%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close
+
+
+
+
+
+
+
+:javascript 
+	var cur_tab = 0
+	
+	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
+
+	$('.secodary ul li').eq(0).addClass('current-tab');
+	$('.secodary ul li').eq(1).removeClass('current-tab');
+
+	$("#tabs li").each(function(){
+		$(this).removeClass("active");
+	});
+	$("#my-tab-content div").each(function(){
+		$(this).removeClass("active");
+	});	
+	
+	$("#tabs li").eq(cur_tab).addClass("active");
+	$("#my-tab-content div.tab-pane").eq(cur_tab).addClass("active");	
+	
+	
+	$( "#h1bemp_name" ).autocomplete({	
+		delay: 600,		
+		source: function(request, response){
+			$ajax({
+				url:"#{search_employer_h1bemp_name_path}",
+				dataType: "json",
+				data: {term: request.term},
+				success: function(data){
+					response(data)
+				}
+			});
+		}
+	});
+	
+	google.load("visualization", "1", {packages:["corechart"]});
+	google.setOnLoadCallback(drawChart);
+	var gc_chart_data = #{@gc_chart_data}
+	var h1b_chart_data = #{@h1b_chart_data}
+	var top_hire_data = #{@top_hired_data}
+	var top_avg_data = #{@top_avg_data}
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable(gc_chart_data);
+		var options = {
+			title:"GC Filings Per Year",
+			width:900, height:300,
+			vAxis: {title: "Year"},
+			hAxis: {title: "No. of GC Filings"},
+			chartArea: {width: '60%'},
+			isStacked: 1,
+			series: [{color: 'Green', visibleInLegend: true}, {color: '#dc3912', visibleInLegend: true},{color: '#3366cc', visibleInLegend: true},{color: 'orange', visibleInLegend: true}]
+		};
+		var gc_chart = new google.visualization.BarChart(document.getElementById('gc_chart'));
+		gc_chart.draw(data, options);
+
+		data = google.visualization.arrayToDataTable(h1b_chart_data);
+		options = {
+			title:"LCA Filings (H-1B) Per Year",
+			width:900, height:300,
+			vAxis: {title: "Year"},
+			hAxis: {title: "No. of LCA Filings - H-1B"},
+			chartArea: {width: '60%'},
+			isStacked: 1,
+			series: [{color: 'Green', visibleInLegend: true}, {color: '#dc3912', visibleInLegend: true},{color: '#3366cc', visibleInLegend: true},{color: 'orange', visibleInLegend: true}]
+		};
+		var h1b_chart = new google.visualization.BarChart(document.getElementById('h1b_chart'));
+		h1b_chart.draw(data, options);
+
+		data = google.visualization.arrayToDataTable(top_hire_data);
+		options = {
+			title:"Total Jobs Hired",
+			width:960, height:300,
+			vAxis: {title: "Title"},
+			hAxis: {title: "Total Hired"},
+			chartArea: {left: 350, top: 30, width: '45%'}
+		};
+		var top_job_chart = new google.visualization.BarChart(document.getElementById('top_hired'));
+		top_job_chart.draw(data, options);
+
+		data = google.visualization.arrayToDataTable(top_avg_data);
+		options = {
+			title:"Total Jobs - Avg Salary",
+			width:960, height:300,
+			vAxis: {title: "Job Title"},
+			hAxis: {title: "Salary(in $)"},
+			chartArea: {left: 400, top: 30, width: '45%'}
+		};
+		var top_avg_chart = new google.visualization.BarChart(document.getElementById('top_avg'));
+		top_avg_chart.draw(data, options);		
+	}
+	isLoged = "#{user_signed_in?}"
+
+	$("a.write-review").click(function(){
+		if(isLoged == "false"){
+			document.location.href = "/users/sign_in";
+		}
+	});
+
+	var paid_time="#{@review.paidontime.presence || 'No' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
+	var placement="#{@review.placement.presence || 'Bad' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
+	var legal="#{@review.legal.presence || 'Bad' if user_signed_in? and @search_h1bemp.present? and @review.present? }"
+	// console.log(legal);
+	$("a.post-comment").click(function(){
+		var url_ajax = $("#comment_form").attr("action");
+		var content = $("#comment").val();
+		if(content.length < 10){
+			$("#comment").focus();
+			return;
+		} 
+		
+
+		$.ajax({
+			url :url_ajax,
+			beforeSend : function(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')) },
+			type: "POST",
+			data: 'content=' + content + '&paid_time='+paid_time+'&placement='+placement+'&legal='+legal,			
+			dataType:'script',
+			success :function(data){
+				return false;		
+			}
+		});
+		return false;
+	});
+
+
+	if(paid_time=='Yes'){
+		$("div.paid-on-time-yes").addClass("review-option-y-h");
+	}else if(paid_time=='No'){
+		$("div.paid-on-time-no").addClass("review-option-n-h");
+	}else{
+		$("div.paid-on-time-yes").removeClass("review-option-y-h");
+		$("div.paid-on-time-no").removeClass("review-option-n-h");
+	}
+
+	if(placement=='Good'){
+		$("div.placement-yes").addClass("review-option-y-h");
+	}else if(placement=='Bad'){
+		$("div.placement-no").addClass("review-option-n-h");
+	}else{
+		$("div.placement-yes").removeClass("review-option-y-h");
+		$("div.placement-no").removeClass("review-option-n-h");
+	}
+
+	if(legal=='Good'){
+		$("div.legal-yes").addClass("review-option-y-h");
+	}else if(legal=='Bad'){
+		$("div.legal-no").addClass("review-option-n-h");
+	}else{
+		$("div.legal-yes").removeClass("review-option-y-h");
+		$("div.legal-no").removeClass("review-option-n-h");
+	}
+
+	$("ul.ajaxful-rating").hover(
+		function(){
+			$("div.prompt").hide()
+		},
+		function(){
+			$("div.prompt").show()
+		}
+	);
+	
+	$("ul.ajaxful-rating li a").each(function(index){
+		$(this).click(function(obj){
+			var width = 20*($("ul.ajaxful-rating li a").index($(this))+1)+"%";
+			$("#write_reviews li.show-value").width(width);
+		});
+	});
+
+	$("div.paid-on-time-yes").click(function(){
+		paid_time = "Yes"
+		$(this).addClass("review-option-y-h");
+		$("div.paid-on-time-no").removeClass("review-option-n-h");
+	});
+	$("div.paid-on-time-no").click(function(){
+		paid_time = "No"
+		$("div.paid-on-time-yes").removeClass("review-option-y-h");
+		$(this).addClass("review-option-n-h");
+	});
+
+	$("div.placement-yes").click(function(){
+		placement = "Good";		
+		$(this).addClass("review-option-y-h");
+		$("div.placement-no").removeClass("review-option-n-h");
+	});
+	$("div.placement-no").click(function(){
+		placement = "Bad";
+		$(this).addClass("review-option-n-h");
+		$("div.placement-yes").removeClass("review-option-y-h");		
+	});
+
+	$("div.legal-yes").click(function(){
+		legal = "Good"
+		$(this).addClass("review-option-y-h");
+		$("div.legal-no").removeClass("review-option-n-h");
+	});
+	$("div.legal-no").click(function(){
+		legal = "Bad"
+		$(this).addClass("review-option-n-h");
+		$("div.legal-yes").removeClass("review-option-y-h");		
+	});
+	
+

@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag "application", media: "all"
+    = render 'layouts/head'
+    = yield :head
+    = yield :meta_tags
+    %meta{name: "viewport", content: "width=1120"}
+  %body.bodystyle
+    #container.container-fluid
+      = render "layouts/header"
+      .row-fluid
+        = render 'user_menu'
+        .span7#main
+          = yield
+        = render 'application/right_sidebar'
+    #modal-container{ class: "modal hide fade", tabindex: "-1", role: "dialog", "aria-hidden" => true }
+    #modal-container2{ class: "modal hide fade", tabindex: "-1", role: "dialog", "aria-hidden" => true }
+    = render "application/footer"
+    = render 'layouts/analytics'
+
+:coffee
+  $ ->
+    if #{@no_photo.present?}
+      $('#modal-container').html("#{j(render('users/no_photos'))}")
+      $('#modal-container').modal()

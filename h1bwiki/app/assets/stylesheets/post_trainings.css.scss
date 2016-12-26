@@ -1,0 +1,77 @@
+// Place all the styles related to the post_trainings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div.post-training-page{
+	margin-top: 30px;
+	input{
+		width:225px;
+	}
+	select{
+		width:225px;
+	}
+	input.large-field{
+		width:525px;
+	}
+	textarea{
+		width:525px;
+		height: 225px;
+	}
+	
+	.form-horizontal .controls {
+	    margin-left: 0px;
+	}
+
+	div.custom-select {
+		position: relative;
+		display: inline-block;
+	}
+
+  .custom-select select {
+      display: inline-block;
+      border: 1px solid #bbb;
+      padding: 4px 3px 3px 5px;
+      margin: 0;
+      font: inherit;
+      outline:none; /* remove focus ring from Webkit */
+      line-height: 1.2;
+      -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      border-radius: 3px;
+  }
+
+  /* for Webkit's CSS-only solution */
+  @media screen and (-webkit-min-device-pixel-ratio:0) { 
+      .custom-select select {
+          padding-right:30px;    
+      }
+  }
+  
+  /* Since we removed the default focus styles, we have to add our own */
+  .custom-select select:focus {
+      -webkit-box-shadow: 0 0 3px 1px #52a8ec;
+      -moz-box-shadow: 0 0 3px 1px #52a8ec;
+      box-shadow: 0 0 3px 1px #52a8ec;
+  }
+  
+  /* Select arrow styling */
+  .custom-select:after {
+    background: url("/assets/icon-down.png") no-repeat scroll 2px 10px white;
+    border-radius: 0 3px 3px 0;
+    bottom: 0;
+    color: white;
+    content: " \'\'\'";
+    font-size: 60%;
+    height: 24px;
+    margin-right: 2px;
+    margin-top: 2px;
+    padding: 0 7px;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }  
+  .no-pointer-events .custom-select:after {
+      content: none;
+  }	
+}

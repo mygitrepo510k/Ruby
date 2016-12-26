@@ -1,0 +1,54 @@
+<div class="span2" style="width:18%;">
+<!--Sidebar content-->
+  
+  <div class="side-bar1">
+    <div class="image-wrapper">
+      <img src="/assets/user-img/none-img.png">
+      <p> Leigh Taylor</p>
+    </div>
+  </div>
+  <div class="side-bar1">
+    <h4 class="btn-primary padding1"> Contacts</h4>
+    <%if current_user.user_contacts.size > 0%>
+
+      <%current_user.user_contacts.each do |ct|%>
+        <div class="select2-container populate" id="s2id_e4">
+          <a tabindex="-1" class="select2-choice" onclick="return false;" href="javascript:void(0)">
+            <span>
+              <img src="/assets/user-img/lucas de castro.png" class="flag">
+              <%=ct.user.full_name%>
+            </span>
+            <abbr style="display:none;" class="select2-search-choice-close"></abbr>
+            <div><b></b></div>
+          </a>
+          <input type="text" class="select2-focusser select2-offscreen" id="s2id_autogen1">
+        </div>
+      <%end%>
+    <%else%>
+      <p> No contact available!</p>
+    <%end%>
+  </div>
+
+
+  <div class="side-bar1">
+    <h4 class="btn-primary padding1"> Follows</h4>
+    <%if current_user.user_followings.size > 0%>
+
+      <%current_user.user_followings.each do |ct|%>
+        <div class="select2-container populate" id="s2id_e4" style='margin-bottom:5px'>
+          <a tabindex="-1" class="select2-choice" onclick="return false;" href="javascript:void(0)">
+            <span>
+              <img src="/assets/user-img/lucas de castro.png" class="flag">
+              <%=ct.user.full_name%>
+            </span>
+            <abbr style="display:none;" class="select2-search-choice-close"></abbr>
+            
+          </a>
+          <input type="text" class="select2-focusser select2-offscreen" id="s2id_autogen1">
+        </div>
+      <%end%>
+    <%else%>
+      <p> No following available!</p>
+    <%end%>
+  </div>
+</div>

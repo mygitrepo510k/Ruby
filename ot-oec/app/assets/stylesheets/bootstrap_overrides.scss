@@ -1,0 +1,109 @@
+// control to the columns' padding
+[class*='col-'] {
+	padding: 0;
+}
+
+.row {
+	margin: 0
+}
+
+// tabs 
+.nav-tabs {
+	border-bottom: 1px solid rgba($lgrey,.75);
+}
+
+.nav-tabs > li > a {
+	font-weight: 400;
+	color: $grey;
+	border-radius: 0;
+	border-color: transparent;
+	border-bottom-width: 2px;
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus,
+.nav-tabs > li > a:hover, .nav > li > a:hover, .nav > li > a:focus {
+	color: $red;
+	border-color: transparent;
+	border-bottom-color: $red;
+	border-bottom-width: 2px;
+	background-color: transparent;
+}
+
+.tab-content {
+	padding: 1em;
+}
+
+// hr
+hr {
+	margin: 1.25em 0;
+	border-top: 1px solid rgba($lgrey,.75);
+}
+
+//forms 
+form {
+	.glyphicon {
+		color: $lgrey;
+		font-size: 1.25em;
+		margin: .25em .5em 0;
+
+		&:hover {
+			color: $grey;
+		}
+	}
+}
+
+input, textarea {
+	&:focus {
+		border-color: darken($lgrey, 20%);
+	}
+}
+
+select {
+	@extend .form-control;
+}
+
+.form-control, select {
+	@include radius($default-site-radius);
+}
+
+// buttons
+.btn-primary:hover, 
+.sign_in form [type='submit']:hover, 
+.btn-primary:focus, 
+.sign_in form [type='submit']:focus, 
+.btn-primary:active, 
+.sign_in form [type='submit']:active, 
+.btn-primary.active, 
+.sign_in form .active[type='submit'], 
+.open > .btn-primary.dropdown-toggle, 
+.sign_in form .open > .dropdown-toggle[type='submit'] {
+	background: $blue;
+}
+
+.close { 
+	font-weight: 400;
+}
+
+// font icons 
+.glyphicon {
+	margin: auto .25em;
+	@include transition-duration(.25s);
+
+	&.glyphicon-comment {
+		top: .2em;
+	}
+ 
+    &.glyphicon-thumbs-up {
+        top: .15em;
+    }
+}
+
+// tooltips
+.tooltip-inner{
+    min-width: emCalc(50px);
+    max-width: emCalc(300px);
+    padding: .25em .5em;
+    color: $wh;
+    background-color: $bl;
+    @include radius($default-site-radius);
+}

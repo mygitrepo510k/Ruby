@@ -1,0 +1,260 @@
+// Place all the styles related to the dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.dashboard-left-sidebar{
+	.sidebar-panel{
+		margin-left: 0px;
+		li{
+			list-style: none;
+			width:90%;
+			border-bottom: solid 1px #bbb;
+			height: 30px;
+	    margin-top: 0;
+	    padding-left: 20px;
+	    padding-top: 10px;
+			.left-sidebar-jobs{
+				width: 20px;
+				height: 20px;
+				background: url("/assets/dashboard_icons.png") no-repeat scroll 0px 2px;
+				a{
+					margin-left: 30px;
+					color: black;
+				}
+			}
+			.left-sidebar-applicants{
+				width: 20px;
+				height: 20px;
+				background: url("/assets/dashboard_icons.png") no-repeat scroll 0px -22px;
+				a{
+					margin-left: 30px;
+					color: black;
+				}
+			}
+			.left-sidebar-tasks{
+				width: 20px;
+				height: 20px;
+				background: url("/assets/dashboard_icons.png") no-repeat scroll 0px -47px;
+				a{
+					margin-left: 30px;
+					color: black;
+				}
+			}
+			.left-sidebar-interviews{
+				width: 20px;
+				height: 20px;
+				background: url("/assets/dashboard_icons.png") no-repeat scroll 0px -68px;
+				a{
+					margin-left: 30px;
+					color: black;
+				}
+			}
+			.left-sidebar-activitystream{
+				width: 20px;
+				height: 20px;
+				background: url("/assets/dashboard_icons.png") no-repeat scroll 0px -94px;
+				a{
+					margin-left: 30px;
+					color: black;
+				}
+			}
+		}
+		.selected{
+			background: url("/assets/dashboard_sidebar_background.png");
+			a{
+				color: white !important;
+			}
+		}		
+		.selected:after{
+			background: url("/assets/dashboard-background.png") repeat scroll 0 0 transparent;
+	    border-radius: 7px 0 0 7px;
+	    content: "";
+	    height: 12px;
+	    margin-left: 172px;
+	    margin-top: -14px;
+	    position: absolute;
+	    width: 8px;
+		}
+	}
+}	
+
+#main_area{
+	width:450px;
+	border-radius: 8px;	 
+	background: url("/assets/dashboard-background.png");
+	i.icon-new-job{
+	 	border-right: 1px solid rgb(187, 187, 187);
+    height: 20px;
+    margin-left: -5px;
+    margin-right: 5px;
+    padding-right: 5px;
+    background: url("/assets/add_new_job.png");
+	}
+	.main-area-top-head{
+		height: 40px;
+    padding-top: 7px;
+		border-radius: 7px 7px 0 0;
+    margin-left: -25px;
+		background: url("/assets/dashboard_top_header_background.png");
+		width: 74%;
+	}
+	.main-area-bottom-head{
+		background-color: #ddd;
+    height: 34px;
+    margin-left: -25px;
+    padding-top: 10px;
+    width: 74%;
+	}
+	.applicants-list{
+		border-left: solid 1px #d4d4d4;
+		border-right: solid 1px #d4d4d4;
+		border-bottom: solid 1px #d4d4d4;
+		width: 718px;
+		margin-left:5px;
+		thead{
+			background: url("/assets/applicants_table_head_background.png");
+		}
+		tr{
+			.span1{
+				margin-left:0px;
+				width:30px;
+			}
+			&:hover{
+				cursor:pointer;
+			}
+		}
+	}
+}
+
+
+#new_post_job{
+	.row{
+		margin-left:0px;
+		.span1{
+			margin-left:0px;
+			width:22px; 
+			height:20px;
+			margin-top:5px;
+		}
+		.span6{
+			width: 645px;
+			margin-left:10px;
+			.span2{
+				width:30%;
+				input[type="text"]{
+					width:100%;
+					height:26px;
+				}
+			}
+		}
+	}
+	.title-item{
+		background: url("/assets/employer_jobs_post_item.png") no-repeat scroll 0px -42px;
+	}
+	.desc-item{
+		background: url("/assets/employer_jobs_post_item.png") no-repeat scroll 0px -20px;
+	}
+	.desc-item1{
+		background: url("/assets/employer_jobs_post_item.png") no-repeat scroll 0px -61px;
+	}
+	.state-item{
+		background: url("/assets/employer_jobs_post_item.png") no-repeat scroll 0px 0px;
+	}
+	.input-box{
+		background-color: #ddd;
+    border-bottom: 1px solid rgb(170, 170, 170);
+    border-top: 1px solid rgb(170, 170, 170);
+    margin-left: -15px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-top: 15px;
+    width: 715px;
+	}
+	.last-row{
+		.span2{
+			width:80px;
+			a{
+				border: medium none;
+		    height: 32px;
+		    width: 64px;
+			}
+			.job-preview{
+				background: url("/assets/employer_jobs_post_buttons.png") no-repeat scroll 0px 0px;			
+			}
+			.job-next{
+				background: url("/assets/employer_jobs_post_buttons.png") no-repeat scroll -100px 0px;	
+			}
+			.job-submit{
+				background: url("/assets/employer_jobs_post_buttons.png") no-repeat scroll -200px 0px;	
+			}
+		}
+		
+	}
+}
+
+#post_job_next{
+	.row{
+		margin-left:0px;
+		.span1{
+			margin-left:0px;
+			width:22px; 
+			height:20px;
+			margin-top:5px;
+		}
+		.span6{
+			width: 645px;
+			margin-left:10px;
+			.span2{
+				width:30%;
+				input[type="text"]{
+					width:100%;
+					height:26px;
+				}
+			}
+		}
+	}
+	.title-item{
+		background: url("/assets/employer_jobs_post_item.png") no-repeat scroll 0px -42px;
+	}
+	.tag-item{
+		background: url("/assets/employer_jobs_post_item.png") no-repeat scroll 0px -84px;
+	}
+	.visible-item{
+		background: url("/assets/employer_jobs_post_item.png") no-repeat scroll 0px -107px;
+	}
+	.btn-group{
+		margin-top:0px;
+		margin-left: 156px;
+	}
+	.input-box{
+		background-color: #ddd;
+    border-bottom: 1px solid rgb(170, 170, 170);
+    border-top: 1px solid rgb(170, 170, 170);
+    margin-left: -15px;
+    padding-bottom: 20px;
+    padding-left: 15px;
+    padding-top: 15px;
+    width: 715px;
+	}
+	.last-row{
+		.span2{
+			width:80px;
+			a{
+				border: medium none;
+		    height: 32px;
+		    width: 64px;
+			}
+			.job-preview{
+				background: url("/assets/employer_jobs_post_buttons.png") no-repeat scroll 0px 0px;			
+			}
+			.job-back{
+				background: url("/assets/employer_jobs_post_buttons.png") no-repeat scroll -298px 0px;	
+			}
+			.job-submit{
+				background: url("/assets/employer_jobs_post_buttons.png") no-repeat scroll -200px 0px;	
+			}
+		}
+		
+	}
+}
+
+

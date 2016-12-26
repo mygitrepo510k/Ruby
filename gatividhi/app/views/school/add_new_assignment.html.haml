@@ -1,0 +1,200 @@
+=form_for @assign, :as=>:assignment, :url =>'/school/add_new_assignment', :method=>:post, :html=>{:class=>'new-assignment', :id=>'new_assignment', :"data-validate" => "parsley"} do |f|
+	.popupWindow{:style => "width: 560px; height: 575px; z-index: 90; left: 673.5px; top: 90.5px;"}
+		.popupHead
+			.popupTitle Add a New Assignment
+			.closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+			.CL
+		.popupContaint
+			.popupFormBox
+				.formRow.jqBigform{:style=>"height: 36px;"}
+					%label Class:
+					=f.select :class_name, @class_names, :style => "width:175px;", :class => "inputField"
+					.CL
+				.formRow{:style=>"height: 36px;"}
+					%label Title:
+					=f.text_field :title, :onblur => "if(this.value==''){ this.value='title'; this.style.color='#979797'}", :onclick => "if(this.value=='title'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "title"
+					.CL
+				.formRow.jqBigform.select_category{:style=>"height: 36px;"}
+					%label Category:					
+					%select#category{:name => "assignment[category]", :style => "width:175px;"}
+						- ['Select','Academic','Sports','Visual&performing arts', 'Public speaking/Interaction','Personal/Family','Voluntary/Social contribution'].each do |single_group|
+							%option{:value => single_group}= single_group
+					.CL
+				.formRow.jqBigform.subject_select{:style=>"height: 36px;"}
+					%label Subject:
+					%select#subject{:name => "assignment[subject]", :style => "width:175px;"}
+						%option Select
+						%option Maths
+						%option Science
+						%option Hindi
+						%option English
+						%option Swimming
+						%option Gymnastics
+						%option Yoga
+						%option Cricket
+						%option Football
+						%option Other
+						%option Drama
+						%option Paintings
+						%option Drawing
+						%option Musicgs
+						%option Crafts
+						%option Sculpture
+						%option Other
+						%option Debate
+						%option Group
+						%option Discussion
+						%option Anchoring
+						%option Other
+						%option Holiday
+						%option Birthday
+					.CL
+				.formRow{:style=>"height: 36px;"}
+					%label Due Date:
+					.span1{:style=>"width:115px;"}
+						%input#date2.dateBox.inputField{:name => "assignment[due_date]", :onblur => "if(this.value==''){ this.value='start date'; this.style.color='#979797'}", :onclick => "if(this.value=='start date'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "start date"}/
+					.span1{:style=>"width:110px;"}
+						%span.formRow.jqBigform
+							%select#scale{:name => "assignment[due_time]", :style => "width:55px; margin-left:5px;"}
+								- (1..24).each do |h|
+									%option= h
+					.CL
+				.formRow
+					%label Description:
+					%textarea.inputField#description{:name => "assignment[description]", :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :"data-required"=>"true"}
+					.CL
+			.popupFormBox
+				%p.greenTxt{:style => "font-size:14px; font-weight:bold; padding-top:10px;"} Advanced
+				.formRow.jqBigform
+					.checkBoxTitle To Be Graded:
+					= f.check_box :to_be_graded
+					%label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+					.CL			
+			.formRow.popActionBtn{:style => "text-align:right; padding-left:10px;"}
+				%input.submitBtn{:type => "submit", :value => "save"}/
+				%input.cancelBtn{:type => "button", :value => "save & add assignment", :onclick => "save_continue()"}/
+				%input.cancelBtn{:type => "button", :value => "save & add outcome", :onclick => "save_add_outcome()"}/
+				%input.cancelBtn{:type => "button", :value => "cancel", :onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}/
+
+:javascript
+	$('.jqGreenForm').jqTransform(); 
+	$('.jqSmallform').jqTransform(); 
+	$('.jqBigform').jqTransform(); 
+
+
+	function save_continue(){
+		return false;
+		$('#new_assignment').attr('data-remote','true');
+		$('#new_assignment').submit();
+		$('#new_assignment').rmoveAttr('data-remote');		
+	}
+	
+	function save_add_outcome(){
+		$('#new_assignment').attr('data-remote','true');
+		$('#new_assignment').submit();
+		$('#new_assignment').rmoveAttr('data-remote');
+		return false;
+	}
+
+	$("#date2").glDatePicker({
+		leftMargin: -70,
+		topMargin: -10
+	});	
+
+	$("#new_assignment").submit(function() {
+		var checked = false;
+		$('p.errorMsgLeft').remove();
+		if($('#assignment_title').val()=="title"){
+			$('#assignment_title').css('margin-bottom', '0px');
+			$("<p class='errorMsgLeft'>Please input</p>").insertAfter($('#assignment_title'))
+			checked = false;
+		}else{
+			$('#assignment_title').next().remove();
+			checked = true;
+		}
+
+		if($('#category').val()=="Select"){
+			$('#category').css('margin-bottom', '0px');
+			$("<p class='errorMsgLeft'>Please select</p>").insertAfter($('#category').parent().next())
+			checked = false;
+		}else{
+			$('#category').next().remove();
+			checked = true;
+		}
+		if($('#subject').val()=="Select"){
+			$('#subject').css('margin-bottom', '0px');
+			$("<p class='errorMsgLeft'>Please select</p>").insertAfter($('#subject').parent().next())
+			checked = false;
+		}else{
+			$('#subject').next().remove();
+			checked = true;
+		}
+
+		if($('#description').val()==""){
+			$('#description').css('margin-bottom', '0px');
+			$("<p class='errorMsgLeft'>Please input</p>").insertAfter($('#description'))
+			checked = false;
+		}else{
+			$('#description').next().remove();
+			checked = true;
+		}
+		
+		if(checked == false){
+			return false;
+		}else{
+			return true;		
+		}
+		return false;
+	});	
+
+	$(function(){
+		$('div.select_category ul li a').click(function(){
+			var cat = $(this).text();
+			//'Academic','Sports','Visual&performing arts', 'Public speaking/Interaction','Personal/Family','Voluntary/Social contribution'
+			var aca_subject = ["Select", "Maths", "Science", "Hindi", "English"];
+			var sports_subject = ["Select", "Swimming", "Gymnastics", "Yoga", "Cricket", "Football", "Other"];
+			var vp_a_subject = ["Select", "Drama", "Paintings", "Drawing", "Music", "Crafts", "Sculpture", "Other"];
+			var ps_subject = ["Select", "Debate", "Group", "Discussion", "Anchoring", "Other"];
+			var pf_subject = ["Select", "Holiday", "Birthday", "Other"];
+			var v_subject = ["Select", "Teaching", "Other"];
+			if(cat == "Academic"){
+				$("#subject option").remove();
+				change_subject(aca_subject);
+			}else if(cat=="Sports"){
+				$("#subject option").remove();
+				change_subject(sports_subject);
+			}else if(cat=="Visual&performing arts"){
+				$("#subject option").remove();
+				change_subject(vp_a_subject);
+			}else if(cat=="Public speaking/Interaction"){
+				$("#subject option").remove();
+				change_subject(ps_subject);
+			}else if(cat=="Personal/Family"){
+				$("#subject option").remove();
+				change_subject(pf_subject);
+			}else if(cat=="Voluntary/Social contribution"){
+				$("#subject option").remove();
+				change_subject(v_subject);
+			}
+		});
+		function change_subject(obj){
+			$("div.subject_select ul.ac_scroll li").each(function(){
+				$("div.subject_select ul.ac_scroll li").eq(1).remove();
+			});
+			
+			$.each(obj, function(index, value){
+				$("#subject").append($('<option>',{
+					value:value,
+					text: value
+				}));
+				if(index!=0)
+					$("div.subject_select ul.ac_scroll .jspPane").append('<li><a name="'+value+'" index="'+index+'" href="#">'+value+'</a></li>');
+			});
+			$("div.subject_select ul.ac_scroll li a").click(function(){
+				$("div.subject_select div.jqTransformSelectWrapper span").text($(this).text());
+				$("div.subject_select ul.ac_scroll").hide();
+				$("#subject").val($(this).text());
+			});
+		}
+	});
+	

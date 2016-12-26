@@ -1,0 +1,90 @@
+		<div class="carousel clearfix">
+
+			<div class="panel">
+				
+				<div class="details_wrapper">
+					
+					<div class="details">
+					
+									<% @videos.each do |video| %>
+						<div class="detail">
+							<h2 class="Lexia-Bold"><%= video.title %></h2>
+                            <%= video.description %>
+
+							<img src="<%= video.thumbnail.url %>">
+                                <p><% if admin_signed_in? %>
+    	<%= link_to 'Change', edit_video_path(video) %>&nbsp;&nbsp;|&nbsp;
+    	<%= link_to 'Remove', video, confirm: 'Are you sure?', method: :delete %>
+    <% end %></p>
+						</div><!-- /detail -->
+
+										<% end %>
+					
+					</div><!-- /details -->
+					
+				</div><!-- /details_wrapper -->
+				
+				<div class="paging">
+					<div id="numbers"></div>
+					<a href="javascript:void(0);" class="previous" title="Previous" >Previous</a>
+					<a href="javascript:void(0);" class="next" title="Next">Next</a>
+				</div><!-- /paging -->
+				
+				<a href="javascript:void(0);" class="play" title="Turn on autoplay">Play</a>
+				<a href="javascript:void(0);" class="pause" title="Turn off autoplay">Pause</a>
+				
+			</div><!-- /panel -->
+	
+			<div class="backgrounds">
+				<% @videos.each do |video| %>
+				<div class="item item_<%= video.id.to_s %>">
+<object 
+classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" 
+codebase="http://www.apple.com/qtactivex/qtplugin.cab"
+height="235" 
+width="405" >
+<param name="src" value="<%= video.mov.url %>"/>
+<param name="scale" value="to fit" />
+<param name="controller" value="true" />
+<param name="autoplay" value="false" />
+<embed 
+type="video/quicktime"
+pluginspage="http://www.apple.com/quicktime/download/"
+height="235" 
+width="405"
+src="<%= video.mov.url %>"
+scale="tofit"
+controller="true"  *the controller adds 16px to height* 
+autoplay="false" />
+</object>
+
+
+				</div><!-- /item -->
+				<% end %>
+
+				
+			</div><!-- /backgrounds -->
+			
+			
+		</div><!-- /carousel --> 
+		
+<!--
+<#% @videos.each do |video| %>
+	
+
+<object classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" width="520" height="506" standby="Data is loading..." codebase="http://www.apple.com/qtactivex/qtplugin.cab"> 
+<param name="src" value="<#%= video.mov.url %>"> 
+<param name="autoplay" value="true"> 
+<param name="controller" value="true"> 
+<embed src="<#%= video.mov.url %>" width="660" height="526" scale="1" autoplay="false" controller="true" type="video/quicktime" pluginspage="http://www.apple.com/quicktime/download/"> 
+</embed> 
+</object>
+
+	
+  <tr>
+     <td><embed src="<#%= video.mov.url %>" width="320" height="260" autoplay="false" loop="false" style="margin:2px 0">&nbsp;&nbsp;</td>
+
+  </tr>
+<#% end %>
+</table>
+-->	

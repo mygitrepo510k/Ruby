@@ -1,0 +1,24 @@
+.section.single.programs
+  h3 Programs
+
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li.active= 'Programs'
+
+  = link_to 'Add New', new_admin_program_path
+
+  table.table.table-striped
+    tr
+      th= 'Name'
+      th= 'Created at'
+      th= 'Total users'
+      th= 'Edit'
+
+    - @programs.each do |p|
+      tr
+        td= p.name
+        td= p.created_at.to_formatted_s(:short)
+        td= p.users.count
+        td= link_to 'Edit', edit_admin_program_path(p)
+
+  = will_paginate @programs, renderer: BootstrapPagination::Rails

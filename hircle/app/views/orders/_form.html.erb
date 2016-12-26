@@ -1,0 +1,59 @@
+<%= form_for(@order) do |f| %>
+    <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+          <ul>
+            <% @order.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <div class="field">
+      <%= f.label :first_name %><br />
+      <%= f.text_field :first_name %>
+    </div>
+    <div class="field">
+      <%= f.label :last_name %><br />
+      <%= f.text_field :last_name %>
+    </div>
+    <div>
+      <%= f.label :card_type %><br />
+      <%= f.select :card_type,[["Visa","visa"],["MasterCard","master"],["Discover","discover"],["American Express","american_express"]] %>
+    </div>
+    <div class="field">
+      <%= f.label :card_number %><br />
+      <%= f.text_field :card_number %>
+    </div>
+    <div class="field">
+      <%= f.label :card_verification,"CVV" %><br />
+      <%= f.text_field :card_verification %>
+    </div>
+
+    <div class="field">
+      <%= f.label :card_expires_on %><br />
+      <%= f.date_select :card_expires_on,:discard_day=>true,:start_year=>Date.today.year,:end_year=>(Date.today.year+10),:add_month_numbers=>true %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
+<% end %>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+  <input type="hidden" name="cmd" value="_s-xclick">
+  <input type="hidden" name="hosted_button_id" value="VVNZUU8RV4VQL">
+  <table>
+    <tr><td><input type="hidden" name="on0" value="products">products</td></tr><tr><td><select name="os0">
+    <option value="Option 1">Option 1 $10.00 USD</option>
+    <option value="Option 2">Option 2 $20.00 USD</option>
+    <option value="Option 3">Option 3 $30.00 USD</option>
+  </select> </td></tr>
+  </table>
+  <input type="hidden" name="currency_code" value="USD">
+  <input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_paynow_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online.">
+  <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+</form>
+

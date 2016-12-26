@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  place_name: MyString
+  start: 2014-04-15 17:08:12
+  end: 2014-04-15 17:08:12
+  icon: MyString
+  cover: MyString
+  venue_name: MyString
+  place_id: MyString
+
+two:
+  name: MyString
+  place_name: MyString
+  start: 2014-04-15 17:08:12
+  end: 2014-04-15 17:08:12
+  icon: MyString
+  cover: MyString
+  venue_name: MyString
+  place_id: MyString

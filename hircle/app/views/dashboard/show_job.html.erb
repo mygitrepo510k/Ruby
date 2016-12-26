@@ -1,0 +1,56 @@
+<div id="content_wrap" class="container">
+	<div id="left_side">
+		<%= render :partial => "left_side" %>
+	</div>
+	<div id="main_area">
+
+		<div class="span10" style="width:79%;" >
+			<!--Body content-->
+			<%= link_to 'New job', "/employer/new/job" %>
+			<br>
+			<br>
+			
+				
+				<div style="float: left">
+					<p><%= image_tag @job.logo.url(:thumb) %></p>
+					<p><%= @job.title %></p>
+					<p><%= @job.description %></p>
+					<p>Created by 
+						<% if current_user.id.eql?( @job.user.id ) %>
+							me
+						<% else %>
+							<%= @job.user.first_name %>
+						<% end %>
+						 on <%= @job.created_at.strftime("%d-%m-%Y") %></p>	
+					<p><%= @job.tag %></p>
+					<p>					
+						<%= image_tag @job.user.avatar.url(:thumb) %>
+					</p>
+					<p>
+						Applicants : <%= get_application_count(@job).count %>
+						Watches : <%= get_watch_count(@job).count %>
+						Likes : <%= get_likes_count(@job).count %>
+					</p>
+					<p>
+						Add Person <%= text_field_tag :jobseeker_search,nil,:placeholder  => "Type name"  %>						
+					</p>															
+				</div>
+				<style type="text/css">
+  				#jobseeker_result{
+    				position: relative;
+    				left: 55px;
+    				top:-9px;
+    				width:71%;
+    				list-style: none;
+    				padding: 2px;
+    				background :#FFFFFF;
+    				border:#000000 1px;    				 
+    				}
+  				</style>
+						
+			
+			<!--Body content ends-->
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,3 @@
+$('#modal-container').html('<%= j(render partial: "show", locals: {message: @message}) %>');
+$("tr#message_" + <%= @message.id %>).removeClass('strong');
+$('#modal-container').modal();

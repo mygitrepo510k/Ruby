@@ -1,0 +1,4 @@
+web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
+#web: bundle exec puma -w 4 -t 4:12 -p $PORT -e production
+#web: bundle exec puma -w 4 -t 12:12 -p $PORT -e development
+redis: redis-server

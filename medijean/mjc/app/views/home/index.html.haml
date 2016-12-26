@@ -1,0 +1,61 @@
+.grey-bck
+  .row.container.center-div-no-bg
+    .span6.homepage-form
+      .row
+        .span6.home-signup
+          %h2.white-clr
+            = t("homepage.homepage_text1")
+      .row
+        .span4.white-clr.home-signup
+          %h4
+            = t("homepage.homepage_text2")
+      .row
+        .span3
+          = render  'devise/registrations/new' if current_user.nil?
+  .row.container.center-div-no-bg
+    = image_tag "456.jpg", :class=> "homepage-img1 homepage-img3" if current_user.nil?
+  .homepage2-banner
+    .row.container.center-div-no-bg
+      = image_tag "homepage2.png", :class=> ".homepage-img2" if current_user.nil?
+.grey-bck
+  .container.grey-bck
+    .row
+      .span8.offset2
+        %h2.center-txt.homepg-txt1
+          = t("homepage.homepage_text3")
+    %hr
+    .row
+      .span5.offset1
+        %h3.homepg-header
+          = t("homepage.patient_care")
+        %p.homepg-txt
+          = t("homepage.patient_care_desc")
+      .span4.offset1
+        = image_tag "homepage1.png"
+    %hr
+    .row
+      .span4.offset1
+        = image_tag "homepage4.png"
+      .span5.offset2
+        %h3.homepg-header
+          = t("homepage.prescription")
+        %p.homepg-txt
+          = t("homepage.prescription_desc")
+    %hr
+    .row
+      .span5.offset1
+        %h3.homepg-header
+          =t("homepage.ongoing_clinical_research")
+        %p.homepg-txt
+          =t("homepage.ongoing_clinical_research_desc")
+      .span4.offset1
+        = image_tag "homepage3.png"
+.grey-bckgrnd1
+  .row.container.center-div-no-bg
+    .row
+      .span4.offset2
+        %h3
+          = t("homepage.homepage_text5")
+      .span4.offset1.grey-bck2
+        %a.btn.btn-orange{:href=> "#", :id => "hp-signup-LWR-btn"}
+          = t("devise.sign_up_patient")

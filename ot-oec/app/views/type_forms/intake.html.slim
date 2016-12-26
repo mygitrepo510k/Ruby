@@ -1,0 +1,21 @@
+.intake_form.section.single
+	h3 CP8 Intake Form
+
+	= form_tag
+		= hidden_field_tag "user_id", @user.id
+		- for f in @fields
+			.col-sm-6.field
+				h4 = f[:question]
+				- if f[:id]['textfield_']
+					= text_field_tag "field_#{f[:id]}", f[:answer]
+				- elsif f[:id]['textarea_']
+					= text_area_tag "field_#{f[:id]}", f[:answer]
+				- elsif f[:id]['statement_']
+				- elsif f[:id]['rating_']
+					= select_tag "field_#{f[:id]}", options_for_select([*1..10], f[:answer]), :prompt => "-"
+				- elsif f[:id]['list_']
+					= select_tag "field_#{f[:id]}", options_for_select(f[:fieldinfo]['options'], f[:answer]), :prompt => "-"
+				- else
+					| (unknown field type)
+		.col-sm-12
+			= submit_tag 'Save Changes', :class => 'btn btn-primary'

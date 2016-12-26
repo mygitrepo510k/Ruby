@@ -1,0 +1,2 @@
+module Settings::PaymentHelper
+end

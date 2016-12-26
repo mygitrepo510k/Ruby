@@ -1,0 +1,47 @@
+// Place all the styles related to the families controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.new-family-page{
+	h3{
+		font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    padding: 10px 0;
+    color: rgb(13, 141, 146);
+	}
+	form{
+		.submitBtn{
+			background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+	    border: 0 none;
+	    border-radius: 15px 15px 15px 15px;
+	    color: rgb(255, 255, 255);
+	    cursor: pointer;
+	    font-size: 14px;
+	    font-weight: 400;
+	    overflow: visible;
+	    padding: 3px 18px;
+		}
+		.cancelBtn{
+			-moz-border-bottom-colors: none;
+	    -moz-border-left-colors: none;
+	    -moz-border-right-colors: none;
+	    -moz-border-top-colors: none;
+	    background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(223, 223, 223) 100%) repeat scroll 0 0 transparent;
+	    border-color: rgb(221, 220, 220) -moz-use-text-color rgb(165, 159, 149);
+	    border-image: none;
+	    border-left: 0 none;
+	    border-radius: 15px 15px 15px 15px;
+	    border-right: 0 none;
+	    border-style: solid none;
+	    border-width: 1px 0;
+	    box-shadow: 1px 0 1px rgb(149, 149, 149);
+	    cursor: pointer;
+	    font-size: 14px;
+	    font-weight: 400;
+	    margin-left: 5px;
+	    overflow: visible;
+	    padding: 3px 18px;
+		}
+	}
+}
+

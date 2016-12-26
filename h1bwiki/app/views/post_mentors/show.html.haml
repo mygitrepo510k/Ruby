@@ -1,0 +1,44 @@
+.container-fluid
+	.row.post-main-page
+		.row
+			.span10.post-jobs-show-box
+				.row
+					.span10
+						%h1= @post_mentor.job_title
+				.row
+					- user = User.find_by_id(@post_mentor.user_id)
+					%p.company-name 
+						#{user.company_name.nil? ? user.user_name : user.company_name } -  #{user.city} ,  #{user.address1}
+				.row
+					.span3
+						%strong 
+							Skills: 
+					.span8
+						-@post_mentor.skill_lists.each do |skill_name|
+							%a.h1bwiki-skill{:href=>"#"}=skill_name.name					
+				.row
+					.span3
+						%strong 
+							Interview support:
+					.span8
+						%span=@post_mentor.job_interview == '1' ? 'Yes' : 'No'
+				.row
+					.span3
+						%strong 
+							Description: 
+					.span8
+						%label= markdown @post_mentor.job_description			
+				.row.last-row
+					.span2.offset3
+						-if current_user.present?
+							-if user.id != current_user.id										
+								%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_mentor.job_title}", :type=>"#{user.email}" } Contact
+						-else
+							%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{@post_mentor.job_title}", :type=>"#{user.email}" } Contact
+					.span2
+						%input.m-btn.blue{:type=>"button", :value=>"Forward" , :style=>"width: 100%;"}					
+					.span2
+						%input.m-btn.blue{:type=>"button", :value=>"Close", :style=>"width: 100%;"}
+			
+:javascript 
+	$('ul.nav-tabs li').eq(1).addClass('isCurrent');

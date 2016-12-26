@@ -1,0 +1,8 @@
+.container-fluid
+	.row.post-main-page
+		=render "layouts/nav-link-secondary"
+		.row.first-row.post-training-page
+			.span12.edit-box
+				.page-header
+					%p.page-title{:style=>"text-align:center"} Post a Training/Placement
+				= render :partial => "form"

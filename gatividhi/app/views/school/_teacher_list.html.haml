@@ -1,0 +1,29 @@
+- @teachers.each do |teacher|
+	%tr{:id=>"row_"+teacher.id}
+		%td{:align => "left", :valign => "top"}
+			%a.greenTxt{:href => "#.", :onclick => "$('#showMoreInfo_#{teacher.id}').show('fast')"}= teacher.name
+		%td{:align => "left", :valign => "top"}= teacher.position
+		%td{:align => "left", :valign => "top"}			
+			%a.greenTxt{:href => "mailto:#{teacher.email}"}= teacher.email
+		%td{:align => "left", :valign => "top"}= teacher.phone_number
+		%td.actionBox{:align => "left", :valign => "top"}
+			%a.deleteIcon{:href => "javascript:deleteTeacher('#{teacher.id}')", :onclick => "confirm('Are you sure you want to Delete this row')", :title => "Delete"}
+			%a.editIcon{:href => "javascript://", :onclick => "$('#row_#{teacher.id}').hide();$('#modify_row_#{teacher.id}').show('fast');", :title => "Edit"}
+			%a{:href => "#."}= teacher.other_details
+	%tr.viewRow{:id=>"showMoreInfo_"+teacher.id, :style => "display:none;"}
+		%td.viewRow{:align => "left", :colspan => "7", :valign => "top"}
+			= teacher.other_details
+			%a.closeBtn.viewClose{:href => "#.", :onclick => "$('#showMoreInfo_#{teacher.id}').toggle()", :style=>"top: 75px;"}
+	%tr{:id=>"modify_row_" + teacher.id, :style => "display:none;"}
+		%td{:align => "left", :valign => "top"}
+			%input.inputField{:id=>"val1_"+teacher.id,:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:200px;", :type => "text", :value => teacher.name}/
+		%td{:align => "left", :valign => "top"}
+			%input.inputField{:id=>"val2_"+teacher.id,:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:100px;", :type => "text", :value => teacher.position}/
+		%td{:align => "left", :valign => "top"}
+			%input.inputField{:id=>"val3_"+teacher.id,:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:180px;", :type => "email", :value => teacher.email}/
+		%td{:align => "left", :valign => "top"}
+			%input.inputField{:id=>"val4_"+teacher.id,:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:100px;", :type => "text", :value => teacher.phone_number}/
+		%td{:align => "left", :valign => "top"}
+			%input.inputField.FL{:id=>"val5_"+teacher.id,:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:100px;", :type => "text", :value => teacher.other_details}/
+			%a.closeBigBtn.FR{:href => "#.", :onclick => "$('#row_#{teacher.id}').show('fast');$('#modify_row_#{teacher.id}').hide();"}
+			%input.saveBtn{:onclick => "$('#row_#{teacher.id}').show('fast');$('#modify_row_#{teacher.id}').hide();editTeacher('#{teacher.id}')", :type => "submit", :value => "save"}/

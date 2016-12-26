@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user: 
+  job_title: MyString
+  job_technology: MyString
+  job_instruction: MyString
+  job_placement: MyString
+  job_accomodation: MyString
+  job_duration: MyString
+  job_description: MyText
+
+two:
+  user: 
+  job_title: MyString
+  job_technology: MyString
+  job_instruction: MyString
+  job_placement: MyString
+  job_accomodation: MyString
+  job_duration: MyString
+  job_description: MyText

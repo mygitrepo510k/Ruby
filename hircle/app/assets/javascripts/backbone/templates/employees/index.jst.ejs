@@ -1,0 +1,103 @@
+
+                    <!--===============Body content ================================================================================================================-->
+			
+
+						<div class="container-header">
+							<p>Employee</p>
+						</div>
+						<div class="content">
+							<div class="tabbable tabs-below">
+							
+									<div class="tab-update">
+										 <form class="form-horizontal">
+												<div class="control-group">
+													<div class="controls">
+															<div class="input-append">
+															
+															<input  id="appendedDropdownButton" name="search_name" placeholder="+Add more people from your network" type="text">								
+															
+																
+																<div class="btn-group">
+																	<button id="candiate_add_button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-file icon-white"></i>
+																		Add
+																		<span class="caret"></span>
+																	</button>
+																	<!--
+																	<ul class="dropdown-menu">
+																		<li>Add people</li>
+																		<li>Add candiate</li>
+																	</ul>
+																	-->
+																</div>
+															</div>
+													</div>
+												</div>
+												<div id="wait_add_user" style="display:none ; "></div>
+												<input type="hidden" name="wait_user_id" id="wait_user_id" value="" />
+												<input type="hidden" name="all_want_users" id="all_want_users" value="" />
+												
+												<div class="control-group">
+													<div class="controls" id="want_users">
+													<!-- ======Example===== -->
+													<!-- 
+													<div class="addedUserContent"><i class="addedUser" id="user001"></i>T.Cloudxify</div>
+													-->
+																						
+													<button id="users_add_button" type="button" class="btn btn-primary update">Update</button>
+													</div>
+												</div>
+										</form>
+									</div>
+							</div>
+						</div>
+				<div>
+				<div class="employee-list" id="J_EmployeeList">
+				</div>		
+						
+	<script type="text/javascript">
+	
+$(document).ready(function() {
+	 $("#appendedDropdownButton").autocomplete('/companies/1/employees.json', {
+        remoteDataType: 'json',
+        processData: function(data) {
+            console.log('search from server');
+            console.log(data);
+			var i, processed = [];
+			for (i=0; i < data.length; i++) {
+				//processed.push([data[i][0] + " - " + data[i][1]]);
+				var employee=data[i];
+				 console.log(employee['id']);
+				 var arr=[];
+				 arr[0]=employee['name'];
+				 arr[1]=employee;
+				 processed.push(arr)
+			}
+			return processed;
+        },
+		onItemSelect: function(item) {           
+            console.log('You selected <b>' + item.value + '</b>');            
+            console.log(item.data);
+            //Get the selected user. 
+            var employee=item.data[0];
+            $("#wait_add_user").off();
+            $("#wait_add_user").empty();
+            //wait_user_id
+            $("#wait_user_id").val("");
+            $("#wait_user_id").val(employee["id"]);
+            $("#wait_add_user").append('<div class="addedUserContent" id="'+employee["id"]+'"><img src="'+employee["thumbnail"]+'" />'+employee["name"]+'</div>');
+        }
+    });
+    $("#candiate_add_button").click(function(e){
+         //find user wait to add into department.
+         $("#want_users").append($("#wait_add_user .addedUserContent"));
+         //all_want_users
+         var current=$("#all_want_users").val();
+         var all_ids=(current!=null&&current!="")?current+","+$("#wait_user_id").val():$("#wait_user_id").val();
+         console.log('Prepare to add to department users:'+all_ids); 
+         $("#all_want_users").val(all_ids);
+         
+    });
+ });
+	</script>
+				
+	

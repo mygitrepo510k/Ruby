@@ -1,0 +1,15 @@
+.pod-show.section.single
+	.row
+		h3
+			| Pod - 
+			a href='#' data-xeditable='true' data-pk=@pod.id data-type='text' data-model='pod' data-name='name' data-url=admin_pod_path(@pod) data-title='Pod name'
+				= @pod.name
+
+		.leader
+			.avatar
+				= image_tag @pod.leader.avatar.profile.url
+			h4.name= @pod.leader.name
+			.leader Leader
+
+	.row
+		h3 Members

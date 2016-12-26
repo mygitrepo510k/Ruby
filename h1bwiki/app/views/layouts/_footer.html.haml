@@ -1,0 +1,94 @@
+.footer
+	- if params[:action] == "home" or (params[:controller]=="devise/sessions" and params[:action]=="new")
+		.row.footer-first-row
+			.content
+				.row
+					.span3{:style=>"margin-left:0px;"}
+						%h3 CONTACT US
+						%p 
+							Email:
+							%span abc@xyz.com
+						%p 
+							Phone:
+							%span +00 098 098 9088
+						%p 
+							Address:
+							%span 90210, Broadway Strt., New York
+
+						%h3 FEEDBACK
+						%p Do you have any thoughts on hwo we can improve our job search tool? We would love to hear from you.
+						%br/
+						%p Send any feedback you have to:
+						%label.orange contact@h1bwiki.com
+						%br/
+						%p For Support:
+						%label.orange contact@h1bwiki.com
+						%h4 00 098 098 9088
+
+					.span3{:style=>"margin-left: 50px;"}
+						%h3 ABOUT THE COMPANY
+						%p 
+							job search tool that allows job seekers to use their social networks to quickly find job opportunities from companies within their personal networks.
+						%br/						
+						.face-boook-content{:style=>"background-color:#fff;"}
+							#fb-root
+								.fb-like-box{"data-header" => "true", "data-height" => "250", "data-href" => "https://www.facebook.com/h1bwiki", "data-show-border" => "true", "data-show-faces" => "true", "data-stream" => "false", "data-width" => "298"}
+							:javascript
+								(function(d, s, id) {
+									var js, fjs = d.getElementsByTagName(s)[0];
+									if (d.getElementById(id)) return;
+									js = d.createElement(s); js.id = id;
+									js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=394174040678139";
+									fjs.parentNode.insertBefore(js, fjs);
+								}(document, 'script', 'facebook-jssdk'));
+
+					.span3{:style=>"float:right;"}
+						%h3 GET IN TOUCH
+						.span1{:style=>"width: 40px;margin-left:20px;"}
+							%a{:href=>"#"}
+								.fs-icon
+						.span1{:style=>"width: 40px;margin-left:10px;"}
+							%a{:href=>"#"}
+								.sc-icon
+						.span1{:style=>"width: 40px;margin-left:10px;"}
+							%a{:href=>"https://www.facebook.com/h1bwiki"}
+								.th-icon
+						%br/
+						%br/
+						%br/
+						%h3 IN THE NEWS
+						%p Lorem lpsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text over since the 1500s.
+						%br/
+						%p Lorem lpsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text over since the 1500s.
+
+	.row.footer-last-row
+		.content
+			%label{:style=>"text-align:center"} © Copyright 2013 H-1B Wiki
+
+
+
+/ Modal
+- if controller.controller_name != "messagebox" && controller.controller_name != "conversations"
+	#myModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+		.modal-header
+			%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+			%h3#myModalLabel New Message
+		.modal-body	
+			= simple_form_for :conversation, url: "/conversations", :html => { "data-validate" => "parsley", :id => "contact_form" } do |f|
+				= f.hidden_field :recipients, id: "recipients_hiddenfield"
+				.first-row
+					= f.input_field :subject, :placeholder => "Subject", "data-required"=>"true"
+				.second-row
+					= f.text_area :body, :rows=>"8", :cols => "10", :placeholder => "Message", "data-required"=>"true"
+				.modal-footer	 
+					= f.button :submit, "Send", class: 'm-btn blue'				
+					%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close
+
+:javascript	
+	if ("#{params[:action]}"== "home" || ("#{params[:controller]}"=="devise/sessions" && "#{params[:action]}"=="new")){
+		//console.log(".navbar-fixed-bottom");
+	}else{
+		//$(".footer").addClass("navbar-fixed-bottom");
+		//$(".footer").css("bottom", "-5px");
+	}
+

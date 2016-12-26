@@ -1,0 +1,11 @@
+.login
+  %p
+    - unless @no_footer
+      = link_to image_tag('main_03.png', title: "Hye Dating", border: 0, height: 70, width: 372), root_path
+    - else
+      = image_tag('main_03.png', title: "Hye Dating", border: 0, height: 70, width: 372)
+    #signup
+      = render partial: 'users/signup_one'
+
+= content_for :meta_tags do
+  %meta{name: "viewport", content: "width=400"}

@@ -1,0 +1,152 @@
+.row
+  .container{:style=>"max-width:998px !important;min-width:998px !important"}
+    = render 'layouts/banner'
+.row{:style=>"margin-left: 0px; padding-top: 30px; background-image: linear-gradient(#eee, #fff);"}
+  .container
+    .span7.left-panel{:style=>"margin-left: 10px; width: 620px;"}
+      .row
+        %ul.icons2
+          %li.partner
+            .span1
+              =link_to image_tag("home_icons/motivationalpartner.png"), home_find_motivation_partner_path
+            .span2{:style=>"width: 200px;"}
+              %a{:href=>home_find_motivation_partner_path}
+                %h5 Search for a <br> Motivation partner
+              %p Find a motivational partner or a motivational mentor today to help you reach your goals. Get Motivated. Stay motivated.
+              %a{:href=>home_find_motivation_partner_path} Search Now!
+          %li.forum
+            .span1
+              =link_to image_tag("home_icons/openforum.png"), home_find_motivation_partner_path
+            .span2{:style=>"width: 200px;"}
+              %h5 Search Motivation Group Forums
+              %p Join one of our Motivation Forums and get motivated today. There is a right motivational group for you.
+              %a{:href=>"./forums"} View Now!
+      .row
+        %ul.icons2    
+          %li.coachsearch
+            .span1
+              =link_to image_tag("home_icons/coachsearch.png"), home_find_coach_path
+            .span2{:style=>"width: 200px;"}
+              %a{:href=>home_find_coach_path}
+                %h5 Search for a Coach/Counselor
+              %p Find an online coach or an online couselor today and get the help you need to reach your goals.
+              %a{:href=>home_find_coach_path}Search Now!
+          %li.target
+            .span1
+              =link_to image_tag("home_icons/motivationalmembership.png"), home_find_coach_path
+            .span2{:style=>"width: 200px;"}
+              %h5 Advantages of Membership
+              %p Do you need motivation to reach your goals?
+              %a{:href=>"./advantages"} See how we can help
+      .row
+        %ul.icons2    
+          %li.shoppingbasket
+            .span1
+              =link_to image_tag("home_icons/basketblue.png"), home_stores_path
+            .span2{:style=>"width: 200px;"}
+              %a{:href=>home_stores_path}
+                %h5 Store
+              %p Visit our store for a motivation download today. We sell mp3 downloads for every life challenge.
+              %a{:href=>home_stores_path}Purchase Motivation
+          %li.blog
+            .span1
+              =link_to image_tag("home_icons/blog.png"), home_stores_path
+            .span2{:style=>"width: 200px;"}
+              %h5 Blog
+              %p Learn about motivation.  What is motivation? Follow our motivational blog.
+              %a{:href=>"./coachsignup"} Read More
+      .row
+        %ul.icons2
+          %li.signup
+            .span1
+              =link_to image_tag("home_icons/signup.png"), couchcounselor_signup_path
+            .span2{:style=>"width: 200px;"}
+              %a{:href=>:couchcounselor_signup}
+                %h5 Coach/Counselor<br> Sign-up
+              %p Have a motivational product or service?  Want to help others achieve their dreams?
+              %a{:href=>"./coachsignup"} Sign-up Now!
+          %li.affiliate
+            .span1
+              =link_to image_tag("home_icons/MotivationalAffiliate.png"), couchcounselor_signup_path
+            .span2{:style=>"width: 200px;"}
+              %h5 Become an<br> Affiliate
+              %p Want to help us get out our messages of hope and perseverance?
+              %a{:href=>"./coachsignup"}Read Now        
+      .row
+        %h5.colorBlue{:style=>"margin-left: 30px;"} What is I WantMotivation.com?
+        %ul.TopReasion
+          %li.first
+            %h5 Stay Motivated.
+            %span We live in the fastest, most complex time in world history. It is no wonder that stress is high as we try to keep up with life.s challenges.  How do we stay motivated?
+          %li.second
+            %h5 Platform to Connect
+            %span IWantMotivation.com is a platform for people to connect to and share knowledge with others who are experiencing similar challenges. Whether your challenge is with a relationship, your physical or mental health, or your finances, you will get the motivation you need to succeed!
+          %li.third
+            %h5 Interaction to achieve Motivational Success
+            %span IWantMotivation.com connects you to one-on-one interaction or group interaction.  We have additional programs, tools and coaches that you can use as resources. When you have support and accountability, life can be so much more enjoyable as you reach for, and more importantly, attain your goals.
+        %a{:href=>"./advantages", :style=>"margin-left: 30px;"} Read More...
+        .motivationalVideosHome{:style=>"margin-left: 25px; width: 600px;"}
+          .motivationalVideosHeading 
+            %p Motivational Videos
+            %ul
+              %li{:style=>"margin-right:10px;"}
+                = link_to "First video", "http://www.youtube.com/embed/_kjSK-PcU9o", :class=>"videoplay-colobox", :data => { :colorbox => true, :colorbox_height => '480px', :colorbox_width => '640px', :colorbox_iframe => true }
+              %li{:style=>"margin-right:10px;"}
+                = link_to "Second video", "http://www.youtube.com/embed/RmTxr7OsPj0", :class=>"videoplay-colobox", :data => { :colorbox => true, :colorbox_height => '480px', :colorbox_width => '640px', :colorbox_iframe => true }
+              %li
+                = link_to "Third video", "http://www.youtube.com/embed/lkEiymUQ01c", :class=>"videoplay-colobox", :data => { :colorbox => true, :colorbox_height => '480px', :colorbox_width => '640px', :colorbox_iframe => true }
+        %p{:style=>"text-align:right; padding:5px 13px 0px 0px"}
+          %a.learnMore3{:href=>"http://www.youtube.com/user/iwantmotivation"} View All Videos
+    .span2.right-panel{:style=>"margin-left: 35px; width: 320px;"}
+      .ebookCont
+        %h5 How This Site Works
+        = link_to "My superb link", "http://www.youtube.com/embed/X_z4IpYafR4", :class=>"videoplay-colobox", :data => { :colorbox => true, :colorbox_height => '480px', :colorbox_width => '640px', :colorbox_iframe => true }
+      %br
+      .ebookCont
+        %h5 Featured Product
+        %ul
+          %li
+            .span2{:style=>"width: 100px; margin-left: 0px;"}
+              =image_tag("home_icons/WDFrontReady.png")
+            .span2{:style=>"width: 170px; margin-left: 20px;"}
+              %h6 Simple Techniques to Reduce Stress Program
+              %p
+                %a{:href=>"./motivation-download"} View Product
+        %p.viewAll{:style=>"text-align:right; padding-right:5px;"}
+          %a{:href=>"./motivation-download"} View Store
+      %br
+      .ebookCont
+        %h5 I Want Motiviation Blog Talk Radio
+        %ul
+          %li
+            .span2{:style=>"width: 120px; margin-left: 0px;"}
+              =image_tag("home_icons/BlogTalkRadio.jpg")
+            .span2{:style=>"width: 170px; margin-left: 0px;"}
+              %h6 Road To Recovery From Addiction
+              %p
+                %a{:href=>"http://www.blogtalkradio.com/iwantmotivation/2013/03/18/the-road-to-recovery-from-addiction"} Listen to Episode
+          %li
+            .span2{:style=>"width: 120px; margin-left: 0px;"}
+              =image_tag("home_icons/BlogTalkRadio.jpg")
+            .span2{:style=>"width: 170px; margin-left: 0px;"}
+              %h6 Young Women CAN Start Their Own Business!
+              %p
+                %a{:href=>"http://www.blogtalkradio.com/iwantmotivation/2013/03/04/young-women-can-start-their-own-business"} Listen to Episode
+          %li
+            .span2{:style=>"width: 120px; margin-left: 0px;"}
+              =image_tag("home_icons/BlogTalkRadio.jpg")
+            .span2{:style=>"width: 170px; margin-left: 0px;"}
+              %h6 Fear And The Terror Barrier
+              %p
+                %a{:href=>"http://www.blogtalkradio.com/iwantmotivation/2013/02/25/the-terror-barrier"} Listen to Episode
+          %li
+            .span2{:style=>"width: 120px; margin-left: 0px;"}
+              =image_tag("home_icons/BlogTalkRadio.jpg")
+            .span2{:style=>"width: 170px; margin-left: 0px;"}
+              %h6 Motivation to Break Through Chronic Pain
+              %p
+                %a{:href=>"http://www.blogtalkradio.com/iwantmotivation/2013/02/11/motivation-to-break-through-chronic-pain"} Listen to Episode
+
+        %p.viewAll{:style=>"text-align:right; padding-right:5px;"}
+          %a{:href=>"http://www.blogtalkradio.com/iwantmotivation"} View All
+              

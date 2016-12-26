@@ -1,0 +1,20 @@
+- @feedbacks.each do |feedback|
+	%tr{:id=>"row_"+feedback.id}
+		%td{:align => "left", :valign => "top"}
+			%input{:type => "checkbox"}/
+		%td{:align => "left", :valign => "top"}
+			%a{:href => "#.", :onclick => "$('#showMoreInfo_#{feedback.id}').toggle('slow')"}
+				=feedback.type
+		%td{:align => "left", :valign => "top"}= feedback.class_name
+		%td{:align => "left", :valign => "top"}= feedback.feedback_date
+		%td{:align => "left", :valign => "top"}= feedback.your_notes
+		%td{:align => "left", :valign => "top"}= feedback.from
+		%td.actionBox{:align => "left", :valign => "top"}
+			= link_to("", "javascript:delete_feedback('#{feedback.id}')", :method=> :delete, :confirm => "Are you sure you want to Delete this row?", :class => "deleteIcon", :title=>"Delete")
+			%a.editIcon{:href => "/school/edit_feedback?id="+feedback.id, :rel=>"facebox", :title => "Edit"}
+			= feedback.important == true ? "Yes" : "No"
+	%tr.viewRow{:id=>"showMoreInfo_" + feedback.id, :style => "display:none;"}
+		%td.viewRow{:align => "left", :colspan => "9", :valign => "top"}
+			%a.closeBtn.viewClose{:href => "#.", :onclick => "$('#showMoreInfo_#{feedback.id}').toggle()"}>
+			= feedback.your_notes
+	

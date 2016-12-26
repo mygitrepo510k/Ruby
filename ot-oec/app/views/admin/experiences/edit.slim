@@ -1,0 +1,15 @@
+.admin-experiences-edit.section.single
+	h3 Edit experience
+
+	ol.breadcrumb
+	  li= link_to 'Admin', admin_path
+	  li= link_to 'Experiences', admin_experiences_path
+	  li.active= 'Edit Experience'
+
+	.row 
+		.col-sm-6
+			= render 'form'
+
+	= link_to 'Delete', admin_experience_path, method: :delete, data: { confirm: 'Are you sure you want to delete this experience?' }
+  	br
+  	br

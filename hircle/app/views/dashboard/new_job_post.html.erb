@@ -1,0 +1,48 @@
+<div id="content_wrap" class="container">
+	<div id="left_side">
+		<%= render :partial => "left_side" %>
+	</div>
+	<div id="main_area">
+
+		<div class="span10" style="width:79%;" >
+			<!--Body content-->
+			<h3>New Job</h3>
+			<%= form_for(@job, :url => "/submit_step_one") do |f| %>
+			<div class="field">
+				<%= f.label :logo, "Company logo" %>
+				<br />
+				<%= f.file_field :logo %>
+			</div>
+			<div class="field">
+				<%= f.label :title %>
+				<br />
+				<%= f.text_field :title %>
+			</div>
+			<div class="field">
+				<%= f.label :description %>
+				<br />
+				<%= f.text_field :description %>
+			</div>
+			<div class="field">
+				<%= f.label :city %>
+				<br />
+				<%= f.text_field :city %>
+			</div>
+			<div class="field">
+				<%= f.label :state %>
+				<br />
+				<%= f.text_field :state %>
+			</div>
+			<div class="field">
+				<%= f.label :zip %>
+				<br />
+				<%= f.text_field :zip %>
+			</div>
+			<div class="actions">
+				<%= f.submit "Submit" %>
+			</div>
+			<% end %>
+			<!--Body content ends-->
+		</div>
+	</div>
+</div>

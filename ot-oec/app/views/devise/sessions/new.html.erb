@@ -1,0 +1,34 @@
+<div class="col-lg-4 col-lg-offset-4  sign_in_above text-center">
+	<%= image_tag 'powered.jpg' %>
+</div>
+<div class="col-xs-10 col-sm-7 col-md-6 col-lg-5 sign_in">
+	<span class="glyphicon glyphicon-user"></span>
+	<h2>Sign in</h2>
+
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+		<div class="field">
+			<span class="glyphicon glyphicon-envelope"></span>
+			<%= f.email_field :email, autofocus: true, placeholder: 'Email' %>
+		</div>
+
+		<div class="field">
+			<span class="glyphicon glyphicon-lock"></span>
+			<%= f.password_field :password, autocomplete: "off", placeholder: 'Password' %>
+		</div>
+
+		<div class="field">
+			<span class="glyphicon glyphicon-log-in"></span>
+			<%= f.submit "Sign in" %>
+		</div>
+
+		<% if devise_mapping.rememberable? -%>
+			<div class="rememberme"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+		<% end -%>
+
+	<% end %>
+
+</div>
+<div class="col-xs-10 col-sm-8 col-md-6 col-lg-4 sign_in_under">
+	<%= render "devise/shared/links" %>
+</div>

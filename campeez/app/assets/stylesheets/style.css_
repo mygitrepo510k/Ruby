@@ -1,0 +1,526 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+	font-family: 'MYRIADPROREGULAR';
+	src: url('MYRIADPROREGULAR.eot');
+	/*src : url('pt_serif-web-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('pt_serif-web-regular-webfont.woff') format('woff'),
+         url('pt_serif-web-regular-webfont.ttf') format('truetype'),
+         url('pt_serif-web-regular-webfont.svg#pt_serifregular') format('svg');*/
+	src: url('MYRIADPROREGULAR'),
+		 url('MYRIADPROREGULAR.eot?#iefix') format('embedded-opentype'),
+	     url('MYRIADPROREGULAR.woff') format('woff'), 
+		 url('MYRIADPROREGULAR.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_4410">Text with this font applied</p> */
+.fontsforweb_fontid_4410 {
+	font-family: 'MYRIADPROREGULAR' !important;
+}
+h1,h2,h3,h4,h5,h6 {
+			font-family: 'MYRIADPROREGULAR';
+		}
+h2
+{
+	font-size:20px;
+	color:#005a9e;
+}
+a
+{
+	text-decoration:none;
+}
+body
+{
+	background:#FFF;
+	margin:0;
+	padding:0;
+	font-family: 'MYRIADPROREGULAR';
+}
+.wrapper
+{
+	width:970px;
+	margin:0 auto;
+	padding:0px;
+}
+.header
+{
+	height:160px;
+	width:970px;
+	background:url(asset-path('headerbg.jpg')) repeat;
+}
+.boxinslider
+{
+	width:311px;
+	height:293px;
+	background:rgba(150,181,202,0.72);
+	padding:20px 10px;
+	margin-top:-330px;
+	margin-left:40px;
+	position:absolute;
+	font-family: 'MYRIADPROREGULAR';
+	color:#19206c;
+	font-size:14.1px;
+	text-shadow: 1px 1px 2px rgba(150, 150, 150, 1);
+}
+.boxinslider p
+{
+	margin-top:5px;
+}
+.boxinsliderdiv1
+{
+	width:300px;
+	height:30px;
+	background:#FFF;
+	border:2px solid #19206c;
+	border-radius:10px;
+	text-align:center;
+	font-weight:bold;
+	margin-top:13px;
+	margin-bottom:12px;
+}
+
+
+.boxinsliderdiv2
+{
+	width:141px;
+	height:30px;
+	float:left;
+	margin-left:5px;
+	background:#FFF;
+	border:2px solid #19206c;
+	border-radius:10px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.boxinsliderdiv3
+{
+	width:300px;
+	height:30px;
+	margin-top:13px;
+	margin-bottom:12px;
+}
+
+
+.logo
+{
+}
+
+.myButton {
+	-moz-box-shadow:inset 0px 0px 15px 3px #23395e;
+	-webkit-box-shadow:inset 0px 0px 15px 3px #23395e;
+	box-shadow:inset 0px 0px 15px 3px #23395e;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2e466e), color-stop(1, #415989));
+	background:-moz-linear-gradient(top, #2e466e 5%, #415989 100%);
+	background:-webkit-linear-gradient(top, #2e466e 5%, #415989 100%);
+	background:-o-linear-gradient(top, #2e466e 5%, #415989 100%);
+	background:-ms-linear-gradient(top, #2e466e 5%, #415989 100%);
+	background:linear-gradient(to bottom, #2e466e 5%, #415989 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2e466e', endColorstr='#415989',GradientType=0);
+	background-color:#2e466e;
+	-moz-border-radius:24px;
+	-webkit-border-radius:24px;
+	border-radius:24px;
+	border:2px solid #1f2f47;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	padding:10px 54px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #263666;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #415989), color-stop(1, #2e466e));
+	background:-moz-linear-gradient(top, #415989 5%, #2e466e 100%);
+	background:-webkit-linear-gradient(top, #415989 5%, #2e466e 100%);
+	background:-o-linear-gradient(top, #415989 5%, #2e466e 100%);
+	background:-ms-linear-gradient(top, #415989 5%, #2e466e 100%);
+	background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#415989', endColorstr='#2e466e',GradientType=0);
+	background-color:#415989;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.myButton1 {
+	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #4fa08e), color-stop(1, #164d41));
+	background:-moz-linear-gradient(top, #4fa08e 5%, #164d41 100%);
+	background:-webkit-linear-gradient(top, #4fa08e 5%, #164d41 100%);
+	background:-o-linear-gradient(top, #4fa08e 5%, #164d41 100%);
+	background:-ms-linear-gradient(top, #4fa08e 5%, #164d41 100%);
+	background:linear-gradient(to bottom, #4fa08e 5%, #164d41 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4fa08e', endColorstr='#164d41',GradientType=0);
+	background-color:#4fa08e;
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	border-radius:10px;
+	border:2px solid #c1cdca;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:10px 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #528ecc;
+}
+.myButton1:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #164d41), color-stop(1, #4fa08e));
+	background:-moz-linear-gradient(top, #164d41 5%, #4fa08e 100%);
+	background:-webkit-linear-gradient(top, #164d41 5%, #4fa08e 100%);
+	background:-o-linear-gradient(top, #164d41 5%, #4fa08e 100%);
+	background:-ms-linear-gradient(top, #164d41 5%, #4fa08e 100%);
+	background:linear-gradient(to bottom, #164d41 5%, #4fa08e 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#164d41', endColorstr='#4fa08e',GradientType=0);
+	background-color:#164d41;
+}
+.myButton1:active {
+	position:relative;
+	top:1px;
+}
+
+.slider
+{
+	width:970px;
+	height:332px;
+}
+.col1
+{
+	width:277px;
+	height:187px;
+	margin:10px 10px;
+	float:left;
+}
+.col1:hover
+{
+	width:277px;
+	height:187px;
+	margin:10px 10px;
+	float:left;
+}
+.divprice
+{
+	color:#19206c;
+	margin-top:-10px;
+}
+.myprice
+{
+	font-size:18.22px;
+	font-weight:bold;
+	font-family: 'MYRIADPROREGULAR';
+}
+.mypriceother
+{
+	font-size:16.22;
+	font-family: 'MYRIADPROREGULAR';
+}
+.col2
+{
+	width:277px;
+	height:187px;
+	margin:0 10px;
+	float:left;
+}
+
+.col3
+{
+	width:200px;
+	height:300px;
+	margin:10px 10px;
+	float:left;
+}
+.col3 img
+{
+	width:200px;
+	height:117px;
+}
+.price
+{
+	position:absolute;
+	z-index:1;
+	margin-left:-20px;
+	margin-top:-190px;
+}
+.priceshow
+{
+	position:absolute;
+	z-index:2;
+	margin-top:-170px;
+	color:#FFF;
+	font-weight:bold;
+}
+.pricetext
+{
+	position:absolute;
+	z-index:3;
+	margin-top:-150px;
+	color:19206c;
+}
+.container
+{
+	background:#d7e9f4;
+	padding:10px 30px 30px 30px;
+	z-index:-999;
+}
+
+.container1
+{
+	background:#d7e9f4;
+	padding:10px;
+}
+.mainleftcol
+{
+	width:200px;
+	height:auto;
+	float:left;
+	padding:20px 10px;
+}
+
+.map
+{
+	width:200px;
+	height:150px;
+	margin-top:10px;
+}
+.line1
+{
+	background:url(asset-path('line1.png')) repeat;
+	height:53px;
+	width:940px;
+	padding:10px 10px 10px 20px;
+}
+.loc
+{
+	color:#000;
+	font-size:16px;
+	font-weight:bold;
+}
+.textwithoutbold
+{
+	font-size:18.22px;
+	color:#1a206f;
+}
+.mylabel
+{
+	font-size:16.22px;
+	color:#1a206f;
+}
+div.string{
+	font-size:16.22px;
+	color:#1a206f;	
+}
+.searchresult
+{
+	padding:20px 10px;
+}
+.mysearchlabel
+{
+	font-size:18.22px;
+	font-weight:bold;
+	color:#1a206f;
+}
+.searchresultnum
+{
+	font-size:22.7px;
+	font-weight:bold;
+	color:#1a206f;
+}
+
+.myselect { 
+    background: transparent url(http://html-generator.weebly.com/files/theme/input-text-8.png) repeat-x; 
+    border: 1px solid #999; 
+    outline:0; 
+    width:200px;
+	height:30px; 
+  } 
+  
+.myuppertext { 
+    background:#d7e9f4; 
+    border: 1px solid #999; 
+    outline:0;
+	height:30px;
+  } 
+.mytextbox
+{
+	width:350px;
+	height:30px;
+	border:1px solid #000;
+}
+
+.mytextbox2
+{
+	width:450px;
+	height:30px;
+	border:1px solid #000;
+}
+
+.mytextbox1
+{
+	width:150px;
+	height:30px;
+	border:1px solid #000;
+}
+.mytextarea
+{
+	width:350px;
+	height:100px;
+	border:1px solid #000;
+}
+
+
+.mainrightcol
+{
+	margin-left:10px;
+	width:700px;
+	padding:20px 10px;
+	float:left;
+}
+.content1
+{
+	width:810px;
+	height:220px;
+	margin-top:20px;
+	background:url(asset-path('bg1.png')) repeat-y, #e0e2e5;
+	margin-left:10px;
+	padding:10px 30px;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+	
+
+}
+
+
+.slick-box {
+
+   position: relative;
+
+   height: 50px;
+
+   border: 1px solid #efefef;
+
+   background: #fff;
+
+   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.27), 0 0 40px rgba(0, 0, 0, 0.06) inset;
+
+}
+
+ 
+
+.content2{
+
+   content: '';
+
+  
+  
+   
+
+  
+   width: 810px;
+   margin-left:500px;
+   margin-top:-100px;
+   z-index:-1;
+
+   max-width: 300px; /* avoid rotation causing ugly appearance at large container widths */
+
+   height: 220px;
+
+   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+
+   transform: skew(15deg) rotate(6deg);                
+
+}
+
+           
+
+
+
+.myheading
+{
+	font-weight:bold;
+	font-size:18.5px;
+	color:#005a9e;
+	font-family: 'MYRIADPROREGULAR';
+}
+.myheading2
+{
+	font-weight:bold;
+	font-size:18px;
+	color:#605f5f;
+	font-family: 'MYRIADPROREGULAR';
+}
+.mycontenttext
+{
+	font-size:14px;
+	text-align:left;
+	color:#605f5f;
+	font-family: 'MYRIADPROREGULAR';
+}
+.list1 li {
+	padding-bottom: 4px
+}
+.list1 li a {
+	color: #06cbe2;
+	font-family: 'MYRIADPROREGULAR';
+}
+.list1 li a:hover {
+	color: #fff;
+	text-decoration: underline;
+	-moz-transition: all 0.3s ease-out; /* FF3.7+ */
+	-o-transition: all 0.3s ease-out; /* Opera 10.5 */
+	-webkit-transition: all 0.3s ease-out; /* Saf3.2+, Chrome */
+}
+.list2 li {
+	padding-bottom: 4px;
+	list-style:none;
+	margin-left:-40px;
+	font-family: 'MYRIADPROREGULAR';
+}
+.list2 li a {
+	color: #5c5c5c;
+	text-decoration: none;
+	font-family: 'MYRIADPROREGULAR';
+	font-size:12px;
+}
+.list2 li a:hover {
+	color:#000;
+	-moz-transition: all 0.3s ease-out; /* FF3.7+ */
+	-o-transition: all 0.3s ease-out; /* Opera 10.5 */
+	-webkit-transition: all 0.3s ease-out; /* Saf3.2+, Chrome */
+}
+.list3 {
+	padding-bottom: 24px
+}
+.list3 li {
+	background: url(asset-path('arrow2.gif')) no-repeat 0 7px;
+	padding: 0 0 6px 17px
+}
+.grid3
+{
+	width:25%;
+	float:left;
+}
+.footer
+{
+	background:#f2f2f2;
+	padding:10px 30px;
+}
+.footerheading
+{
+	font-size:14px;
+}
+.footertext
+{
+	text-align:center;
+	color:#a5a5a5;
+	font-size:12px;
+	padding:20px 0;
+	font-family: 'MYRIADPROREGULAR';
+}
+
+

@@ -1,0 +1,5 @@
+every_24_hours_job:
+ cron: "0 15 * * *"
+ class: PrescriptionWaitingReminderJob
+ args: args
+ description: "every 24 hours job"

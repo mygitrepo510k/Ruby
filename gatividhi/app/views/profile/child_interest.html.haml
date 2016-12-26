@@ -1,0 +1,236 @@
+/ Body Start here
+.bodyWapper
+	.tabBox
+		%a{:href => "child_profile.html"} General
+		%a{:href => "child_milestone.html"} Milestones
+		%a.tabSelected{:href => "child_interest.html"} Interest
+		.CL
+	.tabContainer
+		.tabAction	
+		.infoContainer
+			%p.padLeft10
+				Last Updated:
+				=@interest.updated_at.to_formatted_s(:short)
+			.greyBoxPad
+				%h2.pageTitle Academic
+			#academic_content
+				= render :partial => "interest_academic"
+			#showEdit3.editBox.formMainRow.singleRow
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'new_academic'}
+						%option Select
+						%option Maths
+						%option Science
+						%option Hindi
+						%option English
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit3','#linkObj3')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit3','#linkObj3'); saveChildInterest('new', 'academic', '#showEdit3', '0');", :style => "margin-left:8px; box-shadow:none;", :type => "button", :value => "save"}/
+				.CL
+			%p.padLeft10
+				%a.greyBtn{:href => "#.", :onclick => "showObj('#showEdit3')"} add new Interest
+			.greyBoxPad
+				%h2.pageTitle Sports
+			#sports_content
+				= render :partial => "interest_sports"	
+			#showEdit4.editBox.formMainRow.singleRow
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'new_sports'}
+						%option Select
+						%option Swimming
+						%option Gymnastics
+						%option Yoga
+						%option Crcket
+						%option Football
+						%option Other
+				%span.FL	 *
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit4','#linkObj3')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit4','#linkObj3'); saveChildInterest('new', 'sport', '#showEdit4', '0');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+			%p.padLeft10
+				%a.greyBtn{:href => "#.", :onclick => "showObj('#showEdit4')"} add new Interest
+			.greyBoxPad
+				%h2.pageTitle Visual & Performing Arts
+			#vp_a_content
+				= render :partial => "interest_vp_a"
+			#showEdit5.editBox.formMainRow.singleRow
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'new_vpa'}
+						%option Select
+						%option Drama
+						%option Paintings
+						%option Drawing
+						%option Music
+						%option Crafts
+						%option Sculpture
+						%option Other
+				%span.FL	 *
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit5','#linkObj3')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit5','#linkObj3'); saveChildInterest('new', 'visual_performing_art', '#showEdit5', '0');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+			%p.padLeft10
+				%a.greyBtn{:href => "#.", :onclick => "showObj('#showEdit5')"} add new Interest
+			.greyBoxPad
+				%h2.pageTitle Public Speaking & Interaction
+			#ps_content
+				= render :partial => "interest_ps"
+			#showEdit6.editBox.formMainRow.singleRow
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'new_ps'}
+						%option Select
+						%option Debate
+						%option Group
+						%option Discussion
+						%option Anchoring
+						%option Other
+				%span.FL	 *
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit6','#linkObj3')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit6','#linkObj3'); saveChildInterest('new', 'public_speaking_intereaction', '#showEdit6', '0');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+			%p.padLeft10
+				%a.greyBtn{:href => "#.", :onclick => "showObj('#showEdit6')"} add new Interest
+			.greyBoxPad
+				%h2.pageTitle Personal
+			#personal_content		
+				= render :partial => "interest_personal"
+			#showEdit7.editBox.formMainRow.singleRow
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'new_personal'}
+						%option Select
+						%option Holiday
+						%option Birthday
+						%option Other
+				%span.FL	 *
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit7','#linkObj3')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit7','#linkObj3'); saveChildInterest('new', 'personal', '#showEdit7', '0');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+			%p.padLeft10
+				%a.greyBtn{:href => "#.", :onclick => "showObj('#showEdit7')"} add new Interest
+			.greyBoxPad
+				%h2.pageTitle Voluntary / Social Contribution
+			#v_sc_content
+				= render :partial => "interest_v_sc"
+			#showEdit8.editBox.formMainRow.singleRow.jqSmallform
+				%select{:name=>'new_vaolunary'}
+					%option Select
+					%option Teaching
+					%option Other
+
+				%span.FL	 *
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit8','#linkObj3')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit8','#linkObj3'); saveChildInterest('new', 'volunary', '#showEdit8', '0');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+			%p.padLeft10
+				%a.greyBtn{:href => "#.", :onclick => "showObj('#showEdit8')"} add new Interest
+%form{:id=>'child_interest_form', :action=>'/child_interest'}
+/ Body Start End
+
+:javascript
+	//alert($('select').width()) jqGreenForm
+	$('.jqGreenForm').jqTransform({imgPath:'images/'}); 
+	$('.jqSmallform').jqTransform({imgPath:'images/'}); 
+	$('.jqBigform').jqTransform({imgPath:'images/'}); 
+	//$('.jqSmallform').jqTransform({imgPath:'images/'}); 
+	$('.filterRow .txt').click(function(){
+		$(this).parent().parent().find('.selectedRow').removeClass('selectedRow')
+		$(this).parent().addClass('selectedRow')		
+	})
+	
+	function delete_interest(id){
+		var url = 'profile/delete_child_interest'
+		$.ajax({
+			url :url,
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+			},
+			type: "POST",
+			data: 'id='+id,
+			dataType:'script',
+			success :function(){
+				$('#row_'+id).remove();
+			}
+		});
+		return
+	}
+
+	function saveChildInterest(type, opt_name, value, id){
+		var url = 'profile/child_save_value'
+		var flag = true;
+		if(type=='edit'){
+			real_value = value + ' select'
+		}else{
+			real_value = value + ' select'
+		}
+
+		if(opt_name=="academic"){			
+			$("#academic_content span").each(function(){
+				if($(this).text() == $(real_value).val()){
+					flag = false;
+				}
+			});
+		}else if(opt_name=="sport"){
+			$("#sports_content span").each(function(){
+				if($(this).text() == $(real_value).val()){
+					flag = false;
+				}
+			});
+		}else if(opt_name=="visual_performing_art"){
+			$("#vp_a_content span").each(function(){
+				if($(this).text() == $(real_value).val()){
+					flag = false;
+				}
+			});
+		}else if(opt_name=="public_speaking_intereaction"){
+			$("#ps_content span").each(function(){
+				if($(this).text() == $(real_value).val()){
+					flag = false;
+				}
+			});
+		}else if(opt_name=="personal"){
+			$("#personal_content span").each(function(){
+				if($(this).text() == $(real_value).val()){
+					flag = false;
+				}
+			});
+		}else if(opt_name=="volunary"){
+			$("#v_sc_content span").each(function(){
+				if($(this).text() == $(real_value).val()){
+					flag = false;
+				}
+			});
+		}
+
+		if(flag==false){
+			alert("It was already registered.")
+			return false
+		}
+		$.post( url, {
+			obj: 'interest',
+			type: type,
+			id: id,
+			field: opt_name,
+			value: $(real_value).val()
+		}).success(function(data) {
+			if(opt_name=="academic"){
+				$("#academic_content").html(data);
+			}else if(opt_name=="sport"){
+				$("#sports_content").html(data);
+			}else if(opt_name=="visual_performing_art"){
+				$("#vp_a_content").html(data);
+			}else if(opt_name=="public_speaking_intereaction"){
+				$("#ps_content").html(data);
+			}else if(opt_name=="personal"){
+				$("#personal_content").html(data);
+			}else if(opt_name=="volunary"){
+				$("#v_sc_content").html(data);
+			}
+		}).error(function() {
+			console.log('failure');
+		});
+	}
+
+	$(".editBox a.jqTransformSelectOpen").click(function(){
+		$(".editBox ul.ac_scroll").css("height","400")
+		$(".editBox ul.ac_scroll").css("width","200")
+		$(".editBox ul.ac_scroll .jspContainer").css("width","200")
+		$(".editBox ul.ac_scroll .jspContainer .jspPane").css("width","200")
+	});

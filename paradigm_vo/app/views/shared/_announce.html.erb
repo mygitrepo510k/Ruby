@@ -1,0 +1,12 @@
+<div id="topannounce" class="announce" style="display:none;">
+  <a href="" class="rightCloseButton" onclick="$('#topannounce').fadeOut('slow')">X</a>
+	<%- flash.each do |name, msg| -%>
+		<script type="text/javascript">
+			$(document).ready(function(){
+		   $('#topannounce').fadeIn('slow');
+		   $('#topannounce').delay(8000).fadeOut('fast');
+			});
+		</script>
+	  <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+	<%- end -%>
+</div>

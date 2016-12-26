@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  timestamp: 2013-02-10 09:37:11
+  start-address: MyString
+  end-address: MyString
+  packing: false
+  move-type: MyString
+  notes: MyText
+
+two:
+  user_id: 1
+  timestamp: 2013-02-10 09:37:11
+  start-address: MyString
+  end-address: MyString
+  packing: false
+  move-type: MyString
+  notes: MyText

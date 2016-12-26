@@ -1,0 +1,25 @@
+.row
+  .span9
+    %h2 
+      = t("doctor_flow.claim_profile.heading")
+    %p
+      = t ("doctor_flow.claim_profile.text")
+%hr
+= form_tag search_doctors_path,:data => { :eco_template => "doctors" } ,:class => "form-inline",:id => "find_doctor_search_form", :method => :get do
+  .row
+    .span4
+      %p
+        = t("general.fullname")
+      = text_field_tag :search, params[:search], { :id => 'find_doctor_name_search_field', :class => 'input-xlarge' }
+    .span4            
+      %p 
+        = t("general.city")           
+      %input.input-xlarge
+    .span3
+      = submit_tag t("general.search"), { :name => nil, :class => "btn btn-inverse claim-profile-search", :id => "find_doctor_search_btn" }
+    .clearfix
+    %hr
+  .row
+    .find_doctor_response_count 
+    .find_doctor_query_response
+    

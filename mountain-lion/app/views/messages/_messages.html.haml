@@ -1,0 +1,28 @@
+#messages
+  %ul{class: "nav nav-tabs"}
+    %li{class: "#{"active" if action == 'inbox'}"}= link_to I18n.t('links.messages.inbox'), inbox_messages_path
+    %li{class: "#{"active" if action == 'sent'}"}= link_to I18n.t('links.messages.sent'), sent_messages_path
+    %li{class: "#{"active" if action == 'deleted'}"}= link_to I18n.t('links.messages.deleted'), deleted_messages_path
+  %table.table.table-bordered.table-hover.table-condensed
+    %thead
+      %tr.info
+        %th= check_box_tag "select_all"
+        %th= I18n.t('views.messages.' + subject)
+        %th= I18n.t('views.messages.subject')
+        %th= I18n.t('views.messages.created_at')
+    %tbody
+      = form_tag delete_messages_path, method: :delete, id: "delete-messages" do
+        = render partial: "message", collection: messages, locals: { subject: subject }
+  = paginate messages
+  - if action == 'deleted'
+    = link_to t('views.messages.undelete'), "#", class: "btn btn-danger", id: "delete"
+  - else
+    = link_to t('views.messages.destroy'), "#", class: "btn btn-danger", id: "delete"
+
+:coffeescript
+  $('tr[id*=message_] td:not(#message-delete)').click ->
+    id = $(this).parent().data('id')
+    $.get('/messages/'+ id + '.js')
+
+  $('a#delete').click ->
+    $('form#delete-messages').submit()

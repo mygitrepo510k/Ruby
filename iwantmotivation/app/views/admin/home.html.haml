@@ -1,0 +1,329 @@
+.row.home-admin
+	.home-admin-content{:style=>"margin: 0 auto;width: 1500px;"}
+		.row{:style=>"margin-left: 0px; text-align: center; margin-bottom: 30px;"}
+			%h1 Home Admin
+		.span6.left-box.offset1
+			.row.first-row
+				.span7.image-upload-box{:style=>"margin-left: 0px;"}
+					%h5 Logo Upload
+					.span4
+						%img#uploadPreview{:style=>"width: 350px; height: 100px;", :src=>"data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Csvg%20width%3D%22153%22%20height%3D%22153%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%3Cg%3E%0A%20%20%3Ctitle%3ENo%20image%3C/title%3E%0A%20%20%3Crect%20id%3D%22externRect%22%20height%3D%22150%22%20width%3D%22150%22%20y%3D%221.5%22%20x%3D%221.500024%22%20stroke-width%3D%223%22%20stroke%3D%22%23666666%22%20fill%3D%22%23e1e1e1%22/%3E%0A%20%20%3Ctext%20transform%3D%22matrix%286.66667%2C%200%2C%200%2C%206.66667%2C%20-960.5%2C%20-1099.33%29%22%20xml%3Aspace%3D%22preserve%22%20text-anchor%3D%22middle%22%20font-family%3D%22Fantasy%22%20font-size%3D%2214%22%20id%3D%22questionMark%22%20y%3D%22181.249569%22%20x%3D%22155.549819%22%20stroke-width%3D%220%22%20stroke%3D%22%23666666%22%20fill%3D%22%23000000%22%3E%3F%3C/text%3E%0A%20%3C/g%3E%0A%3C/svg%3E", :alt=>"Image preview"}
+					.span2
+						.row
+							%span.btn.btn-success.fileinput-button
+								%i.icon-plus.icon-white
+								%span 
+									Select file...
+									%input{:type=>"file", :onchange=>"loadImageFile();", :name=>"logo-image", :id=>"logo-image"}
+						.row				
+							%a.btn.btn-info{:href=>"#", :style=>"width: 90px;"} Save
+			.row.second-row
+				.row
+					.span3
+						%label How this site works video
+						%input{:placeholder=>"Youtube URL", :value => get_option(:site_works_video_url), :id=>'site_works_video_url'}
+					.span1
+						%a.btn.btn-info.btn-options-save{:href=>"#", :'data-opt_name'	=>"site_works_video_url"} Submit
+				.row
+					.span3
+						%label Facebook URL
+						%input{:value => get_option(:facebook_link_url), :id=>'facebook_link_url'}
+					.span1
+						%a.btn.btn-info.btn-options-save{:href=>"#", :'data-opt_name'	=>"facebook_link_url"} Submit
+				.row
+					.span3
+						%label LinkedIn URL
+						%input{:value => get_option(:linkedin_link_url), :id=>'linkedin_link_url'}
+					.span1
+						%a.btn.btn-info.btn-options-save{:href=>"#", :'data-opt_name'	=>"linkedin_link_url"} Submit
+				.row
+					.span3
+						%label Twitter URL
+						%input{:value => get_option(:twitter_link_url), :id=>'twitter_link_url'}
+					.span1
+						%a.btn.btn-info.btn-options-save{:href=>"#", :'data-opt_name'	=>"twitter_link_url"} Submit
+				.row
+					.span3
+						%label Youtube URL
+						%input{:value => get_option(:youtube_link_url), :id=>'youtube_link_url'}
+					.span1
+						%a.btn.btn-info.btn-options-save{:href=>"#", :'data-opt_name'	=>"youtube_link_url"} Submit
+				.row{:style=>"margin-top: 40px;"}
+					.span3
+						%h5 Motivational Video of the Week
+						%input{:placeholder=>"Youtube URL", :value => get_option(:motivation_video_of_week_url), :id=>'motivation_video_of_week_url'}
+					.span1
+						%a.btn.btn-info.btn-options-save{:href=>"#", :style=>"margin-top: 14px;", :'data-opt_name'	=>"motivation_video_of_week_url"} Submit
+			.row.third-row
+				.row
+					.span6
+						%h5 Text At Bottom of Page
+						%textarea{:rows=>8, :style=>"max-width: 480px; max-height: 140px;min-width: 480px; min-height: 140px;", :value =>(get_option :text_bottom_of_page), :id=>'text_bottom_of_page'}
+				.row
+					.span1
+						%a.btn.btn-info.btn-options-save{:href=>"#", :style=>"margin-left: 408px; width: 60px;", :'data-opt_name'	=>"text_bottom_of_page"} Save
+		.span8.right-box
+			.row.first-row
+				%h5 Slider Images
+				.span2
+					%img#uploadPreview{:style=>"width: 150px; height: 100px;", :src=>"data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Csvg%20width%3D%22153%22%20height%3D%22153%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%3Cg%3E%0A%20%20%3Ctitle%3ENo%20image%3C/title%3E%0A%20%20%3Crect%20id%3D%22externRect%22%20height%3D%22150%22%20width%3D%22150%22%20y%3D%221.5%22%20x%3D%221.500024%22%20stroke-width%3D%223%22%20stroke%3D%22%23666666%22%20fill%3D%22%23e1e1e1%22/%3E%0A%20%20%3Ctext%20transform%3D%22matrix%286.66667%2C%200%2C%200%2C%206.66667%2C%20-960.5%2C%20-1099.33%29%22%20xml%3Aspace%3D%22preserve%22%20text-anchor%3D%22middle%22%20font-family%3D%22Fantasy%22%20font-size%3D%2214%22%20id%3D%22questionMark%22%20y%3D%22181.249569%22%20x%3D%22155.549819%22%20stroke-width%3D%220%22%20stroke%3D%22%23666666%22%20fill%3D%22%23000000%22%3E%3F%3C/text%3E%0A%20%3C/g%3E%0A%3C/svg%3E", :alt=>"Image preview"}
+				.span2
+					%img#uploadPreview{:style=>"width: 150px; height: 100px;", :src=>"data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Csvg%20width%3D%22153%22%20height%3D%22153%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%3Cg%3E%0A%20%20%3Ctitle%3ENo%20image%3C/title%3E%0A%20%20%3Crect%20id%3D%22externRect%22%20height%3D%22150%22%20width%3D%22150%22%20y%3D%221.5%22%20x%3D%221.500024%22%20stroke-width%3D%223%22%20stroke%3D%22%23666666%22%20fill%3D%22%23e1e1e1%22/%3E%0A%20%20%3Ctext%20transform%3D%22matrix%286.66667%2C%200%2C%200%2C%206.66667%2C%20-960.5%2C%20-1099.33%29%22%20xml%3Aspace%3D%22preserve%22%20text-anchor%3D%22middle%22%20font-family%3D%22Fantasy%22%20font-size%3D%2214%22%20id%3D%22questionMark%22%20y%3D%22181.249569%22%20x%3D%22155.549819%22%20stroke-width%3D%220%22%20stroke%3D%22%23666666%22%20fill%3D%22%23000000%22%3E%3F%3C/text%3E%0A%20%3C/g%3E%0A%3C/svg%3E", :alt=>"Image preview"}
+				.span2
+					%img#uploadPreview{:style=>"width: 150px; height: 100px;", :src=>"data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Csvg%20width%3D%22153%22%20height%3D%22153%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%3Cg%3E%0A%20%20%3Ctitle%3ENo%20image%3C/title%3E%0A%20%20%3Crect%20id%3D%22externRect%22%20height%3D%22150%22%20width%3D%22150%22%20y%3D%221.5%22%20x%3D%221.500024%22%20stroke-width%3D%223%22%20stroke%3D%22%23666666%22%20fill%3D%22%23e1e1e1%22/%3E%0A%20%20%3Ctext%20transform%3D%22matrix%286.66667%2C%200%2C%200%2C%206.66667%2C%20-960.5%2C%20-1099.33%29%22%20xml%3Aspace%3D%22preserve%22%20text-anchor%3D%22middle%22%20font-family%3D%22Fantasy%22%20font-size%3D%2214%22%20id%3D%22questionMark%22%20y%3D%22181.249569%22%20x%3D%22155.549819%22%20stroke-width%3D%220%22%20stroke%3D%22%23666666%22%20fill%3D%22%23000000%22%3E%3F%3C/text%3E%0A%20%3C/g%3E%0A%3C/svg%3E", :alt=>"Image preview"}
+				.span2
+					%img#uploadPreview{:style=>"width: 150px; height: 100px;", :src=>"data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Csvg%20width%3D%22153%22%20height%3D%22153%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%3Cg%3E%0A%20%20%3Ctitle%3ENo%20image%3C/title%3E%0A%20%20%3Crect%20id%3D%22externRect%22%20height%3D%22150%22%20width%3D%22150%22%20y%3D%221.5%22%20x%3D%221.500024%22%20stroke-width%3D%223%22%20stroke%3D%22%23666666%22%20fill%3D%22%23e1e1e1%22/%3E%0A%20%20%3Ctext%20transform%3D%22matrix%286.66667%2C%200%2C%200%2C%206.66667%2C%20-960.5%2C%20-1099.33%29%22%20xml%3Aspace%3D%22preserve%22%20text-anchor%3D%22middle%22%20font-family%3D%22Fantasy%22%20font-size%3D%2214%22%20id%3D%22questionMark%22%20y%3D%22181.249569%22%20x%3D%22155.549819%22%20stroke-width%3D%220%22%20stroke%3D%22%23666666%22%20fill%3D%22%23000000%22%3E%3F%3C/text%3E%0A%20%3C/g%3E%0A%3C/svg%3E", :alt=>"Image preview"}
+			.row.second-row
+				.span3
+					%label Add New Image
+					%input{:type=>"file"}
+			.row.third-row
+				%h5 I want motivation to:
+				.span3{:style=>"margin-left: 0px;"}
+					%label Main Category
+					=select_tag "parent-category", options_from_collection_for_select(Category.m_parent_categories, :id, :name), :size=>8, :onchange => "populate(this)", :id=>'parent_category'
+					.span1{:style=>"margin-left: 8px;"}
+						%a.btn.btn-success.btn-parent-cat-save{:href=>"#"} Save
+					.span1
+						%a.btn.btn-primary.btn-add-parent-item{:href=>"#", :"data-role"=>"parent"} Add
+					.span1
+						%a.btn.btn-danger.btn-parent-cat-del{:href=>"#"} Delete
+				.span3
+					%label Sub Category
+					%select.select.optional{:size=>"8", :name=>"user", :id=>"sub_category", :onchange => "change_sub_item(this)"}
+					.span1{:style=>"margin-left: 8px;"}
+						%a.btn.btn-success.btn-sub-cat-save{:href=>"#"} Save
+					.span1
+						%a.btn.btn-primary.btn-add-sub-item{:href=>"#", :"data-role"=>"parent"} Add
+					.span1
+						%a.btn.btn-danger.btn-sub-cat-del{:href=>"#"} Delete
+				
+			.row.fourth-row
+				.span3{:style=>"margin-left: 130px;"}
+					.row
+						%h5 How did you hear about us?
+						=select_tag "foundus-select-box", options_from_collection_for_select(Foundus.all, :id, :found_us_name), :size=>8, :onchange => "change_foundus(this)", :id=>'foundus_items'
+					.row
+						.span1{:style=>"margin-left: 8px;"}
+							%a.btn.btn-success.btn-foundus-save{:href=>"#"} Save
+						.span1
+							%a.btn.btn-primary.btn-foundus-add{:href=>"#"} Add
+						.span1
+							%a.btn.btn-danger.btn-foundus-delete{:href=>"#"} Delete
+
+:javascript
+	var all_cat= #{@all_cat}
+	var item_num=#{@category_last_id}
+	var added_cats = new Array
+	var parent_cat_cahnged = false;
+	var child_cat_cahnged = false;
+	var p_id = $('#parent_category :selected').val();
+	var sub_id = null;
+	var foundus_id=null;
+
+	oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+ 
+	oFReader.onload = function (oFREvent) {
+		document.getElementById("uploadPreview").src = oFREvent.target.result;
+	};
+	 
+	function loadImageFile() {
+		if (document.getElementById("logo-image").files.length === 0) { return; }
+		var oFile = document.getElementById("logo-image").files[0];
+		if (!rFilter.test(oFile.type)) { alert("You must select a valid image file!"); return; }
+		oFReader.readAsDataURL(oFile);
+	}	
+
+	function change_foundus(o){
+		foundus_id = o.options[o.selectedIndex].value; 
+	}
+
+	function change_sub_item(o){
+		sub_id = o.options[o.selectedIndex].value; 
+	}
+
+	function populate(o){
+		d=document.getElementById('sub_category');
+		if(!d){return;}			
+		
+		var mitems=new Array();		
+		var sub_cat;
+
+		for(i=0;i<all_cat.length; i++){
+			s=all_cat[i]
+			mitems[s[0]]=s[1]
+		}
+		d.options.length=0;
+		p_id = o.options[o.selectedIndex].value; 
+		cur=mitems[p_id];
+		if(!cur){return;}
+		d.options.length=cur.length;
+		for(var i=0;i<cur.length;i++)
+		{
+			d.options[i].text=cur[i][1];
+			d.options[i].value=cur[i][0];
+			d.options[i].setAttribute('data-parent', p_id);
+		}
+	}		
+
+	var index = 0
+	$('a.btn-add-parent-item').click(function(){
+		var item= prompt("Please input Category");
+		if( item != null){
+			$('#parent_category').append('<option value='+item_num+'>'+ item + '</option>');
+			//$('#sub_category').append(new Option( item, item_num, true, true));
+			added_cats[index] = item;
+			item_num++;
+			index ++;
+			parent_cat_cahnged = true;
+		}
+		return false;
+	});
+
+	$('a.btn-parent-cat-save').click(function(){
+		if(!parent_cat_cahnged) return false;
+		$.post('/admin/save_category', {
+				cats: added_cats,
+				type: 'parent'
+		}).success(function() {
+			parent_cat_cahnged = false;
+			index=0;
+			added_cats='';
+		}).error(function() {
+			console.log('faild');
+		});
+	});
+
+	$('a.btn-parent-cat-del').click(function(){
+		var r = confirm('Are you OK?');
+		if(r==false) return false;
+		if(p_id==null || p_id=='') return false;
+		$.post('/admin/delete_category', {
+				cat_id: p_id,
+				type: 'parent'
+		}).success(function() {
+			$('#parent_category option[value='+p_id+']').remove()
+			p_id=null;
+		}).error(function() {
+			console.log('faild');
+		});
+	});
+
+
+	// Child item manage
+
+	$('a.btn-add-sub-item').click(function(){		
+		p_id = $('#parent_category :selected').val();
+		if(p_id == null || p_id == ''){
+			alert('Please select parent category')
+		}else{
+			var item= prompt("Please input Sub Category");
+			if( item != null ){				
+				$('#sub_category').append('<option value='+item_num+' data-parent='+p_id+'>'+ item + '</option>');
+				added_cats[index] = item;
+				//$('#sub_category').append(new Option( item, item_num, true, true));
+				item_num++;
+				index++;
+				child_cat_cahnged = true;
+			}	
+		}
+		return false;
+	});
+
+	$('a.btn-sub-cat-save').click(function(){		
+		if(parent_cat_cahnged){
+			alert('Please save the parent category');
+			return false;
+		}		
+		if(p_id == null || p_id == ''){
+			alert('Please select parent category')
+			return false;
+		}
+		if(!child_cat_cahnged){
+			return false
+		}else{
+			$.post('/admin/save_category', {
+				cats: added_cats,
+				type: 'child',
+				parent_id: p_id
+			}).success(function() {
+				parent_cat_cahnged = false;
+				index = 0;
+				added_cats = '';
+				parent_id = null;
+			}).error(function() {
+				console.log('faild');
+			});
+		} 
+	});
+
+	$('a.btn-sub-cat-del').click(function(){
+		var r = confirm('Are you OK?');
+		if(r==false) return false;
+		if(sub_id==null || sub_id=='') return false;
+		$.post('/admin/delete_category', {
+				cat_id: sub_id,
+				type: 'child'
+		}).success(function() {
+			$('#sub_category option[value='+sub_id+']').remove()
+			sub_id=null;
+		}).error(function() {
+			console.log('faild');
+		});
+	});
+
+
+	// Foundus Items manage
+	var added_items = new Array;	
+	var foundus_index=0;
+	var foundus_item_changed = false;
+	$('a.btn-foundus-add').click(function(){
+		var item= prompt("Please input item");
+		var item_num = document.getElementById('foundus_items').options.length
+		if( item != null){			
+			$('#foundus_items').append(new Option( item, item_num+1, true, true));
+			added_items[foundus_index] = item;
+			foundus_index++;
+			foundus_item_changed = true;
+		}
+		return false;
+	});
+
+	$('a.btn-foundus-save').click(function(){
+		if(!foundus_item_changed) return false;
+		$.post('/admin/save_foundus', {
+				items: added_items
+		}).success(function() {
+			foundus_item_changed = false;
+			foundus_index=0;
+			added_items='';
+		}).error(function() {
+			console.log('faild');
+		});
+	});
+	
+	$('a.btn-foundus-delete').click(function(){
+		if(foundus_id==null || foundus_id=='') return false;
+		$.post('/admin/delete_foundus', {
+				item_id: foundus_id
+		}).success(function() {
+			$('#foundus_items option[value='+foundus_id+']').remove()
+			foundus_id=null;
+		}).error(function() {
+			console.log('faild');
+		});
+	});
+
+
+	$('a.btn-options-save').click(function(){
+		var option_name = $(this).data('opt_name');
+		var option_value = $('#'+option_name).val();
+		$.post('/admin/update_option', {
+			opt_name: option_name,
+			opt_value: option_value
+		}).success(function() {			
+			console.log('success');
+		}).error(function() {
+			console.log('faild');
+		});		
+	});

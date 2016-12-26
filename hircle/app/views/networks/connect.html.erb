@@ -1,0 +1,81 @@
+<div class="container networks connect">
+  <div class="container-fluid1">
+    <div class="row-fluid">
+      <%=render "left_side"%>
+      <div class="span10 white-colr" style="width:79%;">
+        <div id="resume00" class="content3" style="background-color:#fff;">
+          <div class="content-group" style="margin-top:0px;">
+            <div class="controls control-title1" style="width:100%; float:left;">
+              <p class="text-info" style="padding-left:0px;">Network</p>
+            </div>
+          </div>
+          <div class="content-group" style="width:100%;">
+            <div class="line3"></div>
+          </div>
+          <div class="content-group">
+            <div data-toggle="buttons-radio" class="span9">
+                <button class=" btn-primary  btn-round">1</button>
+                <h4 style=" display: inline-block;">Connect with people you know on Hircle</h4>
+                
+            </div><br>
+            <div style="margin-left:0px;" data-toggle="buttons-radio" class="span11">
+                <p>We found <strong><%=@users.size%> peoples</strong> you know on Hircle. Select the people you'd like to connect to:</p>
+            </div>
+            <div style="margin-left:0px;" class="span12">
+              <div class="chx-table">
+                <div class="table-bar">
+                  <div class="table-bar-title">
+                    <input type="checkbox" class="input-append" data-type="parent" id='parent'><label class="control-label">Select All</label>
+                  </div>
+                  <div class="table-bar-title btn-R-pos">
+                    <label style="float:right;"><span class='selected-count' style='color:#0067CC;font-weight:bold'>0</span> Selected</label>
+                  </div>
+                </div>
+                <div data-offset="0" data-spy="scroll" class="table-content scrollspy-example">
+                  <div class="  table table-striped table-bordered table-condensed" data-offset="0" data-spy="scroll">
+                    <div style="border-collapse: collapse;">
+                      <%@users.each do |user|%>
+                      
+                        <div class="td-wid-style pull-left" style='width:314px;border-bottom: 1px solid #DDDDDD;border-right: 1px solid #DDDDDD;padding-left:10px'>
+                          <input type="checkbox" class="tableList" name="tableList" id="<%=user.id%>" data-type='child'> 
+                          <div class="people-info1">
+                              <ul>
+                                <li>
+                                  <img src="/assets/user-img/lucas de castro.png">
+                                </li>
+                                <li>
+                                  <div class="info">
+                                    <strong class="text-info"><%=user.full_name%></strong><span>Translator &amp; Conference Interpreter</span>
+                                  </div>
+                                </li>
+                              </ul>
+                          </div>
+                        </div>
+                      
+                      <%end%>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-top:10px; margin-bottom:10px;" class="btn-R-pos">
+                  <%=form_tag connected_networks_path, :method => :post, :class => "form-horizontal connect-form" do |f|%>
+                    <%= hidden_field_tag "ids", "", :class => "span12", :style => "height:31px;background-color:#eee;", :placeholder => "Please type your key search"%>
+                    <input type="button" value="Add Connection(s)" class="btn btn-primary btn-connect unclickable"> or <a href="#">Skip this step <i class="arrow-left2">&nbsp;</i> </a>
+                  <%end%>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<%=content_for :js do%>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      window.connect = new Connect()
+    });
+  </script>
+<%end%>

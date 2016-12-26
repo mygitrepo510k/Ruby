@@ -1,0 +1,12 @@
+.login
+  %p
+    = link_to image_tag('main_03.png', title: "Hye Dating", border: 0, height: 70, width: 372), root_path
+    %p= image_tag 'welcome_back.png', width: 300, height: 64
+    %p
+      Don't have an account?&nbsp;&nbsp;
+      = link_to 'Sign up for free', signup_path, "data-no-turbolink" => true
+  = render 'form'
+  = render partial: 'forgot_password'
+
+= content_for :meta_tags do
+  %meta{name: "viewport", content: "width=400"}

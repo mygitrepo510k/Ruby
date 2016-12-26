@@ -1,0 +1,27 @@
+.container-fluid
+	.row.post-main-page
+		.row
+			.span9.page-msg-box
+				%p 
+					If you want to edit your job, Please go back to the Form Window.
+					%a{:href=>"#", :onclick=>"window.close(); window.history.back();"}Close Preview
+		.row
+			.span10.post-jobs-show-box
+				.row
+					.span10
+						%h1= @jobseeker_mentor.job_title
+				.row
+					.span3
+						%strong 
+							Job / Interview Support: 
+					.span8
+						%span=@jobseeker_mentor.support == 1 ? 'Yes' : 'No'
+				.row
+					.span3
+						%strong 
+							Description: 
+					.span8
+						%label= @jobseeker_mentor.job_description			
+			
+:javascript 
+	$('ul.nav-tabs li').eq(0).addClass('isCurrent');

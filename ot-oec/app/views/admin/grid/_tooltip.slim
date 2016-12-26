@@ -1,0 +1,24 @@
+.tooltip_wrapper
+	div style='width: 250px;'
+		-if experience.executed_at
+			label style='width: 94px;' Executed at:
+			span style='font-size:12px;' #{experience.executed_at.to_formatted_s(:long)}
+		-else
+			label style='width: 94px;' Scheduled for:
+			span style='font-size:12px;' #{experience.scheduled_for.to_formatted_s(:long)}
+		br
+		label style='width: 94px;' Aspect:
+		span style='font-size:12px;' #{experience.looking_to_open}
+		br
+		label style='width: 94px;' Process:
+		span style='font-size:12px;' #{experience.process}
+		br
+		label style='width: 94px;' Possible difficulties:
+		span style='font-size:12px;' #{experience.possible_difficulties}
+		br
+		label style='width: 94px;' How to handle:
+		span style='font-size:12px;' #{experience.how_to_handle}
+		-if !experience.followers.empty?
+			br
+			label style='width: 94px;' Players:
+			span style='font-size:12px;' #{experience.followers.map(&:name).join(', ')}

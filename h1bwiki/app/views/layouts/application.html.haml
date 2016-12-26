@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title H1bwiki
+    /[if lt IE 9]
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    = stylesheet_link_tag		"application", :media => "all"
+    = javascript_include_tag "application"
+    = ajaxful_rating_style
+    = csrf_meta_tags
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+  = render "layouts/navbar"
+  %body{:class=>"#{params[:controller]}-#{params[:action]}"}
+    #flash-banner
+      - flash.each do |key, msg|
+        = content_tag :div, msg, :class => "flash " + key.to_s, :id => key.to_s + "-message"
+        = content_tag :script, :type => "text/javascript" do
+          $('##{key.to_s + "-message"}').css('display', 'none');
+          $('##{key.to_s + "-message"}').slideDown().delay(3000).slideUp();
+    .wrap
+      .row-fluid.main-row
+        .span12= yield
+  = render "layouts/footer"

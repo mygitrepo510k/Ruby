@@ -1,0 +1,54 @@
+= image_tag @user_photo.image.url(:large), :id => "cropbox"
+
+%h4 Preview:
+%div{style:"width:100px; height:100px; overflow:hidden"}
+  = image_tag @user_photo.image.url(:large), :id => "preview"
+
+= form_for [current_user, @user_photo] do |f|
+  - [:crop_x, :crop_y, :crop_w, :crop_h].each do |attribute|
+    = f.hidden_field attribute, :id => attribute
+  %p= f.button "Crop", data: { disable_with: 'Please Wait...' }, class: 'btn btn-primary'
+
+:javascript
+  $(function() {
+    var picture_width = #{@user_photo.image_geometry(:large).width};
+    var picture_height = #{@user_photo.image_geometry(:large).height};
+    var w = 100;
+    var h = 100;
+    var x = (picture_width / 2) - (w / 2);
+    var y = (picture_height / 2) - (h / 2);
+    var x1 = x + w;
+    var y1 = y + h;
+    $('#cropbox').Jcrop({
+      onChange: update_crop,
+      onSelect: update_crop,
+      bgColor:    'black',
+      bgOpacity:  .3,
+      setSelect:   [ x, y, x1, y1 ],
+      aspectRatio: 1
+    });
+  });
+
+  function update_crop(coords) {
+    var rx = 100/coords.w;
+    var ry = 100/coords.h;
+    $('#preview').css({
+      width: Math.round(rx * #{@user_photo.image_geometry(:large).width}) + 'px',
+      maxWidth: Math.round(rx * #{@user_photo.image_geometry(:large).width}) + 'px',
+      height: Math.round(ry * #{@user_photo.image_geometry(:large).height}) + 'px',
+      maxWeight: Math.round(ry * #{@user_photo.image_geometry(:large).height}) + 'px',
+      marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+      marginTop: '-' + Math.round(ry * coords.y) + 'px'
+    });
+    var ratio = #{@user_photo.image_geometry(:original).width / @user_photo.image_geometry(:large).width };
+
+    $("#crop_x").val(Math.round(coords.x * ratio));
+    $("#crop_y").val(Math.round(coords.y * ratio));
+    $("#crop_w").val(Math.round(coords.w * ratio));
+    $("#crop_h").val(Math.round(coords.h * ratio));
+  }
+  $.ready(function() {
+    $('#cropbox').load(function() {
+      loadJcrop();
+    });
+  });

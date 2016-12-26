@@ -1,0 +1,49 @@
+.challenge_frame
+	.row
+		.col-sm-6.col-md-6.col-md-push-3
+			.challenge.section
+				h2
+					| Challenge:&nbsp;
+					= @frame.challenge.name
+
+				.img_ctn = link_to (image_tag @frame.user.avatar.profile.url), @frame.user
+				/.cover = link_to (image_tag @frame.challenge.cover.square.url), @frame.challenge
+				.who Frame for #{link_to @frame.user.name, @frame.user}
+
+				- if @frame.content_group
+					.current_frame
+						h2
+							| Frame
+						= render partial: 'content_groups/show',
+							locals: { content_group: @frame.content_group.contents_by_type, desc: @frame.content_group.description }
+						
+				-if @frame.content_group
+					.comments
+						hr
+						.student
+							h2
+								| Comments
+							= render partial: 'comments/commentfeed', locals: { commentable: @frame, scope: 'public' }
+							hr
+
+						- if current_user.leader?
+							.admin
+								h2
+									| Private Admin Only Comments
+								= render partial: 'comments/commentfeed', locals: { commentable: @frame, scope: 'admin' }
+								hr
+
+				-if @frame.user == current_user
+					.new_frame
+						h2
+							| Submit a New Frame
+						= render partial: 'content_groups/new',
+							locals: {	redirect: challenge_frame_path(@frame), belongs_to: @frame.id,
+												belongs_to_type: 'ChallengeFrame', has_privacy: true }
+			br							
+
+		.col-sm-6.col-md-3.col-md-pull-6
+			= render 'dashboard/activity'
+
+		.col-sm-6.col-md-3
+			= render 'dashboard/ticker'

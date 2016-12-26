@@ -1,0 +1,33 @@
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableGride">
+                        <tbody><tr>
+                            <th width="5%" align="left"><input type="checkbox"></th>
+                            <th width="10%" align="left">Title</th>
+                            <th width="13%" align="left">Type</th>
+                            <th width="13%" align="left">From</th>
+                            <th width="13%" align="left">Test Date</th>
+                            <th width="13%" align="left">Health Issue</th>
+                            <th width="13%" align="left">Parent Responsible</th>
+                            <th width="13%" align="left">Document</th>
+                        </tr>
+                     <% @child_profile_health_test_reports.each do | single_test_report |  %>
+                        <tr id="dataRow1">
+                            <td><input type="checkbox"></td>
+                            <td align="left" valign="top"><a href="#." class="greenTxt" onclick="$(this).parent().parent().next().show('fast');"><%= single_test_report.title  %></a></td>
+                            <td align="left" valign="top"><%= single_test_report.type == "Select" ? "" : single_test_report.type %></td>
+                         <!--   <td><%= single_test_report.test_date > Time.now.to_date ? 'Upcoming' : 'Past'  if !single_test_report.test_date.blank? %></td>  -->
+                            <td align="left" valign="top"><%= single_test_report.from == "Select" ? "" : single_test_report.from %></td>
+                            <td align="left" valign="top"><%= single_test_report.test_date %></td>
+                            <td align="left" valign="top"><%= single_test_report.health_issue == "Select" ? "" : single_test_report.health_issue %></td>
+                            <td align="left" valign="top"><%= single_test_report.parent_res == "Select" ? "" : single_test_report.parent_res %></td>
+                            <td align="left" valign="top" class="actionBox">
+                              <a href="/delete_child_profile_health_test_reports?id=<%= params[:id]  %>&test_report_id=<%= single_test_report.id  %>" class="deleteIcon" title="Delete" onclick="return confirm('Are you sure you want to Delete this row')"></a>
+                              <a href="/add_child_profile_health_test_reports?id=<%= params[:id]  %>&test_report_id=<%= single_test_report.id  %>" class="editIcon" title="Edit" rel="facebox"></a>
+                              <a href="/view_single_test_report_photo?test_report_id=<%= single_test_report.id %>" class="greenTxt" rel="facebox">View</a></td>
+                        </tr>
+                        <tr class="viewRow" style="display:none;">
+                            <td colspan="8" align="left" valign="top"><a href="#." class="closeBtn viewClose" onClick="$(this).parent().parent().hide('fast');"></a><%= single_test_report.title %></td>
+                        </tr>
+                    <% end %>                 
+                        
+                    </tbody></table>
+                    

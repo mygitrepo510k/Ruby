@@ -1,0 +1,404 @@
+- content_for :head do
+	= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
+#stripe_error.alert.alert-error{:style => "display:none"}					 
+
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'card_form_test form-vertical', :multipart => true }) do |f|
+	#member_signup
+		= hidden_field_tag 'plan', params[:plan]
+		= f.hidden_field :ismember, :value=>"1"
+		= f.error_notification
+		= display_base_errors resource
+		.row.first-row{:style=>"text-align: center;"}
+			%h2 Welcome To The I Want Motivation Sign Up Page		
+		.row.second-row
+			.row
+				.span2
+				.span6
+					.row
+						%h5=get_option(:full_signup_page_description)
+					.row
+						%label.radio
+							%input#radio-1.price-type{:name => "price_opinions", :type => "radio", :value => "9.95"}/
+							%label{:for => "radio-1", :class => "first-label checked"} $9.95 Full Member (First month Free, Access to Private Chat, Private Groups) 
+					.row
+						%label.radio
+							%input#radio-2.price-type{:name => "price_opinions", :type => "radio", :value => "107.46"}/
+							%label{:for => "radio-2"} $107.46 12 Month Full Member(First Month Free, 10% Off)
+			.row{:style=>"margin-top: 50px; margin-bottom: 50px;"}
+				.span6
+					.row.row-category-box
+						.span3.cat-list
+							%label Select a Category
+							= select_tag(:parent_category_id, options_for_select(@parent_cat), :id=>'or', :onchange => "populate(this)", :class => 'choosen-select', :style=>"width: 100%;")
+						.span3.sub-cat-list
+							%label Select a Sub-Category
+							= select_tag(:sub_category_id,nil,:id=>'de', :class => 'choosen-sub-select', :style=>"width: 100%;")
+					.row.row-category-controll-box
+						.span2{:style=>"margin-left: 80px;"}
+							%a.btn.btn-primary.add-category-button Add Category
+						.span2
+							%a.btn.btn-primary.remove-category-button Remove Category
+				.span4.selected-categories
+					= hidden_field_tag('user[user_categories_attributes][0][category_id]','')
+					%p.cat-first Category 1
+					= hidden_field_tag('user[user_categories_attributes][1][category_id]','')
+					%p.cat-second Category 2
+					= hidden_field_tag('user[user_categories_attributes][2][category_id]','')
+					%p.cat-third Category 3
+
+		.row.third-row
+			.span5.image-upload-box{:style=>"margin-left: 0px;"}
+				.span1{:style=>"margin-left:0px; width:110px;"}
+					%img#uploadPreview{:style=>"width: 100px; height: 100px;", :src=>"data:image/svg+xml,%3C%3Fxml%20version%3D%221.0%22%3F%3E%0A%3Csvg%20width%3D%22153%22%20height%3D%22153%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%20%3Cg%3E%0A%20%20%3Ctitle%3ENo%20image%3C/title%3E%0A%20%20%3Crect%20id%3D%22externRect%22%20height%3D%22150%22%20width%3D%22150%22%20y%3D%221.5%22%20x%3D%221.500024%22%20stroke-width%3D%223%22%20stroke%3D%22%23666666%22%20fill%3D%22%23e1e1e1%22/%3E%0A%20%20%3Ctext%20transform%3D%22matrix%286.66667%2C%200%2C%200%2C%206.66667%2C%20-960.5%2C%20-1099.33%29%22%20xml%3Aspace%3D%22preserve%22%20text-anchor%3D%22middle%22%20font-family%3D%22Fantasy%22%20font-size%3D%2214%22%20id%3D%22questionMark%22%20y%3D%22181.249569%22%20x%3D%22155.549819%22%20stroke-width%3D%220%22%20stroke%3D%22%23666666%22%20fill%3D%22%23000000%22%3E%3F%3C/text%3E%0A%20%3C/g%3E%0A%3C/svg%3E", :alt=>"Image preview"}
+				.span3
+					.row
+						%label Add An Image( Optional )
+					.row
+						.span1{:style=>"margin-left: 0px;"}
+							%input{:type=>"file", :onchange=>"loadImageFile();", :name=>"user[pictures_attributes][0][image]", :id=>"user_pictures_attributes_0_image"}
+			.span4
+				.row
+					= f.input :name, :autofocus => true, :label => "Choose a Screen Name", :required => true
+					%label.note-box Someone already has that screen name.
+					= f.input :password, :required => true, :label=>false, :placeholder=>"Enter Password", :required => true
+					= f.input :password_confirmation, :required => true, :label=>false, :placeholder => "Re-Enter Password"
+					%h5 Tell Us How You Found Us?
+					= f.select(:foundus_id, options_from_collection_for_select(Foundus.all, :id, :found_us_name), :include_blank=>true)
+		.row.fourth-row
+			.span3
+				=f.simple_fields_for :user_info_attributes do |u_info|
+					%label Age *
+					= u_info.select :age, (18..90).to_a, :include_blank=>true
+			.span3
+				=f.simple_fields_for :user_info_attributes do |u_info|
+					%label Country *
+					= u_info.country_select :country,[' ', 'United States']
+			.span3
+				=f.simple_fields_for :user_info_attributes do |u_info|
+					%label State *
+					= u_info.select( :state, Option::STATES, :include_blank=>true )
+			.span2
+				=f.simple_fields_for :user_info_attributes do |u_info|
+					%label City (Optional)
+					= u_info.input :city, :label => false, :placeholder => "Type In City Name"
+		.row.fifth-row
+			.row
+				.span6
+					=f.simple_fields_for :user_info_attributes do |u_info|
+						= u_info.input :motivational_partner, :label=>"What You Are Looking For In A Motivational Partner", :as=> :text, :input_html=>{:cols => 30, :rows => 5, :placeholder => "Type Content Here"}, :required => true
+				.span6
+					=f.simple_fields_for :user_info_attributes do |u_info|
+						= u_info.input :philosophy_on_life, :label=>"Philosophy On Life", :as => :text, :input_html=>{:cols => 30, :rows => 5, :placeholder => "Type Content Here"}
+			.row
+				.span6
+					=f.simple_fields_for :user_info_attributes do |u_info|
+						= u_info.input :my_story, :label=>"My Story", :as=> :text, :required => true, :input_html=>{:cols => 30, :rows => 5, :placeholder => "Type Content Here"}
+				.span6
+					=f.simple_fields_for :user_info_attributes do |u_info|
+						= u_info.input :books_enjoyed, :label=>"Motivational Programs/Books Enjoyed", :as => :text, :input_html=>{:cols => 30, :rows => 5, :placeholder => "Type Content Here"}
+			.row
+				.span6
+					=f.simple_fields_for :user_info_attributes do |u_info|
+						= u_info.input :other_groups, :label=>"Motivational Conferences Attended Or Other Groups", :as=> :text, :input_html=>{:cols => 30, :rows => 5, :placeholder => "Type Content Here"}
+				.span6
+					=f.simple_fields_for :user_info_attributes do |u_info|
+						= u_info.input :groups_belong_to, :label=>"Groups You Belong to:", :as => :text, :input_html=>{:cols => 30, :rows => 5, :placeholder => "Type Content Here"}
+			.row				
+				.span8{:style=>"margin-left: 230px;"}
+					%p
+						%strong User Terms and Service
+					.span6{:style=>"width: 500px; height:200px;overflow: scroll;margin-left: 0px;"}
+						%div= raw get_option(:full_signup_agreement)
+					.span2{:style=>"width: 225px;"}
+						=f.simple_fields_for :user_info_attributes do |u_info|
+							%label Discount code
+							= u_info.input :discount_code, :label=> false
+						= f.input :email, :required => true, :input_html => { "data-validate"=>"/home/check_email" }
+	#payment_info
+		= render "payment_form"
+	.row.last-controll-box
+		.span2.offset3
+			%label.checkbox
+				%input.accept-aggre{:type=>"checkbox"} Accept the agreement
+		.span2{:style=>"margin-left:70px;"}
+			= f.button :submit, 'Sign up', :class => 'btn-primary fullsignup-submit', :disabled=>"disabled"
+
+%script{:src => "https://www.paypalobjects.com/js/external/dg.js"}
+:css
+	div.container{
+		max-width: 1024px !important;
+		min-width: 1024px !important;
+	}
+
+:javascript	
+	$('ul.chzn-results').click(function(){ 
+		// populate($('#or :selected'));
+	})
+
+	$('#user_name').blur(function() {
+		var url = '/home/check_screen_name';
+		$this = $(this);
+		console.log($this.val());
+		$.get(url, {
+				sc_name: $this.val()
+		}).success(function() {			
+			$this.removeClass('field_with_errors');
+			$('label.note-box').removeClass('warning-box');
+		}).error(function() {
+			$this.addClass('field_with_errors');
+			$('label.note-box').addClass('warning-box');
+			$this.focuss();
+		});
+	});
+
+	var cat = null;
+	var cat_caption = ''
+	$('a.add-category-button').click(function(){
+		if($('#user_user_categories_attributes_0_category_id').val() == ''){				
+			if($('#de').val()){
+				cat = $('#de :selected');
+				cat_caption = $('#or :selected').text() + " > " + $('#de :selected').text();
+			}else{
+				cat = $('#or :selected');
+				cat_caption = $('#or :selected').text()
+			} 
+			$('#user_user_categories_attributes_0_category_id').val(cat.val());
+			$('p.cat-first').text(cat_caption);
+		}else if($('#user_user_categories_attributes_1_category_id').val() == ''){
+			if($('#de').val()){
+				cat = $('#de :selected');
+				cat_caption = $('#or :selected').text() + " > " + $('#de :selected').text();
+			}else{
+				cat = $('#or :selected');
+				cat_caption = $('#or :selected').text();
+			}
+			if ($('#user_user_categories_attributes_0_category_id').val() == cat.val() ){
+				alert('Please choose other category')
+			}else{
+				$('#user_user_categories_attributes_1_category_id').val(cat.val());
+				$('p.cat-second').text(cat_caption);
+			}			
+		}else if($('#user_user_categories_attributes_2_category_id').val() == ''){
+			if($('#de').val()){
+				cat = $('#de :selected');
+				cat_caption = $('#or :selected').text() + " > " + $('#de :selected').text();
+			}else{
+				cat = $('#or :selected');
+				cat_caption = $('#or :selected').text();
+			}
+			if ($('#user_user_categories_attributes_0_category_id').val() == cat.val() || $('#user_user_categories_attributes_1_category_id').val() == cat.val()){
+				alert('Please choose other category')
+			}else{
+				$('#user_user_categories_attributes_2_category_id').val(cat.val());
+				$('p.cat-third').text(cat_caption);
+			}			
+		}else{
+			alert('You can choose only 3 categories')
+		}
+	});
+	
+	$('a.remove-category-button').click(function(){
+		if($('#user_user_categories_attributes_2_category_id').val()){			
+			$('#user_user_categories_attributes_2_category_id').val('');
+			$('p.cat-third').text('Category3');
+		}else if($('#user_user_categories_attributes_1_category_id').val()){			
+			$('#user_user_categories_attributes_1_category_id').val('');
+			$('p.cat-second').text('Category2');
+		}else if($('#user_user_categories_attributes_0_category_id').val()){			
+			$('#user_user_categories_attributes_0_category_id').val('');
+			$('p.cat-first').text('Category1');
+		}else{
+			alert('Please select category')
+		}
+	});
+
+
+	function populate(o){
+		d=document.getElementById('de');
+		if(!d){return;}			
+		var all_cat= #{@sub_cat}
+		var mitems=new Array();		
+		var sub_cat
+
+		for(i=0;i<all_cat.length; i++){
+			s=all_cat[i]
+			mitems[s[0]]=s[1]
+		}
+		d.options.length=0;
+		cur=mitems[o.value];
+		if(!cur){return;}
+		d.options.length=cur.length;
+		for(var i=0;i<cur.length;i++)
+		{
+			d.options[i].text=cur[i][1];
+			d.options[i].value=cur[i][0];
+		}
+		// $("select.choosen-sub-select").chosen();
+	}				
+
+	$('#payment_info').hide();	
+	$("input.accept-aggre").click(function(){
+		if($(this).is(':checked')){
+			$(".fullsignup-submit").removeAttr("disabled");
+		}else{
+			$(".fullsignup-submit").attr("disabled","disabled");
+		}
+	});
+
+	oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+ 
+	oFReader.onload = function (oFREvent) {
+		document.getElementById("uploadPreview").src = oFREvent.target.result;
+	};
+	 
+	function loadImageFile() {
+		if (document.getElementById("user_pictures_attributes_0_image").files.length === 0) { return; }
+		var oFile = document.getElementById("user_pictures_attributes_0_image").files[0];
+		if (!rFilter.test(oFile.type)) { alert("You must select a valid image file!"); return; }
+		oFReader.readAsDataURL(oFile);
+	}
+
+	function validate(){
+		if(!$("#user_name").val()){
+			alert("Please input Screen name");
+			$("#user_name").focus();
+			return false;
+		}
+		if(!$("#user_email").val()){
+			alert("Please input email");
+			$("#user_email").focus();
+			return false;
+		}
+
+		if($('#user_user_categories_attributes_0_category_id').val() == ''){
+			alert("Please select category");
+			return false;
+		}
+		/*
+		if(!$("#user_pictures_attributes_0_image").val() && $("#user_pictures_attributes_0_image").val() < 10){
+			alert("Please select image");
+			$("#user_pictures_attributes_0_image").focus();
+			return false;
+		}
+		*/
+		if(!$("#user_password").val() && $("#user_password").val() < 8){
+			alert("Please input Password");
+			$("#user_password").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_age").val()){						
+			alert("Please input Age");
+			$("#user_user_info_attributes_age").focus();
+			return false;
+		}else if($("#user_user_info_attributes_age").val().length != 2 || !isNumber($("#user_user_info_attributes_age").val())){
+			alert("Please check your Age");
+			$("#user_user_info_attributes_age").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_state").val()){
+			alert("Please input State");
+			$("#user_user_info_attributes_state").focus();
+			return false;
+		}
+		/*
+		if(!$("#user_user_info_attributes_city").val()){
+			alert("Please input City");
+			$("#user_user_info_attributes_city").focus();
+			return false;
+		}
+		*/
+		if(!$("#user_user_info_attributes_motivational_partner").val()){
+			alert("Please input What Looking For in a Motivational Partner");
+			$("#user_user_info_attributes_motivational_partner").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_philosophy_on_life").val()){
+			alert("Please input Philosophy On Life");
+			$("#user_user_info_attributes_philosophy_on_life").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_my_story").val()){
+			alert("Please input My Story");
+			$("#user_user_info_attributes_my_story").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_books_enjoyed").val()){
+			alert("Please input Motivational Programs/Books Enjoyed");
+			$("#user_user_info_attributes_books_enjoyed").focus();
+			return false;
+		}
+		return true;
+	}
+
+	var paypal_started = false;
+	var valid = false;
+	$('form#new_user').submit(function(){
+		if (validate()){
+			$('#member_signup').hide();
+			$('#payment_info').show();
+			
+			$("input.accept-aggre").prop('checked',false);
+			$(".fullsignup-submit").attr("disabled","disabled");
+
+			if(payment_mode != ""){
+				switch(payment_mode){
+					case "credit_card":
+						Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
+						var card = {
+							number: $('#card_number').val(),
+							cvc: $('#card_code').val(),
+							expMonth: $('#card_month').val(),
+							expYear: $('#card_year').val()
+						};
+						Stripe.createToken(card, handleStripeResponse);
+						$('input[type=submit]').attr('disabled', true);
+						alert('Coming soon for credit card...');
+						return false;
+					break;
+					case "paypal":
+					/*
+						var sandbox = #{Paypal.sandbox?.to_json};
+						var submit_id = 'paypayl_submit_1';
+						//$('form#new_fund input[type=submit]').attr({id: submit_id});
+						flow_config = {};
+						if (sandbox) flow_config.stage = sandbox;
+						window.paypal_flows = [];
+						window.paypal_flows.push(new PAYPAL.apps.DGFlow(flow_config));
+						var url = $('form#new_user').attr('action')+"?"+$('form#new_user').serialize();
+						window.paypal_flows[0].startFlow( url );
+					*/
+					$('form#new_user')[0].submit();
+					break;
+				}
+			}
+			return false;
+		}else{
+			valid = false;
+			$('#member_signup').show();
+			$('#payment_info').hide();
+			return false;
+		}		
+		return false;
+	});
+
+	var handleStripeResponse = function(status, response) {
+		if (status === 200) {
+			$('#payment_token').val(response.id);
+			$('form#new_user')[0].submit();
+		} else {
+			alert(response.error.message);
+			$('input[type=submit]').attr('disabled', false);
+		}
+	}
+
+
+	$('#user_user_info_attributes_country').change(function(){
+		var option = '<option value=""></option><option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option>'
+		if($('#user_user_info_attributes_country :selected').val()=='United States'){
+			console.log('ok');
+			$('#user_user_info_attributes_state').append(option);
+		}else{
+			$('#user_user_info_attributes_state').empty();
+			console.log('error');
+		}
+	})

@@ -1,0 +1,11 @@
+.admin-events-new.section.single
+	h2 Create an event
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Events', admin_events_path
+		li.active= 'Add Event'
+
+	= render 'form'
+
+	br

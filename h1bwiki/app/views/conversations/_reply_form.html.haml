@@ -1,0 +1,8 @@
+= simple_form_for :message, url: [:reply, conversation] do |f|
+	= f.hidden_field :subject	
+	.control-group
+		%label.reply Reply
+		.controls
+			= f.text_area :body, :rows=>"8", :cols => "10", :placeholder => "Message", "data-required"=>"true"
+	.form-actions
+		= f.button :submit, "Send Message", class: 'm-btn blue'

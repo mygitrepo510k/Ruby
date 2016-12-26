@@ -1,0 +1,114 @@
+<div class="signup-b signup_forms_job_seeker signup_forms" style="display:none;">
+  <%=  image_tag("landing-page/popup-bg.png") %>
+  <div class="student">
+    <ul id="myTab">
+        <li><a data-toggle="tab" href="#student" class="left">Student</a></li>
+        <li><a data-toggle="tab" href="#alumni" class="active right">Alumni</a></li>
+    </ul>
+  </div>
+  <div class="tab-content" id="myTabContent">
+    <div id="student" class="tab-pane fade in active">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "form-horizontal") do |f| %>
+          <div class="form-c">
+            <ul>
+              <li>
+                <label>Student Email</label>
+                <input name="" type="text">
+                <span>Email address assosiated with your college or university</span>
+              </li>
+            </ul>
+          </div>
+          <div class="form-b">
+           <ul>
+             <li>
+               <label>I'm a Student at</label>
+               <div class="input-append">
+                    <input type="text" id="" >
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn dropdown-toggle">
+                            <span class="caret"></span>
+                        </button>
+                         <ul class="dropdown-menu">
+                           <li><a href="#">Action</a></li>
+                           <li><a href="#">Another action</a></li>
+                           <li><a href="#">Something else here</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#">Separated link</a></li>
+                         </ul>
+                    </div><!-- /btn-group -->
+               </div>
+             </li>
+
+          </div>
+           <div class="button-siginup">   <p>Join the network for free</p>
+             <div class="rit">
+                <%= f.submit("Sign up", :class => "btn btn-primary") %>
+             </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="alumni" class="tab-pane fade">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "form-horizontal") do |f| %>
+          <div class="form-c">
+            <ul>
+              <li>
+                <label>Alumni Email</label>
+                <input name="" type="text">
+                <span>Email address associated with your college or university</span>
+              </li>
+            </ul>
+          </div>
+          <div class="form-b">
+           <ul>
+             <li>
+               <label>I'm a Alumni at</label>
+               <div class="input-append">
+                    <input type="text" id="appendedDropdownButton" >
+                    <div class="btn-group">
+                        <button data-toggle="dropdown" class="btn dropdown-toggle">
+                            <span class="caret"></span>
+                        </button>
+                         <ul class="dropdown-menu">
+                           <li><a href="#">Action</a></li>
+                           <li><a href="#">Another action</a></li>
+                           <li><a href="#">Something else here</a></li>
+                           <li class="divider"></li>
+                           <li><a href="#">Separated link</a></li>
+                         </ul>
+                    </div><!-- /btn-group -->
+               </div>
+             </li>
+
+          </div>
+           <div class="button-siginup">   <p>Join the network for free</p>
+             <div class="rit">
+                <%= f.submit("Sign up", :class => "btn btn-primary") %>
+             </div>
+        </div>
+      <% end %>
+    </div>
+<!--    
+  <div class="social-icons">
+    <ul>
+        <li>
+          <a href="#">
+            <%=  image_tag("landing-page/fb.png") %>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+          <%=  image_tag("landing-page/plus.png") %>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <%=  image_tag("landing-page/linkedin.png") %>
+          </a>
+        </li>
+    </ul>
+  </div>
+-->
+</div>
+
+</div>

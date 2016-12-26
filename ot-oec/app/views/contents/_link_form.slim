@@ -1,0 +1,8 @@
+.fieldset.content
+	a href='#' data-remove-fieldset=''
+		span.glyphicon.glyphicon-remove
+
+  	= fields_for 'content[]', Content.new do |link|
+	    = link.text_field :name, placeholder: 'Name'
+	    = link.text_field :url, placeholder: 'Link'
+	    = link.text_area :description, placeholder: 'Description'

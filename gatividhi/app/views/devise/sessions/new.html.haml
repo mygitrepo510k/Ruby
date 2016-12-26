@@ -1,0 +1,16 @@
+.span8.offset1.user-signup-page
+	.row{:style=>"margin-left: 0px;"}
+		%h2{:style => "color:#5DBFAB;font-size: 16px;text-align: center;"} Please check your email/password .
+	.row{:style=>"margin-left: 0px;"}
+		= form_for("user", :url => new_user_session_path, :hmtl=>{:class=>"form-inline"}) do |f|
+			.row.input-box
+				.span4
+					= f.email_field :email, :autofocus => true, :placeholder => "Enter email ID"
+					= f.password_field :password, :placeholder => "Password"		 
+			.row.controll-box
+				.row{:style=>"margin-left: 0px;"}
+					.span4
+						= f.submit "Login", :class => "login-btn loginBtn"
+				.row{:style=>"margin-left: 0px;"}
+					.span4{:style=>"margin-top: 20px;"}
+						= link_to "Forgot your password?", new_user_password_path, :class=>'fogot-password-link'

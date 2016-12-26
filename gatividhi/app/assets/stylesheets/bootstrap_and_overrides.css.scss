@@ -1,0 +1,276 @@
+@import "bootstrap";
+body { 
+  padding-top: 190px; 
+  background: url("bg.png") repeat scroll 0 0 transparent;
+  color: rgb(84, 84, 84);
+  font: 11px 'Open Sans',sans-serif;
+}
+@import "bootstrap-responsive";
+
+body{
+  a, p, span, label{
+    font-family: serif, arial, sans-serif, times;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  label{
+    font-size:11px;
+    font-weight: 600;
+    font-style: normal;
+    font-size-adjust: none;
+    color: rgb(84, 84, 84);
+    line-height: 16px;
+    font-family: 'Open Sans',​sans-serif
+  }
+  input[type="text"]{
+    margin:0px;
+  }
+  select{
+    width: 150px;
+    margin:0px;    
+  }
+  .container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{
+    width: 950px !important;
+  }
+  ul{
+    margin-left: 0px;
+    margin-bottom: 0px;
+  }
+  h1,h2,h3,h4,h5,h6{
+    line-height: 24px;
+  }
+  li{
+    line-height: 18px;
+  }
+  h2{
+    margin: 0px;
+  }
+  h3{
+    margin: 0px;
+  }
+  .row{
+    margin-left: 0px !important;
+  }
+  [class*="span"]{
+    margin-left:0px;
+  }
+  input[type="text"], input[type="email"], textarea{
+    box-shadow: none;
+    border-radius: none;
+    &:hover{
+      box-shadow: none;
+    }
+    &:focus{
+      box-shadow: none;
+    }
+  }
+}
+ 
+#flash-banner {
+  //#notice-message, #alert-message,
+  .flash.notice, .flash.alert {
+    z-index: 999;
+    left:10px;
+    top:10px;
+    -moz-border-radius : 4px;
+    padding: 5px 8px;
+    margin: 0 auto 10px;
+    text-align:center;
+  }
+
+  //#notice-message,
+  .flash.notice {
+    left: 19%;
+    top: 80px;
+    width: 60%;
+    z-index: 9999;
+    color: rgb(93, 191, 171);
+    font-size: 16px;
+    text-align: center;
+  }
+
+
+  #alert-message,
+  .flash.alert {
+    background-color: #FCC;
+    border: solid 1px #C66;
+  }
+}
+  
+
+.navbar-fixed-top{
+  z-index: 999999;
+  .navbar-inner{
+     background: url("topBg.png") repeat-x scroll center bottom transparent;
+     height: 70px;
+     border: none;
+    .container{
+      .nav-collapse{
+        .loggedIn{
+          .top-searchBox{
+            .searchField{
+              background: url("search_bg.png") repeat scroll 0 0 transparent;
+              border: 0 none;
+              border-radius: 0 16px 16px 0;
+              color: rgb(232, 232, 232);
+              float: left;
+              font-size: 12px;
+              height: 30px;
+              line-height: 2.2;
+              width: 285px;     
+              margin:0px;
+              padding: 0px;
+            }
+          }
+        }
+        .span6{
+          float: right;
+          form{
+            .controll-box{
+              margin-top: 3px;
+              margin-left: 0px;
+              .span2{
+                margin-left: 0px;
+                width: 224px;
+                label.checkbox{
+                  color: #fff;
+                }
+                a{
+                  color: white;
+                  &:hover{
+                    background-color: transparent;
+                  }
+                }
+              }
+            }
+            .input-box{
+              margin-top: 8px;
+              margin-left: 0px;
+              .span4{
+                margin-left: 0px;
+                width: 326px;
+                input{
+                  margin-bottom: 0px;
+                  background-color: rgb(244, 244, 244);
+                  border: 1px solid rgb(204, 204, 204);
+                  border-radius: 6px 6px 6px 6px;
+                  color: rgb(151, 151, 151);
+                  font: 400 14px 'Open Sans',sans-serif;
+                  margin-bottom: 2px;
+                  margin-right: 5px;
+                  padding: 5px;
+                  width: 130px;
+                  width: 140px;
+                }
+              }
+              .span1{
+                margin-left: 0px;
+                input.login-btn{
+                  background: linear-gradient(to bottom, rgb(93, 191, 171) 0%, rgb(51, 114, 101) 100%) repeat scroll 0 0 transparent;
+                  border: 0 none;
+                  border-radius: 13px 13px 13px 13px;
+                  color: rgb(255, 255, 255);
+                  cursor: pointer;
+                  font: 400 14px 'Open Sans',sans-serif;
+                  overflow: visible;
+                  padding: 2px 18px;
+                  height: 28px;
+                  width: 98px;
+                  &:hover{
+                    color:#000;
+                  }
+                }
+              }
+            }
+            .controll-box{
+              .span2{
+                width: 160px;
+                color: white;
+                font-size: 12px;
+                label{
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+        }
+        .span8{
+          float: right;
+          .span4{
+            form.navbar-search{
+              margin-top: 10px;
+              input.search-query{
+                background: url("search_bg.png") repeat scroll 0 0 transparent;
+                border: 0 none;
+                color: rgb(232, 232, 232);              
+              }
+            }            
+          }
+          .settingBox{
+            margin-left: 0px;
+            width: 30px;
+            a.settingIcon{
+              background: url("sprite_images.png") no-repeat scroll left top transparent;
+              background-position: -191px -210px;
+              display: block;
+              float: right;
+              height: 25px;
+              width: 25px;
+            }
+            .moreSetting{
+              background-color: rgb(255, 255, 255);
+              border-radius: 6px 6px 6px 6px;
+              box-shadow: 0 0 5px rgb(153, 153, 153);
+              display: none;
+              width: 130px;
+              margin-top: -8px;
+              margin-left: -55px;
+              white-space: nowrap;
+              z-index: 99;
+              .settingArrow{
+                margin-left: 103px;
+                margin-top: 0px;
+              }
+              a{
+                border-bottom: 1px solid rgb(198, 203, 208);
+                display: block;
+                padding: 6px 12px;
+                &:hover{
+                  background-color: rgb(133, 133, 133);
+                  color: rgb(255, 255, 255);
+                  text-decoration: none;
+                }
+              }
+            }
+          }
+          
+          
+        }
+      }
+      a.brand{
+        background: url("logo_off.png") no-repeat scroll left top transparent;
+        display: block;
+        height: 64px;        
+        margin-top: 5px;
+        width: 196px;
+        margin-left: 0px;
+        padding:0px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        &:hover{
+          background: url("logo_on.png") no-repeat scroll left top transparent;
+          display: block;
+        }
+      }      
+    }
+  }
+}
+
+.greenTxt {
+  color: rgb(13, 141, 146) !important;
+}
+
+.jqTransformSelectWrapper ul a.selected, .jqGreenForm .jqTransformSelectWrapper ul a.selected:hover {
+  background: none repeat scroll 0 0 rgb(237, 237, 237) !important;
+  color: rgb(51, 51, 51);
+}

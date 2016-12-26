@@ -1,0 +1,474 @@
+= HeadCount APIs
+
+== API
+
+=== Accounts endpoint
+
+==== Get User account info    
+    GET: /api/v1/accounts/user
+    parameters:
+      token:    String *required
+    results: 
+      return user data JSON
+      {user_name,email,phone,social,avatar, attend_events, created_events}
+==== Get contact info
+    GET: /api/v1/accounts/contact_info
+    
+    parameters:
+      token:      String *required
+      contact_id  String *required
+    results: 
+      return user data JSON
+      {user_name,email,phone,social,avatar, attend_events, created_events}
+
+==== Create account
+    POST: /api/v1/accounts/create
+    
+    parameters accepted
+      'email'       String,      *required
+      'passowrd'    String,      *required
+      'user_name'   String,      optional
+      'location'    String,      *requried
+      'dev_id'      String
+      'platform'    String (ios or android)
+      'interest'    String,      *required(facebook, twitter, google)
+
+==== Destroy account API
+    POST: /api/v1/accounts/destroy
+    parameters:
+      token:      String *required
+    results: 
+      return signout and success string
+
+==== Sign In(from app's account)
+    
+    POST: /api/v1/accounts/sign_in
+    
+    parameters accepted
+      'email'      String,      *required
+      'password'   String,      *requried
+      'dev_id'     String,      device id or regid
+      'platform'   String,      ios, android
+    results:
+      {id,user_name,email,token, auth_id,social, avatar, state, phone}
+
+
+==== Sign In(from social)
+    
+    POST: /api/v1/accounts/create
+    
+    parameters accepted
+      'email'         String,      *required
+      'user_name'     String,      optional
+      'token'         String,      *requried (facebook uid)
+      'dev_id'        String
+      'platform'      String       (ios or android)
+      'social'        String,      *required(facebook, twitter, google)
+      'phone'         String,      optional
+      'country_code'  String,      optional
+      'interest'      String,      optional
+    results:
+      {id,user_name,email,token, auth_id,social, avatar, state, phone}
+
+==== Sign Out
+    POST: 'api/v1/accounts/sign_out'
+
+    parameters accepted
+    'email'      String,      *required
+
+
+==== Forgotten Password
+    GET: /api/v1/accounts/forgotten_password
+    parameters accepted
+      'email'     String,       *required
+    results:
+      email will be sent and return success string 
+
+
+
+==== Account Settings
+
+===== Upload avatar
+    POST /api/v1/accounts/upload_avatar
+
+    parameters accepted
+      'token'    String,     *required
+      'avatar'   Image Data, *required
+    results
+      user avatar url  
+    
+    curl -F "token=gtr-YzGepAiTJv8yCed1" -F "avatar=@/Volumes/Work/Images/avatar.png" /api/v1/accounts/upload_avatar
+
+===== Change User Name
+    POST /api/v1/accounts/change_user_name
+
+    parameters accepted
+    'token'       String,     *required
+    'user_name'   String,     *required
+
+===== Change Password
+    POST /api/v1/accounts/change_user_name
+
+    parameters accepted
+    'token'          String,     *required
+    'old_pswd'       String,     *required
+    'new_pswd'       String,     *required
+    'confirm_pswd'   String,     *required
+
+===== Change Email Address
+    POST /api/v1/accounts/change_email
+
+    parameters accepted
+    'token'           String,     *required
+    'email'           String,     *required
+
+===== Change Phone Number
+    POST /api/v1/accounts/change_phone
+
+      parameters accepted
+      'token'                             String,     *required
+      'phone'                             String,     *required
+
+===== Settings 
+    GET: /api/v1/accounts/settings
+      parameters accepted
+      'token'                             String,     *required
+      'dev_id'                            String,     *required
+      results: JSON {event_messages_to_your_phone,event_invitations_to_your_phone,chat_messages_to_your_phone}
+
+    POST: /api/v1/accounts/event_message_to_your_phone
+      parameters accepted
+        token:                             String  *required
+        dev_id:                            String  *required
+        event_message_to_your_phone:       String('true' or 'false')
+      results: Success String
+
+    POST: /api/v1/accounts/event_invitations_to_your_phone
+      parameters accepted
+        token:                             String  *required
+        dev_id:                            String  *required
+        event_invitations_to_your_phone:   Boolean
+      results: Success String
+
+    POST: /api/v1/accounts/chat_messages_to_your_phone
+      parameters accepted
+        token:                             String  *required
+        dev_id:                            String  *required
+        chat_messages_to_your_phone:       Boolean
+      results: Success String
+
+===== Settings Notification
+    GET: /api/v1/accounts/notifications_setting
+      parameters accepted
+      'token'                              String,     *required
+      results: JSON
+      {event_reminders,chat_notifications,new_friend_events,people_joining_events,people_leaving_events,event_changes}
+
+    POST: /api/v1/accounts/event_reminders
+      parameters accepted
+      token:                  String  *required
+      event_reminders:        Boolean *required
+
+    POST: /api/v1/accounts/chat_notifications
+      parameters accepted
+      token:                  String  *required
+      chat_notifications:     Boolean *required
+
+    POST: /api/v1/accounts/new_friend_events
+      parameters:
+      token:                  String  *required
+      new_friend_events:      Boolean *required
+
+    POST: /api/v1/accounts/people_joining_events
+      parameters:
+      token:                  String  *required
+      people_joining_events:  Boolean *required
+    
+    POST: /api/v1/accounts/people_leaving_events
+      parameters:
+      token:                  String  *required
+      people_leaving_events:  Boolean *required
+
+    POST: /api/v1/accounts/event_changes
+      parameters:
+      token:                  String  *required
+      event_changes:          Boolean *required
+
+==== Facebook Connecting
+    POST: /api/v1/accounts/facebook_connect
+      parameters:
+        token:         String *required
+        facebook_uid   String *required
+      results:
+        surccess string
+
+==== Badge number format
+    POST: /api/v1/accounts/is_foreground
+    parameters:
+        token:         String *required
+        dev_id:        String *required
+    results:
+        surccess string
+        
+
+==== Get User Info
+===== Get User account info
+    GET: /api/v1/accounts/user
+    
+    parameters accepted
+    'token'  String,     *required
+    
+    results: JSON
+      {user_name,email,phone,social,avatar, created_events, attend_events}
+
+===== Get User notifications setting info
+      GET: /api/v1/accounts/notifications_setting
+      
+      parameters accepted
+      token:    String *required
+      
+      results: JSON
+      {event_reminders,chat_notifications,new_friend_events,people_joining_events,people_leaving_events,event_changes}
+==== Settings
+
+==== Add friend
+    POST /api/v1/accounts/add_friend
+
+    parameters accepted
+    'token'                 String,     *required
+    'name'                  String
+    'email'                 String
+    'friend_auth_id'          String
+    'avatar'                Image Data
+    'social'                String(phone,facebook)
+    
+    results:
+    {id, name, email, avatar, is_new }  newer or older
+
+
+
+
+==== Upload Friend's avatar
+    POST: /api/v1/accounts/friend_avatar_upload
+      
+    parameters accepted
+      'token'         String,     *required
+      'friend_id'     String
+      'avatar'        Image Data
+    
+    results
+      image url
+      
+==== Get my friends
+    GET: /api/v1/accounts/friends
+      
+    parameters accepted
+    token:    String *required
+      
+    results: JSON
+    {id,name,email,avatar}
+
+
+=== Event APIs
+
+==== Get My Events
+      GET: /api/v1/events/my_events
+      
+      parameters accepted
+      token:    String *required
+      
+      results: JSON      
+      {id,name,user_name,date,location,img,tags,comments,notification,accepted,unaccepted,is_my_event}
+
+==== Get My Previous events
+      GET: /api/v1/events/my_previous_events
+      
+      parameters accepted
+      token:    String *required
+      
+      results: JSON
+      {id,name,user_name,date,location,img,tags,comments,notification,accepted,unaccepted,is_my_event}
+
+
+==== Get Upcoming events
+      GET: /api/v1/events/upcoming_events
+      
+      parameters accepted
+      token:    String *required
+      
+      results: JSON
+      {id,name,user_name,date,location,img,tags,comments,notification,accepted,unaccepted,is_my_event,invited_friends_count,accepted_count,unaccepted_count}
+      
+==== Get Previous events
+      GET: /api/v1/events/previous_events
+      
+      parameters accepted
+      token:    String *required
+      
+      results: JSON      
+      {id,name,user_name,date,location,img,tags,comments,notification,accepted,unaccepted,is_my_event,invited_friends_count,accepted_count,unaccepted_count}
+==== Get Last events
+      GET: /api/v1/events/last_events
+      
+      parameters accepted
+      token:    String *required
+      
+      results: JSON
+      {id,name,user_name,date,location,img,tags,comments,notification}
+
+
+==== Get events photos
+      GET: /api/v1/events/event_photos
+      parameters:
+        token:      String *required
+      results: 
+        {id, name, img}
+
+==== Create my event
+      POST: /api/v1/events/create_event
+      
+      parameters accepted
+        token:            String *required
+        save_state:       String *required        draft or published
+        name:             String *required        event name
+        location:         String *required
+        date:             String *required        2014-1-14,14
+        description:      String *required
+        enable_chat:      Boolean *required       true or false
+        photo:            Image data
+        friend_ids:       String *required        Invited friends ids
+
+      results: Success String      
+
+
+==== Update Event
+    POST: /api/v1/events/update_event
+    parameters accepted
+      token:            String *required
+      name:             String *required        event name
+      location:         String *required
+      date:             String *required        2014-1-14,14
+      description:      String *required
+      enable_chat:      Boolean *required       true or false
+      photo:            Image data
+      friend_ids:       String *required        Invited friends ids
+
+    results: Success String
+
+==== Delete Event
+    POST: /api/v1/events/delete_event
+    parameters:
+      token:            String *required
+      event_id          String *required
+    results: 
+       return success string
+
+==== Event details
+      GET: /api/v1/events/event_detail
+      
+      parameters accepted
+      token:    String *required
+      id:       String *required #event id
+      
+      results: JSON      
+      {id, name, location, event_date, photo,rsvp_state, friends_count, friends(JSON object), description}
+      friends = {id, name, avatar}
+
+==== Accept Event
+      POST: /api/v1/events/accept_event
+      parameters accepted
+        token:            String *required
+        event_id:         String *required      
+      
+      results: 
+        return success string
+
+==== UnAccept Event
+      POST: /api/v1/events/unaccept_event
+      parameters accepted
+        token:            String *required
+        event_id:         String *required      
+      results: 
+        return success string
+
+==== Get Invited Friends
+      POST: /api/v1/events/invited_friends
+      parameters accepted
+      token:            String *required
+      event_id:         String *required
+      
+      results: Invited friends list JSON object
+        {id,name,email,avatar,accepted}
+
+
+==== Get Accepted Friends
+      GET: /api/v1/events/accepted_friends
+      parameters accepted
+      token:            String *required
+      event_id:         String *required
+      
+      results: Accepted friends list JSON object
+        {id,name,email,avatar,accepted}
+
+==== Get UnAccepted Friends
+      GET: /api/v1/events/unaccepted_friends
+      parameters accepted
+      token:            String *required
+      event_id:         String *required
+      
+      results: UnAccepted friends list JSON object
+        {id,name,email,avatar,accepted}
+
+==== Get have not rsvp Friends
+      GET: /api/v1/events/have_not_rsvp_friends
+      parameters accepted
+      token:            String *required
+      event_id:         String *required
+      
+      results: have not rsvp friends list JSON object
+        {id,name,email,avatar,accepted}
+
+==== Get Shared photos from event
+      GET: /api/v1/events/get_shared_photos
+      parameters:
+        token:            String *required
+        event_id:       String *required
+      results: 
+        return JSON
+        {user, photos{id,photo_url}}
+
+==== Share photo to event
+      POST: /api/v1/events/share_photo
+      parameters:
+        token:            String *required
+        event_id:         String *required
+        photo:            image data      
+      results: 
+        return sucess string
+
+==== Send message
+      POST: /api/v1/events/send_message
+      
+      parameters:
+        token:            String *required
+        chat_id:          String 
+        message:          String *required
+      results: 
+        return success string
+
+==== Get messages
+      GET: /api/v1/events/get_messages      
+      parameters:
+        token:            String *required
+        event_id:         String *required
+        contact_id:       String *required
+      results: 
+        return JSON
+        {chat_id, messages:{id,chat_photo_url,is_my_chat,message,chat_time}}
+==== Clear message conversations
+      POST: /api/v1/events/clear_messages
+      parameters:
+        token:            String *required
+        chat_id:          String 
+      results: 
+        return success string

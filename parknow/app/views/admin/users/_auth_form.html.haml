@@ -1,0 +1,22 @@
+= simple_form_for [:admin, @author], html:{:"data-validate" => "parsley", id: "edit_merchant_form", multipart: true,} do |f|
+  .row
+    %h5 User Information
+    %h5 
+      User Email : 
+      = @user.email
+  .row
+    .form-inputs
+      = f.input_field :user_id, as: :hidden, value:@user.id
+      .span3
+        = f.input :device_id, input_html: {:"data-required"=>true, :required => true}
+      .span3
+        = f.input :device_type, :collection => ['ios','android'], input_html: {:"data-required"=>true, :required => true}
+      .span3  
+        = f.input :app_type, :collection => AuthToken::APP_TYPE_NAME, input_html: {:"data-required"=>true, :required => true}
+
+
+  .row.last-row
+    .form-actions
+      = f.button :submit, "#{f.object.new_record? ? 'Create AuthToken' : 'Update AuthToken'}", :class => 'btn btn-primary offset2'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), admin_users_path, :class => 'btn'
+

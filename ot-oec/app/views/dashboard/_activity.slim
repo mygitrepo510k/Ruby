@@ -1,0 +1,35 @@
+.assignments.section.minor
+
+	-if !@announcements.empty?
+		h2 Announcements
+		ul.announcement-list
+			- @announcements.each do |ann|
+				li.announcement
+					.img_ctn
+						.glyphicon.glyphicon-bullhorn
+					h5 = link_to(truncate(ann.subject, length: 25), ann)
+					.desciprion = truncate(ann.body, length: 25)
+
+	h2 For your attention
+
+	- if @todo_experiences
+		ul.experience-list
+			- @todo_experiences.each do |exp|
+				li.experience
+					.img_ctn
+						.glyphicon.glyphicon-picture
+					h5 = link_to(truncate(exp.name, length: 25), exp)
+					.desciprion = truncate(exp.process, length: 25)
+	
+	- if @todo_challenges
+		ul.assignment-list
+			- @todo_challenges.each do |ch|
+				li.assignment
+					.img_ctn
+						- if ch.thumbnail_url
+							a = link_to(image_tag(ch.thumbnail_url), ch)
+						- if !ch.thumbnail_url
+							span.glyphicon.glyphicon-flag
+					.assign_name
+						h5 = link_to truncate(ch.name, length: 25), ch
+						.desciprion = truncate(ch.description, length: 25)

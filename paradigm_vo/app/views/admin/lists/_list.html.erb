@@ -1,0 +1,25 @@
+<div id="facebox">
+<div class="main_div">
+<script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>
+
+<h1><%= @list.name if @list.name? %></h1>
+
+<% if @list.voice_ids? %>
+	<% @list.voice_ids.each do |v| %>
+		<% artist = Artist.find(v) %>
+		<div><%= artist.name %></div>
+		<div><%= audio_tag artist.voiceover_url, autoplay: false, controls: true %></div>
+		<p><%= link_to "Send list", send_list_path(@list), remote: true, method: "get" if admin_signed_in? %></p>
+	<% end %>
+<% else %>	
+	<h3>Add artists to your new list.</h3>
+<% end %>
+
+<p>
+<%= link_to_if admin_signed_in?, 'Edit', edit_admin_list_path(@list) %><%= ' |' if admin_signed_in? %>
+<%= link_to 'Back', admin_lists_path %>
+</p>
+
+</div>	
+	
+</div>

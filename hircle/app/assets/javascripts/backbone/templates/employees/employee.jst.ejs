@@ -1,0 +1,57 @@
+
+    <div class="drawer-box">
+		<p class="photo">
+				<span>
+					<img src="<%=thumbnail%>" alt="">
+				</span>
+		</p>
+		<div class="summarize">
+			<p class="expand-btn"><i class="icon-chevron-up J_ToggleBtn"></i></p>
+			<i class="status offline">?</i>
+			<a href="#/employees/<%=id%>" class="name"><%=name%></a>
+			 
+			<dl class="tag-list">
+				<dd>
+					<% _.each(tasks, function(task) { %>
+						<small class="tag">
+							<%=title%>								
+						</small>
+					<% });%>
+				</dd>
+			</dl>
+			
+		</div>
+		<div class="bd">
+			<p class="motto">
+				<i>“</i><%=profile.motto%>	
+				
+			</p>
+			<dl class="employee-info clearfix">
+				<dt>Email:</dt>
+				<dl><%=email%></dl>
+			
+				<dt>Address:</dt>
+				<dl><%=profile.address%>	</dl>
+				<dt>Phone:</dt>
+				<dl><%=profile.motto%></dl>
+			
+				<dt>Tasks:</dt>
+				<dd>
+					<% _.each(tasks, function(task) { %>
+						<small class="tag">
+							<%=title%>								
+						</small>
+					<% });%>
+				</dd>
+				<dt>Docments:</dt>
+				<dd>
+					<% _.each(documents, function(document) { %>
+						<small class="tag">
+							<%=attach_file_name%>								
+						</small>
+					<% });%>
+				</dd>
+			</dl>
+		</div>
+	  </div>
+	</div>

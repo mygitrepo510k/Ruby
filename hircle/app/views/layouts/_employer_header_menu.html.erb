@@ -1,0 +1,31 @@
+<%= render "/layouts/top_header_menu" %>
+
+
+<div class="navbar">
+  <div class="navbar-inner" id="head-menu">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+     <!-- <a class="brand" href="#">Project name</a> -->
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="#"><%= link_to(image_tag('home.png'), "/")%></li>
+            <li><%= link_to "Dashboard",dashboard_index_path %></li>
+  							<li><a href="<%=networks_path%>">Connections</a></li>
+         </ul>
+        </div><!--/.nav-collapse -->
+					<div class="nav-search-box">
+						<form class="navbar-search pull-left">
+							<input type="text" class="search-query" id="search-input" placeholder="Search"/>
+							<button type="submit" class="btn " id="search-button"></button>
+						</form>
+					</div>
+
+    </div>
+  </div>
+</div>
+

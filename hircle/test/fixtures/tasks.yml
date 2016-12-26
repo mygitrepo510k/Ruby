@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  title: website develop
+  description: develop a website on rails
+  status: 1
+  priority: 1
+  start_date: 2013-04-17 22:19:37
+  due_date: 2013-04-17 22:19:37
+  assignor_id: 1
+  company_id: 1
+  department_id: 1
+
+two:
+  id: 2
+  title: UI design
+  description: UI design
+  status: 2
+  priority: 2
+  start_date: 2013-04-17 22:19:37
+  due_date: 2013-04-17 22:19:37
+  assignor_id: 1
+  company_id: 1
+  department_id: 1
+  
+three:
+  id: 3
+  title: other task
+  description: not used
+  status: 3
+  priority: 3
+  start_date: 2013-04-16 22:19:37
+  due_date: 2013-04-30 22:19:37
+
+Task1:
+  id: 4
+  title: My Task
+  description: Sample Task
+  status: pending
+  priority: heigh
+  start_date: 2013-04-16 22:19:37
+  due_date: 2013-04-30 22:19:37

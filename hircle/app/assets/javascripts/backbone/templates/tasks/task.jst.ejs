@@ -1,0 +1,49 @@
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <div class="accordion-toggle heading-color" data-toggle="collapse" href="#collapse<%= id %>">
+      <i class="img-circle circle-note"><%= id %></i>
+      <p style="margin-bottom:0px; display:inline;"><%= title %></p>
+      <i class="accord-arrow" style="margin-top:0px;"></i>
+      <i style="margin-top:4px;" class="icon-remove green"></i>
+      <i class="icon-comment green" style="margin-top:4px;"></i>
+    </div>
+  </div>
+  
+  <div id="collapse<%= id %>" class="accordion-body collapse">
+    <div class="accordion-inner" style="display:-moz-groupbox;">
+      <div>
+        <p class="text-info">
+          Title:
+        </p>
+        &nbsp; <%= title %>
+        <i style="margin-left:4px;" class=" icon-pencil">
+        </i>
+      </div>
+      <div>
+        <p class="text-info">
+          Description:
+        </p>
+        &nbsp; <%= description %>
+        <i style="margin-left:4px;" class=" icon-pencil">
+        </i>
+      </div>
+      <div>
+        <p style="margin-top:12px;" class="text-info">
+          Assign:
+        </p>
+        <input class="space2" id="appendedDropdownButton" placeholder="+Add more people from your network" type="text">
+        <div class="btn-group">
+          <button class="btn btn-green" data-toggle="dropdown">
+            Assign
+          </button>
+        </div>
+      </div>
+      <div style="margin-left:44px;" class="space2" id="edit_asignee_list<%= id %>">
+      </div>
+
+      <div>
+        <input type="file" id="task_document" name="edit_task[document]" value="Browse" required>
+      </div>
+    </div>
+  </div>
+</div>

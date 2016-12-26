@@ -1,0 +1,572 @@
+= Parknow Project API
+
+== API
+
+parknow-api
+===========
+
+Rename the file 'database.yml.template' to 'database.yml' and make necessary changes in order to setup the database.
+
+After running the server, open up the browser and hit 'http://localhost:3000/sample' and you would see 'GET request successful.'.
+
+Also, POSTMan chrome extension can be used to test the sample calls below:
+
+- GET    /sample
+- PUT    /sample
+- POST   /sample
+- DELETE /sample
+
+Append /sample with the desired REST call to see the response from the API.
+
+
+=== Auth Endpoints
+==== Login
+    POST: /auth/login
+    
+    Parameters
+      email:        String    *required
+      password:     String    *required
+      device_id:    String    *required
+      device_type:  String    *required [ios, android]
+      app_type:     String    *requried [vendor, vendor_user, customer, admin]
+    
+    Results
+      token      
+      
+    EX: curl -d 'email=tester@email.com&password=asdfasdf&device_id=123456&app_type=customer&device_type=ios' http://parknow.herokuapp.com/api/v1/auth/login
+
+    RESULTS: {"success":"ba9cbda7f24ca95b024798efa6d729937b10b9f8-Egj9balpUiiDgcbEdPTOWQ"}
+
+==== Logout
+    POST: /auth/logout
+    Parameters
+      token:        String *required
+
+    Results
+      success string
+
+    EX: curl -d curl -d 'token=4188d0e6dd98a722db5a1ba3345398f24b420e03-DpzEY1sO65K8eLjJbzEdLw' http://parknow.herokuapp.com/api/v1/auth/logout
+    
+    RESULTS: {"success":"sign out"} or {"faild":"No Such User"}  
+
+==== Forgot Password
+    POST: /auth/forgot_password
+      Parameters
+        email:      String *required
+      Results
+        success string
+
+    EX: curl -d 'email=tester@email.com' http://parknow.herokuapp.com/api/v1/auth/forgot_password
+
+    RESULTS: {"success":"Email was sent successfully"} or {"failure":"Cannot find this email"}
+
+
+==== Update author information
+    POST /auth/update
+      Parameters
+        auth_token:       String      *required
+        email:            String      optional
+        password:         String      optional
+        name:             String      optional
+      Returns
+        success auth_token
+    EX: curl -d 'auth_token=93abe1e21b955d5b0ecf3355b9f5688020fa6284-6h_K4-sSnf7o8tOilBVrmA&email=customer@email.com&password=12345678&name=tester' http://localhost:3000/api/v1/auth/update
+    RESULTS: {"success":"747892c0079d49f4bddfbeffdcc05523b500364e-gGKkAnKg6Ojr75GcZqRL3A"}
+
+==== Enable Application    
+
+
+=== Customers endpoints
+
+==== Customer API test
+      GET: /api/v1/customers/ping
+        Parameters:
+        Results: success string
+
+==== Get Customer information
+      GET /customers/
+        Parameters
+          auth_token:   String      *required
+        Returns: JSON Object
+        
+      EX: curl http://parknow.herokuapp.com/api/v1/customers/?auth_token=27b8103360a26490cf9031e302a25b4bbbe6cc83-Ud4YiHNJU92IVGCamf70Zg
+      RESULTS: JSON OBJECT
+      {
+        "success": {
+          "id": "1",
+          "email": "customer@email.com",
+          "name": "Customer",
+          "balance": 26.0,
+          "available_balance": 17.0,
+          "vehicles": [
+            {
+              "vehicle_id": "1",
+              "license_plate": "license_plate",
+              "make": "make",
+              "model": "model",
+              "color": "color"
+            }
+          ]
+        }
+      }
+
+
+
+==== Create customer
+      POST /customers/
+        Parameters
+          email:            *required
+          password:         *required
+          name:             *required
+          device_id:        *required
+          device_type:      *required
+        Returns
+          success auth_token
+      
+      EX: curl -d 'name=customer&email=customer@email.com&password=customer1234&device_id=xxx000111xxx&device_type=ios' http://parknow.herokuapp.com/api/v1/customers/
+
+      RESULTS:
+        {"success":"e5f68d1a879337d4737fa7360bfeda5b84edeb06-Qgn6uDkZc6QP2RMzLRDupA"} or {"faild":"This account was already registered"}
+
+==== Update customer
+      PUT /customers/
+        Parameters
+          customer_name:    String      *required
+          auth_token:       String      *required
+        Returns
+          success string        
+      
+      RESULTS:
+        {success: "Updated customer"} or {faild: "Cannot find customer"}
+
+==== Get customer's vehicle list
+      GET /customers/vehicles
+        Parameters
+          auth_token:       String      *required
+        Returns:
+          JSON OBJECT
+      EX: curl http://parknow.herokuapp.com/api/v1/customers/vehicles?auth_token=27b8103360a26490cf9031e302a25b4bbbe6cc83-Ud4YiHNJU92IVGCamf70Zg
+
+      RESULTS: JSON OBJECT
+      {
+        "success": [
+          {
+            "vehicle_id": "1",
+            "license_plate": "license_plate",
+            "make": "make",
+            "model": "model",
+            "color": "color"
+          }
+        ]
+      }
+
+
+==== Create vehicle
+      POST /customers/vehicle
+        Parameters
+          auth_token:       String      *required
+          license_plate:    String      optional
+          make:             String      optional
+          model:            String      optional
+          color:            String      optional
+        Returns:
+          success string
+
+      EX: curl -d 'auth_token=27b8103360a26490cf9031e302a25b4bbbe6cc83-Ud4YiHNJU92IVGCamf70Zg&license_plate=first vehicle&make:first make&model=model&color=red' http://parknow.herokuapp.com/api/v1/customers/vehicle
+
+      RESULTS: {success: "Created vehicle"}
+
+
+
+==== Edit vehicle
+      PUT /customers/vehicle
+        Parameters
+          auth_token:       String      *required
+          license_plate:    String      optional
+          make:             String      optional
+          model:            String      optional
+          color:            String      optional
+        Returns:
+          success string
+      EX: curl -X PUT -d 'auth_token=27b8103360a26490cf9031e302a25b4bbbe6cc83-Ud4YiHNJU92IVGCamf70Zg&license_plate=first vehicle&make:first make&model=model&color=red&vehicle_id=1' http://parknow.herokuapp.com/api/v1/customers/vehicle
+
+      RESULTS: {"success":"Updated vehicle"}
+
+==== Delete vehicle
+      Delete /customers/vehicle
+        Parameters
+          auth_token:       String      *required
+          vehicle_id:       String      *required
+        Returns:
+          success string
+      EX: curl -X DELETE -d 'auth_token=27b8103360a26490cf9031e302a25b4bbbe6cc83-Ud4YiHNJU92IVGCamf70Zg&vehicle_id=1' http://parknow.herokuapp.com/api/v1/customers/vehicle
+      
+      RESULTS:{"success":"Deleted vehicle"}
+
+==== Change device token
+      PUT /customers/change_device_token
+      Parameters
+        auth_token:         String      *required
+        device_id:          String      *required
+        device_type:        String      *required
+      Returns
+        success: auth_token
+==== # Get PaymentTransactions
+      GET: /customers/payment_transactions
+      Parameters
+        auth_token:         String      *required
+        device_id:          String      *required
+        device_type:        String      *required
+      Returns
+        JSON Object
+        {id,sender_type:,sender_id:,receiver_type,receiver_id,debit,credit,transaction_foreign_id}
+
+
+
+=== VendorUsers endpoints
+==== Create vendor user
+      POST: /vendor_users/
+        Parameters
+          email:            String      *required
+          password:         String      *required
+          name:             String      *required
+          device_id:        String      *required
+          device_type:      String      *required
+        Returns
+          success auth_token
+      
+      EX: curl -d 'name=Vendor User&email=vendor_user@email.com&password=vendoruser1234&device_id=xxx000111xxx&device_type=ios' http://parknow.herokuapp.com/api/v1/vendor_users/
+
+      RESULTS:
+        {"success":"e5f68d1a879337d4737fa7360bfeda5b84edeb06-Qgn6uDkZc6QP2RMzLRDupA"} or {"faild":"This account was already registered"}
+==== Update Vendor user
+      PUT /vendor_users/
+      Parameters
+        auth_token:       String      *required
+        name:             String      optional
+        device_id:        String      *required
+        device_type:      String      *required
+      Returns
+        success: token
+==== Get Service Request by ID
+      GET: /vendor_users/service_request
+      Parameters:
+        auth_token:       String      *required
+        request_id:       String      *required
+      Returns:
+        success: JSON object
+
+      EX: curl 'http://localhost:3000/api/v1/vendor_users/service_request?auth_token=37490db95a8a91dabe973699ed7b7897106e755c-kmaKLYC-FZklG0t6GYt3Pg&request_id=3'
+
+      RESULTS: 
+        {
+          "success": {
+            "id": 3,
+            "curstomer_id": 7,
+            "vehicle_id": 2,
+            "latitude": 34.123,
+            "longitude": 118.132,
+            "expiry": "2014-03-19T17:04:31.122Z",
+            "client_guid": "test request client"
+          }
+        }
+==== Get a list of non-expired service requests near my registered vendor location.
+      GET: /vendor_users/service_request_list
+      Parameters:
+        auth_token:       String      *required
+      Returns:
+        success: JSON object
+
+      EX: curl 'http://localhost:3000/api/v1/vendor_users/service_request?auth_token=37490db95a8a91dabe973699ed7b7897106e755c-kmaKLYC-FZklG0t6GYt3Pg
+
+      RESULTS:
+      {
+        "success": [{
+          "id": 3,
+          "curstomer_id": 7,
+          "vehicle_id": 2,
+          "latitude": 34.204,
+          "longitude": 118.281,
+          "expiry": "2014-03-19T17:04:31.122Z",
+          "client_guid": "test request client"
+        },{
+          "id": 17,
+          "curstomer_id": 7,
+          "vehicle_id": 3,
+          "latitude": 34.323,
+          "longitude": 118.261,
+          "expiry": "2014-03-19T17:04:31.122Z",
+          "client_guid": "test request client"
+        },{
+          "id": 21,
+          "curstomer_id": 7,
+          "vehicle_id": 5,
+          "latitude": 34.103,
+          "longitude": 118.257,
+          "expiry": "2014-03-19T17:04:31.122Z",
+          "client_guid": "test request client"
+        }]
+      }
+
+
+
+
+
+
+
+
+=== Vendors endpoints
+==== Create vendor
+      POST: /vendors/
+        Parameters
+          email:            String      *required
+          password:         String      *required
+          name:             String      *required
+          device_id:        String      *required
+          device_type:      String      *required
+          latitude:         String      optional
+          longitude:        String      optional
+          description:      String      optional
+        Returns
+          success auth_token
+      
+      EX: curl -d 'name=vendor&email=vendor@email.com&password=vendor1234&device_id=xxx000111xxx&device_type=ios' http://parknow.herokuapp.com/api/v1/vendors/
+
+      RESULTS:
+        {"success":"e5f68d1a879337d4737fa7360bfeda5b84edeb06-Qgn6uDkZc6QP2RMzLRDupA"} or {"faild":"This account was already registered"}
+
+
+==== Update vendor
+      PUT: /vendors/
+      Parameters
+        auth_token:         String      *required
+        name:               string      optional 
+        latitude:           String      optional
+        longitude:          String      optional
+        description:        String      optional
+      Returns
+        success: string
+
+==== Vendor's invite list
+      POST /vendors/invite
+      Parameters
+        auth_token:         String      *required
+      Returns
+        success: JSON object
+      EX: curl 'http://localhost:3000/api/v1/vendors/invite?auth_token=82dd3de157f3f9d77031ec247e912dba9b8d6300-aQ5GCD9WCWbVsKgovlipVw'
+      RESULTS:
+        {
+          "success": [
+            {
+              "id": 22,
+              "recipient_email": "invite@mail.com",
+              "invite_token": "c9f395926a46e861765b7b1aac8351ceaf8feb93"
+            },
+            {
+              "id": 38,
+              "recipient_email": "invitea@mail.com",
+              "invite_token": "f4fed8d9c8706f3373f8e05752b20ead7a30b6b9"
+            },
+            {
+              "id": 43,
+              "recipient_email": "inviteb@mail.com",
+              "invite_token": "1c1c6e2884baadad0505a7c50519989090726490"
+            }
+          ]
+        }
+
+
+==== Invite vendor user
+      POST: /vendors/invite
+      Parameters
+        auth_token:         String      *required
+        email:              String      *required
+      Returns
+        {success: "Sent invitation mail"}
+
+      EX: curl -d 'auth_token=82dd3de157f3f9d77031ec247e912dba9b8d6300-aQ5GCD9WCWbVsKgovlipVw&email=invitec@email.com' http://localhost:3000/api/v1/vendors/invite
+
+==== Create vendor terms
+      POST: /vendors/terms
+      Parameters
+        auth_token:           String      *required 
+        hourly_rate:          String      optional
+        max_hourly_hours:     String      optional
+        flat_rate:            String      optional
+        max_flat_hours:       String      optional
+      Returns
+        Success string
+
+      EX: curl -d 'auth_token=82dd3de157f3f9d77031ec247e912dba9b8d6300-aQ5GCD9WCWbVsKgovlipVw&hourly_rate=23&max_hourly_hours=43&flat_rate=22&max_flat_hours=43' http://localhost:3000/api/v1/vendors/terms
+
+      RESULTS:{"success":"Created successfully"}
+
+==== Update vendor terms
+      PUT: /vendors/terms
+      Parameters
+        auth_token:           String      *required 
+        vendor_terms_id:      String      *required
+        hourly_rate:          String      optional
+        max_hourly_hours:     String      optional
+        flat_rate:            String      optional
+        max_flat_hours:       String      optional
+      Returns
+        Success string
+
+      EX: curl -X PUT -d 'auth_token=82dd3de157f3f9d77031ec247e912dba9b8d6300-aQ5GCD9WCWbVsKgovlipVw&hourly_rate=23&max_hourly_hours=53&flat_rate=22&max_flat_hours=63&vendor_terms_id=2' http://localhost:3000/api/v1/vendors/terms
+      
+      RESULTS: {"success":"Updated successfully"}
+
+
+
+==== Revoke vendor user from this vendor
+      POST: /vendors/revoke
+      Parameters
+        auth_token:           String      *required
+        vendor_user_id:       String      *required
+      Returns
+        success or failure string
+
+==== Revoke invitation from this vendor
+      POST: /vendors/revoke
+      Parameters
+        auth_token:           String      *required
+        invitation_token:     String      *required
+      Returns
+        success or failure string
+
+      EX: curl -d 'auth_token=82dd3de157f3f9d77031ec247e912dba9b8d6300-aQ5GCD9WCWbVsKgovlipVw&invitation_token=26f444df785c24ad319b2306651b6af206996495' http://localhost:3000/api/v1/vendors/invitation_revoke
+
+      RESULTS: {success: "Revoked invitation"} or {faild: "Cannot find invitation"}
+
+
+=== ServiceRequests Endpoints
+==== Get ServiceRequest
+      GET /service_requests/
+        Parameters
+          auth_token:           String      *required
+          request_id:           String      *required
+        Returns
+          JSON Object
+
+      EX: curl 'http://localhost:3000/api/v1/service_requests/?auth_token=747892c0079d49f4bddfbeffdcc05523b500364e-gGKkAnKg6Ojr75GcZqRL3A&request_id=1'
+
+      RESULTS: JSON Object
+        {
+          "success": {
+            "id": 1,
+            "ehicle_id": null,
+            "latitude": 34.235,
+            "longitude": -118.23,
+            "expiry": "2014-03-19T09:59:44.114Z",
+            "client_guid": "asdfqwer",
+            "offers": [
+              {
+                "id": "2",
+                "vendor_id": 1,
+                "vendor_terms_id": 1,
+                "state": "pending"
+              }
+            ]
+          }
+        }
+==== Get ServiceRequests by location
+      GET /service_requests/get_by_geolocation
+        Parameters
+          auth_token:       String      *required
+          latitude:         Float       *required
+          longitude:        Float       *required
+        Returns
+          JSON Object
+
+      EX: curl 'http://localhost:3000/api/v1/service_requests/?auth_token=747892c0079d49f4bddfbeffdcc05523b500364e-gGKkAnKg6Ojr75GcZqRL3A&latitude=34.4870245&longitude=-118.05487654'
+
+      RESULTS: JSON Object
+        {
+          "success": [
+            {
+              "id": 2,
+              "ehicle_id": null,
+              "latitude": 34.235,
+              "longitude": -118.23,
+              "expiry": "2014-03-19T09:59:44.114Z",
+              "client_guid": "asdfqwer",
+              "offers": [
+                {
+                  "id": "2",
+                  "vendor_id": 1,
+                  "vendor_terms_id": 1,
+                  "state": "pending"
+                }
+              ]
+            },
+            {
+              "id": 4,
+              "ehicle_id": null,
+              "latitude": 34.235,
+              "longitude": -118.23,
+              "expiry": "2014-03-19T09:59:44.114Z",
+              "client_guid": "asdfqwer",
+              "offers": [
+                {
+                  "id": "2",
+                  "vendor_id": 1,
+                  "vendor_terms_id": 1,
+                  "state": "pending"
+                }
+              ]
+            }
+          ]
+        }
+
+
+==== Create ServiceRequest
+      POST /service_requests/
+        Parameters
+          auth_token:       String      *required
+          vehicle_id:       Integer     *required 
+          latitude:         Float       *required
+          longitude:        Float       *required
+          client_guid:      String      *required
+
+      Returns
+        Success string
+
+      EX: curl -d 'auth_token=747892c0079d49f4bddfbeffdcc05523b500364e-gGKkAnKg6Ojr75GcZqRL3A&vehicle_id=2&latitude=34.123&longitude=118.132&client_guid=test request' http://localhost:3000/api/v1/service_requests/
+
+      RESULTS: {"success":"created service request"}
+
+==== Accept request
+      POST /service_requests/accept
+        Parameters
+          auth_token:       String      *required
+          request_id:       String      *required
+        Returns
+          {success: "Accepted service requests"} or {faild: "any error message"}
+
+      EX: curl -d 'auth_token=747892c0079d49f4bddfbeffdcc05523b500364e-gGKkAnKg6Ojr75GcZqRL3A&request_id=37' http://localhost:3000/api/v1/service_requests/accept
+
+      RESULTS: {success: "Accepted service requests"}
+
+
+
+
+=== ServiceOffers Endpoints
+
+
+
+
+
+
+=== ServiceContracts
+==== Cancle ServiceContract
+      POST: /service_contracts/cancel
+      Parameters
+        auth_token:    String     *required
+        contract_id:   Integer    *required
+      Returns
+        {success: 'Cancelled contract'} or {faild: 'Cannot find service contract'}
+
+      EX: curl -d 'auth_token=747892c0079d49f4bddfbeffdcc05523b500364e-gGKkAnKg6Ojr75GcZqRL3A&contract_id=27' http://localhost:3000/api/v1/service_contracts/cancel
+
+      RESULTS: {success: 'Cancelled contract'}

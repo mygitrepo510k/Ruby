@@ -1,0 +1,18 @@
+// Place all the styles related to the prescriptions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.photo-info {
+  height: 78px;
+  width: 280px;
+  background-color: #ececec;
+  padding: 10px;
+  border: thin solid;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+// prescription upload form date selects 
+#prescription_issue_date_1i, #prescription_issue_date_2i, #prescription_issue_date_3i, #prescription_expiration_1i, #prescription_expiration_2i, #prescription_expiration_3i{
+  width :90px !important;
+}

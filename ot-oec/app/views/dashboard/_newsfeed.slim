@@ -1,0 +1,40 @@
+.newsfeed.section
+	h2
+		| Newsfeed
+
+	.search_bar
+		= form_tag search_posts_path, class: 'form-inline' do
+			= text_field_tag :query, '', placeholder: 'Search for posts...', id: 'search_terms'
+			= button_tag class: 'btn', id: 'search_posts' do
+				span.glyphicon.glyphicon-search
+
+	hr
+
+	.status_update
+		= form_for Post.new, remote: true do |f|
+			.row
+				.col-xs-12
+					= f.text_area :body, placeholder: 'What are you doing right now?'
+					= f.hidden_field :filepicker_url, class: 'filepicker_full'
+				.col-xs-9.add-footer
+					.add-picture
+						a class='filepicker' href='#'
+							span.glyphicon.glyphicon-camera  data-toggle='tooltip' data-placement='bottom' title='Add image or video'
+							span.glyphicon.glyphicon-film  data-toggle='tooltip' data-placement='bottom' title='Add image or video'
+
+				.col-xs-3.text-right
+					= submit_tag 'Post', class: 'btn btn-danger', id: 'submit_post'
+	
+		/span.glyphicon.glyphicon-pushpin
+			| Pinned posts
+
+	/.post_feed.pinned
+		= render partial: 'posts', locals: { posts: pinned }
+
+	hr
+
+	.post_feed
+		= render partial: 'posts', locals: { items: items }
+
+	.load_more_link
+		= link_to 'Load More Posts', root_path(page: @items.next_page), :class => 'load-more-posts', :remote => true if @items.next_page

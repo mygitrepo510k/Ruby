@@ -1,0 +1,22 @@
+.row-fluid
+  .span6
+    = link_to(image_tag('logo-header.png', border: 0, vspace: "20px"), root_path)
+  .span6{align: "right"}
+    %ul.top-menu
+      - if admin_user.present?
+        %li= link_to "Click to return to Admin section", logout_admin_user_path(current_user), class: 'btn btn-danger', method: :post
+      %li= link_to t('links.my_photos'), user_user_photos_path(current_user.username)
+      |
+      %li= link_to t('links.my_profile'), user_profile_path
+      |
+      %li= link_to t('links.my_account'), account_path
+      |
+      - unless current_user.premium
+        %li= link_to t('links.upgrade'), upgrade_path
+        |
+      %li= link_to t('links.help'), static_page_path('help')
+      |
+      %li= link_to t('links.logout'), logout_path, "data-no-turbolinks" => true
+    %h4 Welcome, #{current_user.username}!
+    %i{class: "icon-user"}
+    = "#{pluralize(online_users,'Member')} Online"

@@ -1,0 +1,6 @@
+h2 Someone has commented on your experience
+p Dear #{@user.name},
+p #{@comment_user.name} wrote -
+p
+  i= @comment.body
+p= link_to "view comment", experience_url(@comment.commentable)

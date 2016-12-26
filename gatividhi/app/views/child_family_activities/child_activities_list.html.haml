@@ -1,0 +1,44 @@
+.bodyWapper.child-activities-lists
+  .tabBox
+    %a.tabSelected{:href => child_activities_list_path} All Activities
+    .CL
+  .tabContainer
+    .tabAction
+      .activityAction
+        .jqGreenForm.FL
+          %select#s1{:name => "select", :style => "margin-right:8px; width: 100px;"}
+            %option Create new
+            %option{:value => "School Timetable#505#575#add_activity.html"} School Timetable
+            %option{:value => "<p style='font-size:12px; line-height:1.2; padding-top:11px; padding-bottom:11px;'>You can start by adding a New Exam Schedule, or continue adding a schedule to an exam you've created.</p>#600#565#create_exam.html"} Exam
+            %option{:value => "Activity#522#575#add_activity.html"} Activity
+            %option{:value => "Create Activity#750#630#day_create_activity.html"} Create Activity
+            %option{:value => "Assignment#540#575#add_assignment.html"} Assignment
+            %option{:value => "Update Holiday <p style='font-size:12px; line-height:1;padding-bottom:8px;'>You‚re adding a Holiday to Meera‚s School Calendar</p>#505#445#add_holiday.html"} Holiday
+        .jqSmallform.FL
+          %select#s4{:name => "select", :style => "margin-right:8px; margin-left: 8px; width: 100px;"}
+            %option Upcoming
+            %option Past
+          %select#s2{:name => "select", :style => "margin-right:8px; width: 100px;"}
+            %option All
+            %option School
+            %option Non-School
+      .CL
+    #show_child_activities_list_div
+      = render :partial => "show_child_activities_list"
+    %p.padLeft10
+      %a.greyBtn{:href => "/add_child_activities_list?id=#{params[:id]}", :rel => "facebox"} Add Activity
+    %p  
+:javascript
+  $( document ).ready(function() {
+    $(".tabContainer div.jqSmallform ul li a").click(function(){     
+      var value= $(this).text();
+      $.ajax({
+        url: "/show_child_activities_list?id=#{params[:id]}&check_order="+ value,
+      }).done(function(data) {
+        $("#show_child_activities_list_div").html(data);
+      });
+      return false; //prevent default browser action
+    });    
+  });
+
+  $('a[rel*=facebox]').facebox();

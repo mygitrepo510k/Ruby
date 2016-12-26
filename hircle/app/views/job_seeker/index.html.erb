@@ -1,0 +1,426 @@
+<!-- Part 1: Wrap all page content here -->
+<div id="wrap">
+
+  <div class="container">
+    
+    <div class="container-fluid1">
+      <div class="row-fluid">
+        <div class="span2" style="width:18%;">
+          <!--Sidebar content-->
+          
+          <div class="side-bar1">
+            <div class="image-wrapper">
+              <img src="/assets/user-img/none-img.png">
+              <p>
+                Leigh Taylor
+              </p>
+            </div>
+          </div>
+          <div class="side-bar1">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" href="#collapseTwo">
+                  <h4>
+                    Resume
+                  </h4>
+                </a>
+              </div>
+              <div id="collapseTwo" class="accordion-body collapse ">
+                <div class="accordion-inner">
+                  <a href="#resume00">
+                    <span>
+                      Personal Info
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume01">
+                    <span>
+                      Upload/Import
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume02">
+                    <span>
+                      Career Objectives
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume04">
+                    <span>
+                      Employment History
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume05">
+                    <span>
+                      Education History
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume06">
+                    <span>
+                      Skills
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume07">
+                    <span>
+                      Certifications
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume08">
+                    <span>
+                      Language
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume09">
+                    <span>
+                      Resume Status
+                    </span>
+                  </a>
+                </div>
+                <div class="accordion-inner">
+                  <a href="#resume10">
+                    <span>
+                      Uplaod documents
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse--">
+                  Invite people to space
+                </a>
+              </div>
+              <!------------- edit the collapse content ---------------------->
+            </div>
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse--">
+                  Uplaod documents
+                </a>
+              </div>
+              
+            </div>
+            <div class="conv">
+              <span>
+              </span>
+            </div>
+          </div>
+        </div>
+          <form action="/job_seeker/resume" method="post">
+            <input type="hidden" name="authenticity_token" value="<%=  form_authenticity_token %>">
+            <div class="span10" style="width:79%;" >
+              <!--Body content-->
+              <%= render :partial => "job_seeker/resume/personal_info" %>
+              <%= render :partial => "job_seeker/resume/upload_import" %>
+              <%= render :partial => "job_seeker/resume/career_obj" %>
+              <%= render :partial => "job_seeker/resume/emp_history" %>
+              <%= render :partial => "job_seeker/resume/edu_history" %>
+              <%= render :partial => "job_seeker/resume/skill" %>
+              <%= render :partial => "job_seeker/resume/certification" %>
+              <%= render :partial => "job_seeker/resume/language" %>
+              <%= render :partial => "job_seeker/resume/resume_status" %>
+              <%= render :partial => "job_seeker/resume/upload_document" %>
+                
+              </div>
+              <input type="submit" value="update" class="btn">
+            </form>
+        </div>
+      </div>
+
+    </div>
+    
+    <div id="push">
+    </div>
+  </div>
+
+<script>
+  $(function(){
+    window.prettyPrint && prettyPrint();
+    $('#dp1').datepicker();
+    
+    $('.date').datepicker();
+    
+    $('#dp3').datepicker();
+    
+    //inline    
+    $('#dp6').datepicker({
+      todayBtn: 'linked'
+    }
+                        );
+    
+    $('#btn6').click(function(){
+      $('#dp6').datepicker('update', '15-05-1984');
+    }
+                    );
+    
+    
+    $("#e1").select2();
+    
+    $("#e2").select2({
+placeholder: "Search Contacts...",
+allowClear: true
+    }
+                    );
+    $("#e2_2").select2({
+placeholder: "Select a State"
+    }
+                      );
+    function format(state) {
+if (!state.id) return state.text;
+      // optgroup
+return "<img class='flag' src='/assets/user-img/" + state.id.toLowerCase() + ".png'/>" + state.text;
+    }
+    $("#e4").select2({
+formatResult: format,
+formatSelection: format,
+escapeMarkup: function(m) {
+        return m;
+      }
+    }
+                    );
+    $('.dropdown-toggle').dropdown();
+  }
+   );
+
+  $(document).ready(function() {
+    
+    var view="week";
+    
+    
+    var DATA_FEED_URL = "php/datafeed.php";
+    var op = {
+      view: view,
+      theme:3,
+      showday: new Date(),
+      EditCmdhandler:Edit,
+      DeleteCmdhandler:Delete,
+      ViewCmdhandler:View,    
+      onWeekOrMonthToDay:wtd,
+      onBeforeRequestData: cal_beforerequest,
+      onAfterRequestData: cal_afterrequest,
+      onRequestDataError: cal_onerror, 
+      autoload:true,
+      url: DATA_FEED_URL + "?method=list",  
+      quickAddUrl: DATA_FEED_URL + "?method=add", 
+      quickUpdateUrl: DATA_FEED_URL + "?method=update",
+      quickDeleteUrl: DATA_FEED_URL + "?method=remove"        
+    }
+        ;
+    var $dv = $("#calhead");
+    var _MH = document.documentElement.clientHeight;
+    var dvH = $dv.height() + 2;
+    op.height = _MH - dvH;
+    op.eventItems =[];
+    
+    var p = $("#gridcontainer").bcalendar(op).BcalGetOp();
+    if (p && p.datestrshow) {
+      $("#txtdatetimeshow").text(p.datestrshow);
+    }
+    $("#caltoolbar").noSelect();
+    
+    $("#hdtxtshow").datepicker({
+      picker: "#txtdatetimeshow", showtarget: $("#txtdatetimeshow"),
+      onReturn:function(r){
+        
+        var p = $("#gridcontainer").gotoDate(r).BcalGetOp();
+        if (p && p.datestrshow) {
+          $("#txtdatetimeshow").text(p.datestrshow);
+        }
+      }
+      
+    }
+                              );
+    function cal_beforerequest(type)
+    {
+      var t="Loading data...";
+      switch(type)
+      {
+        case 1:
+          t="Loading data...";
+          break;
+        case 2:                      
+        case 3:  
+        case 4:    
+          t="The request is being processed ...";
+          
+          break;
+      }
+      $("#errorpannel").hide();
+      $("#loadingpannel").html(t).show();
+      
+    }
+    function cal_afterrequest(type)
+    {
+      switch(type)
+      {
+        case 1:
+          $("#loadingpannel").hide();
+          break;
+        case 2:
+        case 3:
+        case 4:
+          $("#loadingpannel").html("Success!");
+          window.setTimeout(function(){
+            $("#loadingpannel").hide();
+          },2000);
+          break;
+      }
+      
+      
+    }
+    function cal_onerror(type,data)
+    {
+      $("#errorpannel").show();
+    }
+    function Edit(data)
+    {
+      var eurl="edit.php?id={0}&start={2}&end={3}&isallday={4}&title={1}";
+      
+      if(data)
+      {
+        var url = StrFormat(eurl,data);
+        OpenModelWindow(url,{
+          width: 600, height: 400, caption:"Manage  The Calendar",onclose:function(){
+            $("#gridcontainer").reload();
+          }
+        });
+      }
+    }
+    
+    function View(data)
+    {
+      var str = "";
+      $.each(data, function(i, item){
+        str += "[" + i + "]: " + item + "\n";
+      }
+            );
+      alert(str);
+      
+    }
+    
+    function Delete(data,callback)
+    {
+      
+      
+      $.alerts.okButton="Ok";
+      
+      $.alerts.cancelButton="Cancel";
+      
+      hiConfirm("Are You Sure to Delete this Event", 'Confirm',function(r){
+        r && callback(0);
+      });
+      
+    }
+    function wtd(p)
+    {
+      if (p && p.datestrshow) {
+        $("#txtdatetimeshow").text(p.datestrshow);
+      }
+      $("#caltoolbar div.fcurrent").each(function() {
+        $(this).removeClass("fcurrent");
+      }
+                                        )
+        $("#showdaybtn").addClass("fcurrent");
+    }
+    //to show day view
+    $("#showdaybtn").click(function(e) {
+      //document.location.href="#day";
+      $("#caltoolbar div.fcurrent").each(function() {
+        $(this).removeClass("fcurrent");
+      }
+                                        )
+        $(this).addClass("fcurrent");
+      var p = $("#gridcontainer").swtichView("day").BcalGetOp();
+      if (p && p.datestrshow) {
+        $("#txtdatetimeshow").text(p.datestrshow);
+      }
+    }
+                          );
+    //to show week view
+    $("#showweekbtn").click(function(e) {
+      //document.location.href="#week";
+      $("#caltoolbar div.fcurrent").each(function() {
+        $(this).removeClass("fcurrent");
+      }
+                                        )
+        $(this).addClass("fcurrent");
+      var p = $("#gridcontainer").swtichView("week").BcalGetOp();
+      if (p && p.datestrshow) {
+        $("#txtdatetimeshow").text(p.datestrshow);
+      }
+      
+    }
+                           );
+    //to show month view
+    $("#showmonthbtn").click(function(e) {
+      //document.location.href="#month";
+      $("#caltoolbar div.fcurrent").each(function() {
+        $(this).removeClass("fcurrent");
+      }
+                                        )
+        $(this).addClass("fcurrent");
+      var p = $("#gridcontainer").swtichView("month").BcalGetOp();
+      if (p && p.datestrshow) {
+        $("#txtdatetimeshow").text(p.datestrshow);
+      }
+    }
+                            );
+    
+    $("#showreflashbtn").click(function(e){
+      $("#gridcontainer").reload();
+    }
+                              );
+    
+    //Add a new event
+    $("#faddbtn").click(function(e) {
+      var url ="edit.php";
+      OpenModelWindow(url,{
+        width: 500, height: 400, caption: "Create New Calendar"}
+                     );
+    }
+                       );
+    //go to today
+    $("#showtodaybtn").click(function(e) {
+      var p = $("#gridcontainer").gotoDate().BcalGetOp();
+      if (p && p.datestrshow) {
+        $("#txtdatetimeshow").text(p.datestrshow);
+      }
+      
+      
+    }
+                            );
+    //previous date range
+    $("#sfprevbtn").click(function(e) {
+      var p = $("#gridcontainer").previousRange().BcalGetOp();
+      if (p && p.datestrshow) {
+        $("#txtdatetimeshow").text(p.datestrshow);
+      }
+      
+    }
+                         );
+    //next date range
+    $("#sfnextbtn").click(function(e) {
+      var p = $("#gridcontainer").nextRange().BcalGetOp();
+      if (p && p.datestrshow) {
+        $("#txtdatetimeshow").text(p.datestrshow);
+      }
+    }
+                         );
+    
+  }
+                   );
+</script>

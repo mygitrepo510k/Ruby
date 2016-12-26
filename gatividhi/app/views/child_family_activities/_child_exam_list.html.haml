@@ -1,0 +1,45 @@
+- @child_exams.each do | child_exam |
+  %tr.unitHead
+    %th{:align => "left", :valign => "top"}
+      %input{:type => "checkbox"}/
+    %th{:align => "left", :valign => "top"}
+      %a.greenTxt{:href => "#."}= child_exam.title
+    %th{:align => "left", :valign => "top"}= child_exam.current_class
+    %th{:align => "left", :valign => "top"}= child_exam.exam_category
+    %th{:align => "left", :valign => "top"}= child_exam.start_date
+    %th{:align => "left", :valign => "top"}= child_exam.end_date
+    %th{:align => "left", :valign => "top"}/          
+    %th{:align => "left", :valign => "top"}/
+    %th{:align => "left", :valign => "top"}= child_exam.exam_category
+    %th{:align => "left", :valign => "top"}/
+    %th{:align => "left", :valign => "top"}= child_exam.date_finalised
+    %th.actionBox{:align => "left", :valign => "top"}
+      %a.deleteIcon{:href => "delete_exam?id=#{params[:id]}&child_exam_id=#{child_exam.id}", :onclick => "return confirm('Are you sure you want to Delete this exam')", :title => "Delete"}
+      %a.editIcon{:href => "create_exam?id=#{params[:id]}&child_exam_id=#{child_exam.id}", :rel => "facebox", :title => "Edit"}
+  - child_exam.child_profile_exam_schedules.each do |schedule|
+    %tr{:id=>"schedule_"+schedule.id}
+      %td{:align => "left", :valign => "top"}
+        %input{:type => "checkbox"}/
+      %td{:align => "left", :valign => "top"}
+        %a.greenTxt{:href => "#."}= schedule.exam_title
+      %td{:align => "left", :valign => "top"}= schedule.current_class
+      %td{:align => "left", :valign => "top"}= schedule.child_profile_exam.exam_category
+      %td{:align => "left", :valign => "top"}= schedule.start_date
+      %td{:align => "left", :valign => "top"}= schedule.child_profile_exam.end_date
+      %td{:align => "left", :valign => "top"}= schedule.start_time
+      %td{:align => "left", :valign => "top"}= schedule.end_time
+      %td{:align => "left", :valign => "top"}= schedule.subject
+      %td{:align => "left", :valign => "top"}= schedule.exam_type
+      %td{:align => "left", :valign => "top"}= schedule.child_profile_exam.date_finalised ? "Yes" : "No"
+      %td.actionBox{:align => "left", :valign => "top"}
+        %a.deleteIcon{:href => "javascript:delete_schedule('#{schedule.id}')", :onclick => "confirm('Are you sure you want to Delete this exam')", :title => "Delete"}
+        = succeed "No" do
+          %a.editIcon{:href => "/create_exam_schedule?exam_id="+child_exam.id+"&schedule_id="+schedule.id+"&edit=true", :title => "Edit", :rel=>"facebox"}
+  %tr
+    %td{:colspan=>"12"}
+      %p.padLeft10{:style => "padding-left:5% !important;"}
+        %a.greyBtn.add-schedule{:href => "/create_exam_schedule?exam_id="+child_exam.id, :rel => "facebox"} add exam schedule
+
+
+:javascript
+  $('a.add-schedule').facebox();

@@ -1,0 +1,17 @@
+ul#left_side_nav
+  li= select_tag '', options_for_select(Content::CONTENT_OPTIONS), prompt: 'Categories-All', id: 'content_option_selector'
+  li= select_tag '', options_for_select(Date::MONTHNAMES[4..12]), prompt: 'Months-All', id: 'content_month_selector'
+  li= button_tag 'Files', class: 'form-control', id: 'content_files_button'
+/
+  li
+    a href="#"  Live Stream
+  li
+    a href="#"  Files
+  -[*1..12].each do |month|
+    li class="content-list"
+      = link_to Date::MONTHNAMES[month], "javascript://", :"data-link" =>main_content_path+'?month='+month.to_s
+      ul
+        - Content::CONTENT_OPTIONS.each do |option|
+          li
+            = link_to option, "javascript://", :"data-link"=>main_content_path+'?month='+month.to_s+'&option='+Content::CONTENT_OPTIONS.index(option).to_s
+

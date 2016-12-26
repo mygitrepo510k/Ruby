@@ -1,0 +1,19 @@
+%table.table.patient-profile-table
+  %tr
+    %th
+      = t("doctor_flow.patient_profile.prescription_no")
+    %th
+      = t("doctor_flow.patient_profile.issue_date")
+    %th
+      = t("doctor_flow.patient_profile.expiry_date")
+    %th
+      = t("doctor_flow.patient_profile.status")
+    %th
+      = t("doctor_flow.patient_profile.action")
+    %th
+  %tr
+    - if @profile.persisted?
+      = render(partial: 'prescription', collection: @profile.user.prescriptions)
+    - else
+      %td{colspan: 6}
+        = t('doctor_flow.patient_profile.no_prescriptions')

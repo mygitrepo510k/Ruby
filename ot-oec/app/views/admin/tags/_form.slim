@@ -1,0 +1,11 @@
+= form_for [:admin, @tag] do |f|
+  - f.object.errors.messages.each do |msg|
+    .alert.alert-error= msg.join(' is ')
+  .field
+    = f.text_field :name, placeholder: 'Name', class: 'form-control'
+  .field
+    = f.select :tag_type, options_for_select(Tag::TYPE.map{|t| [t.capitalize, Tag::TYPE.index(t)]}, :selected=>f.object.tag_type.present? ? f.object.tag_type : "0"), {include_blank:false}, class:'form-control' 
+  .field
+
+  .submit
+    = f.submit 'Submit', class: 'form-control'

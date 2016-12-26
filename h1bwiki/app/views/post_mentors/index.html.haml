@@ -1,0 +1,36 @@
+.container-fluid	
+	.row.post-main-page
+		=render "layouts/nav-link-secondary"
+		.row.first-row.post-mentor-page
+			.span12.post-jobs-box
+				.page-header
+					%p.page-title Post a Mentor Assistance
+				%table.table.table-striped
+					%thead
+						%tr
+							%th{:width => "5%"} ID
+							%th{:width => "20%"} Title
+							%th{:width=>"10%"} Skills
+							%th{:width => "10%"} Interview Support
+							%th{:width => "40%"} Description
+							%th{:width => "10%"} Created At
+							%th=t '.actions', :default => t("helpers.actions")
+					%tbody
+						- @post_mentors.each do |post_mentor|
+							%tr
+								%td= link_to post_mentor.id, post_mentor_path(post_mentor)
+								%td= post_mentor.job_title
+								%td= post_mentor.get_skill
+								%td= post_mentor.job_interview == '1' ? 'Yes' : 'No'
+								%td= post_mentor.job_description
+								%td=l post_mentor.created_at, :format =>"%Y-%m-%d %H:%M"
+								%td
+									= link_to t('.edit', :default => t("helpers.links.edit")), edit_post_mentor_path(post_mentor), :class => 'btn btn-mini'
+									= link_to t('.destroy', :default => t("helpers.links.destroy")), post_mentor_path(post_mentor), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+						%tr
+							%td{:colspan=>"6"}= will_paginate @post_mentors
+				.row.last-row
+					.span10.control-box
+						= link_to t('.new', :default => t("helpers.links.new")), new_post_mentor_path, :class => 'm-btn blue'
+:javascript 
+	$('ul.nav-tabs li').eq(1).addClass('isCurrent');

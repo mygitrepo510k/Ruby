@@ -1,0 +1,56 @@
+.child-activities-lists{
+	.tabContainer {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0 14px 14px 14px;
+    box-shadow: 1px 1px 3px rgb(153, 153, 153);
+    padding-bottom: 14px;
+    .tabAction {
+	    background-color: rgb(93, 191, 171);
+	    border-bottom: 1px solid rgb(255, 255, 255);
+	    border-radius: 0 14px 0 0;
+	    height: 36px;
+	    .activityAction {
+		    float: right;
+		    padding-right: 16px;
+		    padding-top: 3px;		    
+			}			
+		}
+		#show_child_activities_list_div{
+			.tableGride{
+				position: relative;
+				border-collapse: collapse;
+				border-spacing: 0;
+				th {
+			    background-color: rgb(212, 212, 212);
+			    border: 1px solid rgb(190, 190, 190);
+			    padding: 10px 8px;
+			    inputField {
+				    background-color: rgb(244, 244, 244);
+				    border: 1px solid rgb(204, 204, 204);
+				    border-radius: 6px 6px 6px 6px;
+				    color: rgb(151, 151, 151);
+				    font: 400 12px 'Open Sans',sans-serif;
+				    padding: 5px;
+					}						
+				}
+				th.sort{
+					span{
+						float: left;
+					}
+					span.srArrow {
+				    background: url("dn_arrow.png") no-repeat scroll left top transparent;
+				    display: inline-block;
+				    float: right;
+				    height: 5px;
+				    margin-top: 5px;
+				    width: 9px;
+					}						
+				}
+			}
+		}
+		.padLeft10 {
+	    color: rgb(204, 204, 204);
+	    padding-left: 10px !important;	    
+		}
+	}
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PARADIGM VOICEOVER</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+	<!--[if lt IE 9]>
+	  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>
+</head>
+<body>
+<%= render 'shared/announce' %>
+
+<div id="container">
+    <a name="top"></a>
+<div id="header">
+</div><!--header-->
+
+    <div id="maincontent">
+			<%= render 'shared/nav' %>
+      <div id="search">
+			</div><!--search-->
+			<%= render 'shared/contacts' %>
+					
+					<div style="position:relative;left:50px;">
+						<%= yield %>
+						<%= yield :scripts %>
+					</div>
+       <div class="clearfix"></div>
+    </div><!--maincontent-->
+    
+		<div class="clearfix"></div>
+    <div id="footer">
+    <%= link_to "Commercial", browse_path(category: "Commercial") %>&nbsp;|&nbsp;
+    <%= link_to "Promo", browse_path(category: "Promo") %>&nbsp;|&nbsp;
+    <%= link_to "Narration/Documentary", browse_path(category: "Narration/Documentary") %>&nbsp;|&nbsp;
+    <%= link_to "Political", browse_path(category: "Political") %>&nbsp;|&nbsp;
+    <%= link_to "Trailer", browse_path(category: "Trailer") %>&nbsp;|&nbsp;
+    <%= link_to "Animation", browse_path(category: "Animation") %>&nbsp;|&nbsp;
+    <%= link_to "Books on Tape", browse_path(category: "Books on Tape") %>&nbsp;|&nbsp;
+    <a href="#top">Top Of Page</a>&nbsp;|&nbsp;
+    <%= link_to "Terms of Use", terms_path %><br /><br />
+    &copy; <%= Time.now.year %> Paradigm Agency. All Rights Reserved.
+    </div>
+  </div><!--container-->
+</body>
+</html>

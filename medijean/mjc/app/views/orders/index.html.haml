@@ -1,0 +1,49 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.nav-top-bar
+      =render "users/dashboard-nav"
+    .row.oh-page-container
+      .row.title
+        .span3.title-span
+          %label.page-title
+            = t("order.index.heading")
+        .span4.pg-float
+          =link_to t("order.index.new_order"), prescriptions_path, :class => "btn gb-btn"
+      .row.page-content
+        %table.table.dashboard-table
+          %tr.th-bckgrnd
+            %th.homepg-header
+              = t("order.index.order_no")
+            %th.homepg-header
+              = t("order.index.order_date")
+            %th.homepg-header
+              = t("order.index.amount")
+            %th.homepg-header
+              = t("order.index.status")
+            %th.homepg-header
+              = t("order.index.action")
+          - unless @orders.blank?    
+            - @orders.each do |order|
+              %tr
+                %td
+                  = order.id
+                %td
+                  = order.created_at.strftime("%b %d, %Y")
+                %td
+                  $
+                  = order.sub_total
+                %td
+                  = order.status
+                %td
+                  =link_to t("order.index.view"), order
+          - else
+            %tr
+              %td{:colspan => 6} 
+                %p.text-center
+                  = t("order.index.text1")
+      .row.empty-row
+      .row.empty-row
+      .row.empty-row
+      .row.page-content
+        .right-align
+          = paginate @orders

@@ -1,0 +1,23 @@
+// Place all the styles related to the applicants controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.applicants-content-row{
+	margin-top: 130px;
+	margin-bottom:50px;
+	.head{
+		background-color: #ccc;
+		padding: 10px 20px;
+		margin-top: 10px;
+	}
+	.applicants-item{
+		background-color: #ccc;
+		padding: 20px;
+		margin-top: 10px;
+		.attache_file{
+			background: url("/assets/attach_icon.png") no-repeat scroll 0 0 transparent;
+    	padding-left: 22px;	
+		}
+	}
+	
+}

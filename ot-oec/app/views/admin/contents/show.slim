@@ -1,0 +1,19 @@
+.admin-contents-show.section.single
+  h2 Show contents
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li= link_to 'Contents', admin_contents_path
+    li.active= 'Content'
+
+  .field
+    label= "Name: " + @content.name
+  .field
+    label= "Description: " + @content.description
+  .field
+    label= "Content Type: " + @content.content_type
+  .field
+    label= "Month: " + @content.month.to_s
+  .field
+    label= "Content Option: " + Content::CONTENT_OPTIONS[@content.option.to_i]
+  .field
+    label= "Created At: " + @content.created_at.strftime("%m/%d/%y %H:%M")

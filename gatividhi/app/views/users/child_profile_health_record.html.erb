@@ -1,0 +1,25 @@
+<div style="" class="bodyWapper">  
+  <div class="bodyWapper">
+    <div class="tabBox">
+      <a href="/child_profile_health?id=<%= params[:id] %>" >General</a>
+      <a href="/child_profile_health_record?id=<%= params[:id] %>" class="tabSelected" >Health Records</a>
+      <a href="/child_profile_health_test_reports?id=<%= params[:id] %>">Test & Reports</a>
+      <a href="/child_profile_health_vaccination_medication?id=<%= params[:id] %>">Vaccination Medication</a>
+      <div class="CL"></div>
+    </div>
+    <div class="tabContainer">
+      <div class="tabAction">&nbsp;</div>
+      <div class="infoContainer fullWidthCon">
+        <div id="general_health_div">
+          <%= render :partial => "general_health"  %>
+        </div>  
+        <div id="injuries_div">
+          <%= render :partial => "injuries"  %>
+        </div>  
+        <div id="major_illnesses_div">
+          <%= render :partial => "major_illnesses"  %>
+        </div>  
+        </div>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container-fluid">
+	<div class = "devise-pages">
+		<div class="span8 offset1 confirmation-new">
+			<h3>Resend confirmation instructions</h3>
+
+			<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, :class => "form-horizontal" }) do |f| %>
+			  <%= devise_error_messages! %>
+
+			  <div class="control-group">
+				  <%= f.label :email, :class => "control-label" %>
+				  <div class="controls">
+				    <%= f.email_field :email, :autofocus => true %>
+				  </div>
+				</div>
+			  <div class="span2" style="margin-left:175px;"><%= f.submit "Resend confirmation instructions", :class=>"m-btn blue" %></div>
+			<% end %>
+
+		</div>
+
+	</div>
+</div>

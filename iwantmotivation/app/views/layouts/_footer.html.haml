@@ -1,0 +1,43 @@
+%footer
+	.footernew
+		.footerNewTopWrapSmall
+			.ftrNaviNew
+				%a{:href=>"./index.htm"}
+					Home |
+				%a{:href=>"./motivation"} 
+					Find Partners |
+				%a{:href=>"./privacy"}
+					Privacy Policy |
+				%a{:href=>"./online-coach-online-counselor"}
+					Find a Coach/Counselor |
+				%a{:href=>"./contact-us"}
+					Contact Us |
+				%a{:href=>"./terms"}
+					Terms |
+				%a{:href=>"./motivation-download"}
+					Store |
+				%a{:href=>"./forums"}
+					Partner Forums |
+				%a{:href=>"./shoppingcart"}
+					Shopping Carts |
+				%a{:href=>"./motivation-blog"}
+					Blog
+		.footerNewBottomWrapSmall
+			.copyRgtNew
+				&copy; Copyright 2013. I Want Motivation. All Rights Reserved.
+
+
+#email_box.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+	.modal-header
+		%button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+		%h3#myModalLabel New Message
+	.modal-body				
+		= simple_form_for :conversations, url: "/conversations", :html => { "data-validate" => "parsley", :id => "contact_form" } do |f|
+			= f.hidden_field :recipients, id: "recipients_hiddenfield"
+			.first-row
+				= f.input_field :subject, :placeholder => "Subject", "data-required"=>"true"
+			.second-row
+				= f.text_area :body, :rows=>"8", :cols => "10", :placeholder => "Message", "data-required"=>"true"
+			.modal-footer	 
+				= f.button :submit, "Send", class: 'm-btn blue'				
+				%button.m-btn{"data-dismiss"=>"modal", "aria-hidden"=>"true"}Close

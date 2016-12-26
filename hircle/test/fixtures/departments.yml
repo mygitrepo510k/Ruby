@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+design:
+  id: 1
+  name: Design
+  description: design ui
+  company_id: 1
+ 
+
+java:
+  id: 2
+  name: Java
+  description: java coder
+  company_id: 1

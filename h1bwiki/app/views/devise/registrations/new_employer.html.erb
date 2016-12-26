@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="span12 emp-sign-up">
+
+      <h2>Create an Employer Account</h2>
+      
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal", "data-validate" => "parsley" }) do |f| %>
+        <%= devise_error_messages! %>
+        <div class="control-group">
+          <%= f.label "Company Name", :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :company_name, :placeholder => "your company name", "data-required"=>"true" %>
+          </div>
+        </div>
+        <div class="control-group">
+          <%= f.label "Contact Person", :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :user_name, :placeholder => "contact person name", "data-required"=>"true" %>
+          </div>
+        </div> 
+
+        <div class="control-group">
+          <%= f.label :email, :class => "control-label" %>
+          <div class="controls">
+            <%= f.email_field :email, :autofocus => true, :placeholder => "your@email.com", "data-required"=>"true" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= f.label :contact_number, :class => "control-label" %>
+          <div class="controls">
+            <%= f.text_field :contact_number, :autofocus => true, "data-required"=>"true" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= f.label :password, :class => "control-label" %>
+          <div class="controls">
+            <%= f.password_field :password, "data-required"=>"true", "data-rangelength"=>"[8,25]" %>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <%= f.label :password_confirmation, :class => "control-label" %>
+          <div class="controls">
+            <%= f.password_field :password_confirmation, "data-required"=>"true", "data-rangelength"=>"[8,25]" %>
+          </div>
+        </div>
+<!--        
+        <div class="control-group">
+          <label class="control-label">Enter the Code Shown</label>
+          <div class="controls">
+            <%= recaptcha_tags %>
+          </div>
+        </div>
+-->        
+        <input type="hidden" name="user[account_type]" id="user_account_type" value="employer">
+        <div class="control-group">
+          <label class="checkbox">
+            <input type="checkbox" name="rangecheck" data-required="true" value="foo" class="parsley-validated" id="agree-privacy"> I agree to terms and privacy
+          </label>
+        </div>
+        <br />
+        <div class="row">
+          <%= f.submit "Sign up", :class => "m-btn blue btn-block", :id => "btn_employer_sign_up", :style=>" font-size: 28px;font-weight: 600;height: 54px;" %>
+        </div> 
+      <% end %>
+    </div>
+  </div>
+  <p>&nbsp;</p>
+</div>
+
+<script type="text/javascript">
+  $('#agree-privacy').click(function(){      
+      if($(this).is(":checked"))
+        $('#btn-sign-up').removeAttr('disabled');              
+      else        
+        $('#btn-sign-up').attr("disabled","disabled");
+  });
+</script>

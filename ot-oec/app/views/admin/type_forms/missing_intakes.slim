@@ -1,0 +1,15 @@
+.admin-missing_intakes.section.single
+
+	h2 Users missing intakes
+
+	table.table.table-striped
+	  tr
+	    th= 'Name'
+	    th= 'Email'
+	    th= 'Profile'
+
+	  - @users.each do |user|
+	    tr
+			td= user.name
+			td= user.email
+			td= link_to 'View', user_path(user)

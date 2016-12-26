@@ -1,0 +1,99 @@
+
+<div class="placeholder">
+  <span>
+    <%= image_tag("picture-upload/default-male.png") %>
+    <%= current_user.first_name %> <span class="last_name"><%= current_user.last_name %></span>
+    <div class="bottom_border"></div>
+  </span>
+
+</div>
+
+<div class="vertical-btns">
+  <%- if current_user.role.id == 4 %>
+    <div>
+      <%#= link_to("Picture Upload", "#", :class => "btn btn-active") %>
+    </div>
+	<div>
+      <%= link_to("Activity", "/", :class => "btn") %>
+    </div>
+    <div>
+      <%= link_to("Settings", user_settings_path, :class => "btn") %>
+    </div>
+  <%- else %>
+      <div>
+        <%#= link_to("Picture Upload", "#", :class => "btn btn-active") %>
+      </div>
+        <div>
+          <%= link_to("Create Space", spaces_path, :class => "btn") %>
+        </div>
+		<div>
+          <%= link_to("Activity", "/", :class => "btn") %>
+        </div>
+        <div>
+          <%= link_to("Department", departments_path, :class => "btn") %>
+        </div>
+		<div>
+          <%= link_to("Task", task_management_path, :class => "btn") %>
+        </div>
+		<div>
+          <%= link_to("Interview", interview_index_path, :class => "btn") %>
+        </div>
+		<div>
+          <%= link_to("Jobs", employer_jobs_path, :class => "btn") %>
+        </div>
+        <div>
+          <%= link_to("Settings", company_setting_path, :class => "btn") %>
+        </div>
+  <%- end %>
+</div>
+<div class="vertical-btns">
+</div>
+ <%- if current_user.role.id == 4 %>
+<div class="job-listings">
+  <h3 class="h3-common">Job Listing</h3>
+  <!-- job -->
+  <div class="job">
+      <img src="/assets/user-img/bambi.png"  width="34px" height="38px"/>
+      <div class="title-job">
+        <h4>Jennifer B.</h4>
+        <div>Executive Manager</div>
+      </div>
+      <div class="clear-fix"></div>
+
+      <div class="desc-job">
+        <i>Hiring</i>
+        <h4>Media Coordinator</h4>
+        <div class="summary-job">
+          In this Position, you will need experience with Salesforce and  Mediavisor.
+        </div>
+        <a href="#" class="btn btn-primary">Apply</a>
+        <div class="clear-fix"></div>
+        <div class="seprator"></div>
+      </div>
+  </div>
+  <!-- end job -->
+
+  <!-- job -->
+  <div class="job">
+    <img src="/assets/user-img/bambi.png"  width="34px" height="38px"/>
+    <div class="title-job">
+      <h4>Jennifer B.</h4>
+      <div>Executive Manager</div>
+    </div>
+    <div class="clear-fix"></div>
+
+    <div class="desc-job">
+      <i>Hiring</i>
+      <h4>Media Coordinator</h4>
+      <div class="summary-job">
+        In this Position, you will need experience with Salesforce and  Mediavisor.
+      </div>
+      <a href="#" class="btn btn-primary">Apply</a>
+      <div class="clear-fix"></div>
+      <div class="seprator"></div>
+    </div>
+  </div>
+  <!-- end job -->
+
+</div>
+<%- end %>

@@ -1,0 +1,95 @@
+.popupWindow{:style => "width: 600px; height: 565px;"}
+	.popupHead
+		.popupTitle{:style => "font-size:12px; line-height:1.2; padding-top:11px; padding-bottom:11px;"} You can start by adding a New Exam Schedule, or continue adding a schedule to an exam you\'ve created.
+		.closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+		.CL
+	.popupContaint
+		= form_for @child_exam_schedule, :url=>"/create_exam_schedule", :as =>"exam_schedule" do |f|
+			= hidden_field_tag "exam_id", @curr_exam.id
+			- if params[:edit]
+				= hidden_field_tag "schedule_id", @child_exam_schedule.id
+			
+			.popupSmForm
+			.popupTab
+				.popScroll
+					.popupFormBox{:style => "padding-top:0px;"}
+						.formRow.jqBigform
+							%label Class:
+							= f.select :current_class, @class_names, :style => "width:150px;"
+							.CL
+						.formRow.jqBigform
+							%label Exam Title:
+							%select#select{:name => "exam_schedule[exam_title]", :style => "width:150px;"}
+								%option= @curr_exam.title
+							.CL
+					.popupFormBox
+						.formRow.jqBigform
+							%label Subject: *
+							= f.select :subject, ChildProfileExamSchedule::SUBJECTS, :style => "width:150px;"
+							.CL
+						.formRow.jqBigform
+							%label Description:
+							%textarea.inputField#description{:name => "exam_schedule[description]", :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:200px;"}
+							.CL
+						.formRow
+							%label Date: *
+							%input#start_date.dateBox.inputField{:onblur => "if(this.value==''){ this.value='start date'; this.style.color='#979797'}", :onclick => "if(this.value=='start date'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "start date", :name => "exam_schedule[start_date]"}/
+							.CL
+						.formRow
+							%label Start Time: *
+							%span.formRow.jqBigform
+								%select#select{:name => "exam_schedule[start_time]", :style => "width:55px; margin-left:5px;"}
+									- (1..24).each do |i|
+										%option= i
+							.CL
+						.formRow
+							%label End Time:
+							%span.formRow.jqBigform
+								%select#select{:name => "exam_schedule[end_time]", :style => "width:55px; margin-left:5px;"}
+									- (1..24).each do |i|
+										%option= i
+							.CL
+						.formRow.jqBigform
+							.checkBoxTitle Team exam:
+							= f.check_box :team_exam
+							%label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+							.CL
+						.formRow.jqBigform
+							%label Exam Type:
+							= f.select :exam_type, ChildProfileExamSchedule::EXAM_TYPE, :style => "width:150px;"
+							.CL
+			.formRow.popActionBtn{:style => "text-align:right; padding-left:10px;"}
+				%input.submitBtn{:type => "submit", :value => "save"}/
+				%input.cancelBtn{:type => "button", :value => "save & add new exam",:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}/
+				%input.cancelBtn{:type => "button", :value => "save & add outcome",:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}/
+				%input.cancelBtn{:type => "button", :value => "cancel",:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}/
+
+:javascript
+	$('.jqGreenForm').jqTransform({imgPath:'images/'}); 
+	$('.jqSmallform').jqTransform({imgPath:'images/'}); 
+	$('.jqBigform').jqTransform({imgPath:'images/'}); 
+	$("#start_date").glDatePicker({
+		leftMargin: 50,
+		topMargin: -10
+	});		
+
+	$("#new_exam_schedule").submit(function() {
+		var chec_error = false;
+		$('p.errorMsgLeft').remove();
+
+		if($('#description').val()=="" || $('#description').val()=="description"){
+			$('#description').css('margin-bottom', '0px');
+			$("<p class='errorMsgLeft'>Please input</p>").insertAfter($('#description'))
+			chec_error = false;
+		}else{
+			$('#description').next().remove();
+			chec_error = true;
+		}
+
+		if(chec_error == false){
+			return false;
+		}else{
+			return true;		
+		}
+		return false;
+	})

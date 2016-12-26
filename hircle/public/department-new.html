@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Department</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- department.css -->
+    <link href="assets/css/department.css" rel="stylesheet" media="screen">
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="assets/ico/favicon.png">
+</head>
+<body>
+	<div id="page">
+		<div class="masthead"></div><!-- end of masthead -->
+		<div class="navigation">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span9">
+						<div class="navbar">
+						  <div class="navbar-inner">
+						    <a class="brand" href="#"></a>
+						    <ul class="nav">
+						    	<li class="divider-vertical"></li>
+								<li><a href="#">Dashboard</a></li>
+								<li class="divider-vertical"></li>
+								<li><a href="#">Resume</a></li>
+								<li class="divider-vertical"></li>
+								<li><a href="#">Jobs</a></li>
+								<li class="divider-vertical"></li>
+								<li><a href="#">Network</a></li>
+								<li class="divider-vertical"></li>
+								<li><a href="#">Groups</a></li>
+						    </ul><!-- end of nav -->
+						  </div><!-- end of navbar-inner -->
+						</div><!-- end of navbar -->
+					</div>
+					<div class="span3 clearfix">
+						<form class="navbar-search pull-right">
+						  <input type="text" class="search-query" placeholder="Search">
+						</form>
+					</div>
+				</div><!-- end of row-fluid -->
+			</div><!-- end of container-->
+		</div><!-- end of navigation -->
+		<div class="content">
+			<div class="container">
+				<div class="container-box">
+					<div class="row-fluid">
+						<div class="span3">
+							<div class="panel side department-picker J_DepartmentPanel">
+								<div class="hd"><span>Department</span></div>
+								<div class="bd">
+									<form class="add-department-form" id="J_AddDepartmentForm" method="POST">
+									LOADING...
+									</form>
+									<ol class="ordered-list department-list" id="J_DepartmentList">
+										<li> LOADING...
+										</li>
+									</ol>
+								</div>
+							</div><!-- end of department-picker -->
+							<ul class="side menu nav nav-tabs nav-stacked" id="J_SideMenu">
+								<li><span>LOADING...</span></li>
+							</ul><!-- end of menu -->	
+							<div class="panel side departement-meta" id="J_DepartmentMeta">
+								LOADING...
+							</div><!--end of departement-meta -->
+							<div class="panel side document-meta inactive" id="J_DocumentMeta">
+								<div class="hd"><span>Documents Meta</span></div>
+								<div class="bd" id="J_DocumentListBox">
+									LOADING...
+								</div>
+							</div>
+						</div> <!-- end of side section -->
+						<div class="span9"><!--right main section-->
+							<div class="panel detail" id="J_DetailPanel">
+								<!-- detail page-->
+							</div><!-- end of detail -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- end of content -->
+		<div id="push"><input type="hidden" value="1" class="_user_id_"></div><!--for stick footer-->
+	</div>
+	<div id="footer">
+	<div class="container">
+			<div class="footer-wrap">
+				<div class="row-fluid">
+					<p class="span3 copyright">&copy; Cloudxlfy All rights resered</p>
+					<p class="span9 sitemap">
+						<a href="#">Terms of agreement</a>&nbsp;|&nbsp;
+						<a href="#">Privacy terms</a>&nbsp;|&nbsp;
+						<a href="#">Contact us</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div><!-- end of footer -->
+	<!-- template -->
+	<script id="J_AddDepartmentFormTemplate" type="text/x-handlebars-template">
+		<div class="input-append" id="appendedInput">
+		  <input class="span10" placeholder="Insert a name..." id="J_DepartmentName" type="text"/>
+		  <button class="btn" id="J_AddDepartmentBtn" type="submit">Add</button>
+		</div>
+
+	</script>
+
+	<script id="J_DepartmentTemplate" type="text/x-handlebars-template">
+			<i class="icon-remove icon-white J_RemoveDepartment"></i>
+			<i class="icon-pencil icon-white J_EditDepartment"></i>
+		  	<a href="#/departments/{{oid}}">{{name}}</a>
+	</script>
+	<script id="J_SideMenuTemplate" type="text/x-handlebars-template">
+			<li><a href="#/departments/{{oid}}/employees" class="J_EmployeeMenu">Employee</a></li>
+			<li><a href="#/departments/{{oid}}/tasks" class="J_TaskMenu">Task</a></li>
+			<li><a href="#/departments/{{oid}}/activities" class="J_ActivityMenu">Conversation</a></li>
+			<li><a href="#/departments/{{oid}}/documents" class="J_DocmentMenu">Document</a></li>
+	</script>
+	<script id="J_DepartmentMetaTemplate" type="text/x-handlebars-template">
+		<div class="hd"><span>{{name}}</span></div>
+		<dl class="bd">
+			<dd>Manager: <a href="#">{{manager}}</a> </dd>
+				<dd>Employees: <a href="#">{{employees}}</a></dd>
+				<dd>Tasks: <a href="#">{{tasks}}</a></dd>
+				<dd>Documents: <a href="#">{{documents}}</a></dd>
+		</dl>
+	</script>
+	<script id="J_EmployeeFrameTemplate" type="text/x-handlebars-template" >
+		<div class="hd"><span>Employee</span></div>
+		<div class="bd">
+			<div class="employee-add-section" id="J_EmployeeAddSection"><!--child will be a form for add employee to the department-->
+			LOADING...
+			</div><!-- end of employee-add-section -->
+			<div class="employee-list" id="J_EmployeeList">
+			LOADING...
+			</div>
+		</div><!-- end of bd --><!--employee details-->
+
+	</script>
+	<script id="J_EmployeeTemplate" type="text/x-handlebars-template">
+		<p class="photo">
+				<span>
+					<img src="{{thumbnail}}" alt=""/>
+				</span>
+		</p>
+		<div class="summarize">
+			<p class="expand-btn"><i class="icon-chevron-up J_ToggleBtn"></i></p>
+			<i class="status {{status}}">&bull;</i>
+			<a href="#/employees/{{id}}" class="name">{{name}}</a>
+			<dl class="tag-list">
+				<dd>
+					{{#each tasks}}
+						<small class="tag">
+							{{title}}
+							{{#if status}}
+							<i class="icon-ok icon-white"></i>
+							{{/if}}	
+						</small>
+					{{/each}}
+					{{#each documents}}
+					<small class="tag">{{attach_file_name}}</small>
+					{{/each}}
+					&nbsp;
+				</dd>
+			</dl>
+			
+		</div>
+		<div class="bd">
+			<p class="motto">
+				<i>&ldquo;</i>
+				{{#with profile}}
+				{{motto}}
+				{{/with}}
+			</p>
+			<dl class="employee-info clearfix">
+				<dt>Email:</dt>
+				<dl>{{email}}&nbsp;</dl>
+			{{#with profile}}
+				<dt>Address:</dt>
+				<dl>{{address}}&nbsp;</dl>
+				<dt>Phone:</dt>
+				<dl>{{phone}}&nbsp;</dl>
+			{{/with}}
+				<dt>Tasks:</dt>
+				<dd>
+					{{#each tasks}}
+						<small class="tag">
+							{{title}}
+							{{#if status}}
+							<i class="icon-ok icon-white"></i>
+							{{/if}}	
+						</small>
+					{{/each}}
+					&nbsp;
+				</dd>
+				<dt>Docments:</dt>
+				<dd>
+					{{#each documents}}
+					<small class="tag">{{attach_file_name}}</small>
+					{{/each}}
+					&nbsp;
+				</dd>
+			</dl>
+		</div>
+	</script>
+	<script id="J_AddEmployeeFormTemplate" type="text/x-handlebars-template">
+		<form action="#" class="employee-add-form clearfix">
+			<input class="input-xlarge" id="J_AddEmployeeInput" type="text" placeholder="+Add employee...">
+			<a class="add-employee-btn btn btn-info" id="J_AddEmployeeBtn" href="#"><i class="icon-user icon-white"></i> Add</a>
+			<ul class="suggest input-xlarge inactive" id="J_Suggest">
+			</ul>
+			<dl class="employee-pool"><!-- employee added will attach thumb here -->
+				<dd id="J_EmployeeCandidatePool"></dd>										
+			</dl><!--end of employee-pool -->
+			<dl class="employee-info clearfix" id="J_EmployeeWorkInfo">
+				<dd></dd>
+			</dl>
+			<button type="submit" class="J_AddEmployeeToDepartmentBtn btn btn-primary pull-right">Update</button>
+		</form><!-- end of employee-add-form -->
+
+	</script>
+
+	<script id="J_EmployeeWorkInfoTemplate" type="text/x-handlebars-template">
+		<dt>Tasks:</dt>
+				<dd>
+					{{#each tasks}}
+						<small class="tag">
+							{{title}}
+							{{#if status}}
+							<i class="icon-ok icon-white"></i>
+							{{/if}}	
+						</small>
+					{{/each}}
+					&nbsp;
+				</dd>
+				<dt>Docments:</dt>
+				<dd>
+					{{#each documents}}
+					<small class="tag">{{attach_file_name}}</small>
+					{{/each}}
+					&nbsp;
+				</dd>
+	</script>
+	<script id="J_EmployeeCardTemplate" type="text/x-handlebars-template">
+
+			<img data-src="holder.js/20x20" src="{{thumbnail}}" alt="">
+		 	<small>{{name}}</small>
+		 	<i data-oid="{{oid}}" class="icon-remove J_RemoveEmployeeCard"></i>
+
+	</script>
+	<script id="J_MessageTemplate" type="text/x-handlebars-template" >
+		<div class="text-details host clearfix J_ReplyTrigger">
+		
+			<p class="photo">
+				<span>
+					<img src="{{thumbnail}}" alt="">
+				</span>
+			</p>
+			<p class="text-body">
+				{{content}}
+				<a class="action-reply J_ReplyAction" href="#">Reply</a>
+				<span class="time">{{time_short}}</span>
+			</p>
+			
+		</div>
+		<div class="editor inactive"><form class="J_SubmitReplyForm"><textarea data-replyid="{{comment_id}}"  data-actid="{{activity_id}}" row="1"></textarea></form></div>
+		{{#each replys}}
+		<div class="text-details reply clearfix J_ReplyTrigger">
+			
+			<p class="photo">
+				<span>
+					<img src="{{thumbnail}}" alt="">
+				</span>
+
+			</p>
+			<p class="text-body">
+				{{content}}
+				<a class="action-reply J_ReplyAction" href="#">Reply</a>
+				<span class="time">{{time_short}}</span>
+			</p>
+
+		</div>
+		<div class="editor inactive"><form class="J_SubmitReplyForm"><textarea data-replyid="{{comment_id}}" data-actid="{{activity_id}}" row="1"></textarea></form></div>
+		{{/each}}
+			
+	</script>
+
+	<script id="J_ActivityDetailPageTemplate" type="text/x-handlebars-template" >
+			<div class="hd">
+				<span>Activities</span>
+			</div>
+			<div class="bd" id="J_ActivitySections">
+			</div>
+	</script>
+	<script id="J_ActivitySectionTemplate" type="text/x-handlebars-template">
+					<p class="top-seperator"></p>
+					<p class="date-time"><span>{{timeline}}</span></p>
+					<!--J_ActivityBoxTemplate -->
+				{{#each activities}}
+					<div class="drawer-box J_ExpandableBox"  data-actid="{{activity_id}}">
+						<div class="summarize clearfix">
+							<p class="expand-btn">
+								<i class="icon-chevron-up J_ExpandBtn"></i>
+							</p>
+							<p class="text J_ActiviyType" data-type="{{type}}">
+								<a href="#" class="from">{{from}}</a> started a <a href="#" class="type">conversation</a> with {{#each to}}<a class="to" href="#">{{this}}</a>{{/each}}
+							</p>
+							<p class="text J_ActiviyType" data-type="{{type}}">
+								<a href="#" class="from">{{from}}</a> upload a <a href="#" class="type">file</a> for {{#each to}}<a class="to" href="#">{{this}}</a>{{/each}}
+							</p>	
+							<p class="text J_ActiviyType" data-type="{{type}}">
+								<a href="#" class="from">{{from}}</a> assigned a <a href="#" class="type">task</a> to {{#each to}}<a class="to" href="#">{{this}}</a>{{/each}}
+							</p>						
+						</div>
+						<div class="bd J_CommentBox" data-actid="{{activity_id}}">
+						</div>
+					</div>
+				{{/each}}					
+
+	</script>
+	<script  id="J_DocumentTemplate" type="text/x-handlebars-template">
+		<a href="{{pointer}}" target="_blank">&nbsp;{{attach_file_name}}&nbsp;</a>
+	</script>
+
+	<script  id="J_DocumentMetaTemplate" type="text/x-handlebars-template">
+		<div class="upload-frame">
+			<iframe src="../upload.html#{{user_id}}/{{department_id}}" frameborder="0"></iframe>
+		</div>
+		<ul class="document-list" id="J_DocumentList">
+		</ul>
+	</script>
+	<!-- end of template -->
+	<!-- all the js should put here -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<script src="assets/js/handlebars.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/holder/holder.js"></script>
+    <script src="assets/js/underscore.js"></script>
+    <script src="assets/js/backbone.js"></script>
+    <script src="assets/js/department.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1><%= @post_job.job_title %></h1>
+    <table align="center" border="1" style="margin-top:10px;margin-bottom:10px;border:1px solid #d0d2d3;border-radius:6px;width:80%" cellpadding="0" cellspacing="0">
+      <tbody>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Job Title
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= @post_job.job_title %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Job Posted On
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= @post_job.created_at.strftime("%b %d %y") %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Job Type
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  <%= @post_job.get_jobtype if  @post_job.class.name == "PostJob"%>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Required Skills
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= @post_job.get_skill.split(' ').join(',') if  @post_job.class.name == "PostJob"%>
+              </td>
+          </tr>
+          
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Location
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  <%= @post_job.job_city if  @post_job.class.name == "PostJob"%> <br>United States of America
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Job duration
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  <%= @post_job.job_duration if  @post_job.class.name == "PostJob"%>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  PayRate
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  <%= @post_job.refe_amount if  @post_job.class.name == "PostJob" %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  JobDescription
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= ActionView::Base.full_sanitizer.sanitize(@post_job.job_description[0..70]) %>
+              </td>
+          </tr>
+          <tr>
+              <td align="left" style="width:30%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                  Posted by
+              </td>
+              <td style="text-align:left;padding-right:10px;width:50%;font:normal 13px Arial;color:#333333;padding-left:10px;padding-top:7px;padding-bottom:7px">
+                <%= @post_job.user.full_name if @post_job.user.present?%>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+    
+    <p>
+    	Please use the below link, to view job description.
+    </p>
+      <%= link_to "Click here to view complete Job details and Apply...", @url, :style => "color:#4e8abe;text-decoration:underline", :target => "_blank"%>
+      <label>
+        Click here to view complete Job details and Apply...
+        <br/>
+        <%= @url %>
+      </label> 
+		<p>
+    	Thanks,
+			<%= @name %>
+    </p>    
+  </body>
+</html>

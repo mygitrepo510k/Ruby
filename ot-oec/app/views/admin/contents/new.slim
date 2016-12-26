@@ -1,0 +1,10 @@
+.admin-contents-new.section.single
+	h2 Create an event
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Contents', admin_contents_path
+		li.active= 'Add Content'
+
+	= render 'form'
+	br

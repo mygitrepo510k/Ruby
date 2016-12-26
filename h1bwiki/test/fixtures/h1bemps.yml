@@ -1,0 +1,43 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  employername: MyString
+  empAddress: MyString
+  empCity: MyString
+  empState: MyString
+  empZip: MyString
+  h1BTotalApplied: MyString
+  h1TotalDenied: MyString
+  h1bApprovalRate: MyString
+  prevh1Count: MyString
+  gcTotalApplied: MyString
+  gcTotalDenied: MyString
+  gcApprovalRate: MyString
+  prevgcCount: MyString
+  prevh1Flag: MyString
+  prevGCFlag: MyString
+  h1bARateFlag: MyString
+  gcARateFlag: MyString
+  everifiedFlag: MyString
+  Workforcesize: MyString
+
+two:
+  employerName: MyString
+  empAddress: MyString
+  empCity: MyString
+  empState: MyString
+  empZip: MyString
+  h1BTotalApplied: MyString
+  h1TotalDenied: MyString
+  h1bApprovalRate: MyString
+  prevh1Count: MyString
+  gcTotalApplied: MyString
+  gcTotalDenied: MyString
+  gcApprovalRate: MyString
+  prevgcCount: MyString
+  prevh1Flag: MyString
+  prevGCFlag: MyString
+  h1bARateFlag: MyString
+  gcARateFlag: MyString
+  everifiedFlag: MyString
+  Workforcesize: MyString

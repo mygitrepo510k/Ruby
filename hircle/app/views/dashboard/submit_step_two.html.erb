@@ -1,0 +1,34 @@
+<div id="content_wrap" class="container">
+	<div id="left_side">
+		<%= render :partial => "left_side" %>
+	</div>
+	<div id="main_area">
+
+		<div class="span10" style="width:79%;" >
+			<!--Body content-->
+			<h3>New Job</h3>
+			<%= form_tag("/submit_step_two") do %>
+			<div class="field">
+				<%= label_tag :visibility, "Job Only Visible to:" %>
+				<br />
+				<%= select_tag :visibility,options_for_select( Job::VISIBILITY.map { |v| [v.first, v.last] }) %>
+			</div>
+			<div class="field">
+				<%= label_tag :field %>
+				<br />
+				<%= text_field_tag :field %>
+			</div>
+			<div class="field">
+				<%= label_tag :tag %>
+				<br />
+				<%= text_field_tag :tag %>
+			</div>
+			<input type="hidden" name="job_id" value="<%=@job.id%>">
+			<div class="actions">
+				<%= submit_tag "Submit" %>
+			</div>
+			<% end %>
+			<!--Body content ends-->
+		</div>
+	</div>
+</div>

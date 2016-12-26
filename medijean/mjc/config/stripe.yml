@@ -1,0 +1,19 @@
+defaults: &defaults
+  api_key: sk_test_2U7DbU9aFtcV02SCkYPsIuqz
+  stripe_public_key: pk_test_Y1ToSkn2w2prXGTGyn3KiFht
+
+development:
+  <<: *defaults
+
+test: &test
+  <<: *defaults
+
+bvt:
+  <<: *defaults
+
+production:
+  api_key: <%= ENV['STRIPE_API_KEY'] %>
+  stripe_public_key: <%= ENV['STRIPE_PUBLIC_KEY'] %>
+
+cucumber:
+  <<: *test

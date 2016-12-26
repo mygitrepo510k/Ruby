@@ -1,0 +1,86 @@
+.row-fluid
+  .span4
+    = link_to user_photo('img-polaroid fancybox', 'medium', 'medium', @user), "#", id: "profile-gallery", title: 'Click on the profile photo to show the user\'s gallery'
+    .photo-text
+    %br
+    #profile-images
+      %ul
+        - @user.user_photos.each do |photo|
+          %li
+            = link_to("", photo.image(:large), title: photo.description, class: "fancybox", rel: "gallery", id: "image_#{photo.id}")
+    %br
+    - if @user == current_user
+      = link_to "Edit Profile", edit_user_path(@user), class: "btn btn-block btn-primary"
+      = link_to "Upload Photos", new_user_user_photo_path(@user.username), class: "btn btn-block btn-primary"
+      = link_to "Edit Photos", user_user_photos_path(@user.username), class: "btn btn-block btn-primary"
+    - else
+      = link_to new_message_path(recipient: @user.id), class: "btn btn-block btn-primary", remote: true do
+        %i.icon-envelope.icon-white
+        Message
+      = link_to new_flirt_path(recipient: @user.id), class: "btn btn-block btn-primary", remote: true do
+        %i.icon-star.icon-white
+        Flirt
+      = link_to manage_likes_path(@user), class: "btn btn-block btn-primary", id: "like_button", remote: true do
+        = like_button_text(@user)
+  .span7.offset1
+    .alert.alert-block
+      %h3
+        = @user.username
+        = rating_image(@user, 'small', 'right')
+        - if @user.premium
+          = image_tag 'profile-premium-badge.png', title: 'Premium Member', class: "pull-right"
+      %small
+        = age(@user.date_of_birth)
+        %br
+        = "#{@user.city}, #{@user.country}"
+    = @user.profile_title
+    %p
+      About Me...
+      %em= @user.profile_description
+    %p
+      I'm Looking For...
+      %em= @user.looking_for
+    #accordion2.accordion
+      - @user.profile_sections.each do |ps|
+        .accordion-group
+          .accordion-heading
+            = link_to "##{ps.slug}", class: "accordion-toggle", "data-toggle" => "collapse", "data-parent" => "#accordion2" do
+              = ps.name
+          %div{id: ps.slug, class: "accordion-body collapse #{"in" if ps == @user.profile_sections.first}" }
+            .accordion-inner
+              %table.table.table-condensed.table-bordered.table-striped
+                - @user.profile_questions(ps.id).each do |pq|
+                  %tr
+                    %td= pq.profile_question.question
+                    %td= pq.get_answer.join(', ')
+
+:css
+  .slider {
+    width: 50px;
+  }
+  #profile-images {
+    display: none;
+  }
+
+  #fancybox-left-ico {
+    visibility: visible;
+    left: 20px;
+  }
+  #fancybox-right-ico {
+    visibility: visible;
+    left: auto;
+    right: 20px;
+  }
+:coffee
+  $(document).ready ->
+    $('a.fancybox').fancybox
+      openEffect: 'elastic'
+      cyclic: 'true'
+      titlePosition: 'over'
+    $('a#profile-gallery img').attr('title', $(this).parent().attr('title'))
+    $('a#profile-gallery').click ->
+      image = $("a.fancybox#image_#{@user.profile_photo_id}").length
+      if image  > 0
+        $("a.fancybox#image_#{@user.profile_photo_id}").click()
+      else
+        $('a.fancybox:first').click()

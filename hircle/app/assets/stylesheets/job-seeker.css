@@ -1,0 +1,220 @@
+#content_wrap {
+    margin-top: 5px;
+}
+/* customizing bootstrap */
+.vertical-btns .btn{
+    padding-left: 9px;
+    width:128px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;;
+    border-radius: 0 0 0 0;
+}
+
+.vertical-btns .btn:hover{
+    background: none repeat scroll 0 0 #0C5892;
+    border-radius: 0 0 0 0;
+    color: white;
+}
+
+.vertical-btns .btn-active{
+    background: none repeat scroll 0 0 #0C5892;
+    border-radius: 0 0 0 0;
+    color: white;
+    padding-left: 9px;
+}
+.placeholder {
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    height: 195px;
+    margin: 0 auto 10px;
+    text-align: center;
+    width: 140px;
+}
+.placeholder img {
+    margin-top: 5px;
+}
+.placeholder .last_name{
+    font-weight: bold;
+}
+.placeholder .bottom_border {
+    height: 3px;
+    background-color: #0c5892;
+}
+.vertical-btns .msgs-btn{
+    background-image: url("msg-btn.png");
+    display: inline-block;
+    height: 14px;
+    margin: 0 0 0 15px;
+    width: 24px;
+    vertical-align: middle;
+}
+
+.vertical-btns .settings-btn{
+    background-image: url("settings-btn.png");
+    display: inline-block;
+    height: 20px;
+    margin: 0 0 0 15px;
+    width: 24px;
+    vertical-align: middle;
+}
+
+.vertical-btns .group-btn{
+    background-image: url("group-btn.png");
+    display: inline-block;
+    height: 20px;
+    margin: 0 0 0 15px;
+    width: 24px;
+    vertical-align: middle;
+}
+
+#left_side{
+    width:200px;
+    float: left;
+    /*border-right:1px solid #dedede;*/
+}
+
+#main_area{   
+    float: left;
+}
+
+#right_side{
+    width:266px;
+    float: left;
+    border-left:1px solid #dedede;
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.h3-common{
+    font-size: 14px;
+    color:#ffffff;
+    background: #0c5892;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    margin-bottom: 0;
+}
+
+.job-listings .job{
+    height: 210px;
+    margin-top: 15px;
+}
+
+.job-listings img{
+    float:left;
+}
+
+.job-listings .title-job{
+    float: left;
+    color:#656565;
+    margin:0 0 0 5px;
+    line-height: 12px;
+}
+
+.job-listings .job h4{
+    font-size: 13px;
+    margin:0;
+}
+
+.job-listings .title-job div{
+    font-size: 12px;
+}
+
+.job-listings .desc-job{
+    font-size: 13px;
+    color:#656565;
+    line-height: 17px;
+    margin-top:10px;
+
+}
+
+.job-listings .desc-job h4,.job-listings .desc-job i{
+    color:#075f9c;
+    margin:0;
+}
+
+.job-listings .desc-job .summary-job{
+    margin-top: 15px;
+}
+
+.job-listings .desc-job .btn{
+    float: right;
+    font-size: 13px;
+    font-weight: 700;
+    height: 26px;
+    line-height: 24px;
+    padding: 0;
+    width: 63px;
+    margin-right: 6px;
+}
+
+
+.job-listings .desc-job .seprator{
+    border-bottom: 1px solid #FFF;
+    border-top: 1px solid #d0d0d0;
+    margin-top:15px;
+}
+
+.clear-fix{
+    clear: both;
+}
+
+.calender-img{
+    width:262px;
+    height:253px;
+    background: url(calender.png);
+
+}
+
+.border-rad-0{
+    border-radius: 0 !important;
+}
+
+#right_side .input-append input{
+    padding: 0;
+    font-size: 12px;
+    font-weight: 700;
+    width: 239px;
+}
+
+#right_side .input-append .add-on{
+    background: #FFF !important;
+    padding: 0px 2px;
+}
+
+#right_side .input-append{
+    height: 25px !important;
+}
+
+.contacts-listing .contact img{
+    float: left;
+    margin:0 0 0 8px;
+
+}
+
+.contacts-listing .contact .contact-desc{
+    float: left;
+    line-height: 14px;
+    margin: 8px 0 0 8px;
+
+}
+
+.contact .contact-desc h4{
+    font-size: 14px;
+    margin: 0;
+    color:#075f9c;
+}
+
+.contact .contact-desc div{
+    font-size: 12px;
+    color:#656565;
+}
+
+.contact .seprator{
+    background: url(sep.png) repeat-x;
+    height: 1px;
+    margin: 7px 0 7px 0;
+}

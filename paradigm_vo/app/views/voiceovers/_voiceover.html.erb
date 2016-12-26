@@ -1,0 +1,26 @@
+<style type="text/css">
+	a.media   { display: block; }
+	div.media { font-size: small; margin: 2px 0; width: 100% !important }
+	div.media div, div.iframe_caption { font-style: italic; color: #888; }
+</style>
+
+<script src="http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"></script>
+<script type="text/javascript" src="/js/jquery.media.js"></script>
+<script type="text/javascript" src="/js/jquery.metadata.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('a.media').media( { width: 165, height: 20 } );
+    });
+</script>
+
+<div class="voiceover" id="voiceover_<%= voiceover.id %>">
+	<%= voiceover.file_name.present? ? voiceover.file_name : voiceover.voiceover_identifier %>
+  <br>
+  <a style="position:relative;left:50px;" class="media" href="<%= voiceover.voiceover.url %>"></a>
+	<br>
+  <%= link_to 'download', artist_voiceover_path(artist_id: @artist, id: voiceover) %>
+  |
+  <%= link_to 'edit', edit_artist_voiceover_path(artist_id: @artist, id: voiceover) %>
+  |
+  <%= link_to 'del', artist_voiceover_path(artist_id: @artist, id: voiceover), :confirm => 'Are you sure?', :method => :delete %>
+​</div><br>

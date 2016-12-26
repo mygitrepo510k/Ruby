@@ -1,0 +1,5 @@
+Welcome <%= @resource.email %>!
+
+You can confirm your admin account with the Paradigm Voiceover site through the link below:
+
+<%= confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>

@@ -1,0 +1,91 @@
+.row
+  .span12.wrapper
+    = render "dashboard-nav"
+    .row
+      .span10.offset1.wrap
+        .row.empty-row
+        .row.main-row
+          .span3
+            %h3.homepg-header
+              Dashboard
+        .row.main-row
+          .span3
+            %h4 Prescription Order History
+          .span2.offset4
+            =link_to "Submit New Order" ,users_dashboard_path, :class => "btn btn-inverse"
+        %hr
+        .row
+          .span10
+            %table.table.dashboard-table
+              %tr.th-bckgrnd
+                %th.homepg-header
+                  Prescription No.
+                %th.homepg-header
+                  Order Date
+                %th.homepg-header
+                  Amount Paid
+                %th.homepg-header
+                  Shipping Status
+              %tr
+                %td
+                  247398
+                %td
+                  May 5, 2013
+                %td
+                  $380.00
+                %td
+                  Received
+              %tr
+                %td
+                  247398
+                %td
+                  May 5, 2013
+                %td
+                  $380.00
+                %td
+                  Received
+              %tr
+                %td
+                  247398
+                %td
+                  May 5, 2013
+                %td
+                  $380.00
+                %td
+                  Received
+              %tr
+                %td
+                  247398
+                %td
+                  May 5, 2013
+                %td
+                  $380.00
+                %td
+                  Shipped
+              %tr
+                %td
+                  247398
+                %td
+                  May 5, 2013
+                %td
+                  $380.00
+                %td
+                  Shipped
+              %tr
+                %td
+                  247398
+                %td
+                  May 5, 2013
+                %td
+                  $380.00
+                %td
+                  Shipped
+              %tr
+                %td
+                  247398
+                %td
+                  May 5, 2013
+                %td
+                  $380.00
+                %td
+                  Leaving Warehouse

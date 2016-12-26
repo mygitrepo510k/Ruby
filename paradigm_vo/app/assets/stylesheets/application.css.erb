@@ -1,0 +1,415 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require jquery.fileupload-ui
+ *= require_tree .
+*/
+
+h1{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 28px;
+font-weight: bold;
+color: #D45B2E;
+}
+h2{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 28px;
+font-weight: bold;
+color: #D45B2E;
+}
+h2{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 18px;
+font-weight: bold;
+color: #D45B2E;
+}
+h4{ text-transform:uppercase; margin-left:10px; }
+
+p {
+	margin:12px;
+}
+body{
+    margin:0; 
+    padding:0; 
+    border:0;
+    }
+img{ 
+    border:none;
+    }
+a{
+    color:#d45b2e !important;
+}
+a:hover{
+    text-decoration:none !important;
+    }
+a.current_page {
+    text-decoration:none;
+    }
+a.current_page:hover {
+		background:white;
+    text-decoration:none;
+	}
+.divider{
+    width:212px;
+    height:42px;
+    background:url(<%= asset_data_uri 'hr.png' %>) repeat-x;
+    }
+#container{
+    width:854px;
+    margin: 0 auto;
+    font-family:Arial, Helvetica, sans-serif;
+    }
+
+#maincontent{
+    width:854px;
+    margin:0px auto;
+    background:url(<%= asset_data_uri 'body_bg.png' %>) repeat-y;
+    padding:12px 0;
+    }
+
+#video{
+    background:url(<%= asset_data_uri 'video_bg.png' %>) no-repeat;
+    float:left;
+    width:480px;
+    height:320px;
+    display:block;
+    margin-left:20px;
+    }
+
+.inline {
+	display: inline;
+}
+
+#terms {
+	width: 750px;
+}
+
+/* Forms */
+
+label{
+font-family: Verdana, Arial, Helvetica, sans-serif;
+font-size: 14px;
+font-weight: bold;
+color: #313030;
+text-align:right;
+font-weight:700;
+display:list-item;
+list-style:none;
+float:left;
+}
+    
+input[type=text],input[type=text]:focus,input[type=email],input[type=email]:focus,input[type=password],input[type=password]:focus,textarea{
+    width:200px;
+    text-indent:2px;
+    height:18px;
+    font-size:16px;
+    border:1px solid #d45b2e;
+    color:#414040;
+}
+
+/* Jquery Tools */
+/* Overlay */
+/* close button positioned on upper right corner */
+#facebox {
+	z-index:100000;
+}
+
+.close {
+	background-image:url(<%= asset_data_uri 'apple-close.png' %>);
+	position:absolute;
+	right:-15px;
+	top:-15px;
+	cursor:pointer;
+	height:28px;
+	width:28px;
+}
+
+/* INCLUDES   */
+/* header */
+#header {
+    height:283px;
+    width:855px;
+    background:url(<%= asset_data_uri 'header_bg.png' %>);
+    margin:0px auto;
+    color:#d45b2e;
+    font:16px;
+    line-height:18px;
+    font-weight:bold;
+    }
+#header a{
+  color:#d45b2e;
+	float:right;
+}
+
+#blank{
+    width:272px;
+    height:100px;
+    position:relative;
+    left:76px;
+    top:10px;
+}
+
+#auth{
+	padding-top:27px;
+	padding-left:1px;
+
+}
+
+#auth a {
+		margin-right:4px;
+	}
+    
+#pagetitle{
+    width:250px;
+    float:right;
+    text-align:center;
+    position:relative;
+    right:20px;
+    top:78px;
+    }
+
+#phonenumber{
+    font-size:14px
+    }
+    
+    
+/* contacts on the left */
+#contacts{
+	width:212px;
+	display:block;
+	float:left;
+	font-size:11px;
+	font-weight:bold;
+	color:#414040;
+	border-right:solid 1px #d45b2e;
+	margin-left:20px;
+	margin-bottom:20px;
+	}
+#contacts a{
+    color:#414040;
+    }
+.contact_type{
+    font-family:12px; text-transform:uppercase;
+    }
+    
+/* Search */
+
+#search{
+    width:98%;
+		margin-top: -40px;
+		margin-right: 266px;
+		background-color:white;
+    color:#d45b2e;
+    height:60px;
+		float:right;
+    line-height:28px;
+    }
+#search a{
+  color:#d45b2e;
+}
+#new_voice {
+	float:right;
+	margin-top: 10px;
+	margin-left: 10px !important;
+}
+button {
+	overflow: visible;
+	width: auto;
+}
+button.search {
+	font-family: "Verdana" sans-serif;
+	font-size: 1em;
+	text-align: left;
+	color: blue;
+	background: none;
+	margin: 0;
+	padding: 0;
+	border: none;
+	cursor: pointer;
+	float:right;
+	padding-right:28px;
+}    
+#whatsnew{
+    float:right;
+    margin-right:20px;
+    font-weight:bold;
+    }
+
+/*  Footer  */
+
+#footer{
+    background:url(<%= asset_data_uri 'footer_bg.png' %>) no-repeat;
+    width:854px;
+    font-size:10px;
+    text-align:center;
+    padding-top:12px;
+    height:35px;
+    color:#000;
+    }
+#footer a{
+    width:854px;
+    text-align:center;
+    margin:8px 8px;
+    color:#000 !important;
+    }
+
+#footer a:hover{
+    text-decoration:none;
+    }
+    
+/* Artist Area*/
+#mens{
+    width:300px;
+    float:left;
+    color:#d45b2e;
+    margin-left:20px;
+    }
+#mentitle{
+    font-size:13px;
+    font-weight:bold;
+    text-transform:uppercase;
+    text-decoration:underline;
+    margin-bottom:8px;
+    }
+#womens{
+    width:200px;
+    float:left;
+    color:#d45b2e;
+    margin-left:20px;
+    }
+#womentitle{
+    font-size:13px;
+    font-weight:bold;
+    text-transform:uppercase;
+    text-decoration:underline;
+    margin-bottom:8px;
+    }
+.foldericon{
+    float:left;
+    margin-right:5px;
+    }
+.artistrow{
+    font-size:13px;
+    line-height:13px;
+    font-weight:bold;
+    margin-bottom:8px;
+    }
+.artistrow a{
+    color:#d45b2e;
+    }
+.file_name{
+    font-size:12px;
+    margin-left:25px;
+    height:16px;
+    line-height:22px;
+    font-weight:normal;
+    
+    }    
+
+/* =============== Top Announce =============== */
+div.announce a {
+  color: black;
+  font-weight: bold;
+}
+
+div.announce {
+  background-color: #d45b2e;
+  color: black;
+  text-align: center;
+  height: 30px;
+  font-size: 1.4em;
+  margin: 0;
+  padding: 6px 0 2px 0;
+  font-weight: bold;
+}
+
+.announce a:hover {
+  color: white;
+}
+
+.rightCloseButton {
+  text-decoration: none;
+  float: right;
+  margin-right: 50px;
+  width: 17px;
+  border: solid 2px black;
+}
+
+/* ====== BROWSER HACKS : DON'T DELETE ================================= */
+
+/*--------- CLEARFIX ---------*/
+#sub_container:after, .clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+  
+#sub_container, .clearfix {
+    display: inline-block;
+}  
+
+/* Holly Hack Targets IE Win only \*/
+    * html #sub_container, * html .clearfix {height: 1%;}
+    
+    #sub_container, .clearfix {display: block;}
+/* End Holly Hack */
+/*----------- END CLEARFIX -------------------*/
+
+/*Nav   */  
+    
+#nav {
+	float:right;
+  color:#fff;
+  line-height:18px;
+  position:relative;
+  top:-72px;
+  right:5px;
+}
+#nav a{
+  color:#fff !important;
+  font-size:9px;
+	padding-right:14px;
+	text-decoration:none;
+}
+
+.carousel-pills {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 10px;
+  display: block;
+  text-align: right;
+}
+
+.carousel-pills span {
+  display: inline-block;
+  margin: 0px 5px;
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+#playerPlaceholder{
+	margin-left:250px;
+	width:450px;
+}
+
+#myCarousel {
+	margin-left:250px;
+	width:450px;
+}
+
+.media img {
+	max-width: 120px;
+	max-height: 67px;
+}

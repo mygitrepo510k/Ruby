@@ -1,0 +1,78 @@
+.grey-bck
+  .row.container.center-div-no-bg
+    .span6.homepage-img-doctor-form
+      .row
+        .span6.home-signup
+          %h2.white-clr
+            = t("devise.new.doctor.title")
+      .row
+        .span5.white-clr.home-signup
+          %h4
+            = t("devise.new.doctor.text3")
+      .row
+        .span4.home-signup
+          = form_for(User.new, :as => :user, :url => registration_path(:user), :html => {:class => "sign_up_form", :method => :post}) do |f|
+            %p= devise_error_messages!
+            = hidden_field_tag :role, :doctor
+            %fieldset
+              = f.label :email_address, t("devise.email"), :class => "white-clr"
+              = f.email_field :email, :autofocus => true, :placeholder => "john@smith.com"
+            %fieldset
+              = f.label :password, t("devise.password"), :class => "white-clr"
+              = f.password_field :password, :placeholder => t('placeholders.password')
+            %button.btn.btn-orange
+              = t("devise.doctor_signup")
+            %fieldset.white-clr
+              / = check_box_tag :accept_agreement
+              = t("devise.new.doctor.text4")
+.grey-bck
+  .container.grey-bck
+    .row
+      .span12
+        %img{:src=>"/assets/Doctor_Homepage.jpg", :class=>"homepage-img1 home-img-doctor"}
+.homepage2-banner
+  .row.container.center-div-no-bg
+    = image_tag "homepage2.png", :class=> ".homepage-img2" if current_user.nil?
+.grey-bck
+  .container.grey-bck
+    .row
+      .span8.offset2
+        %h2.center-txt.homepg-txt1
+          = t("devise.new.doctor.text5")
+    %hr
+    .row
+      .span5.offset1
+        %h3.homepg-header
+          = t("devise.new.doctor.provide_better")
+        %p.homepg-txt
+          = t("devise.new.doctor.provide_better_desc")
+      .span4.offset1
+        = image_tag "homepage1.png"
+    %hr
+    .row
+      .span4.offset1
+        = image_tag "homepage4.png"
+      .span5.offset2
+        %h3.homepg-header
+          = t("devise.new.doctor.engage_patients")
+        %p.homepg-txt
+          = t("devise.new.doctor.engage_patients_desc")
+    %hr
+    .row
+      .span5.offset1
+        %h3.homepg-header
+          =t("devise.new.doctor.get_news")
+        %p.homepg-txt
+          =t("devise.new.doctor.get_news_desc")
+      .span4.offset1
+        = image_tag "know_center.jpg"
+    %br
+.grey-bckgrnd1
+  .row.container.center-div-no-bg
+    .row
+      .span4.offset2
+        %h3
+          = t("devise.new.doctor.text6")
+      .span4.offset1.grey-bck2
+        %a.btn.btn-orange{:href=> "#", :id => "hp-signup-LWR-btn"}
+          = t("devise.doctor_signup")

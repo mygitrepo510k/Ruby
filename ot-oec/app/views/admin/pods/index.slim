@@ -1,0 +1,22 @@
+.admin-pods.section.single
+  h3 Pods
+
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li.active= 'Pods'
+
+  = link_to 'Create New', new_admin_pod_path
+
+  table.table.table-striped
+    tr
+      th= 'Name'
+      th= 'Leader'
+      th= 'Users'
+
+    - @pods.each do |p|
+      tr
+        td= link_to p.name, admin_pod_path(p)
+        td= link_to p.leader.name, p.leader
+        td= p.users.count
+
+  = will_paginate @pods, renderer: BootstrapPagination::Rails

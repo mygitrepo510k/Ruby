@@ -1,0 +1,34 @@
+.container-fluid
+	.row.post-main-page{:style=>"margin-top:20px;margin-bottom:20px;"}
+		.row
+			.span9.page-msg-box
+				%p 
+					If you want to edit your job, Please go back to the Form Window.
+					%a{:href=>"#", :onclick=>"window.close(); window.history.back();"}Close Preview
+		.row
+			.span10.post-jobs-show-box
+				.row
+					.span10
+						%h1= @post_mentor.job_title
+				.row
+					.span3
+						%strong 
+							Skills: 
+					.span8
+						-@post_mentor.skill_lists.each do |skill_name|
+							%a.h1bwiki-skill{:href=>"#"}=skill_name.name					
+				.row
+					.span3
+						%strong 
+							Interview support:
+					.span8
+						%span=@post_mentor.job_interview == '1' ? 'Yes' : 'No'
+				.row
+					.span3
+						%strong 
+							Description: 
+					.span8
+						%label= markdown @post_mentor.job_description			
+			
+:javascript 
+	$('ul.nav-tabs li').eq(1).addClass('isCurrent');

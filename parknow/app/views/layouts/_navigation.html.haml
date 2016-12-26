@@ -1,0 +1,16 @@
+= link_to "Parknow", root_path, :class => 'brand'
+%ul.nav.nav-justified
+  - if current_user.present?
+    - if current_user.email=='parknow@admin.com'
+      %li
+        = link_to "Users", admin_users_path  
+
+%ul.nav.pull-right
+  - if current_user.present?
+    %li
+      = link_to "Log out", destroy_user_session_path, :method => :delete
+  - else
+    %li
+      = link_to "Sign In", user_session_path
+    %li
+      = link_to "Forgot Password", new_user_password_path

@@ -1,0 +1,53 @@
+.row{:style=>"margin-top: 66px;"}
+	= form_tag search_home_path, :method => :get, :id=>"home_search_form", :name => "search_form", :style=>"margin: 0 auto;width: 1150px;" do
+		= hidden_field_tag :search_type, '0', :id => "hidden_post_type"
+		= hidden_field_tag :type, '0', :id => "hidden_search_type"
+		.span7{:style=>"background-color: black;border-radius: 10px;height: 60px;margin-left: 0;padding-left: 7px;padding-top: 5px;width: 846px;"}
+			.span1{:style=>"width: 158px;"}
+				.btn-group{:style=>"width: 100px;"}
+					%a.btn.search-type-button-caption{:style=>"font-size: 24px;height: 32px;padding-top: 12px;width: 106px;border-radius: 10px 0 0 10px;"} Jobs
+					%a.btn.dropdown-toggle{:"data-toggle" => "dropdown", :style=>"height: 40px;border-radius: 0 10px 10px 0;"}
+						%span.caret{:style=>"margin-top: 20px;"}
+					%ul.dropdown-menu
+						%li
+							%a{:class => "post-type"} Jobs
+						%li
+							%a{:class => "post-type"} Trainings
+						%li
+							%a{:class => "post-type"} Mentors
+			.span3{:style=>"width: 245px;margin-left: 15px;"}
+				= text_field_tag :title, params[:title], :placeholder => "What?", :style=>" border-radius: 10px;font-size: 30px;height: 40px;padding-top: 5px;width: 230px;"
+			.span3{:style=>"width: 245px;margin-left: 15px;"}
+				= text_field_tag :city, params[:city], :placeholder => "Where?", :style=>" border-radius: 10px;font-size: 30px;height: 40px;padding-top: 5px;width: 230px;"
+			.span2{:style=>"width: 96px;margin-left: 15px;"}
+				.btn-group{:style=>"width: 140px;"}
+					%a.btn.type-button-caption{:style=>"font-size: 24px;height: 32px;padding-top: 12px;width: 82px;border-radius: 10px 0 0 10px;"} All
+					%a.btn.dropdown-toggle{:"data-toggle" => "dropdown",:style=>"height: 40px;border-radius: 0 10px 10px 0;"}
+						%span.caret{:style=>"margin-top: 20px;"}
+					%ul.dropdown-menu
+						%li
+							%a{:class => "search-type"} All
+						%li
+							%a{:class => "search-type"} Offered
+						%li
+							%a{:class => "search-type"} Wanted
+		.span2{:style=>"width:276px; height: 60px;margin-top: -2px;margin-left: 10px;"}
+			%a{:class=>"btn btn-primary", :style => "font-size: 30px;height: 36px;margin-top: 0;padding-bottom: 7px;padding-top: 15px;width: 200px;border-radius: 10px;", :href =>"javascript:search_form.submit();"}
+				%i{:class=>"icon-search", :style => "margin-right: 10px;"}
+				Search
+
+	
+:javascript
+	$('ul.dropdown-menu a.post-type').each(function(index){
+		$(this).click(function(){
+			$("#hidden_post_type").val(index);
+			$("a.search-type-button-caption").text($(this).text());
+		});
+	});
+
+	$('ul.dropdown-menu a.search-type').each(function(index){
+		$(this).click(function(){
+			$("#hidden_search_type").val(index);
+			$("a.type-button-caption").text($(this).text());
+		});
+	});

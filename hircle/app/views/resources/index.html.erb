@@ -1,0 +1,37 @@
+<h1>Listing resources</h1>
+
+<table>
+  <tr>
+    <th>Label</th>
+    <th>Pointer</th>
+    <th>Attach content type</th>
+    <th>Attach file name</th>
+    <th>Attach file size</th>
+    <th>Company</th>
+    <th>User</th>
+    <th>Update at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @resources.each do |resource| %>
+  <tr>
+    <td><%= resource.label %></td>
+    <td><%= resource.pointer %></td>
+    <td><%= resource.attach_content_type %></td>
+    <td><%= resource.attach_file_name %></td>
+    <td><%= resource.attach_file_size %></td>
+    <td><%= resource.company_id %></td>
+    <td><%= resource.user_id %></td>
+    <td><%= resource.update_at %></td>
+    <td><%= link_to 'Show', resource %></td>
+    <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
+    <td><%= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Resource', new_resource_path %>

@@ -1,0 +1,16 @@
+/ NOT USED
+    h1
+      | Dear 
+      = @user.name
+    br/
+    h2 Commented on your comment
+    br/
+    br/
+    label= 'Post Description: ' + @post.body
+    label= 'Comment Description: ' + @comment.body
+    br/
+    br/
+    br/
+    = link_to "view comment", @link
+    br/
+    br/

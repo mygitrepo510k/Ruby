@@ -1,0 +1,46 @@
+.span8
+  %legend Unapproved photos
+  - if @photos.size > 0
+    = form_tag admin_approve_photos_path, method: :post do
+      = link_to "Select all", "#", id: "select-all", class: "btn"
+      = link_to "Unselect all", "#", id: "unselect-all", class: "btn"
+      = submit_tag "Approve Selected", disable_with: 'Approving photos...', class: "btn btn-primary"
+      .separator
+      = render partial: 'photo', collection: @photos
+  %legend Statistics
+  %table.table.table-striped.table-condensed.table-bordered
+    %legend Users
+    %tr
+      %th
+      %th Active
+      %th Deactivated
+      %th Active Premium
+      %th Active Free
+    %tr
+      %th All
+      %td= User.active.count
+      %td= User.where(active: false).count
+      %td= User.active.joins(:subscription).where('subscriptions.active = ?', true).count
+      %td= User.active.count - User.active.joins(:subscription).where('subscriptions.active = ?', true).count
+    %tr
+      %th Male
+      %td= User.active.where(gender: 'M').count
+      %td= User.where(active: false).where(gender: 'M').count
+      %td= User.active.where(gender: 'M').joins(:subscription).where('subscriptions.active = ?', true).count
+      %td= User.active.where(gender: 'M').count - User.active.where(gender: 'M').joins(:subscription).where('subscriptions.active = ?', true).count
+    %tr
+      %th Female
+      %td= User.active.where(gender: 'F').count
+      %td= User.where(active: false).where(gender: 'F').count
+      %td= User.active.where(gender: 'F').joins(:subscription).where('subscriptions.active = ?', true).count
+      %td= User.active.where(gender: 'F').count - User.active.where(gender: 'F').joins(:subscription).where('subscriptions.active = ?', true).count
+.span4
+  %legend Abuse
+  %table.table-bordered.table-striped
+    %tr
+      %th Sender
+      %th Subject
+    - @abuse_messages.each do |message|
+      %tr
+        %td= link_to message.sender.username, admin_user_path(message.sender.id)
+        %td= message.subject

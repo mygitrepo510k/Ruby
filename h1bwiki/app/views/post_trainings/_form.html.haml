@@ -1,0 +1,77 @@
+= form_for @post_training, :html => { :class => 'form-horizontal', "data-validate" => "parsley", :id => "job_post_form" } do |f|
+	= f.hidden_field :user_id, :class => 'number_field', :value=>current_user.id
+	.control-group
+		= f.label :job_title, "Title", :class => 'control-label'
+		.controls
+			= f.text_field :job_title, :class => 'text_field large-field', "data-required"=>"true", "data-rangelength"=>"[5,50]"
+	.control-group
+		= f.label "Technology", :class => 'control-label'
+		.controls
+			= f.text_field :job_technology, :class => 'text_field', "data-required"=>"true"
+	.control-group
+		= f.label "Instruction Mode", :class => 'control-label'
+		.controls.custom-select
+			= f.select(:job_instruction, [['Class Room',0],['Online',1],['Class Room & Online',2]] )
+	.control-group
+		= f.label "Placement", :class => 'control-label'
+		.controls.custom-select
+			= f.select(:job_placement,[['Yes',1],['No',0]] )
+	.control-group
+		= f.label "Accomodation", :class => 'control-label'
+		.controls.custom-select
+			= f.select(:job_accomodation,[['Yes',1],['No',0]] )
+	.control-group
+		= f.label :job_city, "City", :class => 'control-label'
+		.controls
+			= f.text_field :job_city, :class => 'text_field', "data-required"=>"true"
+	.control-group
+		= f.label :job_state, "State", :class => 'control-label'
+		.controls
+			= f.text_field :job_state, :class => 'text_field', "data-required"=>"true"			
+	/.control-group
+	/	= f.label :job_duration, "Duration", :class => 'control-label'
+	/	.controls
+	/		= f.text_field :job_duration, :class => 'text_field', "data-required"=>"true"
+	.control-group
+		= f.label :job_description, "Description", :class => 'control-label'
+		.controls
+			= f.text_area :job_description, :class => 'text_area', :rows => 3, "data-required"=>"true", "data-rangelength"=>"[5,2500]"
+	= f.submit 'Continue', :class => 'm-btn blue', :id => "btn_post_create", :style=>"font-size: 30px;height: 58px;width: 100%;"
+	.form-actions{:style=>"padding:20px 0"}
+		= link_to( 'Back ', post_main_path, :class => "btn", :style=>"color: rgb(170, 170, 170);font-size: 30px;height: 40px;padding-top: 20px;width: 245px;")		
+		= f.submit 'Preview', :class => 'm-btn blue', :id=>"btn_post_preview", :style=>"font-size: 30px;height: 60px;margin-left: 70px;margin-right: 70px;width: 245px;"
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), posts_view_path, :class => 'btn', :style=>"color: rgb(170, 170, 170);font-size: 30px;height: 40px;padding-top: 20px;width: 245px;"
+// %input#btn_post_preview{:type => "button", :vale=>"PRE" }		
+// 		= f.submit 'Preview', :class => 'm-btn', :id=>"btn_post_job_preview"
+
+:javascript 
+	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
+	$( "#post_training_job_city" ).autocomplete({
+		source: function (request, response) {
+			$.ajax({
+				url: "http://ws.geonames.org/searchJSON?country=US",
+				dataType: "jsonp",
+				data: {
+					featureClass: "P",
+					style: "full",
+					maxRows: 12,
+					name_startsWith: request.term
+				},
+				success: function (data) {
+					response($.map(data.geonames, function (item) {
+						return {
+							label: item.name + (item.adminName1 ? ", " + item.adminName1 : ""),
+							value: item.name,
+							code: item.adminCode1
+						}
+					}));
+				}
+			});
+		},
+		minLength: 2,
+		select: function (event, ui) {
+			$("#post_training_job_state").val(ui.item.code);
+			$("#post_training_job_duration").focus();
+		}
+		
+	});	

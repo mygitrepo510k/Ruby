@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  h1bemp: 
+  user: 
+  paidontime: MyString
+  placement: MyString
+  legal: MyString
+
+two:
+  h1bemp: 
+  user: 
+  paidontime: MyString
+  placement: MyString
+  legal: MyString

@@ -1,0 +1,58 @@
+#welcome.row
+	.container
+		.row.first-row		
+			.span1
+			.span8
+				%p.price-page-title Member pricing page
+				%label.price-page-description= get_option(:price_page_description)
+				= link_to 'Join Now', new_user_registration_path(:plan => 'free'), :class => 'btn btn-primary'					
+			.span2
+		.row.plans.second-row		
+			.span3{:style=>"width:310px;"}
+				%p.plan-title Full Access Membership
+				.well
+					%ul
+						%li Free No More Stress Ebook
+						%li Free Ebook - Tips for Goal Setting, De-strssing and grattiude
+						%li Weekly
+						%li Motivation Tips, Technique, Video, Stories
+						%li Free Webinars
+						%li Discounts on Guest Webinars
+						%li Full Access To Website - Private Groups
+						%li One on One Patners, Public Groups
+						%li Free motivational Tools - Coming Soon
+						%li Direct To Text Partner Reminder - Coming soon
+						%li Discounts on Store
+					.plan
+						%h4 Full Access Member
+					%h3 $9.95/month
+					= link_to 'Join Now', new_user_registration_path(:plan => 'full'), :class => 'btn btn-primary'
+			.span3{:style=>"width:310px;"}
+				%p.plan-title Limited Public Group Only Membership
+				.well
+					%ul
+						%li Free No More Stress Ebook
+						%li Access to Public Groups and Free Search
+						%li Monthly
+						%li Motivation Tips, Technique, Video, Stories						
+					.plan
+						%h4 Limited Member
+					%h3 $4.95/month
+					= link_to 'Join Now', new_user_registration_path(:plan => 'limited'), :class => 'btn btn-primary'
+			.span3{:style=>"width:310px;"}
+				%p.plan-title Free Membership
+				.well.featured
+					%ul
+						%li Free No More Stress Ebook
+						%li Unlimited Free Search
+					.plan
+						%h4 Free Member
+					%h3 $0/month
+					= link_to 'Join Now', new_user_registration_path(:plan => 'free'), :class => 'btn btn-primary'					
+
+:css
+	div.container{
+		max-width: 1024px !important;
+		min-width: 1024px !important;
+	}
+	

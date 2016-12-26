@@ -1,0 +1,27 @@
+- if !@versions.empty?
+  %h3
+    Current Version: #{@versions.length}
+  %b Created At:
+  = @versions.last.created_at
+  %br
+  = succeed ":" do
+    %b Admin
+  = @versions.last.whodunnit
+  %br
+  - if @versions.length.to_i > 1
+    - if params[:version].to_i > 1 || !params[:version]
+      = link_to "Previous version", {:version => (params[:version] || @versions.length).to_i - 1}
+      %br
+    - if params[:version]
+      %h3
+        This is #{"#{params[:version]}"} version
+      %b Modify at:
+      = @versions[(params[:version].to_i - 1)].created_at
+      %br
+      = succeed ":" do
+        %b Admin
+      = @versions[(params[:version].to_i - 1)].whodunnit
+      %br
+      = link_to "Go to current version"
+- else
+  %p This item does not have any registered version.

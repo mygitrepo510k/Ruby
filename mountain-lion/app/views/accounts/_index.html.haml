@@ -1,0 +1,61 @@
+%legend My Account Settings
+= form_for @user, url: update_account_path, method: :put, class: 'form' do |f|
+  .row-fluid
+    .span4
+      %h5 Personal Information
+      .field
+        = f.label :firstname, 'First Name'
+        = f.text_field :firstname
+      .field
+        = f.label :lastname, 'Last Name'
+        = f.text_field :lastname
+      .field
+        = f.label :date_of_birth, 'DOB'
+        = f.text_field :date_of_birth, value: format_date(@user.date_of_birth), class: "datepicker"
+      .field
+        = f.label :username, 'Username'
+        = f.text_field :username
+      .field
+        = f.label :gender, 'I am a'
+        = f.select :gender, gender_select_options(@user.gender)
+      .field
+        = f.label :country, t('active_record.attributes.user.country')
+        = f.country_select :country_code, ['us', 'am', 'fr', 'ca', 'ir', 'lb'], { iso_codes: true}
+      .field
+        = f.label :city, t('active_record.attributes.user.city')
+        = f.text_field :city
+    .span3.offset1
+      %h5 Change Password
+      .field
+        = f.label :old_password, 'Current Password'
+        = f.password_field :old_password, autocomplete: "off"
+      .field
+        = f.label :password, 'New Password'
+        = f.password_field :password, autocomplete: "off"
+      .field
+        = f.label :password_confirmation, 'New Password Confirmation'
+        = f.password_field :password_confirmation
+  .row-fluid
+    %h5 Email Settings
+    .field
+      = f.check_box :receives_messages
+      = f.label :receives_messages, 'I want to receive email updates for the messages i receive', class: 'checkbox inline'
+    .field
+      = f.check_box :receives_flirts
+      = f.label :receives_flirts, 'I want to receive email updates for the flirts i receive', class: 'checkbox inline'
+    .field
+      = f.check_box :receives_likes
+      = f.label :receives_likes, 'I want to receive email updates for the likes i receive', class: 'checkbox inline'
+    .field
+      = f.check_box :receives_matches
+      = f.label :receives_matches, 'I want to receive email updates for the matches i receive', class: 'checkbox inline'
+    .field
+      = f.check_box :receives_new_users
+      = f.label :receives_new_users, 'I want to receive emails with new users', class: 'checkbox inline'
+
+  .form-actions
+    = f.submit 'Update Account', class: 'btn btn-primary', disable_with: 'Updating...'
+
+%h3 Account Settings
+= link_to 'Cancel my Premium Subscription', static_page_path('cancel_premium'), data: { confirm: 'Are you sure you want to cancel your premium subscription?' }, class: :btn
+= link_to 'Deactivate My Profile', user_path(current_user), data: { method: :delete, confirm: 'Are you sure you want to deactivate your account?' }, class: :btn

@@ -1,0 +1,59 @@
+<style type="text/css">
+	a.media   { display: block; }
+	div.media { font-size: small; margin: 2px 0; width: 100% !important }
+	div.media div, div.iframe_caption { font-style: italic; color: #888; }
+</style>
+<script src="http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/jquery.media.js"></script>
+<script type="text/javascript" src="/js/jquery.metadata.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('a.media').media( { width: 165, height: 20 } );
+    });
+</script>
+<script>	
+	$(document).ready(function(){
+
+	//Hide (Collapse) the toggle containers on load
+	$(".toggle").hide(); 
+
+	//Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+	$(".trigger").click(function(){
+		$(this).toggleClass("active").next().slideToggle("slow");
+		return false; //Prevent the browser jump to the link anchor
+	});
+
+});
+</script>
+
+<h1><%= @list.name if @list.name? %></h1>
+
+<div class="col_6 in">
+<% if @list.voice_ids? %>
+<div class="col_3 out">
+		<h3>Male</h3>
+
+<%= render 'male_artists' %>
+
+</div>
+
+<div class="col_3 out">
+		<h3>Female</h3>
+<%= render 'female_artists' %>
+
+</div>
+
+<% else %>	
+	<h3>Add voices to your new list.</h3>
+<% end %>
+</div>
+
+<div class="col_6 in">
+<% if admin_signed_in? %>
+<p><%= link_to "Send list", edit_admin_list_path(@list), remote: true %>&nbsp;&nbsp;|&nbsp;
+<%= link_to 'Edit', edit_admin_list_path(@list) %>&nbsp;&nbsp;|&nbsp;
+<%= link_to 'Back', admin_lists_path %></p><br><br>
+<p><%= button_to 'Delete List', admin_list_path(@list), confirm: 'Are you sure?', method: :delete %></p>
+<% end %>
+</div>

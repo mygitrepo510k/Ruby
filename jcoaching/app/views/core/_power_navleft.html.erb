@@ -1,0 +1,48 @@
+
+<h4>Core Foundations</h4>
+<div class="list-group">
+
+
+  <% if current_page?(core_power_swipes_path) %>
+      <%= link_to 'Swipes', core_power_swipes_path, {:class=>"list-group-item active"} %>
+  <% else %>
+      <%= link_to 'Swipes', core_power_swipes_path, {:class=>"list-group-item"} %>
+  <% end %>
+
+  <% if current_page?(core_power_flares_path) %>
+      <%= link_to 'Flares', core_power_flares_path, {:class=>"list-group-item active"} %>
+  <% else %>
+      <%= link_to 'Flares', core_power_flares_path, {:class=>"list-group-item"} %>
+  <% end %>
+
+  <% if current_page?(core_power_turtles_path) %>
+      <%= link_to 'Turtles', core_power_turtles_path, {:class=>"list-group-item active"} %>
+  <% else %>
+      <%= link_to 'Turtles', core_power_turtles_path, {:class=>"list-group-item"} %>
+  <% end %>
+
+  <% if current_page?(core_power_glides_path) %>
+      <%= link_to 'Hand Glides & Crickets', core_power_glides_path, {:class=>"list-group-item active"} %>
+  <% else %>
+      <%= link_to 'Hand Glides & Crickets', core_power_glides_path, {:class=>"list-group-item"} %>
+  <% end %>
+</div>
+
+<h5>Other Core Sections</h5>
+<div class="list-group">
+
+  <%= link_to 'Foundation Fundamentals', core_foundation_toprock_path, {:class=>"list-group-item"} %>
+
+  <%= link_to 'Bodyrock Abs', core_bodyrock_abs_path, {:class=>"list-group-item"} %>
+</div>
+
+<% if current_page?(basics_foundationprinciples_path)%>
+    <div class="list-group">
+      <h4>Next Section</h4>
+      <%= link_to 'Core Training ->', core_path, {:class=>"list-group-item"} %>
+    </div>
+<% end %>
+
+<div class="list-group">
+  <%= link_to '<- Back to index', root_path, {:class=>"list-group-item"} %>
+</div>

@@ -1,0 +1,29 @@
+<% if @doctors.length: %>
+    <div class="span8">
+    <table class="table table-hover">
+      <tbody>
+       <tr>
+         <td><strong> Doctor </strong></td>
+         <td><strong> Location </strong></td>
+       </tr>
+       <% for doctor in @doctors: %>
+       <tr>
+         <td> Dr. <%= doctor.first_name %> <%= doctor.last_name %></td>
+         <td> Vancouver, BC </td>
+       </tr>
+       <% end %>         
+      </tbody>
+    </table>
+  </div>
+    <div class="span3">
+      <img alt="Map" src="/assets/map.png">
+      <div style="margin-top:15px; background-color:#F5F5F5; padding:20px;">
+        Can't find your doctor?If the doctor you're looking for isn't here, add them! <br><br> 
+        <input type="button" class="btn btn-inverse" value="Add Doctor">
+    </div>
+  </div>
+<% else: %>
+  <div class='span12' style='margin-top:100px; margin-left:310px;'>
+    <p> No results were found. Is there a doctor we were missing? Let us know </p>
+  </div>
+<% end %>

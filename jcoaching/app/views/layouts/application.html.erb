@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Jeromeskee Coaching</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+
+<div class="container">
+
+
+  <%= render 'layouts/header' %>
+
+  <% flash.each do |name, msg| %>
+     <%= content_tag(:div, msg, class: "alert alert-info") %>
+  <% end %>
+
+  <%= yield %>
+</div>
+
+
+<script>
+    $(document).ready(function(){
+        // Target your .container, .wrapper, .post, etc.
+        $(".container").fitVids();
+    });
+</script>
+
+</body>
+
+
+</html>

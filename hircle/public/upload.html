@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>uploadFile</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap -->
+    <link href="/assets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <!-- department.css -->
+    <link href="/assets/department/department.css" rel="stylesheet" media="screen">
+	<script src="/assets/jquery.js?body=1" type="text/javascript"></script>
+	<script src="/assets/bootstrap.min.js"></script>
+	<script src="/assets/bootstrap.file-input.js"></script>
+    <style>
+	body{
+		background-color: #efefef; /*#efefef;*/
+	}
+	.file-input-name {
+		position: absolute;
+		display: block;
+		width: 145px;
+		top: 34px;
+		left: 10px;
+		background-color: #e8e6e6;
+		font-size: 12px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		padding: 4px;
+		border-radius: 4px;
+
+	}
+	.file-input-name:hover {
+		background-color: #0b5892;
+		color: #fff;
+	}
+    </style>
+</head>
+<body>
+	<div id="page">
+		<form action="/resources" method="post" enctype="multipart/form-data">
+			<div class="input-append">
+			  <input class="span2" id="appendedInputButton" name="resource[attach]" type="file">
+			  <button class="btn" id="J_Upload" type="submit">upload</button>
+			</div>
+			<input name="resource[department_id]" value="" type="hidden" id="J_DepartmentField" >
+			<input name="resource[user_id]" value="" type="hidden" id="J_UserField" >
+		</form>
+	</div>
+
+
+	<script>
+		$(function(){
+			$('#J_Upload').click(function(){
+				$('.file-input-name').html('When I dispear, that means uploading is finished');
+				parent.location.hash = "uploadstart";
+			});
+			var hashValue = window.location.hash;
+			var paramsArray = hashValue.split('#')[1].split('/');
+			$('#J_UserField').val(paramsArray[0]);
+			$('#J_DepartmentField').val(paramsArray[1]);
+		});
+	</script>
+</body>
+</html>

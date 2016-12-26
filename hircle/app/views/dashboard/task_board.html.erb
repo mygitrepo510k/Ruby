@@ -1,0 +1,34 @@
+<link href='/assets/fullcalendar.css' rel='stylesheet' />
+<link href='/assets/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='/assets/jquery-ui-1.8.20.custom.min.js'></script>
+<script src='/assets/fullcalendar.min.js'></script>
+
+<style>
+	#calendar {
+		width: 800px;
+		margin: 0 auto;
+		}
+
+</style>
+
+<div id="content_wrap" class="container">
+  <div id="left_side">
+    <%= render :partial => "left_side" %>
+  </div>
+  <div id="main_area">
+    
+    <div class="span10" style="width:79%;" >
+	<!--Body content-->
+		<%= link_to 'New Task', new_task_path %>
+		<br />
+		<div id='calendar'> </div>
+	<!--Body content ends-->	
+	</div>    
+  </div> 
+</div>
+<script>
+	$('ul.sidebar-panel li').each(function(){
+		$(this).removeClass('selected');
+	});
+	$('li.tasks-item').addClass('selected');
+</script>

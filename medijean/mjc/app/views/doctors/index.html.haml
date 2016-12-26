@@ -1,0 +1,31 @@
+.row
+  .span12.top-bar.row
+    %h1
+      = t("doctor_flow.index.heading")
+.row.dashboard-action
+  .span2
+    = image_tag "home_bg.png"
+  .span4.action-info
+    %a{:href=>"#"}
+      = t("doctor_flow.index.claim_profile_heading")
+    %p
+      = t("doctor_flow.index.claim_profile_content")
+.row.dashboard-action
+  .span2
+    = image_tag "home_bg.png"
+  .span4.action-info
+    = link_to t("doctor_flow.index.login_heading"), new_user_session_path
+    %p
+      = t("doctor_flow.index.login_content")
+.row.dashboard-action
+  .span2
+    = image_tag "home_bg.png"
+  .span4.action-info
+    %a{:href=>"#"}
+      = t("doctor_flow.index.get_info_heading")
+    %p
+      = t("doctor_flow.index.get_info_content")
+.row.dashboard-action
+  .span3
+    = button_tag t("doctor_flow.index.get_started"), :class=>"btn btn-inverse"
+.row.empty-row

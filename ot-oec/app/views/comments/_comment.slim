@@ -1,0 +1,30 @@
+.comment_by
+    .img_ctn
+        = image_tag comment.by.avatar.mini.url
+
+    .profile_name
+      a href=user_path(comment.by) = comment.by.name
+
+    .timeago[raw='true']
+        = comment.created_at.to_formatted_s(:iso8601)
+
+    -if comment.by == current_user or current_user.admin?
+    	.comment_tools
+    		= link_to "<span class='glyphicon glyphicon-remove'/>".html_safe,
+    			comment, method: :delete, remote: true, class: 'delete-comment',
+    			data: { confirm: 'Are you sure you want to delete this comment?' }
+
+.comment_body
+    = comment.body
+
+.comment_footer
+    .like_comment
+        = like_count(comment)
+        a href="#" class='like_link' data-likeable=JSON.generate({likeable_id: comment.id, likeable_type: comment.class.name}) 
+            = like_link(comment)
+
+/ hide the delete comment link for now since it does not work - HT
+/    - if comment.by == current_user || current_user.admin?
+        .comment_delete
+            a href="#" data-comment-delete=comment.id
+                .glyphicon.glyphicon-trash

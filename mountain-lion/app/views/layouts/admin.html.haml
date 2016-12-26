@@ -1,0 +1,59 @@
+!!! 5
+%html(lang="en")
+  %head
+    %meta(charset="utf-8")
+    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    %title= content_for?(:title) ? yield(:title) : "MountainLion"
+    = csrf_meta_tags
+    / Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = stylesheet_link_tag "//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css"
+    = stylesheet_link_tag "//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css"
+    = stylesheet_link_tag "admin", media: "all"
+    %link(href="/images/apple-touch-icon-144x144.png" rel="apple-touch-icon-precomposed" sizes="144x144")
+    %link(href="/images/apple-touch-icon-114x114.png" rel="apple-touch-icon-precomposed" sizes="114x114")
+    %link(href="/images/apple-touch-icon-72x72.png" rel="apple-touch-icon-precomposed" sizes="72x72")
+    %link(href="/images/apple-touch-icon.png" rel="apple-touch-icon-precomposed")
+    %link(href="/favicon.ico" rel="shortcut icon")
+    = javascript_include_tag :admin
+  %body
+    .navbar.navbar-fluid-top
+      .navbar-inner
+        .container-fluid
+          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.brand(href="#") HyeDating
+          .container.nav-collapse
+            %ul.nav
+              %li= link_to "Dashboard", admin_root_path
+              %li= link_to "Users", admin_users_path
+              %li= link_to "ProfileSections", admin_profile_sections_path
+              %li= link_to "ProfileQuestions", admin_profile_questions_path
+              %li= link_to "Flirts", admin_flirts_path
+              %li= link_to "Internal Notifications", admin_internal_notifications_path
+              %li= link_to "States", "#"
+              %li= link_to "Cities", "#"
+              %li.pull-right= link_to "Logout", logout_path, "data-no-turbolinks" => true
+
+    .container-fluid
+
+      .row-fluid
+        -#
+          .span3
+            .well.sidebar-nav
+              %ul.nav.nav-list
+                %li.nav-header Sidebar
+                %li= link_to "Link 1", "/path1"
+                %li= link_to "Link 2", "/path2"
+                %li= link_to "Link 3", "/path3"
+        .span12
+          = bootstrap_flash
+          = yield
+
+      %footer
+        %p &copy; HyeDating.com 2013
+    #modal-container{ class: "modal hide fade", tabindex: "-1", role: "dialog", "aria-hidden" => true }

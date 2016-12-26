@@ -1,0 +1,39 @@
+:css
+  h4 {
+      font-size: 18px;
+      margin: 10px 0 20px !important;    
+  }
+  a.control-label:hover{
+  	background-color: transparent !important;
+  }
+  .signup-page .span6 .row{
+    text-align: center;
+  }
+  
+    
+.container-fluid.signup-page
+  %div{:style => "min-height: 700px; padding-top: 100px;"}
+    %h1{:style=>"background-color: rgb(254, 254, 254);border: 1px solid rgb(190, 192, 186);margin: 0;padding: 15px;text-align:center;"} 
+      Start Using H1B Wiki Jobs
+    .hero-unit.form-horizontal{:style => "min-width:480px;background-color: rgb(254, 254, 254);border: 1px solid rgb(190, 192, 186);border-radius: 0 0 0 0;min-width: 480px;"}
+      .row
+        %p{:style => "font-size:20px; font-weight:bolder;text-align:center;"}
+          Already a H1BWIKI member? #{link_to "Log in", new_user_session_path} or #{link_to "Forgot Password", "/users/password/new"}.
+      .row
+        .row
+          %br/
+        .row
+          .span6
+            .row
+              = image_tag("jobseeker.png", :class => "img-rounded" )
+            .row
+              %h5 Are you an OPT Student / H1B visa Job Seeker?
+            .row
+              = link_to "Job Seekers Sign Up", new_jobseeker_path, :class => "btn btn-primary", :style=>"font-size: 20px;height: 28px;padding-top: 10px;width: 200px;"
+          .span6
+            .row
+              = image_tag("employer.png", :class => "img-rounded" )
+            .row
+              %h5 Are you a H-1B Employer / Trainer / Mentor?
+            .row
+              = link_to "Employers Sign Up", new_employer_path, :class => "btn", :style=>"font-size: 20px;height: 28px;padding-top: 10px;width: 200px;"

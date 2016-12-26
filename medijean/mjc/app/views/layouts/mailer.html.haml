@@ -1,0 +1,17 @@
+!!! 5
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title MediJean
+    =stylesheet_link_tag "mailer", :media => "all"
+
+  %body
+    .container(style="width:520px;height:390px;border:1px solid gray;border-radius:5px;position:absolute;top:0;bottom:0;left:0;right:0;margin:auto;")
+      .navbar-inner-mailer(style="background-color: #EFEFEF !important;border-radius:5px 5px 0px 0px" )
+        %img(src="#{root_url}assets/logo_for_mail.png")
+      .mail-content(style="padding-top:10px !important;padding-left:25px !important;" )
+        = yield
+      .mail-footer
+        %p
+          Sincerely,
+        %h4 The Medijean Team

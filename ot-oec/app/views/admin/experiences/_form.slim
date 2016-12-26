@@ -1,0 +1,28 @@
+-if @experience.errors.any?
+	#error_explanation
+		= pluralize(@experience.errors.count, "error")
+ 			| prohibited this experience from being saved:
+		ul
+			- @experience.errors.full_messages.each do |msg|
+				li= msg
+
+= form_for [:admin, @experience] do |f|
+  .field
+		= f.hidden_field :created_for_id, value: @experience.created_for ? @experience.created_for.id : ''
+		= f.autocomplete_field :created_for, admin_autocomplete_user_name_path,
+			id_element: '#experience_created_for_id', placeholder: 'Student name', class: 'form-control',
+			value: @experience.created_for ? @experience.created_for.name : ''
+  .field
+    = f.text_field :name, placeholder: 'Title', class: 'form-control'
+  .field
+    = f.text_area :looking_to_open, placeholder: 'Aspect looking to open', class: 'form-control'
+  .field
+    = f.text_area :process, placeholder: 'Process', class: 'form-control'
+  .field
+    = f.text_area :possible_difficulties, placeholder: 'Possible difficulties', class: 'form-control'
+  .field
+    = f.text_area :how_to_handle, placeholder: 'How to handle', class: 'form-control'
+  .field
+    = f.text_field :scheduled_for, placeholder: 'Scheduled For', class: 'form-control datepicker', value: f.object.scheduled_for.present? ? f.object.scheduled_for.strftime("%m/%d/%Y %M:%H") : ''
+  .submit
+    = f.submit 'Submit', class: 'form-control btn btn-primary'

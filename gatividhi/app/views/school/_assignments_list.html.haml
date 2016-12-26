@@ -1,0 +1,29 @@
+- @assignments.each do |assignment|
+	%tr{:id=>"content_row_"+assignment.id}
+		%td{:align => "left", :valign => "top"}
+			%input{:type => "checkbox"}/
+		%td{:align => "left", :valign => "top"}
+			%a.greenTxt{:href => "#.", :onclick => "$('#showMoreInfo_#{assignment.id}').toggle('slow')"}
+				= assignment.title
+		%td{:align => "left", :valign => "top"}= assignment.class_name
+		%td{:align => "left", :valign => "top"}= assignment.category
+		%td{:align => "left", :valign => "top"}= assignment.subject
+		%td{:align => "left", :valign => "top"}= assignment.due_date
+		%td{:align => "left", :valign => "top"}= assignment.due_time
+		%td{:align => "left", :valign => "top"}= assignment.to_be_graded==true ? "Yes" : "No"
+		%td.actionBox{:align => "left", :valign => "top"}
+			%a.out_come{:href => "/add_assignments_outcome?assignment_id=#{assignment.id}", :rel => "facebox", :title => "outcome"}
+				= image_tag('activity_action_icon.png', :alt => "", :height => "21", :width => "21")
+			= link_to("", "javascript:delete_assignment('#{assignment.id}')", :method=> :delete, :confirm => "Are you sure you want to Delete this row?", :class => "deleteIcon", :title=>"Delete")
+			= succeed "A" do
+				%a.editIcon{:href => "/school/edit_assignment?id=#{assignment.id}", :rel=>"facebox"}
+	%tr.viewRow{:id=>'showMoreInfo_'+assignment.id, :style => "display:none;"}
+		%td{:align => "left", :colspan => "10", :valign => "top"}
+			%a.closeBtn.viewClose{:href => "#.", :onclick => "$('#showMoreInfo_#{assignment.id}').toggle()"}
+			= assignment.description
+
+
+:javascript
+	$(function(){
+		$('a.out_come').facebox();
+	})

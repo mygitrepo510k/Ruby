@@ -1,0 +1,45 @@
+%a#top{:href => ""}
+.navbar.container
+  .navbar-inner
+    %a.btn-navbar.btn{:data => {:toggle => "collapse", :target => ".nav-collapse"}}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    = link_to image_tag(logo_path), root_path, :class=> "brand"
+    .nav-collapse.collapse
+      - unless current_user
+        %ul.nav.pull-right
+          %li.active
+            = link_to t("navbar.about")
+          %li
+            = link_to t("navbar.how_it_works")
+          %li
+            = link_to t("navbar.blog")
+          %li
+            = link_to t("navbar.login"), new_user_session_path
+          %li
+            .signup.btn.btn-primary.im-doctor-btn
+              = link_to t("navbar.i_am_doctor"), registrations_by_role_path(role: 'doctor')
+      - else
+        %ul.nav.navbar-nav#user-navbar{:style => "float: none;" }
+          %li
+            =link_to t("navbar.dashboard"), users_dashboard_path
+          %li.dropdown{:style => "float: right;" }
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              = current_user.name
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                = link_to t("settings.title"), settings_profile_path
+              %li.last
+                = link_to t("navbar.logout"), destroy_user_session_path,:method => :delete
+          %li.dropdown{:style => "float: right;" }
+            %a.dropdown-toggle{"data-toggle" => "dropdown","id" => "notify-a", :href => "#"}
+              .notification
+                #notification-count
+                  4
+                  %b.lcaret
+            %ul.dropdown-menu.notification-list#notifications-main
+              = render "shared/notifications"
+
+

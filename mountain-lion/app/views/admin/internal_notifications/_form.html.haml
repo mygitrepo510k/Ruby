@@ -1,0 +1,8 @@
+= simple_form_for [:admin, @internal_notification], html: { class: 'form-horizontal' } do |f|
+  .controls
+    = f.input :message, input_html: { style: "width: 515px; height: 260px;" }
+  .controls
+    = f.input :displayed
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), admin_internal_notification_path(@internal_notification), class: 'btn'

@@ -1,0 +1,200 @@
+.bodyWapper
+	%ul.memberAlbum
+		- check_album_dashboard
+		%li
+			%a.box{:href => "/album_list"}
+				%span{:style => "background-position: -122px -176px;\r\n		display: block;\r\n		height: 19px;\r\n		margin: 20px auto 5px;\r\n		width: 19px;"}>
+				Album list
+		- @dashboard_ablums.each do | single_album |
+			%li
+				%a.box{:href => "/photo_list?test_report_id=#{single_album.id}"}
+					%img{:alt => "", :height => "110", :src => "#{single_album.pictures.blank? ? "images/sample/profile_img1.jpg" : single_album.pictures[0].photo.url} ", :width => "110"}/
+				%a{:href => "/photo_list?test_report_id=#{single_album.id}"}
+					= single_album.name
+					(#{single_album.pictures.count})
+				%br/
+		%li
+			%a.box{:href => "/album/add_album", :rel => "facebox"}
+				%span.plusIconBig>
+				Add
+				%br>/
+				new album
+	/ Left Section
+	.leftSection{:style => "min-height:794px;"}
+		.leftWidget
+			%h2 Latest News
+			%ul.greyBullet
+				%li
+					%strong Lorem ipsum dolor sit amet,
+					consectetur adipiscing
+				%li
+					%strong> Fusce quis velit at dolor
+					hendrerit luctus non ac lorem.
+				%li
+					%strong Aenean rhoncus hendrerit
+					turpis, non imperdiet turpis lobortis vitae.
+				%li
+					%strong> Quisque quis mi nec enim
+					elementu bibendum et ut metus.
+				%li
+					%strong Aliquam at nulla in nibh lacinia fermentunulla. uisque quis mi nec enim
+					elementum bibendum et ut metus.
+				%li Ut interdum mollis risus, elementum
+		.leftWidget.lastWidget
+			%h2 Activities
+			%h3
+				%a{:href => "#."} Overdue
+			%ul.redBullet
+				%li
+					%strong 10 Feb 2013,
+					Lorem ipsum dolor sit amconsectetur adipiscing elit.
+				%li
+					%strong 11 Feb 2013,
+					Fusce quis velit at dolor hendrerit luctus non ac lorem.
+				%li
+					%strong 13 Feb 2013,
+					Aenean rhoncus hendrerit turpis, non imperdiet turpis lobortis vi
+			%h3
+				%a{:href => "#."} Upcoming
+			%ul.greenBullet
+				%li
+					%strong 18 Feb 2013,
+					Lorem ipsum dolor sit am, consectetur adipiscing elit.
+				%li
+					%strong> 20 Feb 2013,
+					Fusce quis velit at dolor hendrerit luctus non ac lorem.
+				%li
+					%strong 26 Feb 2013,
+					Aenean rhoncus hendrerit turpis, non imperdiet turpis lobortis vit
+				%li
+					%strong 26 Feb 2013,
+					Quisque quis mi nec enim elementum bibendum et ut metus.
+	/ Right Section
+	- if @user_family_member.blank?
+		.CL
+	- else
+		- current_user.families.each do |family|
+			- family.family_members.where(:status=>"accepted").each do | single_family_member_list |
+				- if single_family_member_list.child?
+					.rightSection
+						.row
+							.widgetBox{:style=>"width: 674px;"}
+								/ lastWidget
+								%h2
+									%a.greenTxt{:href => "#."}
+										= single_family_member_list.name
+									%span
+										Age:
+										= single_family_member_list.age
+								.coloum3Divider
+									.row3Box1
+										.proImgBig
+											.indiGreen
+											=image_tag(single_family_member_list.profile_image(Picture::TYPE[:thumb]))
+										.pocketPoint
+											.pointHighLight 60
+											%h3 Pocket Points
+											%br/
+											60 / 100
+										.activityBox
+											%h3 Activities
+											.row2Box
+												.redBox 3
+												Overdue
+											.row2Box
+												.greenBox 10
+												Upcoming
+											.CL
+									.row3Box2
+										.growthBox
+											%h3.infoTitle Growth Profile
+											.greenProcess
+												.proBar{:style => "width:50%;"}
+											%p.proTitle Physical
+											.greenProcess
+												.proBar{:style => "width:10%;"}
+											%p.proTitle Cognitive / Intellect
+											.greenProcess
+												.proBar{:style => "width:30%;"}
+											%p.proTitle Social / Emotional
+											.greenProcess
+												.proBar{:style => "width:60%;"}
+											%p.proTitle Language
+										.growthBox.lastWidget
+											%h3.infoTitle Activity Profile
+											.pinkProcess
+												.proBar{:style => "width:80%;"}
+											%p.proTitle Academic
+											.pinkProcess
+												.proBar{:style => "width:90%;"}
+											%p.proTitle Physical
+											.pinkProcess
+												.proBar{:style => "width:50%;"}
+											%p.proTitle Visual & Performing Arts
+											.pinkProcess
+												.proBar{:style => "width:40%;"}
+											%p.proTitle Public Speaking
+											.pinkProcess
+												.proBar{:style => "width:70%;"}
+											%p.proTitle Personal
+											.pinkProcess
+												.proBar{:style => "width:95%;"}
+											%p.proTitle Voluntary / Social
+									.row3Box3
+										.helthIcon
+											%a{:href => "/school/teachers?id="+single_family_member_list.id}
+											HEALTH
+										.mindIcon
+											.indiCationBox
+												.indiGreenTxt 5
+											= succeed "MIND" do
+												=link_to '', '/child_activities_list?id='+single_family_member_list.id
+											%br/
+										.schoolIcon
+											%a{:href => "/school/feedback?id="+single_family_member_list.id}
+											SCHOOL
+										.CL
+										.calIcon
+											.indiCationBox
+												.indiRedTxt 2
+											= succeed "CALENDAR" do
+												%a{:href => calendar_month_path+"?id="+single_family_member_list.id}
+											%br/
+										.examIcon
+											.indiCationBox
+												.indiGreenTxt 3
+											= succeed "EXAMS" do
+												%a{:href => child_upcoming_exam_path+single_family_member_list.id}
+										.actiIcon
+											.indiCationBox
+												.indiGreenTxt 5
+											= succeed "ACTIVITIES" do
+												=link_to '', '/child_activities_list?id='+single_family_member_list.id
+											%br/
+										.CL
+										.awardIcon
+											%a{:href => child_awards_and_honours_path+single_family_member_list.id}
+											AWARDS & HONOURS
+										.assigIcon
+											.indiCationBox
+												.indiGreenTxt 5
+												.indiRedTxt 2
+											= succeed "ASSIGNMENTS" do
+												%a{:href => '/school/assignments?id='+single_family_member_list.id}
+											%br/
+										.dphotoIcon
+											%a{:href => "/school/teachers?id="+single_family_member_list.id}
+											DOCUMENTS & PHOTOS
+										.CL
+									.CL-Fix
+		.CL
+:javascript
+	if(#{@user_family_member.blank?}){
+		jQuery.facebox(function() {
+			$.get('/add_new_family', function(html) {
+				 $.facebox(html);
+			});
+		})	
+	}
+
+	$('a[rel*=facebox]').facebox()

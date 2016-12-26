@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @country.name
+%p
+  %b Iso code 2:
+  = @country.iso_code_2
+%p
+  %b Iso code 3:
+  = @country.iso_code_3
+%p
+  %b Address format:
+  = @country.address_format
+%p
+  %b Postcode:
+  = @country.postcode
+%p
+  %b Status:
+  = @country.status
+
+= link_to 'Edit', edit_country_path(@country)
+\|
+= link_to 'Back', countries_path

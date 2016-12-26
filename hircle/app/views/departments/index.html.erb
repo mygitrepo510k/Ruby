@@ -1,0 +1,14 @@
+   <%= stylesheet_link_tag  "jquery-ui/jquery.autocomplete" %>
+    <%= javascript_include_tag "jquery-ui/jquery.autocomplete" %>
+  
+<div id="departments"></div>
+<input type="hidden" id="selected_department_id" name="selected_department_id" value=""/>
+
+<script type="text/javascript">
+  $(function() {
+    // Blog is the app name
+    window.router = new Hircle.Routers.DepartmentsRouter({departments: <%= @departments.to_json.html_safe -%>});
+    Backbone.history.start();
+  });
+</script>
+

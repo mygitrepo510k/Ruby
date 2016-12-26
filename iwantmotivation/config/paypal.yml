@@ -1,0 +1,14 @@
+development: &sandbox # change to your own
+  username: lee-facilitator_api1.iwantmotivation.com
+  password: 1369365575
+  signature: AHabjBNtVjuEEIKQSz596H88B5xtAy929fRGpE5z0TOipXptW74fqqlT
+  sandbox: true
+
+test:
+  <<: *sandbox
+
+production: &production
+  username: lee-facilitator_api1.iwantmotivation.com
+  password: 1369365575
+  signature: AHabjBNtVjuEEIKQSz596H88B5xtAy929fRGpE5z0TOipXptW74fqqlT
+  sandbox: true

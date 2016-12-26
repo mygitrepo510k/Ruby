@@ -1,0 +1,53 @@
+- @search_emp_jobs.each do |search_emp_job|
+	.row
+		.span12.search-result-item
+			.row.title-row
+				.span8
+					.row
+						= link_to search_emp_job.job_title, post_job_path(search_emp_job), :class=>"item-title", :target => "_blink", style: 'text-decoration:underline;color:blue;'
+					.row
+						- user = User.find_by_id(search_emp_job.user_id)
+						- if user.present?
+							%small #{user.company_name.nil? ? user.user_name : user.company_name } -	#{search_emp_job.job_city} ,	#{search_emp_job.job_state} 
+				.span4
+					%p.created-date
+						Date Posted:
+						=l search_emp_job.created_at, :format =>"%Y-%m-%d %H:%M"
+			.row.description
+				.span8
+					.row
+						.view-details-box.more= raw search_emp_job.job_description
+					.row{:style=>"margin-top: 10px;"}
+						/%p.skill-tags 
+						/	Skills Needed :
+						/	-search_emp_job.skill_lists.each do |skill_name|
+						/		%a.skill-tags{:href=>"#"}=skill_name.name
+
+				.span4.skill-tags
+					- if search_emp_job.referral_amount.present?
+						.row{:style=>"margin-bottom:5px;"}
+							.span5{:style=>"width:86px; height:26px;"}
+								%label.referral Referral
+							.span5{:style=>"width:94px; height:34px;margin-left:2px;"}
+								%label.refferral_amount= search_emp_job.refe_amount
+					.row
+						/- if false #.button-box
+						/	-if current_user.present?
+						/		-if user.id != current_user.id
+						/			%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_job.job_title}", :type=>"#{user.email}" } Contact
+						/	- else
+						/		%a.m-btn.blue.contact-button{"data-toggle" => "modal", :href => "#myModal", :role => "button", :rel => "#{search_emp_job.job_title}", :type=>"#{user.email}" } Contact
+			.row.last-row
+				.span8
+					.row{:style=>"margin-top: 10px;"}
+						%p.skill-tags 
+							Skills Needed :
+							-search_emp_job.skill_lists.each do |skill_name|
+								%a.skill-tags{:href=>"#"}=skill_name.name
+
+				.span4
+					%br/
+					%p.post-type{style: 'margin-top: 12px;'} Jobs Offered
+-if @search_emp_jobs.present?
+	.row
+		=will_paginate @search_emp_jobs, :param_name => 'page_num'

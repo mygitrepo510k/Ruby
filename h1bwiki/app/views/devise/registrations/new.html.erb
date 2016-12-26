@@ -1,0 +1,104 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="span8 offset3">
+    	<h2 style="text-decoration: underline">
+    	<% if session[:account_type] == "jobseeker" %>
+      	Create a Job Seeker Account</h2>
+      <% else %>
+      	Create an Employer Account
+      <% end %>
+      </h2>
+      <h4>Already have an Account? <%= link_to "Login Here", new_user_session_path, :class => "btn btn-link" %> </h4>
+      
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => "form-horizontal", "data-validate" => "parsley" }) do |f| %>
+        <%= devise_error_messages! %>
+        <% if session[:account_type] == "jobseeker" %>
+          <div class="control-group">
+              <%= f.label "First Name", :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :first_name, :autofocus => true, :placeholder => "first name" %>
+              </div>
+            </div>
+            
+            <div class="control-group">
+              <%= f.label "Last Name", :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :last_name, :placeholder => "last name" %>
+              </div>
+            </div>
+        <% end %>
+            <% if session[:account_type] != "jobseeker" %>
+             <div class="control-group">
+                <%= f.label "Company Name", :class => "control-label" %>
+                <div class="controls">
+                  <%= f.text_field :company_name, :placeholder => "your company name" %>
+                </div>
+              </div>      
+            <% end %>
+            <div class="control-group">
+              <%= f.label :email, :class => "control-label" %>
+              <div class="controls">
+                <%= f.email_field :email, :autofocus => true, :placeholder => "your@email.com" %>
+              </div>
+            </div>
+            <% if session[:account_type] == "jobseeker" %>
+              <div class="control-group">
+                <%= f.label "Immigration Status", :class => "control-label" %>
+                <div class="controls">
+                  <%= f.select(:immigration_status,[['H-1B',1],['OPT',2],['L1/L2',3],['H4',4],['None',5]] )%>
+                </div>
+              </div>
+            <% end %>      
+            <div class="control-group">
+              <%= f.label "User Name", :class => "control-label" %>
+              <div class="controls">
+                <%= f.text_field :user_name, :placeholder => "User name" %>
+              </div>
+            </div> 
+            <div class="control-group">
+              <%= f.label :password, :class => "control-label" %>
+              <div class="controls">
+                <%= f.password_field :password, "data-required"=>"true", "data-rangelength"=>"[8,25]" %>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <%= f.label :password_confirmation, :class => "control-label" %>
+              <div class="controls">
+                <%= f.password_field :password_confirmation, "data-required"=>"true", "data-rangelength"=>"[8,25]" %>
+              </div>
+            </div>
+          <% if session[:account_type] == "jobseeker" %>  
+            <div class="control-group">
+              <label class="control-label">Enter the Code Shown</label>
+              <div class="controls">
+               <%= recaptcha_tags %>   
+              </div>
+            </div>
+          <% end %>  
+         		<% if session[:account_type] == "jobseeker" %>
+              <input type="hidden" name="user[account_type]" id="user_account_type" value="jobseeker">
+            <% else %>
+              <input type="hidden" name="user[account_type]" id="user_account_type" value="employer">
+            <% end %>
+
+  	      <label class="checkbox offset1">
+  	        <input type="checkbox" name="rangecheck" data-required="true" value="foo" class="parsley-validated" id="agree-privacy"> I agree to terms and privacy
+  	      </label>
+  	      <br />
+  	      <div class="span2 offset1"><%= f.submit "Sign up", :class => "m-btn blue btn-block", :id => "btn-sign-up", :disabled => "disabled" %></div> 
+
+      <% end %>
+    </div>
+  </div>
+  <p>&nbsp;</p>
+</div>
+
+<script type="text/javascript">
+  $('#agree-privacy').click(function(){      
+      if($(this).is(":checked"))
+        $('#btn-sign-up').removeAttr('disabled');              
+      else        
+        $('#btn-sign-up').attr("disabled","disabled");
+  });
+</script>

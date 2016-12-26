@@ -1,0 +1,56 @@
+/ Body Start here
+.bodyWapper
+	.tabBox
+		%a.tabSelected{:href => child_awards_and_honours_path} Awards & Honours
+		.CL
+	.tabContainer
+		.tabAction
+			.activityAction
+				.jqSmallform.FL.select_filter
+					%select#s2{:name => "select", :style => "margin-right:8px;"}
+						%option All
+						%option School
+						%option Non-School
+				%a{:href => "/add_child_profile_awards?id=#{params[:id]}", :rel => "facebox"}
+				.jqGreenForm.FL{:id => "add_item"}
+					%select#s1{:name => "select", :style => "margin-right:8px;"}
+						%option A&H
+			.CL
+		%table.tableGride{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+			%tr.examHead
+				%th{:align => "left", :valign => "top", :width => "4%"}
+					%input{:type => "checkbox"}/
+				%th{:align => "left", :valign => "top", :width => "18%"} Title
+				%th{:align => "left", :valign => "top", :width => "10%"} Award Date
+				%th{:align => "left", :valign => "top", :width => "16%"} From
+				%th{:align => "left", :valign => "top", :width => "9%"} Category
+				%th{:align => "left", :valign => "top", :width => "11%"} Subject
+				%th{:align => "left", :valign => "top", :width => "19%"} Description
+				%th{:align => "left", :valign => "top", :width => "13%"} Photos/Certificate
+			%tbody#ha_content
+				= render :partial=>"ha_list"
+		%p.padLeft10
+			%a.greyBtn{:href => "/add_child_profile_awards?id=#{params[:id]}", :rel => "facebox"}> add a new award / honour
+			\ 
+/ Body Start End
+:javascript
+	
+	$('.jqSmallform').jqTransform({imgPath:'images/'}); 
+	$('.jqGreenForm').jqTransform({imgPath:'images/'});
+	
+	$("div.select_filter ul li a").click(function(){
+		var show_url='child_awards_and_honours/filter';
+		var url= show_url+"?opt="+$(this).text();
+		console.log(url);
+		$.ajax({
+			url: show_url+"?opt="+$(this).text()
+		}).done(function(data) {
+			$("#ha_content").html(data);
+		});
+		return false; //prevent;
+	});
+
+	$("#add_item ul li a").eq(0).attr("href", "/add_child_profile_awards?id=#{params[:id]}");
+	$("#add_item ul li a").eq(0).attr("rel", "facebox" );
+
+	$('a[rel*=facebox]').facebox();

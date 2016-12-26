@@ -1,0 +1,86 @@
+.admin.section.single
+	.row
+		- if current_user.super_admin?
+			.col-xs-6.col-sm-4.col-md-3
+				= link_to admin_programs_path
+					.index_element
+						.span.glyphicon.glyphicon-globe.icon
+						.text
+							| PROGRAMS
+
+		.col-xs-6.col-sm-4.col-md-3
+			= link_to admin_thegrid_path
+				.index_element
+					.span.glyphicon.glyphicon-th.icon
+					.text
+						| THE GRID
+
+		.col-xs-6.col-sm-4.col-md-3
+			= link_to admin_pods_path
+				.index_element
+					.span.glyphicon.glyphicon-heart.icon
+					.text
+						| PODS
+
+		- if current_user.admin?
+			.col-xs-6.col-sm-4.col-md-3
+				= link_to admin_users_path
+					.index_element
+						.span.glyphicon.glyphicon-user.icon
+						.text
+							| USERS
+
+			.col-xs-6.col-sm-4.col-md-3							
+				= link_to admin_challenges_path
+					.index_element
+						.span.glyphicon.glyphicon-flag.icon
+						.text
+							| CHALLENGES
+
+			.col-xs-6.col-sm-4.col-md-3							
+				= link_to admin_experiences_path
+					.index_element
+						.span.glyphicon.glyphicon-tower.icon
+						.text
+							| EXPERIENCES
+
+			.col-xs-6.col-sm-4.col-md-3							
+				= link_to admin_typeforms_associate_path
+					.index_element
+						.span.glyphicon.glyphicon-book.icon
+						.text
+							| FORMS
+
+			.col-xs-6.col-sm-4.col-md-3							
+				= link_to admin_frames_path
+					.index_element
+						.span.glyphicon.glyphicon-film.icon
+						.text
+							| FRAMES
+
+			.col-xs-6.col-sm-4.col-md-3							
+				= link_to admin_events_path do
+					.index_element
+						.span.glyphicon.glyphicon-calendar.icon
+						.text
+							| EVENTS
+
+			.col-xs-6.col-sm-4.col-md-3							
+				= link_to admin_contents_path do
+					.index_element
+						.span.glyphicon.glyphicon-picture.icon
+						.text
+							| CONTENT
+
+			.col-xs-6.col-sm-4.col-md-3							
+				= link_to admin_announcements_path do
+					.index_element
+						.span.glyphicon.glyphicon-bullhorn.icon
+						.text
+							| ANNOUNCEMENTS
+			.col-xs-6.col-sm-4.col-md-3
+				= link_to admin_tags_path do
+					.index_element
+						.span.glyphicon.glyphicon-calendar.icon
+						.text
+							| TAGS

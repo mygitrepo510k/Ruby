@@ -1,0 +1,21 @@
+-@interest.sports.each do |sport|
+	.formMainRow.singleRow{:style=>"height: 20px;", :id=>'row_'+sport.id}
+		.formAction
+			.viewEdit
+				%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit_#{sport.id}','#linkObj_#{sport.id}','.viewEdit')", :title => "Edit"}
+				= link_to("", "javascript:delete_interest('#{sport.id}')", :method=> :delete, :confirm => "Are you sure?", :class => "deleteIcon", :title=>"Delete")
+			%span{:id=>"linkObj_"+sport.id, :onclick => "showEdit('showEdit_#{sport.id}','#linkObj_#{sport.id}','.viewEdit')"}= sport.option_value
+			.editBox{:id=>"showEdit_"+sport.id}
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'edit_sports_'+sport.id}
+						%option Select
+						%option Swimming
+						%option Gymnastics
+						%option Yoga
+						%option Crcket
+						%option Football
+						%option Other
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit_#{sport.id}','#linkObj_#{sport.id}','.viewEdit')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit_#{sport.id}','#linkObj_#{sport.id}','.viewEdit'); saveChildInterest('edit', 'sport', '#showEdit_#{sport.id}', '#{sport.id}');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+.CL

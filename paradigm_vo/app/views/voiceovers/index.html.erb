@@ -1,0 +1,147 @@
+<br>
+
+<style type="text/css">
+	a.media   { display: block; }
+	div.media { font-size: small; margin: 2px 0; width: 100% !important }
+	div.media div, div.iframe_caption { font-style: italic; color: #888; }
+</style>
+
+<script src="http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/js/jquery.media.js"></script>
+<script type="text/javascript" src="/js/jquery.metadata.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $('a.media').media( { width: 165, height: 20 } );
+    });
+</script>
+<script>	
+	$(document).ready(function(){
+
+	//Hide (Collapse) the toggle containers on load
+	$(".toggle").hide(); 
+
+	//Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+	$(".trigger").click(function(){
+		$(this).toggleClass("active").next().slideToggle("slow");
+		return false; //Prevent the browser jump to the link anchor
+	});
+
+});
+</script>
+
+<h1><%= params[:category] if params[:category].present? %></h1>
+
+
+<% ('A'..'Z').each do |l| %>
+	<% unless params[:filter].present? %>
+		<% if l == 'A' %>
+			<%= link_to l, search_path(category: params[:category], filter: l), style: 'text-decoration:none;font-weight:bold;' %>
+		<% else %>
+			<%= link_to l, search_path(category: params[:category], filter: l) %>
+		<% end %>
+	<% else %>
+		<% if l == params[:filter] %>
+			<%= link_to l, search_path(category: params[:category], filter: l), style: 'text-decoration:none;font-weight:bold;' %>
+		<% else %>
+			<%= link_to l, search_path(category: params[:category], filter: l) %>
+		<% end %>	
+	<% end %>
+<% end %>
+
+
+<div class="col_6 in">
+<%= form_tag([:admin, @list], remote: true) if admin_signed_in? %>
+<%= submit_tag "Add Selection To List" if admin_signed_in? %>
+<% if admin_signed_in? %>
+<%= link_to 'New Artist', new_artist_path %>
+<% end %>
+</div>
+
+<% if params[:category] != "Latest" %>
+
+<div class="col_6 in">
+<div class="col_3 in">
+	<h3>Male</h3>
+</div>
+<div class="col_3 out">
+	<h3>Female</h3>
+</div>
+</div>
+<div class="col_6 in" style="max-height:430px;width:550px;overflow:auto;margin-top:-15px;">
+
+<div class="col_3 in">
+<% if @artists.empty? %>
+	<p><%= 'No Artist(s) Found' %></p>
+<% end %>
+	<h3></h3>
+<% @artists.where(gender: 'Male').group_by {|a| a.starting_with}.sort.each do |l, artists| %>
+	<% for artist in artists do %>
+		<% if admin_signed_in? %>
+			<%= link_to image_tag("icon_delete.gif"), artist, confirm: 'Are you sure?', method: :delete, class: "inline", style: "float:right;" %>
+			<%= link_to image_tag("icon_edit.gif"), edit_artist_path(id: artist), class: "inline", style: "float:right;" %>
+		<% end %><h3 class="trigger"><%= link_to artist.name, artist %></h3>
+
+		<div class="toggle">
+			<div class="block">
+		<% artist.voiceovers.each do |voice| %>
+		
+		    <%= check_box_tag "list[voice_ids][]", voice.id, checked = false, class: "inline" if admin_signed_in? %>&nbsp;<%= voice.file_name.present? ? voice.file_name : voice.voiceover_identifier %> &nbsp;  <% if admin_signed_in? %> <%= link_to image_tag("icon_edit.gif"), edit_artist_voiceover_path(artist_id: artist, id: voice), class: 'inline' %>&nbsp;<%= link_to image_tag("icon_delete.gif"), artist_voiceover_path(artist_id: artist, id: voice), confirm: 'Are you sure?', method: :delete, class: 'inline' %>    <% end %>
+		    <a class="media" href="<%= voice.voiceover.url %>"></a>
+		    <%= link_to 'download this file', artist_voiceover_path(artist_id: artist, id: voice) %><br>
+		<% end %> 
+			</div>
+		</div>
+	<% end %>
+<% end %>
+
+</div>
+
+<div class="col_3 out">
+		<h3></h3>
+<!-- <#% @artists.take_while{|a| a.gender == 'Female'}.each do |artist| %> -->
+<% @artists.where(gender: 'Female').group_by {|a| a.starting_with}.sort.each do |l, artists| %>
+	<% for artist in artists do %>
+		<% if admin_signed_in? %>
+			<%= link_to image_tag("icon_delete.gif"), artist, confirm: 'Are you sure?', method: :delete, class: "inline", style: "float:right;" %>
+			<%= link_to image_tag("icon_edit.gif"), edit_artist_path(id: artist), class: "inline", style: "float:right;" %>
+		<% end %>
+
+		<h3 class="trigger"><%= link_to artist.name, artist %></h3>
+		<div class="toggle">
+			<div class="block">
+
+			<% artist.voiceovers.each do |voice| %>
+
+	    <%= check_box_tag "list[voice_ids][]", voice.id, checked = false, class: "inline" if admin_signed_in? %>&nbsp;<%= voice.file_name.present? ? voice.file_name : voice.voiceover_identifier %> &nbsp;  <% if admin_signed_in? %> <%= link_to image_tag("icon_edit.gif"), edit_artist_voiceover_path(artist_id: artist, id: voice), class: 'inline' %>&nbsp;<%= link_to image_tag("icon_delete.gif"), artist_voiceover_path(artist_id: artist, id: voice), confirm: 'Are you sure?', method: :delete, class: 'inline' %>    <% end %>
+	    <a class="media" href="<%= voice.voiceover.url %>"></a>
+	    <%= link_to 'download this file', artist_voiceover_path(artist_id: artist, id: voice) %><br>
+			<% end %>
+			</div>
+		</div>
+	<% end %>
+<% end %>
+</div>
+</div>
+<% elsif params[:category] == "Latest" || params[:query].present? %>
+<div class="col_6 in">
+<% @artists.each do |artist| %>
+<% if admin_signed_in? %>
+<%= link_to image_tag("icon_delete.gif"), artist, confirm: 'Are you sure?', method: :delete, class: "inline", style: "float:right;" %>
+<%= link_to image_tag("icon_edit.gif"), edit_artist_path(id: artist), class: "inline", style: "float:right;" %>
+<% end %>
+<h3 class="trigger"><%= link_to artist.name, artist %></h3>
+<div class="toggle">
+	<div class="block">
+<% artist.voiceovers.each do |voice| %>
+    <%= check_box_tag "list[voice_ids][] <br>".html_safe, voice.id, checked = false, class: "inline" if admin_signed_in? %>&nbsp;<%= voice.file_name.present? ? voice.file_name : voice.voiceover_identifier %> &nbsp;  <% if admin_signed_in? %> <%= link_to image_tag("icon_edit.gif"), edit_artist_voiceover_path(artist_id: artist, id: voice), class: 'inline' %>&nbsp;<%= link_to image_tag("icon_delete.gif"), artist_voiceover_path(artist_id: artist, id: voice), confirm: 'Are you sure?', method: :delete, class: 'inline' %>    <% end %>
+    <a class="media" href="<%= voice.voiceover.url %>"></a>
+    <%= link_to 'download this file', artist_voiceover_path(artist_id: artist, id: voice) %>
+<% end %>
+	</div>
+</div>
+<% end %>
+
+
+</div>
+<% end %>

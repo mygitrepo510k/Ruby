@@ -1,0 +1,11 @@
+!!!
+%html{xmlns: "http://www.w3.org/1999/xhtml"}
+  %head
+    = render 'layouts/head'
+    = stylesheet_link_tag :frontpage
+    = yield :meta_tags
+  %body
+    = yield
+    - unless @no_footer
+      = render "application/footer"
+    = render 'layouts/analytics'

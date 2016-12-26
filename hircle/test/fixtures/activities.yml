@@ -1,0 +1,18 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  id: 1
+  activity_type: upload file
+  create_date: 2013-04-18 22:35:42
+  activity_by_id: 1
+  activity_with_id: 2
+  department_id: 1
+ 
+activity2:
+  id: 2
+  activity_type: conversation
+  create_date: 2013-04-19 22:35:42
+  activity_by_id: 1
+  activity_with_id: 2
+  department_id: 1
+  conversation_id: 2

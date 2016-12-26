@@ -1,0 +1,18 @@
+-@interest.personals.each do |personal|
+	.formMainRow.singleRow{:style=>"height: 20px;", :id=>'row_'+personal.id}
+		.formAction
+			.viewEdit
+				%a.editIcon{:href => "javascript://", :onclick => "showEdit('#showEdit_#{personal.id}','#linkObj_#{personal.id}','.viewEdit')", :title => "Edit"}
+				= link_to("", "javascript:delete_interest('#{personal.id}')", :method=> :delete, :confirm => "Are you sure?", :class => "deleteIcon", :title=>"Delete")
+			%span{:id=>"linkObj_"+personal.id, :onclick => "showEdit('showEdit_#{personal.id}','#linkObj_#{personal.id}','.viewEdit')"}= personal.option_value
+			.editBox{:id=>"showEdit_"+personal.id}
+				.jqSmallform{:style => "width:200px;"}
+					%select{:name=>'edit_personal_'+personal.id}
+						%option Select
+						%option Holiday
+						%option Birthday
+						%option Other
+				%a.closeBigBtn.FR{:href => "#.", :onclick => "hideEdit('#showEdit_#{personal.id}','#linkObj_#{personal.id}','.viewEdit')"}
+				%input.saveBtn.FR{:onclick => "hideEdit('#showEdit_#{personal.id}','#linkObj_#{personal.id}','.viewEdit'); saveChildInterest('edit', 'personal', '#showEdit_#{personal.id}', '#{personal.id}');", :style => "margin-left:8px; box-shadow:none;", :type => "submit", :value => "save"}/
+				.CL
+.CL

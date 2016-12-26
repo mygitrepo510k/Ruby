@@ -1,0 +1,114 @@
+:css
+	.fc-header-right { display:none; }
+
+	.fc-event-skin {
+		background: none !important;
+		color: #000 !important;
+	}
+		
+	/* horizontal events */
+		
+	.fc-event-hori {
+		border-width: 0 0 1px 0 !important;
+		border-bottom-style: dotted !important;
+		border-bottom-color: #000 !important;
+		padding: 1px 0 0 0 !important;
+	}
+		
+	.fc-event-hori .fc-event-inner {
+		border-width: 0 !important;
+		padding: 0 1px !important;
+	}
+		
+	/* vertical events */
+		
+	.fc-event-vert {
+		border-width: 0 0 0 1px !important;
+		border-left-style: dotted !important;
+		border-left-color: #000 !important;
+		padding: 0 1px 0 0 !important;
+	}
+		
+	.fc-event-vert .fc-event-inner {
+		border-width: 0 !important;
+		padding: 1px 0 !important;
+	}
+		
+	.fc-event-bg {
+		display: none !important;
+	}
+		
+	.fc-event .ui-resizable-handle {
+		display: none !important;
+	}
+	.fc-widget-content{
+		cursor: pointer;
+	}
+		
+
+/ Body Start here
+.bodyWapper
+	.tabBox
+		= link_to "All Activities", child_activities_list_path+"?id="+selected_member.id, :class=>"tabSelected"
+		= link_to "TimeLine", calendar_time_line_path
+		.CL
+	.tabContainer
+		.tabAction
+			.activityAction
+				.jqGreenForm.FL
+					%select#select{:name => "select", :style => "margin-right:8px;width:100px;"}
+						%option Create new
+						%option{:value => "School Timetable#505#575#add_activity.html"} School Timetable
+						%option{:value => "<p style='font-size:12px; line-height:1.2; padding-top:5px;'>You can start by adding a New Exam Schedule, or continue adding a schedule to an exam you've created.</p>#600#565#create_exam.html"} Exam
+						%option{:value => "Activity#505#575#add_activity.html"} Activity
+						%option{:value => "Create Activity#750#630#day_create_activity.html"} Create Activity
+						%option{:value => "Assignment#540#575#add_assignment.html"} Assignment
+						%option{:value => "Update Holiday <p style='font-size:12px; line-height:1;padding-bottom:8px;'>You‚re adding a Holiday to Meera‚s School Calendar</p>#505#445#add_holiday.html"} Holiday
+				.jqSmallform.FL
+					%select#select{:name => "select", :style => "margin-right:8px;width:100px;"}
+						%option School
+						%option School
+						%option School
+					%select#select{:name => "select", :style=>"width:100px;"}
+						%option No outcome
+						%option No outcome
+						%option No outcome
+						%option No outcome
+			.CL
+		.calendarBox
+			#calendar
+
+
+:javascript
+	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+			defaultView: 'month',
+			header: {
+				left: '',
+				center: 'prev title next today',
+				right: 'agendaDay,agendaWeek,month'
+			},
+			editable: true,
+			events: "/calendar/get_data",
+			timeFormat: 'h:mm t{ - h:mm t} ',
+			dragOpacity: "0.5",
+			dayClick: function(date, allDay, jsEvent, view){				
+				// if (allDay) {
+				//  	alert('Clicked on the entire day: ' + date);
+				// }else{
+				// 	alert('Clicked on the slot: ' + date);
+				// }
+				// alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+				// alert('Current view: ' + view.name);
+				// change the day's background color just for fun
+				// $(this).css('background-color', 'red');
+
+				document.location.href = "/calendar/day?id=#{params[:id]}&dt="+date
+
+			},
+			eventClick: function(event, jsEvent, view){
+				showEventDetails(event);
+			}
+		});
+		
+	});

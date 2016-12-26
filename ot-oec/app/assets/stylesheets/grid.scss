@@ -1,0 +1,30 @@
+.experience_grid {
+  display: inline-block;
+
+	ol.experiences {
+    li.student_row {
+      display: block;
+      .experience {
+        height: 80px;
+        width: 80px;
+        padding: 4px;
+      }
+      .student_portrait, .experience {
+        display: inline-block;
+        margin: 3px;
+        float: left;
+      }
+      a[data-executed] {
+        background: #C9DCDC;
+      }
+    }
+	}
+}
+
+#grid_table {
+  margin-bottom: 10px;
+}
+
+.tooltip_wrapper {
+  visibility: hidden;
+}

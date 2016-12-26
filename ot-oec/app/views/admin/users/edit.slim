@@ -1,0 +1,10 @@
+.section.single.program-new
+	h3 Edit user
+
+	ol.breadcrumb
+		li= link_to 'Admin', admin_path
+		li= link_to 'Users', admin_users_path
+		li.active= 'Edit User'
+
+	= render 'form'
+

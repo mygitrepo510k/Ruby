@@ -1,0 +1,27 @@
+- @child_related_policies.each do |cr_policy|
+	%tr{:id=>'actRow_'+cr_policy.id}
+		%td{:align => "left", :valign => "top"}
+			%a.greenTxt{:href => "#."}= cr_policy.name
+		%td{:align => "left", :valign => "top"}= cr_policy.type
+		%td{:align => "left", :valign => "top"}= cr_policy.amount
+		%td.actionBox{:align => "left", :valign => "top"}
+			= link_to("", "javascript:delete_cr_policy('#{cr_policy.id}')", :method=> :delete, :confirm => "Are you sure?", :class => "deleteIcon", :title=>"Delete")
+			%a.editIcon{:href => "javascript://", :onclick => "showObj('#modifyRow_#{cr_policy.id}');$('#actRow_#{cr_policy.id}').hide()", :title => "Edit"}
+			= cr_policy.description
+	%tr.editRow{:style => "display:none;", :id=>'modifyRow_'+cr_policy.id }
+		%td{:align => "left", :valign => "top"}
+			%input.inputField{:id=>'cr_val1_'+cr_policy.id, :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :type => "text", :value => cr_policy.name}/
+		%td{:align => "left", :valign => "top"}
+			%select.inputField{:id=>'cr_val2_'+cr_policy.id, :name => "type", :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'"}
+				%option Higher Education
+				%option Education
+				%option Life
+				%option Medical
+				%option Other
+		%td{:align => "left", :valign => "top"}
+			%input.inputField{:id=>'cr_val3_'+cr_policy.id, :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:80px;", :type => "text", :value => cr_policy.amount}/
+		%td{:align => "left", :valign => "top"}
+			%input.inputField{:id=>'cr_val4_'+cr_policy.id, :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:250px;", :type => "text", :value => cr_policy.description}/
+			%a.closeBigBtn.FR{:href => "#.", :onclick => "showObj('#actRow_#{cr_policy.id}');$('#modifyRow_#{cr_policy.id}').hide()"}
+			%input.saveBtn{:onclick => "showObj('#actRow_#{cr_policy.id}');$('#modifyRow_#{cr_policy.id}').hide();edit_cr_policy('#{cr_policy.id}');", :type => "submit", :value => "save"}/
+

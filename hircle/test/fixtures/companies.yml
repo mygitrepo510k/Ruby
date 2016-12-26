@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+sohu:
+  id: 1
+  name: sohu
+  subdomain: sohu.com
+  city: beijing
+  state: MyString
+  website: www.sohu.com
+  plan_id: 1
+
+huawei:
+  id: 2
+  name: huawei
+  subdomain: huawei.com
+  city: shenzhen
+  state: MyString
+  website: www.huawei.com
+  plan_id: 1

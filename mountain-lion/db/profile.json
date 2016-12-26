@@ -1,0 +1,361 @@
+{ "profile_sections": [
+  { "name": "My Description",
+    "displayed": true,
+    "profile_questions": [
+    {
+      "question": "Hair Color",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Brown" },
+      { "answer": "Black" },
+      { "answer": "Blonde" }
+      ]
+    },
+    {
+      "question": "Eye Color",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Hazel" },
+      { "answer": "Green" },
+      { "answer": "Blue" },
+      { "answer": "Brown" }
+      ]
+    },
+    {
+      "question": "Body Type",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Average" },
+      { "answer": "Athletic" },
+      { "answer": "Slender" },
+      { "answer": "Voluptuous" }
+      ]
+    },
+    {
+      "question": "Height",
+      "answer_type": "select_list",
+      "profile_answers": [
+      { "answer": "4'6\"-" },
+      { "answer": "4'6\"" },
+      { "answer": "4'7\"" },
+      { "answer": "4'8\"" },
+      { "answer": "4'9\"" },
+      { "answer": "4'10\"" },
+      { "answer": "4'11\"" },
+      { "answer": "5'0\"" },
+      { "answer": "5'1\"" },
+      { "answer": "5'2\"" },
+      { "answer": "5'3\"" },
+      { "answer": "5'4\"" },
+      { "answer": "5'5\"" },
+      { "answer": "5'6\"" },
+      { "answer": "5'7\"" },
+      { "answer": "5'8\"" },
+      { "answer": "5'9\"" },
+      { "answer": "5'10\"" },
+      { "answer": "5'11\"" },
+      { "answer": "6'0\"" },
+      { "answer": "6'1\"" },
+      { "answer": "6'2\"" },
+      { "answer": "6'3\"" },
+      { "answer": "6'4\"" },
+      { "answer": "6'5\"" },
+      { "answer": "6'6\"" },
+      { "answer": "6'6\"+" }
+      ]
+    }
+    ]
+  },
+  {
+    "name": "Lifestyle",
+    "displayed": true,
+    "profile_questions": [
+    {
+      "question": "Are you a drinker?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" },
+      { "answer": "Socially" }
+      ]
+    },
+    {
+      "question": "Are you a smoker?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" },
+      { "answer": "Socially" }
+      ]
+    },
+    {
+      "question": "What is your religion?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Christian" },
+      { "answer": "Catholic" },
+      { "answer": "Muslim" },
+      { "answer": "Jewish" },
+      { "answer": "I'll tell you later" }
+      ]
+    },
+    {
+      "question": "What is your occupation?",
+      "answer_type": "string"
+    },
+    {
+      "question": "Do you have kids?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Do you want kids?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "What languages do you speak?",
+      "answer_type": "string"
+    },
+    {
+      "question": "Do you exercise?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "What is your Education?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "High School" },
+      { "answer": "Some College" },
+      { "answer": "College" },
+      { "answer": "Graduate" }
+      ]
+    },
+    {
+      "question": "Do you like to party?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you energetic?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you organized?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "How do you dress?",
+      "answer_type": "string"
+    }
+    ]
+  },
+  {
+    "name": "Personality",
+    "displayed": true,
+    "profile_questions": [
+    {
+      "question": "Are you confident?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you adventurous?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you romantic?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you affectionate?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you moody?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you loyal?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you social?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you independent?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    }
+    ]
+  },
+  {
+    "name": "Interests",
+    "displayed": true,
+    "profile_questions": [
+    {
+      "question": "Do you like to go out?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Do you like to dance?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Do you like movies?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Do you like pets?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Do you have any pets?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Do you like to travel?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Do you like sports?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    },
+    {
+      "question": "Are you an active person?",
+      "answer_type": "radio_group",
+      "profile_answers": [
+      { "answer": "Yes" },
+      { "answer": "No" }
+      ]
+    }
+    ]
+  },
+  {
+    "name": "Outlook",
+    "displayed": true,
+    "profile_questions": [
+    {
+      "question": "Describe your perfect mate.",
+      "answer_type": "string"
+    },
+    {
+      "question": "Do you believe in love?",
+      "answer_type": "string"
+    },
+    {
+      "question": "Do you want to be married?",
+      "answer_type": "string"
+    },
+    {
+      "question": "Do you want kids?",
+      "answer_type": "string"
+    },
+    {
+      "question": "Describe your perfect night out.",
+      "answer_type": "string"
+    },
+    {
+      "question": "What are your turn offs?",
+      "answer_type": "string"
+    },
+    {
+      "question": "What are your turn ons?",
+      "answer_type": "string"
+    },
+    {
+      "question": "Do you see yourself finding the perfect mate?",
+      "answer_type": "string"
+    },
+    {
+      "question": "Are you ready for love?",
+      "answer_type": "string"
+    },
+    {
+      "question": "Do you like commitments?",
+      "answer_type": "string"
+    }
+    ]
+  }
+  ]
+}

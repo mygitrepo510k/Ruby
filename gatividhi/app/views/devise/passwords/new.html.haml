@@ -1,0 +1,13 @@
+.container-fluid
+  .row.devise-pages
+    .span8.offset1.forgot-password-new
+      %div
+        %h3{:style=>"color: rgb(93, 191, 171);font-size: 16px;text-align: center;"} We'll help you remember your password
+        = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, :class => "form-horizontal" }) do |f|
+          = devise_error_messages!
+          .row
+            .span2
+              = f.email_field :email, :autofocus => true, :placeholder => "your@email.com"
+            .span2
+              = f.submit "Send Password", :class => "btn-send-password"
+            

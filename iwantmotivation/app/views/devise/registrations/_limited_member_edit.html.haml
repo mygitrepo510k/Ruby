@@ -1,0 +1,150 @@
+- content_for :head do
+	= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
+#stripe_error.alert.alert-error{:style => "display:none"}					 
+
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:method => :put, :class => 'card_form_test form-vertical', :multipart => true }) do |f|
+	#member_signup
+		= hidden_field_tag 'plan', params[:plan]
+		= f.hidden_field :ismember, :value=>"1"
+		= f.error_notification
+		= display_base_errors resource
+		.row.first-row{:style=>"text-align: center;"}
+			%h2 Welcome To The I Want Motivation Sign Up Page		
+		.row.second-row
+			.span3
+				.row
+					=f.input :category_id, :list=>true, :collection=>Category::member_categories, :label=>"Select Category", :include_blank=>false, :input_html=>{:size=>8}
+			.span6
+				.row
+					%h5=get_option(:full_signup_page_description)
+		.row.third-row
+			.span5.image-upload-box{:style=>"margin-left: 0px;"}
+				.span1{:style=>"margin-left:0px; width:110px;"}
+					= image_tag(current_user.image_url('medium'), :id=>'uploadPreview', :alt=>'Image preview')
+				.span3
+					.row
+						%label Add An Image
+					.row
+						.span1{:style=>"margin-left: 0px;"}
+							%input{:type=>"file", :onchange=>"loadImageFile();", :name=>"user[pictures_attributes][0][image]", :id=>"user_pictures_attributes_0_image"}
+			.span4
+				.row
+					= f.input :name, :autofocus => true, :label => "Choose a Screen Name", :required => true, :input_html => {:value=>current_user.name}
+					= f.input :password, :required => true, :label=>false, :placeholder=>"Enter Password", :required => true
+					= f.input :password_confirmation, :required => true, :label=>false, :placeholder => "Re-Enter Password"
+					%h5 Tell Us How You Found Us?
+					= f.select(:foundus_id, options_from_collection_for_select(Foundus.all, :id, :found_us_name))
+		.row.fourth-row
+			.span3
+				=f.simple_fields_for :user_info_attributes do |u_info|
+					= u_info.input :age, :required => true, :input_html => {:value=>current_user.age}
+			.span3
+				=f.simple_fields_for :user_info_attributes do |u_info|
+					= u_info.input :country
+			.span3
+				=f.simple_fields_for :user_info_attributes do |u_info|
+					= u_info.input :state, :input_html => {:value=>current_user.state}
+			.span3
+				=f.simple_fields_for :user_info_attributes do |u_info|
+					= u_info.input :city, :required => true, :input_html => {:value=>current_user.city}
+			.row
+				.span8.offset2
+					.span6{:style=>"width: 500px; height:200px; border:solid 1px;"}
+						%label=get_option(:full_signup_agreement)
+					.span2
+						= f.input :email, :required => true, :input_html=>{ :value=>current_user.email}
+	.row.last-controll-box
+		.span2.offset3
+			%label.checkbox
+				%input.accept-aggre{:type=>"checkbox"} Accept the agreement
+		.span2{:style=>"margin-left:70px;"}
+			= f.button :submit, 'Sign up', :class => 'btn-primary fullsignup-submit', :disabled=>"disabled"
+
+%script{:src => "https://www.paypalobjects.com/js/external/dg.js"}
+:css
+	div.container{
+		max-width: 1024px !important;
+		min-width: 1024px !important;
+	}
+
+:javascript
+	$('#payment_info').hide();	
+	$("input.accept-aggre").click(function(){
+		if($(this).is(':checked')){
+			$(".fullsignup-submit").removeAttr("disabled");
+		}else{
+			$(".fullsignup-submit").attr("disabled","disabled");
+		}
+	});
+
+	oFReader = new FileReader(), rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+ 
+	oFReader.onload = function (oFREvent) {
+		document.getElementById("uploadPreview").src = oFREvent.target.result;
+	};
+	 
+	function loadImageFile() {
+		if (document.getElementById("user_pictures_attributes_0_image").files.length === 0) { return; }
+		var oFile = document.getElementById("user_pictures_attributes_0_image").files[0];
+		if (!rFilter.test(oFile.type)) { alert("You must select a valid image file!"); return; }
+		oFReader.readAsDataURL(oFile);
+	}
+
+	function validate(){
+		if(!$("#user_name").val()){
+			alert("Please input Screen name");
+			$("#user_name").focus();
+			return false;
+		}
+		if(!$("#user_email").val()){
+			alert("Please input email");
+			$("#user_email").focus();
+			return false;
+		}
+		if(!$("#user_category_id").val()){
+			alert("Please select category");
+			return false;
+		}
+		if(!$("#user_pictures_attributes_0_image").val() && $("#user_pictures_attributes_0_image").val() < 10){
+			alert("Please select image");
+			$("#user_pictures_attributes_0_image").focus();
+			return false;
+		}
+		if(!$("#user_password").val() && $("#user_password").val() < 8){
+			alert("Please input Password");
+			$("#user_password").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_age").val()){						
+			alert("Please input Age");
+			$("#user_user_info_attributes_age").focus();
+			return false;
+		}else if($("#user_user_info_attributes_age").val().length != 2 || !isNumber($("#user_user_info_attributes_age").val())){
+			alert("Please check your Age");
+			$("#user_user_info_attributes_age").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_state").val()){
+			alert("Please input State");
+			$("#user_user_info_attributes_state").focus();
+			return false;
+		}
+		if(!$("#user_user_info_attributes_city").val()){
+			alert("Please input City");
+			$("#user_user_info_attributes_city").focus();
+			return false;
+		}
+		return true;
+	}
+
+
+	var paypal_started = false;
+	var valid = false;
+	$('form#edit_user').submit(function(){
+		if (validate()){
+			$(this).submit();
+			return false;	
+		}else{
+			return false;
+		}
+	});

@@ -1,0 +1,23 @@
+-if @user.errors.any?
+	#error_explanation
+		= pluralize(@user.errors.count, "error")
+ 			| prohibited this user from being saved:
+		ul
+			- @user.errors.full_messages.each do |msg|
+				li= msg
+
+= form_for [:admin, @user] do |f|
+	.field
+		= f.text_field :name, placeholder: 'Name'
+	.field
+		= f.text_field :email, placeholder: 'Email'
+	.field
+		= f.label :location
+		= f.select :location, options_for_select(Location.all.map { |l| [l.name, l.id] }, selected = @user.location ? @user.location.id : nil)
+	.field
+		= f.label :role
+		= fields_for :user_program do |up|
+			= up.select :role, options_for_select(UserProgram::roles.collect { |k,v| [k.humanize, v] },
+				selected = UserProgram::roles[@user.role(current_user)])
+	.submit
+		= f.submit 'Submit', class: 'form-control'

@@ -1,0 +1,5 @@
+= render partial: "application/internal_notification", locals: { notification: @internal_notification } if @internal_notification
+- @users.each do |user|
+  = render partial: "users/user", locals: { user: user.decorate, message: nil }
+  %hr
+= paginate @users

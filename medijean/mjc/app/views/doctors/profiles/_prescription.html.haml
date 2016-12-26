@@ -1,0 +1,10 @@
+%td
+  = prescription.id
+%td
+  = l(prescription.issue_date, format: :long)
+%td
+  = l(prescription.expiration, format: :long)
+%td
+  = prescription.status
+%td
+  = link_to t('doctor_flow.patient_profile.view'), doctor_patient_prescription_path(prescription.doctor_patient, prescription)

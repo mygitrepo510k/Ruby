@@ -1,0 +1,217 @@
+<div class="span10" style="width:79%;" >
+
+	<!--Body content-->
+	<div id="resume00" class = "content3">
+
+		<div class="content-group" style="margin-top:0px;">
+			<div class="controls control-title1" style="width:100%; float:left;">
+				<p class="text-info" style="padding-left:0px;">
+					Search Preferences
+				</p>
+			</div>
+		</div>
+		<div class="content-group" style="width:100%;">
+			<div class="line3">
+
+			</div>
+		</div>
+		<div  class="content-group">
+			<div class="input-info span9">
+				<label> What type of job are you looking for? Select your preferred categories:</label>
+				<ul class="display-ul">
+					<li class="li-inline">
+						<label><small>City</small></label>
+						<select style="width:100%;" id="search_city">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</li>
+					<li class="li-inline">
+						<label><small>State</small></label>
+						<select style="width:100%;" id="search_state">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</li>
+					<li class="li-inline">
+						<label><small>Zip Code</small></label>
+						<select style="width:100%;" id="search_zip">
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</select>
+					</li>
+					<li class="li-inline">
+						<button id="submit_search" class="btn btn-primary" style="margin-bottom:10px;">
+							Save
+						</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- <div id="resume01" class = "content3">
+
+		<div class="content-group">
+			<div class="controls control-title1" style="width:100%; float:left;">
+				<p class="text-info" style="padding-left:0px;">
+					Time Zone Setting
+				</p>
+			</div>
+		</div>
+		<div class="content-group" style="width:100%;">
+			<div class="line3">
+
+			</div>
+		</div>
+		<div class="content-group">
+			<div class="input-info span9">
+				<label>Select U.S. time zone</label>
+				<select style="width:80%; margin-left:0px;" id="search_zone">
+					<option>Eastern</option>
+					<option>2</option>
+					<option>3</option>
+					<option>4</option>
+					<option>5</option>
+				</select>
+				<button id="submit_zone" class="btn btn-primary" style="margin-bottom:10px;" >
+					Save
+				</button>
+			</div>
+		</div>
+	</div> -->
+	<div id="resume02" class = "content3">
+
+		<div class="content-group">
+			<div class="controls control-title1" style="width:100%; float:left;">
+				<p class="text-info" style="padding-left:0px;">
+					Privacy Setting
+				</p>
+			</div>
+		</div>
+		<div class="content-group" style="width:100%;">
+			<div class="line3">
+
+			</div>
+		</div>
+		<div class="content-group">
+			<label class="radio">
+				<input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
+				<i class="icon-user"></i> <b>Public:</b>Allow any employer to find me </label>
+			<label class="radio">
+				<input type="radio" checked="" value="option2" id="optionsRadios1" name="optionsRadios">
+				<i class="icon-lock"></i> <b>Private:</b>Only allow employers for jobs I apply to view my information. </label>
+		</div>
+
+	</div>
+	<!-- <div id="resume04" class = "content3">
+
+		<div class="content-group">
+			<div class="controls control-title1" style="width:100%; float:left;">
+				<p class="text-info" style="padding-left:0px;">
+					Change Username
+				</p>
+			</div>
+		</div>
+		<div class="content-group" style="width:100%;">
+			<div class="line3">
+
+			</div>
+		</div>
+		<div class="content-group">
+			<ul class="display-ul">
+				<li class="li-inline">
+					<label><small>Current</small></label>
+					<input type="text" class="input-small">
+				</li>
+				<li class="li-inline">
+					<label><small>New</small></label>
+					<input type="text" class="input-small">
+				</li>
+				<li class="li-inline">
+					<label><small>Confirm</small></label>
+					<input type="text" class="input-small">
+				</li>
+				<li class="li-inline">
+					<button class="btn btn-primary" >
+						Save
+					</button>
+				</li>
+			</ul>
+		</div>
+	</div> -->
+	<div id="resume05" class = "content3">
+
+		<div class="content-group">
+			<div class="controls control-title1" style="width:100%; float:left;">
+				<p class="text-info" style="padding-left:0px;">
+					Reset Password
+				</p>
+			</div>
+		</div>
+		<div class="content-group" style="width:100%;">
+			<div class="line3">
+
+			</div>
+		</div>
+		<div class="content-group">
+			<ul class="display-ul">
+				<%= form_for( @user, :url => { :action => "update_password" },:method => "PUT" ) do |f| %>
+	  				<li class="li-inline">
+						<label><small>Current</small></label>						
+						<%= f.password_field :current_password, :autocomplete => "off",:id=>"current_password",:class=>"input-small"  %>
+					</li>
+					<li class="li-inline">
+						<label><small>New</small></label>						
+						<%= f.password_field :password, :autocomplete => "off",:id=>"new_password",:class=>"input-small"  %>
+					</li>   			
+	    			<li class="li-inline">
+						<label><small>Confirm</small></label>						
+						<%= f.password_field :password_confirmation, :autocomplete => "off",:id=>"confirm_password",:class=>"input-small"  %>
+					</li>	  			
+	  				
+	  				<li class="li-inline">						
+							<%= f.submit "Reset",:class=> "btn btn-primary" %>						
+					</li>				
+	  			
+				<% end %>
+			</ul>			
+		</div>
+	</div>
+	<div id="resume06" class = "content3">
+
+		<div class="content-group">
+			<div class="controls control-title1" style="width:100%; float:left;">
+				<p class="text-info" style="padding-left:0px;" >
+					Cancel Account
+				</p>
+			</div>
+		</div>
+		<div class="content-group" style="width:100%;">
+			<div class="line3">
+
+			</div>
+		</div>
+		<div class="content-group">
+			<div style="width:64%; display:inline-block;">
+				<p >
+					<strong> Are you sure you want to cancel your account?</strong>
+					<br>
+					We are sorry to see you go. Click button on the tight to cancel your account.
+				</p>
+			</div>
+			<button class="btn btn-primary" id="submit_cancel" style="margin-top:-15px;">
+				Cancel Account
+			</button>
+		</div>
+
+	</div>
+</div>

@@ -1,0 +1,29 @@
+#chat-widget.pusher-chat-widget.hidden
+  .pusher-chat-widget-header 
+    .pusher-chat-widget-current-user-name  
+      Name 
+    = link_to 'x', '#', :class => 'pull-right close'  
+  .pusher-chat-widget-messages
+    %ul.activity-stream
+      %li.activity{"data-activity-id" => "", :style => "display: none;" }
+        .stream-item-content
+          .image 
+            %img{:height => "48", :src => "http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?s=80&d=mm&r=g", :width => "48"}/
+          .content
+            .activity-row
+              %span.user-name
+                %a.screen-name{:title => "  "}   
+            .activity-row
+              .text   
+            .activity-row
+              %a.timestamp
+                %span{"data-activity-published" => "2013-05-11T11:58:37-07:00", :title => "2013-05-11T11:58:37-07:00"}   
+                
+              %span.activity-actions
+  .pusher-chat-widget-input
+    - @conversation = Conversation.new
+    = form_for @conversation, :url => user_conversations_path(current_user), :remote=>true, :html => {:class => 'new-message'} do |f|
+      = f.fields_for @conversation.messages.build do |x|
+        = x.text_field :body, :placeholder => "Write message ....", :class => 'messageTextarea' 
+        = x.hidden_field :recipient_id 
+

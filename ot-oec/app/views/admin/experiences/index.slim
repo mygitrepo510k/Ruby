@@ -1,0 +1,28 @@
+.admin-experiences.section.single
+  h3 Experiences
+
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li.active= 'Experiences'
+
+  = link_to 'Add New', new_admin_experience_path
+
+  table.table.table-striped
+    tr
+      th= 'Name'
+      th= 'Created for'
+      th= 'Created by'
+      th= 'Created at'
+      th= 'Edit'
+      th= 'View'
+
+    - @experiences.each do |exp|
+      tr
+        td= exp.name
+        td= exp.created_for.name
+        td= exp.created_by.name
+        td= exp.created_at.to_formatted_s(:short)
+        td= link_to 'Edit', edit_admin_experience_path(exp)
+        td= link_to 'View', experience_path(exp)
+
+  = will_paginate @experiences, renderer: BootstrapPagination::Rails

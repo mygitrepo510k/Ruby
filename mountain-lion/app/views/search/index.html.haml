@@ -1,0 +1,19 @@
+%h1 Search results
+%hr
+- @users.each do |user|
+  = render partial: "users/user", locals: { user: user.decorate, message: nil }
+  %hr
+
+= paginate @users
+
+:coffee
+  $ ->
+    $paginationlinks = $(".pagination a")
+    $paginationlinks.on "click", (e) ->
+      $link = $(this)
+      $nextnum = parseInt($link.attr("href").replace( /^\D+/g, ''))
+      if #{!current_user.premium?} && (parseInt($link.text())>3||$nextnum>3||$link.text()=="Last \u00bb")
+        e.preventDefault()
+        $('#modal-container2').html("#{j(render('layouts/shared/upgrade_premium'))}")
+        $('#modal-container2').modal()
+ 

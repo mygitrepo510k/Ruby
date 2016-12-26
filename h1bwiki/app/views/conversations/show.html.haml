@@ -1,0 +1,26 @@
+.container-fluid
+	.row.mailbox-page
+		=render "layouts/nav-link-mailbox-secondary"
+		.row.first-row
+			.span12
+				.page-header
+				.row
+					.page-title
+						%p.subject= conversation.subject
+				.row
+					.span11.show-mail-box
+						= div_for(conversation.receipts_for(current_user), :class=>"row") do |receipt|
+							- message = receipt.message
+							.span3
+								-if message.sender.first_name == current_user.first_name
+									%p Me
+								-else
+									%p= message.sender.first_name + " " + message.sender.last_name
+								%p=l message.created_at, :format => "%b %d %I:%M %p"
+							.span7
+								%p= message.body
+						.row.receipt
+							= render 'conversations/reply_form', conversation: conversation
+:javascript
+	$("#message_subject").val("#{conversation.subject}");
+/	%h3= message.subject

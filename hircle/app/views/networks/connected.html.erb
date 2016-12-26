@@ -1,0 +1,43 @@
+<div class="container networks connected">
+  <div class="container-fluid1">
+    <div class="row-fluid">
+      <%=render "left_side"%>
+      <div class="span10 white-colr" style="width:79%;">
+        <div id="resume00" class="content3" style="background-color:#fff;">
+          <div class="content-group" style="margin-top:0px;">
+            <div class="controls control-title1" style="width:100%; float:left;">
+              <p class="text-info" style="padding-left:0px;">Network</p>
+            </div>
+          </div>
+          <div class="content-group" style="width:100%;">
+            <div class="line3"></div>
+          </div>
+          <div class="content-group">
+			<div data-toggle="buttons-radio" class="span9">
+					<button class=" btn-primary  btn-round">2</button>
+					<h4 style=" display: inline-block;">You're connected!</h4>
+					
+			</div><br>
+			<div class="success-bar">
+				<img style="margin-left:24px;" src="/assets/success.png"><strong style="padding-left:24px;"><span><%=@connected_ids%></span> invitation have been sent. </strong><i class="icon-remove"></i> 
+			</div>
+			<div data-toggle="buttons-radio" style="margin-left:0px;" class=" marginH4 span11">
+					<p>Thanks for searching your contacts. Come back anytime to find connections.</p>
+			</div>
+			<div style="margin-left:0px;" class="span12">
+			
+			</div>
+		</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<%=content_for :js do%>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      window.connect = new Connect()
+    });
+  </script>
+<%end%>

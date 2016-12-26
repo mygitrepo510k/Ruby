@@ -1,0 +1,27 @@
+/ TODO: refactor me
+.dashboard-nav
+  %ul.nav.nav-pills
+    - if current_page?(prescriptions_path)
+      %li.patient-profile-tab.span2.active
+        =link_to t("dashboard.tabs.prescription"), prescriptions_path
+    - else
+      %li.patient-profile-tab.span2
+        =link_to t("dashboard.tabs.prescription"), prescriptions_path
+    - if current_page?(orders_path)
+      %li.patient-profile-tab.span2.active
+        =link_to t("dashboard.tabs.order_history"), orders_path
+    - else
+      %li.patient-profile-tab.span2
+        =link_to t("dashboard.tabs.order_history"), orders_path
+    - if current_page?(notifications_path)
+      %li.patient-profile-tab.span2.active
+        =link_to t("dashboard.tabs.notifications"), notifications_path
+    - else
+      %li.patient-profile-tab.span2
+        =link_to t("dashboard.tabs.notifications"), notifications_path
+    - if current_page?(knowledge_centre_path) || request.fullpath.index('kc/')
+      %li.patient-profile-tab.span4.active
+        =link_to t("dashboard.tabs.knowledge_center"), knowledge_centre_path
+    - else
+      %li.patient-profile-tab.span4
+        =link_to t("dashboard.tabs.knowledge_center"), knowledge_centre_path

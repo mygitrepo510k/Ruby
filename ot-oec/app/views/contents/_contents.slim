@@ -1,0 +1,28 @@
+.contents-section
+	- @contents.each do |content|
+		.row.content-item
+			h2= content.name
+
+			- if content.image?
+				-if !content.image.url
+					= link_to image_tag(content.filepicker_url), content.filepicker_url, rel: 'shadowbox'
+				-if content.image
+					= link_to image_tag(content.image.profile.url), content.image.url, rel: 'shadowbox'
+			- elsif content.file?
+				.link
+					-if !content.file
+						= link_to 'Download', content.filepicker_url, target: '_blank'
+					-if content.file
+						= link_to 'Download', content.file.url, target: '_blank'
+					span class='glyphicon glyphicon-paperclip'
+			- elsif content.video?
+				.wistia
+					#video-player
+					-if !content.get_player
+						.video_placeholder
+							| Video coming soon
+					= content.get_player
+
+			-if content.description
+				.content-description= content.description
+			hr

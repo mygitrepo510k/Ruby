@@ -1,0 +1,11 @@
+#content_wrap.container
+	#left_side
+		= render :partial =>"left_side"
+	#jobs
+:javascript
+	$(function(){
+		window.router = new Hircle.Routers.JobsRouter({jobs: #{@jobs.to_json.html_safe}});
+		Backbone.history.start();
+		console.log("Backbone start");
+	});
+	

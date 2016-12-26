@@ -1,0 +1,72 @@
+%table.tableGride{:border => "0", :cellpadding => "0", :cellspacing => "0", :width => "100%"}
+  %tbody
+    %tr
+      %th{:align => "left", :valign => "middle"}
+        %input.inputField{:type => "checkbox"}/
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Title
+        %span.srArrow
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Date
+        %span.srArrow
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Time
+        %span.srArrow
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Category
+        %span.srArrow
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Subject
+        %span.srArrow
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Type
+        %span.srArrow
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Level
+        %span.srArrow
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Importance
+        %span.srArrow
+      %th.sort{:align => "left", :valign => "middle"}
+        %span Outcome
+        %span.srArrow
+    - @child_profile_activities.each do | single_test_report |
+      %tr#modifyRow
+        %td{:align => "left", :valign => "top"}
+          %input.inputField{:type => "checkbox"}/
+        %td{:align => "left", :valign => "top"}
+          %a.greenTxt{:href => "#.", :onclick => "$(this).parent().parent().next().show('fast');"}= single_test_report.title
+        %td{:align => "left", :valign => "top"}= single_test_report.start_date
+        %td{:align => "left", :valign => "top"}= single_test_report.start_time
+        %td{:align => "left", :valign => "top"}= single_test_report.category
+        %td{:align => "left", :valign => "top"}= single_test_report.subject
+        %td{:align => "left", :valign => "top"}= single_test_report.type
+        %td{:align => "left", :valign => "top"}= single_test_report.level
+        %td{:align => "left", :valign => "top"}= single_test_report.importance
+        - if single_test_report.outcome.blank?
+          %td.actionBox{:align => "left", :valign => "top"}
+            %a{:href => "/add_child_activities_outcome?id=#{params[:id]}&child_activity_id=#{single_test_report.id}", :rel => "facebox", :title => "outcome"}
+              = image_tag('activity_action_icon.png', :alt => "", :height => "21", :width => "21")
+            %a.deleteIcon{:href => "/delete_child_activities_list?id=#{params[:id]}&test_report_id=#{single_test_report.id}", :onclick => "return confirm('Are you sure you want to Delete this row')", :title => "Delete"}
+            %a.editIcon{:href => "/add_child_activities_list?id=#{params[:id]}&test_report_id=#{single_test_report.id}", :rel => "facebox", :title => "Edit"}
+        - else
+          %td.actionBox{:align => "left", :valign => "top"}
+            %a{:href => "/add_child_activities_outcome?id=#{params[:id]}&child_activity_id=#{single_test_report.id}", :rel => "facebox", :title => "outcome"}
+              = single_test_report.outcome
+            %a.deleteIcon{:href => "/delete_child_activities_list?id=#{params[:id]}&test_report_id=#{single_test_report.id}", :onclick => "return confirm('Are you sure you want to Delete this row')", :title => "Delete"}
+            %a.editIcon{:href => "/add_child_activities_list?id=#{params[:id]}&test_report_id=#{single_test_report.id}", :rel => "facebox", :title => "Edit"}
+      %tr.viewRow{:style => "display:none;"}
+        %td{:align => "left", :colspan => "11", :valign => "top"}
+          %a.closeBtn.viewClose{:href => "#.", :onclick => "$(this).parent().parent().hide('fast');"}
+          = single_test_report.details
+
+
+/- if params[:action] == "show_child_activities_list"
+/  :javascript
+/    jQuery(document).ready(function($) {
+/      $('a[rel*=facebox]').facebox()
+/    }) 
+/    $(function(){
+/      //alert($('select').width())
+/      $('.jqBigform').jqTransform({imgPath:'images/'}); 
+/    })

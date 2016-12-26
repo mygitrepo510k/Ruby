@@ -1,0 +1,17 @@
+= form_tag( :url=>"new/admin") do |f|
+	.control-group
+		%label.control-label{:for=>"family_family_name"} Family ID:
+		.controls
+			= text_field_tag :family_id
+	.control-group
+		%label.control-label{:for=>"family_role_name"} Your Role:
+		.controls	
+			= select_tag :role_name, Family::ROLES
+	.form-actions
+		= button_tag :submit, :class => 'submitBtn'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), '/families', :class => 'cancelBtn'
+
+:javascript
+	$('#family_id').keydown(function(){
+
+	});

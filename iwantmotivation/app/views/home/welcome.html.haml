@@ -1,0 +1,28 @@
+.row.thanks-page
+	.container
+		.row.first-row
+			.span10.top-background
+				.span4.offset1{:style=>"margin-top:40px;"}
+					%p{:style=>"font-size: 70px; color: #00aeef; font-weight: bold"} Thank You
+					%p{:style=>"font-size: 38px; color: #fff; font-weight: bold; margin-top: 34px; margin-left: 40px;"} for signing with
+				.span4{:style=>"margin-top: 30px;"}
+					= image_tag('home_icons/iwantmotivation_logo.png')
+				.span8.thanks-dialog.offset1
+					.title
+						%label{:style=>"color: white; font-size: 20px; font-weight: bold;"}
+							Now that you've seen how 
+							%strong FAST &EASY 
+							it is, make sure to:
+					.dialog-content
+						.row
+							%label 
+								Most people hear about DocuSign from other enthusiastic users. <br />
+								Spread the word to your friends and colleagues; they'll thakyou for saving them time and money.
+						.row
+							.span1.offset1.twitter
+								%a{:href=>"https://twitter.com/iwantmotivation", :class=>"twitter-follow-button", :'data-show-count'=>"false"}Follow
+								:javascript
+									!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+							.span1.offset1.facebook-like
+								%script{:src=>"https://connect.facebook.net/en_US/all.js#xfbml=1"}
+								%fb:like{:font=>"", :href=>"", :layout=>"button_count", :show_faces=>"false", :width=>"450px;"}

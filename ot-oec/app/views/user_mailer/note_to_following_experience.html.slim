@@ -1,0 +1,6 @@
+h2 New comment on an experience you are following
+p Dear #{@user.name},
+p #{@comment.by.name} wrote - 
+p
+  i= @comment.body
+p= link_to "view comment", @link

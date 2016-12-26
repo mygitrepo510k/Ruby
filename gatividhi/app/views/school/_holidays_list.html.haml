@@ -1,0 +1,19 @@
+- @holidays.each do |holiday|
+	%tr{:id=>"row_" + holiday.id}
+		%td{:align => "left", :valign => "top"}
+			%input{:type => "checkbox"}/
+		%td{:align => "left", :valign => "top"}
+			%a{:href => "#.", :onclick => "$('#showMoreInfo_#{holiday.id}').toggle('slow')"}
+				= holiday.title
+		%td{:align => "left", :valign => "top"}= holiday.start_date
+		%td{:align => "left", :valign => "top"}= holiday.end_date
+		%td{:align => "left", :valign => "top"}= holiday.type
+		%td{:align => "left", :valign => "top"}= holiday.description
+		%td.actionBox{:align => "left", :valign => "top"}
+			= link_to("", "javascript:delete_holiday('#{holiday.id}')", :method=> :delete, :confirm => "Are you sure you want to Delete this row?", :class => "deleteIcon", :title=>"Delete")
+			%a.editIcon{:href => "/school/edit_holiday?id="+holiday.id, :rel=>"facebox", :title => "Edit"}
+			=holiday.date_finalised == true ? "Yes" : "No"
+	%tr.viewRow{:id=>"showMoreInfo_" + holiday.id, :style => "display:none;"}
+		%td.viewRow{:align => "left", :colspan => "9", :valign => "top"}
+			= holiday.description
+			%a.closeBtn.viewClose{:href => "#.", :onclick => "$('#showMoreInfo_#{holiday.id}').toggle()", :style=>"top:127px;"}				

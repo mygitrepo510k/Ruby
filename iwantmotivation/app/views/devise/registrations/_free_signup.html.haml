@@ -1,0 +1,35 @@
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'card_form form-vertical' }) do |f|
+	.row
+		= hidden_field_tag 'plan', params[:plan]
+		= f.error_notification
+		= display_base_errors resource
+	.row.first-row{:style=>"text-align: center;"}
+		%h2 Welcome To The I Want Motivation Free Sign Up Page
+		%h5.span8.offset1=get_option(:free_signup_page_description)
+	.row.second-row{:style=>"text-align: center;"}
+		= f.input :email, :label=>"Email Address", :required => true
+		= f.input :password, :required => true, :label=>false, :placeholder=>"Enter Password"
+		= f.input :password_confirmation, :required => true, :label=>false, :placeholder => "Re-Enter Password"
+	.row.third-row{:style=>"text-align: center;"}
+		%h5 Tell Us How You Found Us?
+		= f.select(:foundus_id, options_from_collection_for_select(Foundus.all, :id, :found_us_name))
+	.row.last-row
+		.span8.offset2
+			.row
+				.span6.agreement-description
+					%label=get_option(:signup_agreement)
+			.row.last-controll-box
+				.span2.offset1
+					%label.checkbox
+						%input.accept-aggre{:type=>"checkbox"} Accept the agreement
+				.span2{:style=>"margin-left:70px;"}
+					= f.button :submit, 'Sign up', :class => 'btn-primary freesignup-submit', :disabled=>"disabled"
+
+:javascript
+	$("input.accept-aggre").click(function(){
+		if($(this).is(':checked')){
+			$(".freesignup-submit").removeAttr("disabled");
+		}else{
+			$(".freesignup-submit").attr("disabled","disabled");
+		}
+	});

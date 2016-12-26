@@ -1,0 +1,8 @@
+.popupWindow{:style => "width: 430px; height: 548px;"}
+  .popupHead
+    .popupTitle= @show_title
+    .closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+    .CL
+  .popupContaint
+    .popupSmForm{:style => "text-align: center;"}
+      = image_tag @award_honour.photo.url(:full)

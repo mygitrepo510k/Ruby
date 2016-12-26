@@ -1,0 +1,53 @@
+<%= render 'application/static_top' %>
+<div class='main'>
+  <hr />
+  <h2>Contact Us</h2>
+  <table border="0" align="center" cellpadding="10" cellspacing="0">
+    <tr>
+      <td align="left" valign="top">
+        <%= form_tag url: contact_path do %>
+          <table width="100%" border="0" cellspacing="0" cellpadding="2">
+            <tr>
+              <td align="right">Full Name</td>
+              <td><label>
+                  <input type="text" name="full_name" id="textfield" />
+              </label></td>
+            </tr>
+            <tr>
+              <td align="right">Email Address</td>
+              <td><input type="email" name="email" id="textfield2" /></td>
+            </tr>
+            <tr>
+              <td align="right">Subject</td>
+              <td><label>
+                  <select name="subject" id="select">
+                    <option value="Support">Help/Support</option>
+                    <option value="Billing">Billing</option>
+                    <option value="Other">Other</option>
+                  </select>
+              </label></td>
+            </tr>
+            <tr>
+              <td align="right">Message</td>
+              <td><label>
+                  <textarea name="message" id="textarea" cols="60" rows="10"></textarea>
+              </label></td>
+            </tr>
+            <input type="text" name="body" id="body">
+            <tr>
+              <td align="right">&nbsp;</td>
+              <td><label>
+                  <input type="submit" name="button" id="button" value="Submit" />
+              </label></td>
+            </tr>
+          </table>
+        <% end %>
+      </td>
+      <td width="30" align="left" valign="top">&nbsp;</td>
+      <td align="left" valign="top"><p>&nbsp;</p>      </td>
+    </tr>
+  </table>
+</div>
+<style>
+  input#body { display:none; }
+</style>

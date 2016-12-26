@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to HyeDating.com | The Premier Armenian Dating Site for Hye Singles</title>
+    <%= stylesheet_link_tag 'frontpage' %>
+    <%= render 'layouts/analytics' %>
+  </head>
+  <body>
+    <div class="main">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center"><a href="/"><%= image_tag "main_03.png", alt: "Hye Dating", width: 331, height: 70, border: 0 %></a></td>
+        </tr>
+        <tr>
+          <td height="50">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="center"><h3>You have successfully Unsubscribed from receiving any further email notifications from HyeDating.com!</h3>
+            <h4>&nbsp;</h4>
+            <p>You can manage your email preferences from your <%= link_to 'account settings', account_url %> once you login.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td><hr />
+            <p align="center"><a href="#">Dating Safety Tips</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">About HyeDating</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Signup</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Login</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Contact Us</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#">Help</a></p>
+            <p align="center" class="footer-legal">&copy;2013 HyeDating.com. All Rights Reserved. <a href="terms">Terms</a> | <a href="dmca">DMCA</a> | <a href="privacy">Privacy</a></p></td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

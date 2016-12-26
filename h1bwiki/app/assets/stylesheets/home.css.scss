@@ -1,0 +1,229 @@
+@font-face{
+	font-family:bitter-regular;
+	src: url(fonts/Bitter-Regular.otf);
+}
+@font-face{
+	font-family:bitter-bold;
+	src: url(fonts/Bitter-Bold.otf);
+}
+@font-face{
+	font-family:bitter-italic;
+	src: url(fonts/Bitter-Italic.otf);
+}
+
+.home-page{
+	a, h3,span,p{
+		font-family:bitter-regular;
+	}
+	.btn-primary{
+		background-image: linear-gradient(to bottom, rgb(64, 170, 250), rgb(23, 134, 218));
+		&:hover, &:focus{
+			background-color: rgb(23, 134, 218);    
+    	color: rgb(255, 255, 255);
+		}
+	}
+	.content{
+		width: 1000px;
+		margin: 0 auto;
+	}
+	.first-row{
+		height: 466px;
+		background: url(pattern.png);	
+		.content{			
+			height: 210px;
+			background: url(main-back.png) no-repeat;			
+			position: relative;
+			padding-top: 290px;
+			.row{
+				text-align: center;
+				.btn{
+					color: black;	
+					border-radius: 10px;
+			    font-size: 26px;
+			    height: 30px;
+			    width: 270px;
+			    padding-top: 10px;				
+				}
+				.btn-primary{
+					color: white;
+				}
+			}
+		}
+	}
+	.second-row{
+		margin-top: 1px;
+		height: 180px;
+		background-color: #292b31;
+		.content{
+			height: 190px;
+			.row{
+				ul.dropdown-menu{
+					li{
+						a{
+					    clear: both;
+					    color: rgb(51, 51, 51);
+					    display: block;
+					    font-size: 30px;
+					    font-weight: normal;
+					    line-height: 20px;
+					    white-space: nowrap;
+					    height: 30px;
+					    padding-bottom: 10px;
+					    padding-top: 15px;
+					    &:hover{
+					    	cursor: pointer;
+					    }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.third-row{
+		a{
+			color: black;
+			&:hover{
+				text-decoration: none;
+			}
+			label.strong{
+				color: black;
+				font-family: bitter-bold;
+				font-size: 16px;
+			}
+			label{
+				color: black;
+				font-family: bitter-regular;
+			}
+		}
+		background-color: #fff;
+		height: 634px;
+		.content{
+			margin-top: 56px;
+			height: 634px;
+			.title{
+				margin: 0 auto;
+				width: 812px;
+				height: 36px;
+				background: url(middle-g.png);
+			}
+			.content-row{
+				margin-top: 50px;
+				.span6{
+					margin-left: 0px;
+					width:580px;
+					.mac-img{
+						width: 575px;
+						height: 315px;	
+						background: url(mac-img.png) no-repeat;
+					}
+					.search-h1b-jobs{
+						width: 57px;
+						height: 53px;
+						background: url(middle-e.png) no-repeat;
+					}
+					.s-row{
+						margin-top: 40px;
+	    			padding-left: 80px;
+					}
+				}
+				.span4{
+					width: 390px;
+					.row{
+						margin-bottom: 40px;					
+					}
+					.fs-img{
+						width: 64px;
+						height: 48px;
+						background: url(middle-a.png) no-repeat;	
+					}
+					.sc-img{
+						width: 64px;
+						height: 48px;
+						background: url(middle-b.png) no-repeat;	
+					}
+					.th-img{
+						width: 64px;
+						height: 48px;
+						background: url(middle-c.png) no-repeat;	
+					}
+					.fr-img{
+						width: 64px;
+						height: 48px;
+						background: url(middle-d.png) no-repeat;	
+					}
+				}
+			}
+			
+		}
+	}
+
+	.fourth-row{
+		height: 466px;
+		border-top: solid 1px #dfdfdf; 
+		border-bottom: solid 1px #dfdfdf;
+		background-color: #f6f6f6; 
+		a{
+			color: black;
+			&:hover{
+				text-decoration: none;
+			}
+			label.strong{
+				color: black;
+				font-family: bitter-bold;
+				font-size: 16px;
+			}
+			label{
+				color: black;
+				font-family: bitter-regular;
+			}
+		}
+		.content{
+			margin-top: 48px;
+			height: 466px;
+			.title{
+				margin: 0 auto;
+				width: 490px;
+				height: 24px;
+				background: url(middle-l.png);
+			}
+			.row{
+				margin-top: 50px;
+			}
+			.fs-img{
+				width: 74px;
+				height: 57px;
+				background: url(middle-h.png) no-repeat;	
+			}
+			.sc-img{
+				width: 74px;
+				height: 57px;
+				background: url(middle-j.png) no-repeat;	
+			}
+			.th-img{
+				width: 74px;
+				height: 57px;
+				background: url(middle-i.png) no-repeat;	
+			}
+			.fr-img{
+				width: 74px;
+				height: 57px;
+				background: url(middle-k.png) no-repeat;	
+			}
+		}	
+	}
+
+	.fifth-row{
+		height: 100px;
+		background-color: #e9e9e9; 		
+		.content{
+			padding-top: 20px;
+			height: 80px;
+			.content-box{
+				width:995px;
+				margin: 0 auto;
+			}
+		}
+	}
+	
+}

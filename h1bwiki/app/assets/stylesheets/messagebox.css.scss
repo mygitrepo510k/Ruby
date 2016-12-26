@@ -1,0 +1,21 @@
+// Place all the styles related to the messagebox controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+a{
+  color: #0254EB
+}
+a:visited {
+  color: #0254EB
+}
+a.morelink {
+  text-decoration:none;
+  outline: none;
+  color: #0254EB
+}
+.morecontent span {
+  display: none;
+}
+.message-body {
+  margin: 10px;
+}

@@ -1,0 +1,1958 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Output of rails_best_practices</title>
+    <style type="text/css">
+      body {
+        color: #333;
+        background: #eee;
+        padding: 0 20px;
+      }
+      h1 {
+        color: ##4E4E4E;
+      }
+      p {
+        margin: 5px 0;
+      }
+      table {
+        background: white;
+        border: 1px solid #666;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 14px;
+      }
+      table.result th, table.result td {
+        padding: 4px;
+        border: 1px solid #D0D0D0;
+      }
+      table.result th {
+        background-color: #DFC;
+        color: #337022;
+      }
+      table.result td.filename {
+        color: #ED1556;
+      }
+      table.result tr:hover {
+        background-color: #FFFFC0;
+      }
+      ul {
+        clear: both;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+      }
+      ul li {
+       list-style: none;
+       display: none;
+       float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>rails_best_practices output</h1>
+    <p>
+      Please go to
+      <a href='http://rails-bestpractices.com' target='_blank'>http://rails-bestpractices.com</a>
+      to see more useful Rails Best Practices.
+    </p>
+    <p>
+        Found 195 warnings.
+    </p>
+    <table>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="AlwaysAddDbIndexReview" value="AlwaysAddDbIndexReview"
+                />&nbsp;<label for="AlwaysAddDbIndexReview">Always Add Db Index</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="OveruseRouteCustomizationsReview" value="OveruseRouteCustomizationsReview"
+                />&nbsp;<label for="OveruseRouteCustomizationsReview">Overuse Route Customizations</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="SimplifyRenderInControllersReview" value="SimplifyRenderInControllersReview"
+                />&nbsp;<label for="SimplifyRenderInControllersReview">Simplify Render In Controllers</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="IsolateSeedDataReview" value="IsolateSeedDataReview"
+                />&nbsp;<label for="IsolateSeedDataReview">Isolate Seed Data</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveEmptyHelpersReview" value="RemoveEmptyHelpersReview"
+                />&nbsp;<label for="RemoveEmptyHelpersReview">Remove Empty Helpers</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="SimplifyRenderInViewsReview" value="SimplifyRenderInViewsReview"
+                />&nbsp;<label for="SimplifyRenderInViewsReview">Simplify Render In Views</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="LawOfDemeterReview" value="LawOfDemeterReview"
+                />&nbsp;<label for="LawOfDemeterReview">Law Of Demeter</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveUnusedMethodsInControllersReview" value="RemoveUnusedMethodsInControllersReview"
+                />&nbsp;<label for="RemoveUnusedMethodsInControllersReview">Remove Unused Methods In Controllers</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="UseModelAssociationReview" value="UseModelAssociationReview"
+                />&nbsp;<label for="UseModelAssociationReview">Use Model Association</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="MoveCodeIntoHelperReview" value="MoveCodeIntoHelperReview"
+                />&nbsp;<label for="MoveCodeIntoHelperReview">Move Code Into Helper</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveUnusedMethodsInModelsReview" value="RemoveUnusedMethodsInModelsReview"
+                />&nbsp;<label for="RemoveUnusedMethodsInModelsReview">Remove Unused Methods In Models</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="UseMultipartAlternativeAsContentTypeOfEmailReview" value="UseMultipartAlternativeAsContentTypeOfEmailReview"
+                />&nbsp;<label for="UseMultipartAlternativeAsContentTypeOfEmailReview">Use Multipart Alternative As Content Type Of Email</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="MoveCodeIntoModelReview" value="MoveCodeIntoModelReview"
+                />&nbsp;<label for="MoveCodeIntoModelReview">Move Code Into Model</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="ReplaceComplexCreationWithFactoryMethodReview" value="ReplaceComplexCreationWithFactoryMethodReview"
+                />&nbsp;<label for="ReplaceComplexCreationWithFactoryMethodReview">Replace Complex Creation With Factory Method</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="UseQueryAttributeReview" value="UseQueryAttributeReview"
+                />&nbsp;<label for="UseQueryAttributeReview">Use Query Attribute</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="MoveModelLogicIntoModelReview" value="MoveModelLogicIntoModelReview"
+                />&nbsp;<label for="MoveModelLogicIntoModelReview">Move Model Logic Into Model</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="ReplaceInstanceVariableWithLocalVariableReview" value="ReplaceInstanceVariableWithLocalVariableReview"
+                />&nbsp;<label for="ReplaceInstanceVariableWithLocalVariableReview">Replace Instance Variable With Local Variable</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="UseTurboSprocketsRails3Review" value="UseTurboSprocketsRails3Review"
+                />&nbsp;<label for="UseTurboSprocketsRails3Review">Use Turbo Sprockets Rails3</label>
+              </td>
+          </tr>
+          <tr>
+              <td>
+                <input type="checkbox" class="error-type" id="NotUseTimeAgoInWordsReview" value="NotUseTimeAgoInWordsReview"
+                />&nbsp;<label for="NotUseTimeAgoInWordsReview">Not Use Time Ago In Words</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RestrictAutoGeneratedRoutesReview" value="RestrictAutoGeneratedRoutesReview"
+                />&nbsp;<label for="RestrictAutoGeneratedRoutesReview">Restrict Auto Generated Routes</label>
+              </td>
+              <td>
+                <input type="checkbox" class="error-type" id="RemoveTrailingWhitespaceCheck" value="RemoveTrailingWhitespaceCheck"
+                />&nbsp;<label for="RemoveTrailingWhitespaceCheck">Remove Trailing Whitespace</label>
+              </td>
+          </tr>
+        <tr>
+          <td colspan="3">
+            <button id="show-all">Check all</button>
+            <button id="show-none">Uncheck all</button>
+          </td>
+        </tr>
+    </table>
+    <table class="result">
+      <thead>
+        <tr>
+          <th>Filename</th>
+          <th>Line Number</th>
+          <th>Warning Message</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>31</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (addresses => [country_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>31</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (addresses => [addressable_id, addressable_type])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>65</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (admin_users_roles => [admin_user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>65</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (admin_users_roles => [role_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>101</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (doctor_claims => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>101</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (doctor_claims => [doctor_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>109</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (doctor_patients => [doctor_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>109</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (doctor_patients => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>120</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (doctors => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>120</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (doctors => [clinic_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>161</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (line_items => [medicine_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>161</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (line_items => [order_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>191</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (notifications => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>201</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (orders => [shipping_address_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>201</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (orders => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>201</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (orders => [prescription_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>201</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (orders => [processed_by_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>218</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (payment_profiles => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>226</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (payments => [order_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>236</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (prescriptions => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>236</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (prescriptions => [dosage_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>236</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (prescriptions => [medicine_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>236</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (prescriptions => [doctor_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>236</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (prescriptions => [doctor_patient_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>259</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (profiles => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>283</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (roles_users => [role_id])</a>
+            </td>
+          </tr>
+          <tr class="AlwaysAddDbIndexReview">
+            <td class='filename'>
+                db/schema.rb
+            </td>
+            <td class='line'>283</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/21-always-add-db-index' target='_blank'>always add db index (roles_users => [user_id])</a>
+            </td>
+          </tr>
+          <tr class="IsolateSeedDataReview">
+            <td class='filename'>
+                db/migrate/20130524155231_devise_create_admin_users.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/20-isolating-seed-data' target='_blank'>isolate seed data</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/models/doctor_patient.rb
+            </td>
+            <td class='line'>48</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>37</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>48</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>48</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>48</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/controllers/settings_controller.rb
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/jobs/expire_credit_reminder_job.rb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/jobs/refill_reminder_job.rb
+            </td>
+            <td class='line'>16</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/doctors/prescriptions/show.html.haml
+            </td>
+            <td class='line'>31</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/doctors/prescriptions/show.html.haml
+            </td>
+            <td class='line'>38</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/doctors/prescriptions/show.html.haml
+            </td>
+            <td class='line'>38</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/doctors/prescriptions/show.html.haml
+            </td>
+            <td class='line'>38</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/orders/new.html.haml
+            </td>
+            <td class='line'>36</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/orders/new.html.haml
+            </td>
+            <td class='line'>38</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/prescriptions/review.html.haml
+            </td>
+            <td class='line'>33</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/prescriptions/review.html.haml
+            </td>
+            <td class='line'>40</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/prescriptions/review.html.haml
+            </td>
+            <td class='line'>40</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/prescriptions/review.html.haml
+            </td>
+            <td class='line'>40</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/prescriptions/show.html.haml
+            </td>
+            <td class='line'>30</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/prescriptions/show.html.haml
+            </td>
+            <td class='line'>37</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/prescriptions/show.html.haml
+            </td>
+            <td class='line'>37</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="LawOfDemeterReview">
+            <td class='filename'>
+                app/views/prescriptions/show.html.haml
+            </td>
+            <td class='line'>37</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/15-the-law-of-demeter' target='_blank'>law of demeter</a>
+            </td>
+          </tr>
+          <tr class="MoveCodeIntoHelperReview">
+            <td class='filename'>
+                app/views/orders/new.html.haml
+            </td>
+            <td class='line'>146</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/26-move-code-into-helper' target='_blank'>move code into helper (array_count >= 3)</a>
+            </td>
+          </tr>
+          <tr class="MoveCodeIntoHelperReview">
+            <td class='filename'>
+                app/views/orders/new.html.haml
+            </td>
+            <td class='line'>180</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/26-move-code-into-helper' target='_blank'>move code into helper (array_count >= 3)</a>
+            </td>
+          </tr>
+          <tr class="MoveCodeIntoHelperReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>85</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/26-move-code-into-helper' target='_blank'>move code into helper (array_count >= 3)</a>
+            </td>
+          </tr>
+          <tr class="MoveCodeIntoModelReview">
+            <td class='filename'>
+                app/views/kaminari/_paginator.html.haml
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/25-move-code-into-model' target='_blank'>move code into model (page use_count > 2)</a>
+            </td>
+          </tr>
+          <tr class="MoveCodeIntoModelReview">
+            <td class='filename'>
+                app/views/shared/_footer.html.haml
+            </td>
+            <td class='line'>stmts_add</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/25-move-code-into-model' target='_blank'>move code into model (controller use_count > 2)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/doctors_controller.rb
+            </td>
+            <td class='line'>81</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@doctor use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>17</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@prescription use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>35</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@prescription use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>35</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@order use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>35</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (current_user use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/profiles_controller.rb
+            </td>
+            <td class='line'>28</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@user use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/settings_controller.rb
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@profile use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/settings_controller.rb
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (@doctor use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/users/registrations_controller.rb
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (resource use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="MoveModelLogicIntoModelReview">
+            <td class='filename'>
+                app/controllers/users/registrations_controller.rb
+            </td>
+            <td class='line'>111</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/7-move-model-logic-into-the-model' target='_blank'>move model logic into model (user use_count > 4)</a>
+            </td>
+          </tr>
+          <tr class="NotUseTimeAgoInWordsReview">
+            <td class='filename'>
+                app/views/notifications/index.html.haml
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/105-not-use-time_ago_in_words' target='_blank'>not use time_ago_in_words</a>
+            </td>
+          </tr>
+          <tr class="OveruseRouteCustomizationsReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>45</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/10-overuse-route-customizations' target='_blank'>overuse route customizations (customize_count > 3)</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/dashboard_helper.rb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/knowledge_centre_helper.rb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/payment_profiles_helper.rb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/profiles_helper.rb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveEmptyHelpersReview">
+            <td class='filename'>
+                app/helpers/settings_helper.rb
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/72-remove-empty-helpers' target='_blank'>remove empty helpers</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInControllersReview">
+            <td class='filename'>
+                app/controllers/application_controller.rb
+            </td>
+            <td class='line'>56</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (ApplicationController#user_for_paper_trail)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInControllersReview">
+            <td class='filename'>
+                app/controllers/home_controller.rb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (HomeController#login)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInControllersReview">
+            <td class='filename'>
+                app/controllers/prescriptions_controller.rb
+            </td>
+            <td class='line'>47</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (PrescriptionsController#prescribe)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInControllersReview">
+            <td class='filename'>
+                app/controllers/users/confirmations_controller.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Users::ConfirmationsController#after_confirmation_path_for)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInControllersReview">
+            <td class='filename'>
+                app/controllers/users/registrations_controller.rb
+            </td>
+            <td class='line'>87</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Users::RegistrationsController#welcome)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/admin_user.rb
+            </td>
+            <td class='line'>16</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (AdminUser#password_required?)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/ckeditor/attachment_file.rb
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Ckeditor::AttachmentFile#url_thumb)</a>
+            </td>
+          </tr>
+          <tr class="RemoveUnusedMethodsInModelsReview">
+            <td class='filename'>
+                app/models/ckeditor/picture.rb
+            </td>
+            <td class='line'>10</td>
+            <td class='message'>
+              <a href='' target='_blank'>remove unused methods (Ckeditor::Picture#url_content)</a>
+            </td>
+          </tr>
+          <tr class="ReplaceComplexCreationWithFactoryMethodReview">
+            <td class='filename'>
+                app/controllers/profiles_controller.rb
+            </td>
+            <td class='line'>28</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/6-replace-complex-creation-with-factory-method' target='_blank'>replace complex creation with factory method (@user attribute_assignment_count > 2)</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/doctors/profiles/_history.html.haml
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/doctors/profiles/_history.html.haml
+            </td>
+            <td class='line'>16</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_tracking_number_input.html.haml
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_version.html.haml
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_version.html.haml
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_version.html.haml
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_version.html.haml
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_version.html.haml
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_version.html.haml
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_version.html.haml
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/layouts/_version.html.haml
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>32</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>32</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>38</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>38</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>40</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>40</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>68</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>68</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>73</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>73</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>78</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>78</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>90</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="ReplaceInstanceVariableWithLocalVariableReview">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>90</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/27-replace-instance-variable-with-local-variable' target='_blank'>replace instance variable with local variable</a>
+            </td>
+          </tr>
+          <tr class="RestrictAutoGeneratedRoutesReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/86-restrict-auto-generated-routes' target='_blank'>restrict auto-generated routes payment_profiles (except: [:show, :destroy, :index])</a>
+            </td>
+          </tr>
+          <tr class="RestrictAutoGeneratedRoutesReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/86-restrict-auto-generated-routes' target='_blank'>restrict auto-generated routes profiles (only: [])</a>
+            </td>
+          </tr>
+          <tr class="RestrictAutoGeneratedRoutesReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>45</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/86-restrict-auto-generated-routes' target='_blank'>restrict auto-generated routes doctors (except: [:show, :destroy])</a>
+            </td>
+          </tr>
+          <tr class="RestrictAutoGeneratedRoutesReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>56</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/86-restrict-auto-generated-routes' target='_blank'>restrict auto-generated routes doctor_patients (only: [:new, :create])</a>
+            </td>
+          </tr>
+          <tr class="RestrictAutoGeneratedRoutesReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>57</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/86-restrict-auto-generated-routes' target='_blank'>restrict auto-generated routes doctor_patients/prescriptions (only: [:new, :create, :show])</a>
+            </td>
+          </tr>
+          <tr class="RestrictAutoGeneratedRoutesReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>60</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/86-restrict-auto-generated-routes' target='_blank'>restrict auto-generated routes prescriptions (except: [:edit, :update, :destroy])</a>
+            </td>
+          </tr>
+          <tr class="RestrictAutoGeneratedRoutesReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>68</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/86-restrict-auto-generated-routes' target='_blank'>restrict auto-generated routes orders (except: [:edit, :update, :destroy])</a>
+            </td>
+          </tr>
+          <tr class="RestrictAutoGeneratedRoutesReview">
+            <td class='filename'>
+                config/routes.rb
+            </td>
+            <td class='line'>73</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/86-restrict-auto-generated-routes' target='_blank'>restrict auto-generated routes notifications (only: [:index])</a>
+            </td>
+          </tr>
+          <tr class="SimplifyRenderInControllersReview">
+            <td class='filename'>
+                app/controllers/prescriptions_controller.rb
+            </td>
+            <td class='line'>35</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/62-simplify-render-in-controllers' target='_blank'>simplify render in controllers</a>
+            </td>
+          </tr>
+          <tr class="SimplifyRenderInViewsReview">
+            <td class='filename'>
+                app/views/doctors/edit.js.erb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+            </td>
+          </tr>
+          <tr class="SimplifyRenderInViewsReview">
+            <td class='filename'>
+                app/views/doctors/new.html.haml
+            </td>
+            <td class='line'>1</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/61-simplify-render-in-views' target='_blank'>simplify render in views</a>
+            </td>
+          </tr>
+          <tr class="UseModelAssociationReview">
+            <td class='filename'>
+                app/controllers/doctor_patients_controller.rb
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2-use-model-association' target='_blank'>use model association (for @doctor_patient)</a>
+            </td>
+          </tr>
+          <tr class="UseModelAssociationReview">
+            <td class='filename'>
+                app/controllers/payment_profiles_controller.rb
+            </td>
+            <td class='line'>36</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2-use-model-association' target='_blank'>use model association (for @payment_profile)</a>
+            </td>
+          </tr>
+          <tr class="UseModelAssociationReview">
+            <td class='filename'>
+                app/controllers/payment_profiles_controller.rb
+            </td>
+            <td class='line'>64</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/2-use-model-association' target='_blank'>use model association (for @payment_profile)</a>
+            </td>
+          </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/invitations_mailer.rb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/user_mailer.rb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/user_mailer.rb
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/user_mailer.rb
+            </td>
+            <td class='line'>22</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/user_mailer.rb
+            </td>
+            <td class='line'>32</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/user_mailer.rb
+            </td>
+            <td class='line'>41</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/user_mailer.rb
+            </td>
+            <td class='line'>50</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
+          <tr class="UseMultipartAlternativeAsContentTypeOfEmailReview">
+            <td class='filename'>
+                app/mailers/user_mailer.rb
+            </td>
+            <td class='line'>59</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/41-use-multipart-alternative-as-content_type-of-email' target='_blank'>use multipart/alternative as content_type of email</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/controllers/settings_controller.rb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (@profile.phone?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/controllers/settings_controller.rb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (@profile.date_of_birth?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/controllers/settings_controller.rb
+            </td>
+            <td class='line'>19</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (@doctor.phone?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/controllers/settings_controller.rb
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (@doctor.phone?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/controllers/users/registrations_controller.rb
+            </td>
+            <td class='line'>34</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (@profile.phone?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/validators/canadian_postal_code_validator.rb
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (@address.postal_code?)</a>
+            </td>
+          </tr>
+          <tr class="UseQueryAttributeReview">
+            <td class='filename'>
+                app/views/notifications/index.html.haml
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/56-use-query-attribute' target='_blank'>use query attribute (notification.parameters?)</a>
+            </td>
+          </tr>
+          <tr class="UseTurboSprocketsRails3Review">
+            <td class='filename'>
+                Capfile
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/704-speed-up-assets-precompile-with-turbo-sprockets-rails3' target='_blank'>speed up assets precompile with turbo-sprockets-rails3</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/admin_user.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/ckeditor/attachment_file.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/doctor_claim.rb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/kc_page.rb
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/line_item.rb
+            </td>
+            <td class='line'>15</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/notification.rb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/notification_settings.rb
+            </td>
+            <td class='line'>16</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/order.rb
+            </td>
+            <td class='line'>17</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/models/payment_profile.rb
+            </td>
+            <td class='line'>4</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/helpers/application_helper.rb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/addresses.rb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/admin_user.rb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/countries.rb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/dashboard.rb
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/doctors.rb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/history.rb
+            </td>
+            <td class='line'>29</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/medicines.rb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/orders.rb
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/prescriptions.rb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/profiles.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/roles.rb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/admin/users.rb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/home_controller.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/knowledge_centre_controller.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/orders_controller.rb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/payment_profiles_controller.rb
+            </td>
+            <td class='line'>2</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/prescriptions_controller.rb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/profiles_controller.rb
+            </td>
+            <td class='line'>6</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/controllers/settings_controller.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/deploy.rb
+            </td>
+            <td class='line'>36</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                config/initializers/extensions.rb
+            </td>
+            <td class='line'>8</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                db/migrate/20130805190208_create_ckeditor_assets.rb
+            </td>
+            <td class='line'>7</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                db/migrate/20130820012503_add_tow_fields_to_kc_page.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                db/seeds/medicines.rb
+            </td>
+            <td class='line'>11</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                db/seeds.rb
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                lib/doc/yard_extensions.rb
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                lib/payments/payment_card.rb
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                lib/payments/payment_provider.rb
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/devise/registrations/_new.html.haml
+            </td>
+            <td class='line'>23</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/doctors/claim_profile.html.haml
+            </td>
+            <td class='line'>3</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/doctors/index.html.haml
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/doctors/invite_patient.html.haml
+            </td>
+            <td class='line'>14</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/doctors/pending_claim.html.haml
+            </td>
+            <td class='line'>9</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/index.html.haml
+            </td>
+            <td class='line'>12</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/home/login.html.haml
+            </td>
+            <td class='line'>13</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/orders/complete.html.haml
+            </td>
+            <td class='line'>5</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/orders/index.html.haml
+            </td>
+            <td class='line'>25</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/payment_profiles/_form.html.haml
+            </td>
+            <td class='line'>57</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/prescriptions/index.html.haml
+            </td>
+            <td class='line'>27</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/prescriptions/new.html.haml
+            </td>
+            <td class='line'>59</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/prescriptions/show.html.haml
+            </td>
+            <td class='line'>42</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/prescriptions/upload.html.haml
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/profiles/edit.html.haml
+            </td>
+            <td class='line'>18</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/shared/_footer.html.haml
+            </td>
+            <td class='line'>47</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+          <tr class="RemoveTrailingWhitespaceCheck">
+            <td class='filename'>
+                app/views/shared/_settings_left_side_navbar.html.haml
+            </td>
+            <td class='line'>20</td>
+            <td class='message'>
+              <a href='http://rails-bestpractices.com/posts/60-remove-trailing-whitespace' target='_blank'>remove trailing whitespace</a>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('ul li').show();
+        $('input.error-type[type=checkbox]').prop('checked', true).click(function() {
+          if ($(this).attr('checked')) {
+            $(this).prop('checked', true);
+            $('.'+$(this).val()).show();
+          } else {
+            $(this).prop('checked', false);
+            $('.'+$(this).val()).hide();
+          }
+        });
+        $('#show-all').click(function() {
+          $('input.error-type[type=checkbox]').prop('checked', true);
+          $('table.result tbody tr').show();
+        });
+        $('#show-none').click(function() {
+          $('input.error-type[type=checkbox]').prop('checked', false);
+          $('table.result tbody tr').hide();
+        });
+      });
+    </script>
+  </body>
+</html>

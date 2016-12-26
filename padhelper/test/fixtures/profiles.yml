@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  name: MyString
+  portrait: MyString
+  email: MyString
+  paypal-email: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  rating: 1
+  zip: 1
+  helpers-hired: 1
+  listings-posted: 1
+  hourly-rate: 1
+  completed-jobs: 1
+  job-applications: 1
+
+two:
+  user_id: 1
+  name: MyString
+  portrait: MyString
+  email: MyString
+  paypal-email: MyString
+  address: MyString
+  city: MyString
+  state: MyString
+  rating: 1
+  zip: 1
+  helpers-hired: 1
+  listings-posted: 1
+  hourly-rate: 1
+  completed-jobs: 1
+  job-applications: 1

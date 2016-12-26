@@ -1,0 +1,8 @@
+%h1 Conversations
+%h2 Inbox
+%ul= render mailbox.inbox
+%h2 Sent
+%ul= render mailbox.sentbox
+%h2 Delete
+%ul= render mailbox.trash
+= link_to 'Start Conversation', :new_conversation

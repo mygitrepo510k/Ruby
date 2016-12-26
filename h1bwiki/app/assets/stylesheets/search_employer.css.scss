@@ -1,0 +1,191 @@
+// Place all the styles related to the SearchEmployer controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search-conditions-box{
+	.overview-title{
+		p{
+			font-size:20px;
+			color: #4d90fe;
+			text-align: center;
+		}
+	}
+	.overview-item{
+		margin-top: 10px;
+		label{
+			font-size:16px;
+			color: black;
+			font-weight: bold;
+		}
+		div.res-box{
+			border: 1px solid #EAEAEA;
+	    margin-left: 10px;
+	    padding: 5px 10px;
+	    width: 330px;
+	    display: inline-block;
+	    color: black;
+	    font-weight: 600;
+	    p{
+	    	text-align: center;
+	    	font-size:16px;
+	    	margin-bottom: 0px;
+	    }
+		}
+		div.val-green{
+			background-color: #22b14c;
+		}
+		div.val-yellow{
+			background-color: #fff200;
+		}
+		div.val-red{
+			background-color: #ed1c24;
+		}
+		div.val-blue{
+			background-color: #9fa093;
+		}		
+	}	
+}
+
+#write_reviews{
+	.review-title{
+		margin-top: 40px;
+		margin-bottom: 26px;
+		p{
+			font-size:20px;
+			color: #4d90fe;
+			text-align: center;
+		}
+	}
+	.prompt:before {
+    border-color: transparent #007600;
+    border-style: solid;
+    border-width: 12px 12px 12px 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 0;
+    left: -12px;
+    position: absolute;
+    top: 0;
+    width: 0;
+	}
+	.prompt {
+    background: none repeat scroll 0 0 #007600;
+    color: #FFFFFF;
+    display: inline;
+    margin-left: 5px;
+    padding: 5px 10px 5px 5px;
+    position: relative;
+    top: 6px;
+	}
+	.review-option{
+		height: 32px;
+    width: 50px;  
+    cursor: pointer;
+	}
+	.review-option-y{
+		background: url(sprite.png) no-repeat 0px 0px;
+	}
+	.review-option-y:hover{	
+		background: url(sprite.png) no-repeat 0px -36px;
+	}
+	.review-option-y-h{
+		background: url(sprite.png) no-repeat 0px -36px;
+	}
+
+	.review-option-n{
+		background: url(sprite.png) no-repeat -55px 0px;
+	}
+	.review-option-n:hover{
+		background: url(sprite.png) no-repeat -55px -36px;
+	}
+	.review-option-n-h{
+		background: url(sprite.png) no-repeat -55px -36px;
+	}
+	
+}
+#emp_reviews{
+	.span10{
+		p{
+			margin-bottom: 0px;
+			margin-top: 5px;
+		}
+	}
+}
+#reviews{
+	.review-title{
+		margin-top: 40px;
+		margin-bottom: 26px;
+		p{
+			font-size:20px;
+			color: #4d90fe;
+			text-align: center;
+		}
+	}
+	div.review{
+		margin-top: 20px;
+	}
+}
+#ui-id-1{
+	height: 250px;
+	overflow: hidden;
+}	
+.tab-content{
+	background-color: #f5f5f5;
+	border: solid 1px #c7c7c7;
+	border-top: none;
+}
+
+#h1bemp_name{
+	width: 350px;
+}
+
+.h1b-gcstats{
+	.stats-title{
+		margin-top: 40px;
+		p{
+			font-size:20px;
+			color: #4d90fe;
+			text-align: center;
+		}
+	}
+}
+
+.table-hover{
+	tbody{
+		tr:hover{
+			cursor: pointer;
+		}
+	}
+}
+
+
+#comments_content{
+	height: 150px;	
+}
+
+.show-search-tab-box{
+	.check-icon{
+		background: url("view_tickl.png") no-repeat scroll 0 4px transparent;		
+		padding-left: 20px;
+	}
+}
+
+
+
+#my-tab-content{
+	#overview{
+		.search-conditions-box{
+			.overview-item{
+				border-top: solid 1px #dadada;
+				padding-top:5px;
+				padding-bottom: 5px;
+				padding-left: 20px;
+				margin-top: 0px;	
+				label{
+					padding-top: 5px;
+				}		
+			}		
+		}
+	}
+}

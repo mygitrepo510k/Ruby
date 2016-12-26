@@ -1,0 +1,6 @@
+<% if @found_doctor %>
+  $('.edit_doctor:first').replaceWith('<%= escape_javascript(render partial: "form", locals: { doctor: @found_doctor }).html_safe %>');
+  $('.edit_doctor:first').enableClientSideValidations();
+<% else %>
+  // Here comes "Not found message"
+<% end %>

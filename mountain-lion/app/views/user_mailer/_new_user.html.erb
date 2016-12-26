@@ -1,0 +1,15 @@
+<td align="left" valign="top">
+  <%= link_to user_url(user.username) do %>
+    <%= user_email_photo('media-object img-polaroid', 'thumb', 'thumb', user) %>
+    <br />
+    <span class="style4">
+      <strong><%= user.username %></strong>
+    </span>
+  <% end %>
+  <span class="style4">
+    <br />
+    Age: <%= numeric_age(user.date_of_birth) %>
+    <br />
+    <%= [user.city, user.state].join(', ') %>
+  </span>
+</td>

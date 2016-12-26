@@ -1,0 +1,89 @@
+.bodyWapper{
+  margin: 0 auto;
+  width: 950px;
+  .tabBox{
+	  a {
+	    background-color: rgb(102, 102, 102);
+	    border-radius: 10px 10px 0 0;
+	    color: rgb(255, 255, 255);
+	    display: block;
+	    float: left;
+	    font-size: 14px;
+	    margin-right: 2px;
+	    padding: 8px 20px;
+		}
+  	a.tabSelected {
+	    background-color: rgb(93, 191, 171);
+	    font-weight: 700;
+		}
+  }
+  .tabContainer {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0 14px 14px 14px;
+    box-shadow: 1px 1px 3px rgb(153, 153, 153);
+    padding-bottom: 14px;
+    .memberAlbum {
+    	background: url("h_line.png") repeat-x scroll center bottom transparent;
+	    background: none repeat scroll 0 0 transparent !important;
+	    height: 158px;
+	    margin-bottom: 32px;
+	    li {
+		    float: left;
+		    font-size: 12px;
+		    margin-right: 18px;
+		    text-align: center;
+		    margin-bottom: 30px;
+		    height: 160px;
+				.box{
+			    color: rgb(84, 84, 84);
+			    cursor: pointer;
+			    text-decoration: none;
+			    background-color: rgb(245, 239, 231);
+			    border: 5px solid rgb(255, 255, 255);
+			    color: rgb(160, 172, 167);
+			    display: block;
+			    font-size: 14px;
+			    font-weight: bold;
+			    height: 110px;
+			    margin-bottom: 8px;
+			    position: relative;
+			    text-align: center;
+			    width: 110px;
+			    &:hover {
+				    box-shadow: 0 1px 5px rgb(153, 153, 153);
+				    color: rgb(160, 172, 167);
+				    cursor: pointer;
+				    height: 120px;
+				    margin: -5px -5px 3px;
+				    text-decoration: none;
+				    width: 120px;
+					}
+			    &:before {
+				    background-color: transparent;
+				    bottom: -3px;
+				    box-shadow: 5px 5px 5px rgb(204, 204, 204);
+				    content: "";
+				    height: 20px;
+				    position: absolute;
+				    right: 5px;
+				    width: 57px;
+				    z-index: -6;
+					}
+					&:after {
+				    background-color: transparent;
+				    bottom: -3px;
+				    box-shadow: -5px 5px 5px rgb(204, 204, 204);
+				    content: "";
+				    height: 20px;
+				    left: 5px;
+				    position: absolute;
+				    width: 55px;
+				    z-index: -5;
+				  }
+				}
+			}
+		}
+	}
+
+
+}

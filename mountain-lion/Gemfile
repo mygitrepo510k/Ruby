@@ -1,0 +1,130 @@
+source 'http://rubygems.org'
+ruby '2.0.0'
+
+gem 'rails', '~> 4.0.0'
+gem 'i18n'
+# use postgres database
+gem 'pg'
+# Gems used only for assets and not required
+# in production environments by default.
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+
+gem 'uglifier', '>= 1.3.0'
+gem 'asset_sync'
+
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'simple_form'
+gem 'fancybox-rails'
+gem 'noty-rails'
+gem 'redis-rails', github: 'jodosha/redis-store'
+gem 'rack-canonical-host'
+gem 'rack-mini-profiler'
+
+# for faster links following
+# gem 'turbolinks'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+
+gem 'httparty'
+
+# for haml
+gem 'haml', '>= 4.0.2'
+gem 'haml-rails'
+gem "ransack", github: "ernie/ransack", branch: "rails-4"
+gem 'cocoon', github: 'nathanvda/cocoon'
+
+# for authentication
+gem 'sorcery', '>= 0.8.2'#, github: 'NoamB/sorcery'
+
+# for pagination
+gem 'kaminari'
+gem 'kaminari-bootstrap'
+# for question sorting
+gem 'acts_as_list', github: 'philippfranke/acts_as_list'
+
+gem 'activerecord-import'
+
+# Use unicorn as the app server
+gem 'unicorn'
+gem 'sidekiq'
+#gem 'puma'
+gem 'countries', :require => 'iso3166'
+gem 'country_select', github: 'stefanpenner/country_select'
+
+gem "compass-rails", "~> 2.0.alpha.0"
+
+# for geocoding purposes
+gem 'geocoder'
+
+# wysiwyg editor
+gem 'bootstrap-wysihtml5-rails'
+#gem 'client_side_validations', github: 'bcardarella/client_side_validations', branch: '4-0-beta'
+
+# attachment uploading
+gem 'paperclip'
+gem 'aws-s3'
+gem 'aws-sdk'
+gem 'draper'
+
+# managing environment variables
+gem 'figaro'
+
+group :production, :staging do
+  gem 'rails_12factor'
+  gem 'newrelic_rpm'
+  gem 'sentry-raven'
+end
+
+# To use debugger
+group :development, :test do
+  gem 'bullet'
+  gem 'rails-footnotes'
+  gem 'm'
+  gem 'meta_request'
+  gem 'database_cleaner'
+  gem 'guard'
+  gem 'guard-bundler'
+  gem 'spork', '~> 1.0rc'   # Spork caches rails so tests run fast.
+  gem 'guard-spork'
+  gem 'guard-minitest'
+  gem 'rb-fsevent'
+  gem 'growl'
+  gem 'ruby_gntp'
+  gem 'factory_girl_rails'
+  gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'meta_request'
+  gem "debugger", "~> 1.6.5"
+  gem 'minitest'
+  gem 'minitest-spec-rails'
+  gem 'spork-minitest'
+  gem 'ruby-prof'
+  gem 'turn'
+  gem 'taps'
+  gem 'sqlite3'
+  gem "rails-erd" # generate class diagrams
+  gem "annotate", "~> 2.5.0" # annotate model properties
+  gem "sextant", "~> 0.2.4"
+  gem "pry", "~> 0.9.12.3"
+  gem "pry-rescue", "~> 1.2.0"
+  gem "pry-stack_explorer", "~> 0.4.9.1"
+  gem "launchy", "~> 2.3.0"
+end
+group :test do
+  gem 'capybara_minitest_spec' # browser driver for the integration testing
+  gem "capybara-webkit"
+  gem "selenium-webdriver"
+  gem 'simplecov'
+  gem "mocha",'>= 0.13.3', require: false
+  gem 'minitest-spec-context'
+  gem "minitest-matchers"
+end
+
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
+end

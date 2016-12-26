@@ -1,0 +1,40 @@
+= form_for [:admin, @user], html: { class: 'form-horizontal' } do |f|
+  .control-group
+    = f.label :username, class: 'control-label'
+    .controls
+      = f.text_field :username, class: 'text_field'
+  .control-group
+    = f.label :email, class: 'control-label'
+    .controls
+      = f.text_field :email, class: 'text_field'
+  .control-group
+    = f.label :firstname, class: 'control-label'
+    .controls
+      = f.text_field :firstname, class: 'text_field'
+  .control-group
+    = f.label :lastname, class: 'control-label'
+    .controls
+      = f.text_field :lastname, class: 'text_field'
+  .control-group
+    = f.label :gender, class: 'control-label'
+    .controls
+      = f.select :gender, gender_select_options(@user.gender)
+  .control-group
+    = f.label :zip_code, class: 'control-label'
+    .controls
+      = f.text_field :zip_code, class: 'text_field'
+  .control-group
+    = f.label :country, t('active_record.attributes.user.country'), class: 'control-label'
+    .controls
+      = f.country_select :country_code, ['us', 'am', 'fr', 'ca', 'ir', 'lb'], { iso_codes: true }
+  .control-group
+    = f.label :city, class: 'control-label'
+    .controls
+      = f.text_field :city, class: 'text_field'
+  .control-group
+    = f.label :premium, class: 'control-label'
+    .controls
+      = f.check_box :premium, class: 'text_field'
+  .form-actions
+    = f.submit nil, class: 'btn btn-primary', disable_with: 'Updating...'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), admin_user_path(@user), class: 'btn'

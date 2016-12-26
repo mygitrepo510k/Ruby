@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+
+<%= link_to 'Edit', edit_page_path(@page) %> |
+<%= link_to 'Back', pages_path %>
+<!--
+<#% if @page.present? && @page.mov.url %>
+	<#%= video_tag @page.mov.url, controls: true, autobuffer: true, size: "475x309" %>
+	
+<#% end %>	
+-->
+<!-- <video src="/Sunset_test.ogg" controls></video> -->
+
+<!--
+<#% if admin_signed_in? %>
+	<#%= form_for(Page.new, multipart: true) do |f| %>
+		<#%= f.file_field :mov, style: "padding-left:18px;" %>
+		<#%= f.submit "Upload Video", style: "padding-left:18px;" %>
+	<#% end %>
+<#% end %>
+-->

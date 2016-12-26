@@ -1,0 +1,6 @@
+= render partial: "application/internal_notification", locals: { notification: @internal_notification } if @internal_notification
+- @users.each do |event|
+  = render partial: "users/user", locals: { user: event.user.decorate, message: get_user_activity('likes_profile', event.created_at) }
+  %hr
+= image_tag 'footer-liked.png', class: 'img-center'
+= paginate @users

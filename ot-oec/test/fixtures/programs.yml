@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  avatar: MyString
+  start_date: 2014-04-15
+  end_date: 2014-04-15
+  hub_group_id: 1
+
+two:
+  name: MyString
+  avatar: MyString
+  start_date: 2014-04-15
+  end_date: 2014-04-15
+  hub_group_id: 1

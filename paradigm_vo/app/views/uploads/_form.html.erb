@@ -1,0 +1,215 @@
+<div class="container span12">
+  <h2>File Upload</h2>
+  <%= form_for Upload.new, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+    <div class="row fileupload-buttonbar">
+      <div class="span12">
+        <!-- The fileinput-button span is used to style the file input field as button -->
+        <span class="btn btn-success fileinput-button">
+          <i class="icon-plus icon-white"></i>
+          <span>Browse And Add Files...</span>
+          <%= f.file_field :upload %>
+        </span>
+        <button type="submit" class="btn btn-primary start">
+          <i class="icon-upload icon-white"></i>
+          <span>Start Upload For All</span>
+        </button>
+        <button type="reset" class="btn btn-warning cancel all-cancel offset2">
+          <i class="icon-ban-circle icon-white"></i>
+          <span>Cancel All Uploads</span>
+        </button>
+        <!--button type="button" class="btn btn-danger delete">
+          <i class="icon-trash icon-white"></i>
+          <span>Delete</span>
+        </button>
+        <input type="checkbox" class="toggle"-->
+      </div>
+      <div class="span7">
+        <!-- The global progress bar -->
+        <div class="progress progress-success progress-striped active fade">
+          <div class="bar" style="width:0%;"></div>
+        </div>
+      </div>
+    </div>
+    <!-- The loading indicator is shown during image processing -->
+    <div class="fileupload-loading"></div>
+    <div class="span8">
+      <label class="fileupload-label"> Drag and Drop Files Here</label>
+    </div>
+    <br>
+    <!-- The table listing the files available for upload/download -->
+    <div class="span8">
+      <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+      </table>
+    </div>
+
+    <!-- The template to display files available for upload -->
+    <script id="template-upload" type="text/x-tmpl">      
+      {% for (var i=0, file; file=o.files[i]; i++) { %}  
+      <tr class="template-upload-options">
+        <td colspan="6">          
+          <div class="artist-name" style="float:left;">
+            <%= f.text_field :first_name, :placeholder => "Artist First Name", :style => "width:120px;", :require => "" %>
+            <%= f.text_field :last_name, :placeholder => "Artist Last Name", :style => "width:120px;", :require => "" %>          
+          </div>
+          <div class="gender-option btn-group" style="float:left; margin-left:200px;">
+              <label class="control-label" for="select category" style="padding-right:10px;">Sex:</label> 
+              <label class="radio">
+                <%= f.radio_button :gender, "male"%> Maled
+              </label>
+              <label class="radio">
+                <%= f.radio_button :gender, "female", :style => "margin-left:10px;"%> Female
+              </label>            
+          </div>            
+          <div class="clear"></div>    
+          <input type="hidden" name="upload[category]" id="upload_category">
+
+          <div class="category-option">
+            <label class="control-label" for="select category" style="padding-top:6px; padding-right:10px;">Category:</label>     
+            <% [ 'commercial', 'promo', 'narration_documentary', 'poiltical', 'trailer', 'animation', 'books_on_tape' ].each do |category| %>
+              <label class="checkbox inline">
+                <input type="checkbox" class="category-checkbox"> <%= category.humanize %>
+              </label>
+            <% end %>
+          </div>              
+        </td>
+      </tr>
+      <tr class="template-upload fade">
+        <td class="preview"><span class="fade"></span></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        {% if (file.error) { %}
+        <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else if (o.files.valid && !i) { %}
+        <td>
+          <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
+        </td>
+        <td class="start">{% if (!o.options.autoUpload) { %}
+          <button class="btn btn-primary">
+            <i class="icon-upload icon-white"></i>
+            <span>{%=locale.fileupload.start%}</span>
+          </button>
+          {% } %}</td>
+        {% } else { %}
+        <td colspan="2"></td>
+        {% } %}
+        <td class="cancel">{% if (!i) { %}
+          <button class="btn btn-warning">
+            <i class="icon-ban-circle icon-white"></i>
+            <span>{%=locale.fileupload.cancel%}</span>
+          </button>
+          {% } %}</td>
+      </tr>
+      {% } 
+        console.log($('input.category-checkbox'));
+        $('input.category-checkbox').click(function(){ if (this.checked){ console.log("ok"); } else { console.log("no"); }  });
+      %}            
+    </script>   
+
+  <% end %>
+</div>
+<script>
+  var fileUploadErrors = {
+    maxFileSize: 'File is too big',
+    minFileSize: 'File is too small',
+    acceptFileTypes: 'Sorry, the only acceptable file formats are MP3 files',
+    maxNumberOfFiles: 'Max number of files exceeded',
+    uploadedBytes: 'Uploaded bytes exceed file size',
+    emptyResult: 'Empty file upload result'
+  };
+</script>
+
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+  {% for (var i=0, file; file=o.files[i]; i++) { %}  
+    {% if (!file.error) {  %}
+      <tr class="template-upload-options">
+        <td colspan="6">          
+          <div class="artist-name" style="float:left;">
+            <input type="text" style="width:120px;" size="30" id="upload_first_name"  disabled>
+            <input type="text" style="width:120px;" size="30" id="upload_first_name"  disabled>
+          </div>
+          <div class="gender-option btn-group" style="float:left; margin-left:200px;">
+              <label class="control-label" for="select category" style="padding-right:10px;">Sex:</label> 
+              <label class="radio">
+                <input id="upload_gender_male" type="radio" value="male" disabled >Male
+              </label>
+              <label class="radio">
+                <input id="upload_gender_female" type="radio" value="female"  disabled >Female
+              </label>            
+          </div>            
+          <div class="clear"></div>    
+          <input type="hidden" name="upload[category]" id="upload_category">
+          
+          <div class="category-option">
+            <label class="control-label" for="select category" style="padding-top:6px; padding-right:10px;">Category:</label>     
+            <% [ 'commercial', 'promo', 'narration_documentary', 'poiltical', 'trailer', 'animation', 'books_on_tape' ].each do |category| %>
+              <label class="checkbox inline">
+                <input type="checkbox" class="category-checkbox" disabled> <%= category.humanize %>
+              </label>
+            <% end %>
+          </div>              
+        </td>
+      </tr>      
+      {% } %}
+
+    <tr class="template-download fade">        
+      {% if (file.error) {  %}
+        <td></td>
+        <td class="name"><span>{%=file.name%}</span></td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+        {% } else { %}
+        <td class="preview">{% if (file.thumbnail_url) { %}
+          <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+          {% } %}</td>
+        <td class="name">
+          <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+        </td>
+        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+        <td colspan="2"></td>
+        {% } %}
+      <td class="delete">
+        <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
+          <i class="icon-trash icon-white"></i>
+          <span>{%=locale.fileupload.destroy%}</span>
+        </button>
+        <input type="checkbox" name="delete" value="1">
+      </td>
+    </tr>
+    {% } %}
+</script>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+      /*
+      $('input.category-checkbox').click(function(){
+        if (this.checked){
+            console.log("ok");
+        } else {
+            console.log("no");
+        }
+      });
+      */
+      $('#contacts').remove();  //move contact(left contact)
+      // Initialize the jQuery File Upload widget:
+//      $('#fileupload').fileupload();
+      $('#fileupload').fileupload({
+          acceptFileTypes: /(\.|\/)(mp3)$/i
+      });
+      // Load existing files:
+      $.getJSON($('#fileupload').prop('action'), function (files) {
+        var fu = $('#fileupload').data('fileupload'), template;
+        fu._adjustMaxNumberOfFiles(-files.length);
+        
+        console.log(files);
+
+        template = fu._renderDownload(files).appendTo($('#fileupload .files'));
+        // Force reflow:
+        fu._reflow = fu._transition && template.length && template[0].offsetWidth;
+        template.addClass('in');
+        $('#loading').remove();
+      });
+
+  });
+</script>

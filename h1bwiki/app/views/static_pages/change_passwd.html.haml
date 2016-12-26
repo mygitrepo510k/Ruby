@@ -1,0 +1,66 @@
+.container-fluid
+	.row.change-password-page
+		%form{:action=>"#", :method=>"put", :"data-validate" => "parsley", :id=>"change_password_form"}
+			.row.first-row
+				.span6
+					%p.page-title PPDM Solutions Inc
+				.span4{:style=>"padding-top: 15px;"}
+					%a.btn.btn-primary{:href=>"/account_setup"} Update Profile
+					%a.btn.btn-success{:href=>"/change_passwd"} Change Pssword
+			.row.head-row
+				%p.item-title Change Password
+			.row.second-row
+				.span7.offset3{:style=>"background-color: white;border: 1px solid #eee;"}
+					.row{:style=>"padding:25px;"}
+						.control-group
+							%label.control-label Current password:
+							.controls
+								%input#cur_pass{:type=>"password", :name=>"cur_pass", :"data-required"=>"true"}
+						.control-group
+							%label.control-label New pasword:
+							.controls
+								%input#new_pass{:type=>"password", :name=>"new_pass", :"data-required"=>"true"}
+						.control-group
+							%label.control-label Verify password:
+							.controls
+								%input#con_pass{:type=>"password", :name=>"conf_pass", :"data-required"=>"true"}
+					.row{:style=>"border-top:solid 1px #aaa; padding: 15px 0;text-align: center;"}
+						%input#submit_btn.btn{:type=>"button", :value=>"Save changes"}
+:javascript
+	$("#submit_btn").click(function(){
+		console.log("OK?");
+		var url = '/reset_passwd';
+		var cur_pass = $("#cur_pass").val();
+		var new_pass = $("#new_pass").val();
+		var con_pass = $("#con_pass").val();
+		var state = "false";
+		$.ajax({
+			url :url,
+			beforeSend : function(xhr) {
+				xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+			},
+			type: "POST",
+			data: 'cur_pass='+cur_pass+'&new_pass='+new_pass+'&con_pass='+con_pass,
+			dataType:'script',
+			success :function(data){
+				state = "true";
+				console.log("done");
+				document.location.href="/"
+			},
+			error :function(data){
+				console.log("fail");
+				document.location.href="/change_passwd"
+			}
+		});
+		
+		
+		//document.location.href="/";
+
+		return false;
+	});
+
+
+	$("#change_password_form").submit(function(){
+		console.log("OK?");
+		return false;
+	})

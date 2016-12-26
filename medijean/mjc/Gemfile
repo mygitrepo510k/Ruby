@@ -1,0 +1,122 @@
+source 'https://rubygems.org'
+
+gem 'rails', '3.2.12'
+
+# Bundle edge Rails instead:
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'sass-rails',   '~> 3.2.3'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'bootstrap-sass', '~> 2.3.2.0'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  gem 'therubyracer', :platforms => :ruby
+
+  gem 'uglifier', '>= 1.0.3'
+  gem 'eco'
+end
+
+group :development, :test do
+  gem "simplecov"
+  gem "capistrano"
+  gem "rvm-capistrano"
+  gem "cucumber-rails", :require => false
+  gem 'selenium-webdriver'
+  gem 'capybara-screenshot'
+
+  gem 'sqlite3'
+  gem 'database_cleaner', '1.0.1'
+
+  gem "rspec-rails", "~> 2.0"
+  gem "should_not"
+  gem "shoulda-matchers"
+  gem 'yard'
+  gem "cane"
+
+  gem 'railroady', :platforms => :ruby
+  gem 'redcarpet'
+  gem 'github-markup'
+  gem "yard-activerecord"
+  gem "yard-rspec", :git => "https://github.com/lsegal/yard-spec-plugin.git"
+  gem "factory_girl_rails", "~> 4.0"
+  gem "faker"
+
+  gem 'thin'
+  gem 'pry-rails'
+  gem 'pry-nav'
+  gem 'pry-doc'
+  gem 'pry-debugger'
+
+  # debug gems
+  gem "quiet_assets"
+  gem "binding_of_caller"
+end
+
+group :test do
+  gem 'email_spec'
+  gem 'resque_spec'
+end
+group :development do
+  gem "better_errors"
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-spin'
+  gem 'spin'
+  # letter opener gem added for email preview in development environment
+  gem "letter_opener"
+
+  # debugger to group in development environment only
+  gem 'debugger'
+
+  gem 'binding_of_caller'
+  gem 'sextant' # routes on rails app
+  gem 'quiet_assets' # turns off the rails asset pipeline log
+end
+
+group :production do
+  gem "pg"
+end
+
+gem "jquery-rails", "2.3.0"
+gem 'activeadmin'
+gem 'paperclip'
+gem 'cancan'
+gem 'rabl'
+gem 'haml'
+gem 'passenger'
+gem 'paper_trail', '~> 2'
+gem 'going_postal'
+gem 'simple_form'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+
+gem 'stripe'
+# added by chui
+gem 'redcarpet'
+# ----------
+gem "ckeditor", "4.0.4", :path => 'vendor/gems/ckeditor-4.0.4'
+gem 'resque-scheduler', :require => 'resque_scheduler'
+gem 'capistrano-resque'
+gem 'resque-web'
+gem 'nokogiri'
+gem 'premailer-rails'
+# To use ActiveModel has_secure_password
+# gem 'bcrypt-ruby', '~> 3.0.0'
+
+# To use Jbuilder templates for JSON
+# gem 'jbuilder'
+
+# Use unicorn as the app server
+gem 'unicorn'
+
+gem "mail_view", "~> 1.0.3"
+# Deploy with Capistrano
+# gem 'capistrano'
+
+# To use debugger, this gem is grouped in development
+# gem 'debugger'
+
+gem "devise", '3.0.3'

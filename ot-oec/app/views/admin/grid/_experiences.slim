@@ -1,0 +1,11 @@
+.experience_grid
+	ol.experiences
+		- for s in @students
+			li.student_row
+				.student_portrait title=s.name
+					= link_to s
+						= image_tag s.avatar.medium.url
+				-for e in s.experiences current_user.current_program
+					a href=experience_path(e) class='experience thumbnail' data-executed=e.executed_at
+						= truncate e.name, length: 30
+						= render partial: 'tooltip', locals: { experience: e }

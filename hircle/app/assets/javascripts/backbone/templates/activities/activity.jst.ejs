@@ -1,0 +1,59 @@
+   
+	<div class="actBlock">
+							<div class="containerTitle">
+								<div class="line1"></div> <p class="dateTitle"><%= timeline %></p><div class="line2"></div>
+							</div>
+							<div class="accordion" id="accordion_<%= timeline %>">
+							<!-- =====================loop activities array========================= -->						
+								
+							   <% _.each(activities, function(vo) { 
+							       var start_type_string="";
+							         if (vo.type == "conversation"){
+							          start_type_string=" started a ";
+							       }
+							       else if (vo.type == "task"){
+							          start_type_string=" assigned  a ";
+							       }
+							   %>
+								<div class="accordion-group">
+									<div class="accordion-heading">
+										<div class="accordion-toggle" data-toggle="collapse" href="#collapseD<%=vo.activity_id%>">
+											<a href="#"><%= vo.from %></a> <%=start_type_string%> <a href="#"> <%= vo.type %></a> with<a href="#"> <%= vo.to %></a> <%=vo.time_short%>
+										</div>
+									</div>
+								
+									<div id="collapseD<%=vo.activity_id%>" class="accordion-body collapse in">
+									   <!-- =====================loop comments in vo========================= <li class="pic"> -->
+									   <% _.each(vo.comments, function(comment) { %>
+										<div class="accordion-inner">
+												<ul>
+													<li><img src="<%=comment.thumbnail%>" alt="<%=comment.name%>"><li>
+													<li class="middle"><div><span><%=comment.content%></span></div>
+													</li>
+													<li class="timeAgo"><em class="hours"><%=comment.time_short%></em>
+													</li>
+												</ul>
+												<div class="reply-icon"><i class="icon-reply"></i>reply</div>
+										</div>
+										   <!-- =====================loop sons of comment======================== -->
+										            <% _.each(comment.replys, function(reply) { %>
+														<div class="accordion-inner">
+																<ul>
+																	<li><img src="<%=reply.thumbnail%>" alt="<%=reply.name%>"><li>
+																	<li class="middle"><div><span>This is reply<%=reply.content%></span></div>
+																	</li>
+																	<li class="timeAgo"><em class="hours"><%=reply.time_short%></em>
+																	</li>
+																</ul>
+																<div class="reply-icon"><i class="icon-reply"></i>reply</div>
+														</div>
+										            <% }); %>
+										   <!-- =====================loop sons of comment END======================== -->
+										<% }); %>
+									</div>
+								</div>
+							 <% }); %>
+						<!-- =====================loop activities array END========================= -->	
+
+					</div>
+			</div>

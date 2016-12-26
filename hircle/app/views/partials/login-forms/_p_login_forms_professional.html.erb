@@ -1,0 +1,51 @@
+<div class="signup-b login_forms_professional login_forms">
+  <%=  image_tag("landing-page/popup-bg-pro-login.png") %>
+    <div id="professional">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :class => "form-horizontal") do |f| %>
+            <div class="form-b" style="padding-bottom: 10px; top: 10px; border-radius: 8px 8px 8px 8px; padding-top: 10px;">
+                <ul>
+                    <li>
+                        <label>Email</label>
+                        <input name="email" type="text" style="width:238px;margin-bottom:0px;">
+                    </li>
+                </ul>
+            </div>
+            <div class="form-c" style="padding-bottom: 10px; top: 58px; border-radius: 8px 8px 8px 8px; padding-top: 10px;">
+                <ul>
+                    <li>
+                        <label>Password</label>
+                        <input name="password" type="password">
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="button-siginup" style="top: 130px;">
+              <p>Join the network for free</p>
+               <div class="rit">
+                    <%= f.submit("Login", :class => "btn btn-primary") %>
+               </div>
+            </div>
+        <% end %>
+    </div>
+
+  <div class="social-icons" style="top: 250px;">
+    <ul>
+        <li>
+          <a href="#">
+            <%=  image_tag("landing-page/fb.png",:onclick => "testAPI()") %>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+          <%=  image_tag("landing-page/plus.png",:id => "MyGooglePlusButton") %>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <%=  image_tag("landing-page/linkedin.png",:id => "MyLinkedInButton") %>
+          </a>
+        </li>
+    </ul>
+  </div>
+
+</div>

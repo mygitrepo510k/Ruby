@@ -1,0 +1,29 @@
+- if current_user.premium || @message.recipient_id == -1
+  = simple_form_for @message do |f|
+    .modal-header
+      %button{type: "button", class: "close", "data-dismiss" => "modal", "aria-hidden" => true}x
+      %h3 Send #{@message.recipient.display_username} a Message!
+    .modal-body
+      = user_photo('media-object img-polaroid pull-right', 'thumb', 'thumb', @message.recipient )
+      = f.hidden_field :recipient_id
+      = f.input :subject
+      = f.input :body, label: false, required: false, input_html: { class: "message-body" }
+    .modal-footer
+      %button.btn{ "data-dismiss" => "modal", "aria-hidden" => true}Close
+      = f.submit I18n.t('views.messages.create'), class: "btn btn-primary", id: 'message-send'
+- else
+  .modal-header
+    %button{type: "button", class: "close", "data-dismiss" => "modal", "aria-hidden" => true}x
+    %h3 Send #{@message.recipient.display_username} a Message!
+  .modal-body
+    %h3
+      Only premium users are allowed to send messages.
+      Visit #{link_to 'Upgrade page', upgrade_path} to upgrade your account
+
+-#
+  :javascript
+    $('#message-send').click(function() {
+      noty({text: 'Your message is being sent...', value: 'notice'});
+      $('#modal-container').modal('hide');
+      return true;
+    });

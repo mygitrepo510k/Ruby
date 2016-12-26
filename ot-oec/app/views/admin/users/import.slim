@@ -1,0 +1,10 @@
+.admin-import-users.section.single
+	h3 Import users
+
+	.form
+	  = form_tag admin_users_import_path, multipart: true,  :method => :post do
+	    .inputs
+	      = file_field_tag :csv_file, :label => false
+
+	    .submit
+	      = submit_tag 'Import', class: 'form-control'

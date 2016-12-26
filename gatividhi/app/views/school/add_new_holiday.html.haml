@@ -1,0 +1,98 @@
+=form_for @holiday, :as=>:holiday, :url =>'/school/add_new_holiday', :method=>:post, :html=>{:class=>'new-holiday', :id=>'new_holiday'} do |f|
+	.popupWindow{:style => "width: 560px; height: 475px; z-index: 90; left: 673.5px; top: 90.5px;"}
+		.popupHead
+			.popupTitle Add a New FeedBack
+			.closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+			.CL
+		.popupContaint
+			.popupFormBox
+				.formRow.jqBigform
+					%label Class:
+					=f.select :class_name, @class_names, :style => "width:175px;", :class => "inputField"
+					.CL
+				.formRow
+					%label Title:
+					%span.formRow.jqBigform
+						%input.inputField#holiday_title{:name => "holiday[title]", :type => "text"}>/
+					.CL
+				.formRow
+					%label Start Date:
+					%input#date1.dateBox.inputField{:name=>"holiday[start_date]",:onblur => "if(this.value==''){ this.value='start date'; this.style.color='#979797'}", :onclick => "if(this.value=='start date'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "start date"}/
+					.CL
+				.formRow
+					%label End Date:
+					%input#date2.dateBox.inputField{:name=>"holiday[end_date]",:onblur => "if(this.value==''){ this.value='end date'; this.style.color='#979797'}", :onclick => "if(this.value=='end date'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "end date"}/
+					.CL
+				.formRow.jqBigform
+					%label Type:
+					%select#holiday_type{:name => "holiday[type]", :style => "width:175px;"}
+						%option Select
+						%option Summer
+						%option National
+						%option Leave
+						%option Other
+					.CL
+				.formRow
+					%label Description:
+					%textarea.inputField#holiday_description{:name => "holiday[description]",:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'"}
+					.CL
+				.formRow.jqBigform
+					%div{:style => "width:115px; float:left; text-align:right; padding-right:10px;"} Date Finalised:
+					= f.check_box :date_finalised
+					%label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+					.CL
+			.formRow.popActionBtn{:style => "text-align:right; padding-left:10px;"}
+				%input.submitBtn{:type => "submit", :value => "save"}/
+				%input.cancelBtn{:type => "button", :value => "cancel", :onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}/
+:javascript
+	$('.jqGreenForm').jqTransform(); 
+	$('.jqSmallform').jqTransform(); 
+	$('.jqBigform').jqTransform(); 
+
+	$("#date1").glDatePicker({
+		leftMargin:55,
+		topMargin:-10 
+	});
+	$("#date2").glDatePicker({
+		leftMargin:55,
+		topMargin:-10 
+	});
+
+	$("#new_holiday").submit(function() {
+		var checked = false;
+		$('p.errorMsgLeft').remove();
+		if($('#holiday_title').val()==""){
+			$('#holiday_title').css('margin-bottom', '0px');
+			$("<p class='errorMsgLeft'>Please input</p>").insertAfter($('#holiday_title'))
+			checked = false;
+		}else{
+			$('#holiday_title').next().remove();
+			checked = true;
+		}
+
+		if($('#holiday_type').val()=="Select"){
+			$('#holiday_type').css('margin-bottom', '0px');
+			$("<p class='errorMsgLeft'>Please select</p>").insertAfter($('#holiday_type').parent().next())
+			checked = false;
+		}else{
+			$('#holiday_type').next().remove();
+			checked = true;
+		}
+
+		if($('#holiday_description').val()==""){
+			$('#holiday_description').css('margin-bottom', '0px');
+			$("<p class='errorMsgLeft'>Please input</p>").insertAfter($('#holiday_description'))
+			checked = false;
+		}else{
+			$('#holiday_description').next().remove();
+			checked = true;
+		}
+		
+		if(checked == false){
+			return false;
+		}else{
+			return true;		
+		}
+		return false;
+	});	
+

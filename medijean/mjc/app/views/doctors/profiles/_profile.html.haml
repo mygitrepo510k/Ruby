@@ -1,0 +1,33 @@
+%h4
+  = t("general.about")
+%table.table.patient-profile-table
+  %tr
+    %th
+      = t("doctor_flow.patient_profile.age")
+    %td
+      = '-'
+  %tr
+    %th
+      = t("doctor_flow.patient_profile.gender")
+    %td
+      = profile.gender || '-'
+  %tr
+    %th
+      = t("doctor_flow.patient_profile.address")
+    %td
+      = profile.address.try(:full_address) || '-'
+  %tr
+    %th
+      = t("doctor_flow.patient_profile.email")
+    %td
+      = profile.user.try(:email) || '-'
+  %tr
+    %th
+      = t("doctor_flow.patient_profile.phone")
+    %td
+      = profile.phone || '-'
+  %tr
+    %th
+      = t("doctor_flow.patient_profile.current_plan")
+    %td
+      = '-'

@@ -1,0 +1,54 @@
+
+<div class="bodyWapper">
+  <div class="tabBox">
+      <a href="/child_profile_health?id=<%= params[:id] %>" >General</a>
+      <a href="/child_profile_health_record?id=<%= params[:id] %>">Health Records</a>
+      <a href="/child_profile_health_test_reports?id=<%= params[:id] %>">Test & Reports</a>
+      <a href="/child_profile_health_vaccination_medication?id=<%= params[:id] %>" class="tabSelected" >Vaccination & Medication</a>
+      
+    <div class="CL"></div>
+  </div>
+      <div class="tabContainer">
+        <div class="tabAction">
+          <div class="activityAction">
+            <div class="jqSmallform FL">
+              <select name="select" id="s2" style="margin-right:8px;width:70px;">
+                <option>Upcoming</option>
+                <option>Past</option>
+              </select>
+            </div>               
+          </div>
+        
+          <div class="CL"></div>
+      </div>
+    
+                <div class="infoContainer fullWidthCon">
+              <div id="health_v_list_div">
+                <%= render :partial => "health_v_list"  %>
+              </div>
+    <p class="padLeft10"><a href="/add_child_profile_health_vaccination_medication?id=<%= params[:id]  %>" class="greyBtn" rel='facebox'>Add New Vaccination & Medication</a></p>
+                    <p>&nbsp;</p>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+<script>
+  $( document ).ready(function() {
+    $(".tabContainer div.jqSmallform ul li a").click(function(){
+      var value= $(".tabContainer div.jqSmallform span").text()
+      console.log(value);
+      
+      $.ajax({
+        url: "/show_list?id=<%= params[:id]  %>&check_order="+ value,
+      }).done(function(data) {
+        $("#health_v_list_div").html(data);
+      });
+      return false; //prevent default browser action
+    });   
+    $('a[rel*=facebox]').facebox()
+  });
+</script>

@@ -1,0 +1,25 @@
+-if @program.errors.any?
+	#error_explanation
+		= pluralize(@program.errors.count, "error")
+ 			| prohibited this program from being saved:
+		ul
+			- @program.errors.full_messages.each do |msg|
+				li= msg
+
+= form_for [:admin, @program] do |f|
+  .field
+    = f.text_field :name, placeholder: 'Name', class: 'form-control'
+  .field
+    = f.text_field :welcome_email_subject, placeholder: 'Welcome email subject', class: 'form-control'
+  .field.inline_with_label
+    = f.check_box :has_content, class: 'form-control'
+    = f.label :has_content, 'Has a content page?'
+  .field
+    -if @program.welcome_email
+      = f.text_area :welcome_email, rows: 6, placeholder: 'Welcome email', class: 'form-control', value: JSON.parse(@program.welcome_email)['markdown']
+    -else
+      = f.text_area :welcome_email, rows: 6, placeholder: 'Welcome email', class: 'form-control'
+
+    .help = 'Include this token: {confirm_link} in the welcome email text to provide an activation link to users to activate their account.'
+  .submit
+    = f.submit 'Submit', class: 'form-control'

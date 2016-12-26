@@ -1,0 +1,133 @@
+<!-- SLIDER -->
+<div class="carousel-container">    
+  <div id="carousel">
+    <div class="carousel-feature">
+      <a href="#"><%= image_tag("banner/sample1.jpg", :class=>"carousel-image", :alt=>"Image Caption") %></a>
+      <div class="carousel-caption">
+        <p>
+          This area is typically used to display captions associated with the images. They are set to hide and fade in on rotation.
+        </p>
+      </div>
+    </div>
+    <div class="carousel-feature">
+      <a href="#"><%= image_tag("banner/sample2.jpg", :class=>"carousel-image", :alt=>"Image Caption") %></a>
+      <div class="carousel-caption">
+        <p>
+          The background will expand up or down to fit the caption.
+        </p>
+      </div>
+    </div>
+    <div class="carousel-feature">
+      <a href="#"><%= image_tag("banner/sample3.jpg", :class=>"carousel-image", :alt=>"Image Caption") %></a>
+      <div class="carousel-caption">
+        <p>
+          Images can be placed here as well.
+        </p>
+      </div>
+    </div>
+    <div class="carousel-feature">
+      <a href="#"><%= image_tag("banner/sample4.jpg", :class=>"carousel-image", :alt=>"Image Caption") %></a>
+    </div>
+    <div class="carousel-feature">
+      <a href="#"><%= image_tag("banner/sample5.jpg", :class=>"carousel-image", :alt=>"Image Caption") %></a>
+      <div class="carousel-caption">
+        <p>
+          The background color of the caption area can be changed using CSS. The opacity can be changed in the options, but it will also change the opacity of the text.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="carousel-left"><%= image_tag("banner/arrow-left.png", :alt=>"Left") %></div>
+  <div id="carousel-right"><%= image_tag("banner/arrow-right.png", :alt=>"Right") %></div>
+</div>
+
+<!-- ABOUT TAGS -->
+<div class="row">
+	﻿<div class="about">
+		<div class="double_bordered"></div>
+		<span>About</span>
+		<div class="double_bordered"></div>
+	</div>
+	<div class="span6 left_bar">
+		<h2>How it works:</h2>
+
+		<div class="feature">
+			<a href="/lawyers">
+			<%= image_tag("browse.png")%>
+			</a>
+			<div class="feature_description">
+				<p>
+					1.<a href="/lawyers">Browse lawyers</a> or submit your question
+				</p>
+			</div>
+		</div>
+		<div class="feature">
+			<a href="/lawyers">
+				<%= image_tag("phone.png")%>
+			</a>
+			<div class="feature_description">
+				<p>2. Talk immediately or schedule consultation</p>
+			</div>
+		</div>
+		
+		<div class="feature">
+			<a href="/lawyers">
+				<%= image_tag("time.png")%>
+			</a>
+			<div class="feature_description">
+				<p>3. Pay for services or extended consultations</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="span5 right_bar">
+		<div class="testimonials">
+			<h2>Testimonials:</h2>
+			<div class="testimonial_description">
+				<p>
+					<span class="open_quotes"></span>
+					<span class="desc">Easiest way to talk to a lawyer...</span>
+				</p>
+			</div>
+			
+			<div class="testimonial_description">
+				<p>
+				<span class="open_quotes"></span>
+				<span class="desc">Best way to meet clients outside my hometown...</span>
+				</p>
+			</div>
+			
+			<div class="testimonial_description">
+				<p>
+					<span class="open_quotes"></span>
+					<span class="desc">Never stepping foot in a law office again...</span>
+				</p>
+			</div>
+
+			<div class="testimonial_description">
+				<p>
+					<span class="open_quotes"></span>
+					<span class="desc">Wait, this is amazing...</span>
+				</p>
+			</div>
+			<div class="testimonial_description">
+				<p>
+					<span class="open_quotes"></span>
+					<span class="desc">Virtual lawyering gone mainstream...</span>
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+      $(document).ready(function() {
+        var carousel = $("#carousel").featureCarousel({
+          // include options like this:
+          // (use quotes only for string values, and no trailing comma after last option)
+          // option: value,
+          // option: value
+        });
+      });
+    </script>

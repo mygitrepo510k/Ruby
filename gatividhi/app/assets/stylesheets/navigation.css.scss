@@ -1,0 +1,237 @@
+.navigation-fix-top-bar{
+	margin-bottom: 20px;
+	position: fixed;
+	background: url("bg.png") repeat scroll 0 0 transparent;
+	padding-top: 20px;
+	padding-left: 5px;
+  top: 64px;
+  z-index: 99;
+  height: 86px;
+  margin: 0 auto;
+  margin-left: -8px;	
+  width: 1000px;
+	.navigation-box{	
+		margin-left: 0px;	
+		[class*="span"]{
+	    margin-left:0px;
+	  }
+		
+		.span1{
+			.dashboard_indiRed {
+				background: url("sprite_images.png") no-repeat scroll left top transparent;
+		    background-position: -247px -210px;
+		    height: 17px;
+		    margin-left: -2px;
+		    position: absolute;
+		    width: 17px;
+		    z-index: 4;
+
+			}
+			.proImg{
+				//background: url("sample/profile_img2_sm.jpg") repeat scroll 0 0 transparent;
+				border: 4px solid rgb(255, 255, 255);
+		    border-radius: 40px 40px 40px 40px;
+		    box-shadow: 1px 2px 2px rgb(204, 204, 204);
+		    cursor: pointer;
+		    float: left;
+		    height: 70px;
+		    position: relative;
+		    width: 70px;
+		    z-index: 3;
+		    overflow: hidden;
+			}
+		}
+		.name-bar{
+			cursor: pointer;			    
+			margin-left: 0px;
+			background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(223, 223, 223) 100%) repeat scroll 0 0 transparent;
+	    border-bottom: 1px solid rgb(149, 141, 129);
+	    border-radius: 14px 14px 14px 14px;
+	    border-top: 1px solid rgb(239, 230, 218);
+	    float: left;
+	    height: 28px;
+	    margin-left: -5px;
+	    margin-top: 25px;
+	    padding-left: 20px;
+	    position: static;
+	    width: 315px;
+	    z-index: 2;	
+	    &:hover{
+	    	span.arrw{
+	    		background-position: 0 -226px;
+	    	}		    	
+	    }
+	    .selectedName, .viewStat{
+	    	color: rgb(84, 84, 84);
+		    cursor: pointer;
+		    text-decoration: none;
+	    	border-right: 1px solid rgb(196, 196, 196);
+		    display: block;
+		    float: left;
+		    font-size: 14px;
+		    font-weight: bold;
+		    height: 28px;
+		    line-height: 2.2;
+		    width: 40%;
+		    &:hover{
+		    	background-color: transparent;
+		    }
+		    .arrw{
+		    	background: url("sprite_images.png") no-repeat scroll left top transparent;
+			    background-position: 0 -209px;
+			    float: right;
+			    height: 11px;
+			    margin-right: 12px;
+			    margin-top: 10px;
+			    width: 20px;
+		    }
+	    }
+	    a.viewStat{
+	    	border: 0 none;
+		    font-weight: normal;
+		    padding-left: 5%;
+		    width: 54%;
+	    }	
+	    .dropInfo{
+				.CL {
+				  clear: both;
+				}
+	    	background-color: rgb(255, 255, 255);
+		    border-radius: 0 0 8px 8px;
+		    box-shadow: 1px 2px 3px rgb(204, 204, 204);
+		    display: none;
+		    margin-left: -15px;
+		    position: absolute;
+		    width: 322px;
+		    top: 75px;
+		    z-index: 101;
+		    .headRow {
+			    background-color: rgb(133, 133, 133);
+			    color: rgb(255, 255, 255);
+			    padding: 5px 15px;
+			    .selectedFamily {
+					  float: left;
+					  font-size: 14px;
+					 }
+				  .addMemb{
+				    color: rgb(240, 240, 240);
+				    float: right;
+				    font-size: 12px;
+				    &:hover{
+				    	background: transparent;
+				    	text-decoration: none;
+				    }
+				    span{
+				    	background: url("sprite_images.png") no-repeat scroll left top transparent;
+				    	background-position: -99px -210px;
+					    display: inline-block;
+					    height: 11px;
+					    margin-left: 8px;
+					    vertical-align: middle;
+					    width: 11px;
+				    }
+					}			
+
+				}
+				.fMembers{
+					a{
+				    background: url("dropArrows.png") no-repeat scroll 97% 9px transparent;
+				    border-bottom: 1px solid rgb(216, 216, 216);
+				    display: block;
+				    font-size: 14px;
+				    padding: 5px 15px;
+				    color: rgb(84, 84, 84);
+				    &:hover{
+				    	text-decoration: none;
+				    	background: url("dropArrows.png") no-repeat scroll 97% -15px rgb(236, 241, 240);
+				    }
+					}
+					.mActive {
+					  color: rgb(13, 141, 146);
+					}
+					.fSubMembers {
+					  background-color: rgb(218, 241, 236);
+					  box-shadow: 0 0 5px rgb(204, 204, 204) inset;
+					  display: none;
+					}
+					.botRow {
+					  padding: 5px 15px;
+					  text-align: right;
+					  .addFamily {
+						  font-size: 12px;
+						}
+					}
+				}
+				.botRow {
+			    padding: 5px 15px;
+			    text-align: right;
+					.addFamily {
+				  	font-size: 12px;
+				  	color: rgb(84,84,84);
+				  	&:hover{
+				  		text-decoration: none;
+				  		background-color: transparent;
+				  	}
+					}
+				}
+	    }
+		}		
+	}
+	.options-box{		
+		margin-right: 40px;
+		margin-top: 0px;
+		float: right;
+		.option{			
+			width: 26px;
+			height: 26px;
+			background: url("sprite_images1.png");
+			margin-left: 15px;
+			span{
+				background: url("sprite_images.png");
+				background-position: -247px -210px;
+		    color: white;
+		    float: right;
+		    font-weight: 600;
+		    height: 17px;
+		    line-height: 1.5;
+		    margin-left: 3px;
+		    text-align: center;
+		    width: 17px;
+			}
+		}
+		.home{
+			background: url("sprite_images1.png");
+			float: left;			
+    	background-position: -273px -680px;		  
+		}
+		.calendar{
+			float: left;
+    	background-position: -310px -680px;
+		}
+		.mailbox{
+			float: left;
+    	background-position: -345px -680px;
+			span{	    	
+		    display: inline-block;
+		    margin-left: 17px;
+		    margin-top: 3px;
+	    }
+		}
+		.notification{
+			float: left;
+    	background-position: -382px -680px;
+			span{	    	
+		    display: inline-block;
+		    margin-left: 17px;
+	    }
+		}
+		.questions{
+			float: left;
+    	background-position: -415px -680px;
+			span{	    	
+		    display: inline-block;
+		    margin-left: 17px;
+	    }
+		}
+	}
+}

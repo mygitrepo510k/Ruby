@@ -1,0 +1,49 @@
+- @results.each do |res|
+	.row
+		.span12.search-result-item
+			.row.title-row
+				.span8
+					.row
+						= link_to res["jobtitle"], "http://www.indeed.com/rc/clk?jk="+res["jobkey"], :class=>"item-title", :target => "_blink", style: 'text-decoration:underline;color:blue;'
+					.row
+						%small= res["company"]
+						%small
+							Location:
+							= res["formattedLocationFull"]
+				.span4
+					%p.created-date
+						Date Posted:
+						=res["date"]
+			.row.description
+				.span8
+					.row
+						.view-details-box.more= raw res["snippet"]
+					.row{:style=>"margin-top: 10px;"}
+				.span4.skill-tags
+
+.row{style: 'margin-bottom: 10px;'}
+	-if @results.present?
+		%a#prev_view.offset4.btn.btn-primary{:href=>"#", style: 'width:80px;'} < Prev
+		%a#next_view.offset1.btn.btn-primary{:href=>"#", style: 'width:80px;'} Next >
+
+
+:javascript
+	$("#next_view").click(function(){
+		v = $("#indeed_page_num").val();
+		if(v==""){
+			v=1
+		}else{
+			v = parseInt(v) + 1;
+		}		
+		$("#indeed_page_num").val(v);
+		$("#indeed_search_form").submit();
+	});
+	$("#prev_view").click(function(){
+		v = $("#indeed_page_num").val();
+		if( parseInt(v) > 0){		
+			v = parseInt(v) - 1;
+		}		
+		$("#indeed_page_num").val(v);
+		$("#indeed_search_form").submit();
+	});
+

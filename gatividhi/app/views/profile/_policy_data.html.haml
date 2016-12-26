@@ -1,0 +1,21 @@
+- @policies.each do |policy|
+  %tr{:id=>'actRow_'+policy.id}
+    %td{:align => "left", :valign => "top"}
+      %a.greenTxt{:href => "#."}= policy.particular
+    %td{:align => "left", :valign => "top"}= policy.date_paid
+    %td{:align => "left", :valign => "top"}= policy.amount
+    %td.actionBox{:align => "left", :valign => "top"}
+      = link_to("", "javascript:delete_policy('#{policy.id}')", :method=> :delete, :confirm => "Are you sure?", :class => "deleteIcon", :title=>"Delete")
+      %a.editIcon{:href => "javascript://", :onclick => "showObj('#modifyRow_#{policy.id}');$('#actRow_#{policy.id}').hide()", :title => "Edit"}
+      = policy.description
+  %tr.editRow{:id => 'modifyRow_'+policy.id, :style => "display:none;"}
+    %td{:align => "left", :valign => "top"}
+      %input.inputField{:id=>"pl_val1_"+policy.id ,:onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :type => "text", :value => policy.particular}/
+    %td{:align => "left", :valign => "top"}
+      %input.showDate.inputField{:id=>"pl_val2_"+policy.id, :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :type => "text", :value => policy.date_paid}/
+    %td{:align => "left", :valign => "top"}
+      %input.inputField{:id=>"pl_val3_"+policy.id, :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:80px;", :type => "text", :value => policy.amount}/
+    %td{:align => "left", :valign => "top"}
+      %input.inputField{:id=>"pl_val4_"+policy.id, :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:250px;", :type => "text", :value => policy.description}/
+      %a.closeBigBtn.FR{:href => "#.", :onclick => "showObj('#actRow_#{policy.id}');$('#modifyRow_#{policy.id}').hide()"}
+      %input.saveBtn{:onclick => "showObj('#actRow_#{policy.id}');$('#modifyRow_#{policy.id}').hide();edit_policy('#{policy.id}');", :type => "submit", :value => "save"}/

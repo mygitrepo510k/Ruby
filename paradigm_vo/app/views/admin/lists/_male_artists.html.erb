@@ -1,0 +1,29 @@
+	<% @voice_ids = [] %>
+<% Voiceover.find(@list.voice_ids).each do |voice| %>
+	<% unless @voice_ids.include?(Artist.find(voice.artist_id).id) %>
+		<% @voice_ids << Artist.find(voice.artist_id).id %>
+	<% end %>
+<% end %>
+
+<% Artist.find(@voice_ids).group_by {|a| a.starting_with}.sort.each do |l, artists| %>
+	<% for artist in artists do %>
+		<% if artist.gender == "Male" %>
+
+			<h3 class="trigger"><%= link_to artist.name, artist %> - <span style="font-size:x-small"><%= artist.category %></span></h3>
+			<div class="toggle">
+				<div class="block">
+						<% @voice_ids = [] %>
+					<% artist.voiceovers.each do |voice| %>
+						<% @voice_ids << voice.id unless @list.voice_ids.include?(voice.id) %>
+					<% end %>
+			
+					<% artist.voiceovers.find(@voice_ids).each do |voice| %>
+						<%= voice.file_name.present? ? voice.file_name : voice.voiceover_identifier %>
+				    <a class="media" href="<%= voice.voiceover.url %>"></a>
+					<% end %>
+				</div>
+			</div>
+			
+		<% end %>
+	<% end %>
+<% end %>

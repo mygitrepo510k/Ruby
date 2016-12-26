@@ -1,0 +1,15 @@
+= form_for [:admin, @event] do |f|
+  - f.object.errors.messages.each do |msg|
+    .alert.alert-error= msg.join(' is ')
+  .field
+    = f.text_field :name, placeholder: 'Name', class: 'form-control'
+  .field
+    = f.text_area :description, placeholder: 'Description', class: 'form-control'
+  .field
+    = f.text_field :place_name, placeholder: 'Location', class: 'form-control'
+  .field
+    = f.text_field :start, placeholder: 'Start Date', class: 'form-control datepicker', value: f.object.start.present? ? f.object.start.strftime("%m/%d/%Y %M:%H") : ""
+  .field
+    = f.text_field :end, placeholder: 'End Date', class: 'form-control datepicker', value: f.object.end.present? ? f.object.end.strftime("%m/%d/%Y %M:%H") : ""
+  .submit
+    = f.submit 'Submit', class: 'form-control'

@@ -1,0 +1,19 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.nav-top-bar
+      =render "users/dashboard-nav"
+    .row.kc-page-container
+      .row.title
+        %label.page-title Knowledge Centre
+      .row.page-content
+        .span3.left-side-bar
+          %ul
+            -@titles.each do |item|
+              -if @page.title == item.title
+                %li.active
+                  = link_to item.title, '/kc/'+item.url.to_s
+              -else
+                %li
+                  = link_to item.title, '/kc/'+item.url.to_s
+        .span7.content
+          = raw @page.html if @page.present? and @page.html.present?

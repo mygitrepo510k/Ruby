@@ -1,0 +1,29 @@
+.row.signup-page
+	.container
+		%p#notice= notice
+
+		%p
+			%b Category:
+			= @store.category
+		%p
+			%b Title:
+			= @store.title
+		%p
+			%b Author:
+			= @store.author
+		%p
+			%b Price:
+			= @store.price
+		%p
+			%b Sell price:
+			= @store.sell_price
+		%p
+			%b Content:
+			= @store.content
+		%p
+			%b Affiliate code:
+			= @store.affiliate_code
+
+		= link_to 'Edit', edit_store_path(@store)
+		\|
+		= link_to 'Back', stores_path

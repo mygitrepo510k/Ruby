@@ -1,0 +1,9 @@
+h2 New Event Announced
+p Dear #{@user.name},
+p A new event has been announced as part of #{@event.program.name}
+p 
+	b= @event.name
+p Description: #{@event.description}
+p When: #{@event.duration}
+p Where: #{@event.place_name}
+p= link_to "view event", @link

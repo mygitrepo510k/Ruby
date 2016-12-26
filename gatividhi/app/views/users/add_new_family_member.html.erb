@@ -1,0 +1,113 @@
+<script>  
+  $(document).on("click","#new_family_member_save", function(event){
+    
+    if ($('#family_member_first_name').val() == "" || $('#family_member_first_name').val() == "first name"){
+      $('#family_member_first_name').next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#family_member_first_name').next().html("");
+    }
+    
+    if ($('#family_member_last_name').val() == "" || $('#family_member_last_name').val() == "last name"){
+      $('#family_member_last_name').next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#family_member_last_name').next().html("");
+    }
+
+    if($('#select6').val() == "Father" || $('#select6').val() == "Mother" || $('#select6').val() == "Grandparent"){
+      if ($('#family_member_confirm_email').val() == "" || $('#family_member_confirm_email').val() == "example@domain.com"){
+        $('#family_member_confirm_email').next().html("can't be blank");
+        var chec_error = true;
+      }else{
+        $('#family_member_confirm_email').next().html("");
+      }
+      if ($('#family_member_email').val() == "" || $('#family_member_email').val() == "example@domain.com"){
+        $('#family_member_email').next().html("can't be blank");
+        var chec_error = true;
+      }else{
+        $('#family_member_email').next().html("");
+      }
+    }else{
+      $('#family_member_email').val("") ;
+      $('#family_member_confirm_email').val("");
+     }
+    
+    if (chec_error == true){
+      return false;
+    }else{
+      $("#add_member_form").submit();
+      return true;      
+    }    
+  });  
+  $('.jqBigform').jqTransform(); 
+</script>
+
+
+<div class="popupWindow" style="width: 380px; height: 465px;">
+	<div class="popupHead">
+		<div class="popupTitle">Add a New Family Member to <%= @family.family_name  %></div>
+      <div onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;" class="closeBtn"></div>
+        <!-- <div onclick="disablePopup()" class="close closeBtn"></div> -->
+        <div class="CL"></div>
+     </div>
+     <div class="popupContaint">
+     	<p class="pageSubTitle">Create New Family</p>
+ <div class="popupSmForm">
+
+  <%= form_tag "/add_new_family_member?id=#{@family.id}",:id=>'add_member_form', :multipart => true do %>
+  <div class="formRow">
+  <div class="formRow jqBigform">
+    <label>From:</label>
+    <select name="family_member[role_name]" id="select6" class="inputField" style="width: 160px; color: rgb(151, 151, 151);" >
+      <% ['Father','Mother','Son','Daughter'].each do |single_group| %>
+          <option value = '<%=single_group%>'><%=single_group %></option>
+        
+      <% end %>
+    </select>&nbsp;*
+    <p class="errorMsgLeft"></p>
+    </div>
+    <div class="CL"></div>
+  </div>
+  
+  <div class="formRow">
+    <label>Email:</label>
+    <input name = "family_member[email]" type="email" id="family_member_email" class="inputField" value="example@domain.com" style="width: 190px; color: rgb(151, 151, 151);" onclick="if(this.value=='example@domain.com'){ this.value=''; this.style.color='#000'}" onblur="if(this.value==''){ this.value='example@domain.com'; this.style.color='#979797'}">*
+    <p class="errorMsgLeft"></p>
+    <div class="CL"></div>
+  </div>
+  <div class="formRow jqSmallform">
+    <label>Confirm Email:</label>
+    <span class="formRow">
+    <input name = "family_member[confirm_email]" type="email" id="family_member_confirm_email" class="inputField" value="example@domain.com" style="width: 190px; color: rgb(151, 151, 151);" onclick="if(this.value=='example@domain.com'){ this.value=''; this.style.color='#000'}" onblur="if(this.value==''){ this.value='example@domain.com'; this.style.color='#979797'}">*
+    <p class="errorMsgLeft"></p>
+    </span>
+    <div class="CL"></div>
+  </div>
+   <div class="formRow jqSmallform">
+    <label>First Name:</label>
+    <span class="formRow">
+    <input name = "family_member[first_name]" type="text" minlength="1" maxlength="15" id="family_member_first_name" class="inputField" value="first name" style="width: 190px; color: rgb(151, 151, 151);" onclick="if(this.value=='first name'){ this.value=''; this.style.color='#000'}" onblur="if(this.value==''){ this.value='first name'; this.style.color='#979797'}">
+    <p class="errorMsgLeft"></p>
+    </span>
+    <div class="CL"></div>
+  </div>
+  <div class="formRow jqSmallform">
+    <label>Last Name:</label>
+    <span class="formRow">
+    <input name = "family_member[last_name]" type="text" minlength="1" maxlength="15" id="family_member_last_name" class="inputField" value="last name" style="width: 190px; color: rgb(151, 151, 151);" onclick="if(this.value=='last name'){ this.value=''; this.style.color='#000'}" onblur="if(this.value==''){ this.value='last name'; this.style.color='#979797'}">
+    <p class="errorMsgLeft"></p>
+    </span>
+    <div class="CL"></div>
+  </div>
+  
+  <div class="formRow">
+    <label>&nbsp;</label>
+    <input type="button" class="submitBtn" value="submit" id="new_family_member_save">
+    <input type="submit" class="cancelBtn" value="cancel" onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;">
+    <div class="CL"></div>
+  </div>
+</div>
+<% end %>
+     </div>
+ </div>

@@ -1,0 +1,3 @@
+%td= message.subject
+%td= truncate(message.body.gsub(/<\/?[^>]*>/," "), length: 50)
+%td= message.created_at.strftime('%m/%d/%Y')

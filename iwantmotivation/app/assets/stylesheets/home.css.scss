@@ -1,0 +1,1077 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+p, label, span, div, a{
+	font-family: serif,arial,sans-serif;
+}
+
+// error class
+
+.field_with_errors{
+	border: solid 1px red !important;
+}
+
+
+#main{
+	#flash-banner {
+		/*#error-message, #alert-message, */
+		#success-message {
+			background-color: rgb(204, 255, 204);
+	    border: 1px solid rgb(102, 204, 102);
+	    border-radius: 4px 4px 4px 4px;
+	    left: 19%;
+	    margin: 0 auto 10px;
+	    padding: 5px 8px;
+			/*position: fixed;*/
+	    text-align: center;
+	    width: 50%;
+	    z-index: 9999;
+		}
+	  #error-message, #alert-message, 
+	  .flash.notice, .flash.alert {
+	    background-color: #FCC;
+	    border: solid 1px #C66;
+	    left: 19%;
+	    margin: 0 auto 10px;
+	    padding: 5px 8px;
+			/*position: fixed;*/
+	    text-align: center;
+	    width: 50%;
+	    z-index: 9999;
+	  }
+
+	  #notice-message,
+	  .flash.notice {
+	    background-color: #CCFFCC;
+	    border: 1px solid #66CC66;
+	    left: 19%;
+	    top: 80px;
+	    width: 60%;
+	    z-index: 9999;
+	  }
+
+
+	  #alert-message,
+	  .flash.alert {
+	  	color: blue;		
+	    background-color: rgb(204, 255, 204);
+	    border: 1px solid rgb(102, 204, 102);
+	    border-radius: 4px 4px 4px 4px;
+	    left: 19%;
+	    margin: 0 auto 10px;
+	    padding: 5px 8px;
+	    text-align: center;
+	    width: 50%;
+	    z-index: 9999;
+	  }
+	}
+}
+
+
+ul.nav{
+	float: right;
+	margin-right: 0px; 
+	margin-top: 15px;
+	li{
+		float: left;
+		margin-left: 20px;
+		a{
+			font-size: 16px;	
+			color: blue;		
+			&:hover{
+				background:transparent;
+			}
+			.unread-count{
+				background-color: red;
+			  border: medium none red;
+			  border-radius: 3px 3px 3px 3px;
+			  color: white;
+			  padding: 2px;
+			}
+		}
+	}
+}
+.menu-bar{
+	background: url("home_icons/bg-body.png") repeat-x scroll 0 0 #f2f2f2;
+	.top-nav-bar{	
+		height:36px;
+		ul{
+			list-style-type:none; 
+			margin:1px 0 0 0px !important; 
+			padding:0;
+
+			li{
+				list-style-type:none; 
+				margin:0; 
+				padding:0; 
+				background:url(home_icons/bg-seprator.gif) left center no-repeat; 
+				display:inline; 
+				height:36px; 
+				float:left; 
+				color:#ffffff; 
+				text-transform:uppercase; 
+				font-family:Trebuchet MS, arial; 
+				font-size:13px; 
+				font-weight:bold;
+
+				a{
+					color:#ffffff; 
+					text-decoration:none; 
+					padding:6px 17px 5px; 
+					float:left;
+					cursor: pointer;
+				}
+				a:hover, a.current{
+					background:url(home_icons/top-navi-hover.gif) 0 0 repeat-x;
+				}
+			}
+		}
+	}	
+}
+
+#nslider-wrapper{
+	margin-top: 1px;
+	.sliderNivo{
+		background: url("banner/bannerContBgSmall.jpg") repeat-x scroll left bottom #266EA8;
+    border-bottom: 0 solid #FFFFFF;
+    cursor: default;
+    height: 300px;
+    position: relative;
+    
+    .nivoSlider{
+    	background: url("banner/loading.gif") no-repeat scroll 50% 50% transparent;
+    	position: relative;
+    }
+	}
+}
+
+.left-panel{
+	.row{
+		width: 650px;
+	}
+	ul.icons2{
+		margin:0px; 
+		padding:0px;
+		list-style: none;
+		li{
+			width:300px; 
+			float:left; 
+			padding:0px 10px 0px 0px;
+			margin-bottom:10px;
+			h5{
+				color:#0C3569;
+			}
+			p{
+				margin-bottom:5px;
+			}
+		}
+//		li.manage{background:url(../images/revenue2.png) no-repeat left top;}
+//		li.coaching{background:url(../images/coaching.jpg) no-repeat left top;}
+//		li.setUp{background:url(../images/icon5.png) no-repeat left top;}
+//		li.ProvidedSite{background:url(../images/icon6.png) no-repeat left top;}
+//		li.multipleCreative{background:url(../images/icon7.png) no-repeat -5px top;}
+//		li.signup{background:url(home_icons/signup.png) no-repeat -2px top;}
+//		li.blog{background:url(home_icons/blog.png) no-repeat -2px top;}
+//		li.coachsearch{background:url(home_icons/coachsearch.png) no-repeat -2px top;}
+//		li.shoppingbasket{background:url(home_icons/basketblue.png) no-repeat -2px top;}
+//		li.affiliate{background:url(home_icons/MotivationalAffiliate.png) no-repeat -2px top;}
+//		li.target{background:url(home_icons/motivationalmembership.png) no-repeat -1px top;}
+//		li.forum{background:url(home_icons/openforum.png) no-repeat -1px top;}
+//		li.partner{background:url(home_icons/motivationalpartner.png) no-repeat -1px top;}
+	}	
+	ul.TopReasion{
+		list-style: none;
+	  li{
+	   	margin: 20px 0;
+    	padding-left: 40px;
+		  background: url("home_icons/bullet_blue.png") no-repeat scroll 0 0 transparent;
+		}
+	}
+	.motivationalVideosHome {
+		border: solid 1px #ccc;
+    height: 184px;
+    margin-top: 23px;
+    padding-left: 10px;
+    padding-top: 10px;
+    background-color: #eaeaea;
+    ul{
+    	margin: 0px;
+    	list-style: none;
+    	li{
+    		float: left;
+    		margin-right: 5px;
+    		a.videoplay-colobox{
+    			color: blue;
+    			&:hover{
+    				background-color: transparent;
+    			}
+    		}
+    	}
+    }
+	}
+}
+
+.right-panel{
+	width: 330px;
+	a.videoplay-colobox{
+  	color: blue;
+		&:hover{
+			background-color: transparent;
+		}
+	}
+	.ebookCont{
+		border: solid 1px #bbb;
+		border-radius: 5px;
+		background-color: #f7f6f6;
+		.imageCont{
+
+		}
+		.matterCont{
+			
+		}
+		h5{
+			border-bottom: 1px solid #BBBBBB;
+	    margin: 15px 20px;
+	    padding-bottom: 5px;
+		}
+		ul{
+			list-style: none;
+			li{
+				margin: 15px 0 0;
+		    overflow: hidden;
+		    padding: 0 0 15px;
+			}
+		}
+	}
+}
+
+.footernew{
+	background: url("home_icons/bg-footer-small.gif") repeat-x scroll 0 0 transparent;
+  clear: both;
+  color: #FFFFFF;
+  height: 85px;
+  margin-top: 5px;
+  width: 100%;
+  .footerNewTopWrapSmall{
+  	height: 50px;
+  	padding-top: 10px;
+  	.ftrNaviNew{
+  		padding-botton: 0px;
+  		padding-top: 10px;
+  		text-align: center;
+
+  	}
+  }
+  .footerNewBottomWrapSmall{
+  	height: 25px;
+  	.copyRgtNew{
+  		text-align: center;
+  	}
+  }
+}
+
+#welcome{
+	.first-row{
+		margin-top: 30px;
+		.span8{
+			text-align: center;
+			p.price-page-title{
+				font-size: 26px;
+			}
+		}
+	}
+	.second-row{
+		margin-top: 30px;
+		.span3{
+			margin-left: 20px;
+			width: 330px;
+			.well{
+				height: 450px;
+				ul{
+					text-align: left;
+					height: 320px;					
+				}
+				.btn-primary{
+					color: white;
+				}
+			}
+			p.plan-title{
+				font-size: 20px;
+				height: 40px;
+			}
+			.plan{
+				h4{
+					color: white;
+					line-height: 40px;
+				}
+			}
+		}
+	}
+}
+
+.signup-page{
+	.first-row{
+
+	}	
+	.second-row{
+		.row-category-box{
+			.cat-list{
+				width: 200px;
+			}
+			.sub-cat-list{
+				width: 200px;
+			}
+		}
+		.selected-categories{
+			p{
+				background: linear-gradient(to bottom, #ddd 0%, #eee 100%) repeat scroll 0 0 transparent;
+				border: 1px solid rgb(221, 221, 221);
+		    border-radius: 4px 4px 4px 4px;
+		    padding: 5px;
+		    width: 200px;
+		    cursor: pointer;
+			}
+		}
+	}
+	.third-row{
+		margin-top: 20px;
+		label.note-box{
+			display:none;
+		}
+		label.warning-box{
+			display:inline-block;
+			color: red;
+			background-color: white;
+			bordoer-color: white;
+			margin-top: -20px !important;
+    	position: absolute;
+		}
+	}
+	.fourth-row{
+		.span3 {
+	    width: 220px;
+		}
+	}
+}
+
+.social-container{
+	a:hover{
+		background:transparent;
+	}
+}
+
+.span6.agreement-description{
+	height: 200px;
+	border: solid 1px black;
+}
+.last-controll-box{
+	margin-top: 30px;
+}
+
+
+#welcome_coachcounselor{
+	.first-row{
+		margin-top: 30px;		
+		p.coachcounselor-page-title{
+			text-align: center;
+			font-size: 20px;
+		}
+	
+	}
+	.second-row{
+		margin-top: 30px;
+		.span4{
+			p.plan-title{
+				font-size: 20px;
+				height: 40px;
+			}
+			.plan{
+				h4{
+					color: white;
+					line-height: 40px;
+				}
+			}
+		}
+		.span4{
+			.well{
+				height: 450px;
+				ul{
+					text-align: left;
+					height: 300px;					
+				}
+			}
+			p.plan-title{
+				font-size: 20px;
+				height: 40px;
+			}
+			.plan{
+				h4{
+					color: white;
+					line-height: 40px;
+				}
+			}
+		}
+		.span3{
+			margin-left: 20px;
+			width: 330px;
+			.well{
+				height: 450px;
+				ul{
+					text-align: left;
+					height: 300px;					
+				}				
+			}			
+		}
+	}	
+}
+
+.coachcounselor-payment-page{
+		margin-top: 30px;
+		.first-row{		
+			p.page-title{
+				font-size:28px;
+				text-align: center;
+			}
+		}
+}
+.signup-page{
+	#member_signup{
+		.fifth-row{
+			.span6{
+				width: 470px;
+				textarea{
+					max-width: 456px;
+    			min-width: 456px;
+				}
+			}
+		}
+	}
+	#payment_info{
+		.row{
+			margin-top: 10px;
+		}
+		strong{
+			margin-top:20px;
+		}
+		.cost-label{
+			width:100px;
+			margin-left:0px;
+		}
+
+		p.payment-page-title{
+			font-size:28px;
+			text-align: center;
+			font-weight: bold;
+			margin-bottom: 20px;
+	    margin-top: 20px;
+		}
+	}
+	
+}
+
+.signin-page{
+	.signin-page-bar{
+		background-color: #10487b;
+		margin-bottom: 30px;
+		h2{	
+			color: white;
+		}		
+	}
+	.login-form{
+		margin-left: 0px;
+		border:solid 2px #ccc;
+		border-radius: 10px;
+		padding: 20px;
+		margin-bottom: 100px;
+		width: 400px;
+		height: 350px;
+		form{
+			margin-left: -50px;
+		}
+		label{
+			font-size: 16px;
+			font-weight: bold;
+		}
+		.title{
+			font-size: 20px;
+		}		
+		.last-row{
+			a{
+				color: blue;
+				font-size: 16px;
+				font-weight: bold;
+				&:hover{
+					background-color: transparent;
+				}
+			}
+		}
+	}
+	.signup-box{
+		margin-left: 10px;
+		border:solid 2px #ccc;
+		border-radius: 10px;
+		padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+		margin-bottom: 100px;
+		height: 350px;		
+		background:url(home_icons/whyjoin_off.jpg) no-repeat right top;
+		&:hover{
+			background:url(home_icons/whyjoin_on.jpg) no-repeat right top;
+		}
+		.title{
+			font-size: 20px;
+			font-wegith: bold;
+			a{
+				color: blue;
+				&:hover{
+					background-color: transparent;
+				}
+			}
+		}
+		.second-row{
+			label{
+				font-size: 16px;
+			}
+			ul{
+				li{
+					font-size: 14px;
+					line-height: 27px;
+				}
+			}
+		}		
+		.last-row{
+			a{
+				width: 260px;
+				height: 24px;
+				padding-top: 10px;
+				color: white;
+				font-size: 16px;
+			}
+		}
+	}
+	
+}
+
+
+.find_coach_counselor{
+	.search-option-box{
+		border: solid 1px #aaa;
+		border-radius:8px;
+		margin-left:30px;
+		.span10{
+			margin-left:0px;
+			.first-row{
+				margin-top:25px;
+				text-align: center;
+				.search-title{
+					font-size:26px;
+					font-weight: bold;
+				}
+				.search-title-desc{
+					margin-top:10px;
+					font-size:20px;					
+				}
+			}
+			.second-row{
+				.span3{
+					width:230px;
+					margin-left:150px;
+					label{
+						font-size: 14px;
+    				font-weight: bold
+					}
+				}
+				.find-options{
+					margin-left:150px;
+					margin-top:25px;
+				}
+			}
+		}		
+	}
+	.partner-item{
+		border:solid 1px;
+		margin-top: 15px;
+		.partner-picture{
+			img:hover{
+				opacity:0.5;
+			}
+		}
+		a{
+			&:hover{
+				background-color:transparent;
+			}
+		}
+	}
+}
+
+.find_otivational_partner{
+	.search-option-box{
+		border: solid 1px #aaa;
+		border-radius:8px;
+		margin-left:30px;
+		.span10{
+			margin-left:0px;
+			.first-row{
+				margin-top:25px;
+				text-align: center;
+				.search-title{
+					font-size:26px;
+					font-weight: bold;
+				}
+				.search-title-desc{
+					margin-top:10px;
+					font-size:20px;					
+				}
+			}
+			.second-row{
+				.span3{
+					width:230px;
+					margin-left:35px;
+					label{
+						font-size: 14px;
+    				font-weight: bold
+					}
+				}
+				.find-options{
+					margin-left:15px;
+					margin-top:25px;
+				}
+			}
+		}		
+	}
+	.partner-item{
+		border:solid 1px;
+		margin-top: 15px;
+		.partner-picture{
+			img:hover{
+				opacity:0.5;
+			}
+		}
+		a{
+			&:hover{
+				background-color:transparent;
+			}
+		}
+	}
+	.paginate{
+		text-align: center;
+		.pagination{		
+			margin-top: 0px;
+			margin-bottom:0px;
+		}
+	}
+
+}
+
+
+.partner_profile_page{
+	.first-row{
+		margin-top: 50px;
+	}
+	.left-pannel{
+		label{
+			font-size:16px;
+			font-weight:bold;
+		}
+		margin-left:0px;
+		.screen-name{			
+			text-align: center;
+		}
+		.age{
+			text-align: center;
+		}
+		.categories{
+			label{
+				text-align: center
+			}			
+		}
+		.picture{
+			text-align: center
+		}
+	}
+	.center-pannel{
+		margin-right:10px;
+		margin-left:10px;
+		.row{			
+			height: 120px;
+			.user-info-title{
+				margin-top:10px;
+				margin-bottom:10px;
+				text-align: center;
+				font-size:16px;
+				font-weight: bold;
+				font-family: serif,arial,sans-serif;
+			}		
+		}		
+	}
+	.right-pannel{
+		a.btn{
+			width:65px;
+			color:white;
+			margin-top: 10px;
+		}
+		margin-left:0px;
+		.is-online{
+			color:#00ff66;
+		}
+		.block{
+			border: 1px solid #eee;
+	    border-radius: 5px 5px 5px 5px;
+	    margin-top: 30px;
+	    padding: 5px;
+	    color: #00deff;
+		}
+	}
+}
+
+#email_box{
+	#contact_form{
+		.first-row{
+			input{
+				width: 98%;
+			}
+		}
+		.second-row{
+			textarea{
+				width: 98%;
+			}
+		}
+		
+	}
+}
+
+.coach_counselor_profile_page{
+	.first-row{
+		margin-top: 50px;
+		.picture{
+			border: solid 1px #CCC;
+			height: 350px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		.user-info{
+			.span1{
+				input{
+					width: 100%;
+				}
+				select{
+					width: 120px;
+				}
+			}
+		}
+	}
+	.left-pannel{
+		.fileinput-button {
+			cursor: pointer;
+	    overflow: hidden;
+	    position: relative;
+	    input{
+		    cursor: pointer;
+		    direction: ltr;
+		    font-size: 23px;
+		    margin: 0;
+		    opacity: 0;
+		    position: absolute;
+		    right: 0;
+		    top: 0;
+		    transform: translate(-300px, 0px) scale(4);
+	    }
+		}
+		label{
+			font-size:16px;
+			font-weight:bold;
+		}
+		margin-left:0px;
+		.screen-name{			
+			text-align: center;
+		}
+		.age{
+			text-align: center;
+		}
+		.categories{
+			label{
+				text-align: center
+			}			
+		}
+		.picture{
+			text-align: center
+		}
+	}
+	.center-pannel{
+		margin-right:10px;
+		margin-left:10px;
+		.row{			
+			height: 170px;
+			.user-info-title{
+				margin-top:10px;
+				margin-bottom:10px;
+				text-align: center;
+				font-size:16px;
+				font-weight: bold;
+				font-family: serif,arial,sans-serif;
+			}		
+		}		
+	}
+	.right-pannel{
+		a.btn{
+			width:65px;
+			color:white;			
+			margin-top:10px;
+		}
+		
+		margin-left:0px;
+		.is-online{
+			color:#00ff66;
+		}
+		.block{
+			border: 1px solid #eee;
+	    border-radius: 5px 5px 5px 5px;
+	    margin-top: 30px;
+	    padding: 5px;
+	    color: #00deff;
+		}
+	}
+}
+
+.sotre-veiw-page{
+	.container{
+		.stores{
+			margin-top:30px;
+			.span2{
+				margin-left: 0px;
+				label{
+					font-size:16px;
+					font-weight: bold;			
+				}
+				ul{
+					margin-left: 10px;
+					li{
+						list-style: none;
+						a{
+							color: blue;
+							font-size:14px;
+							font-family: serif,arial,sans-serif;
+							&:hover{
+								background-color: transparent;
+							}
+						}				
+					}
+				}
+			}	
+			.store-box{
+				.store-item{
+					margin-left: 50px;
+					margin-bottom: 30px;
+					height: 350px;
+					.store-title{
+				    font-size: 16px;
+				    font-weight: bold;
+				    color: red;
+					}
+					.store-author{
+						color: rgb(118, 118, 255);
+    				font-size: 14px;
+				    font-weight: bold;				    
+					}
+					.store-contet{
+						margin-left: 0px;
+						width: 300px;
+						height: 260px;
+						overflow-y: scroll;					
+					}
+					.price-box{
+						margin-top:10px;
+						span{
+							font-size: 20px;
+					    font-weight: bold;
+					    margin-right: 20px;
+						}
+						.old-price{
+							text-decoration: line-through;
+						}
+					}
+				}
+			}
+		}
+	}	
+}
+
+
+
+
+
+.thanks-page{
+	.first-row{
+		.top-background{
+			height: 450px;
+			background-image: linear-gradient(bottom, rgb(28,136,219) 7%, rgb(42,62,247) 65%, rgb(60,21,189) 86%);
+			background-image: -o-linear-gradient(bottom, rgb(28,136,219) 7%, rgb(42,62,247) 65%, rgb(60,21,189) 86%);
+			background-image: -moz-linear-gradient(bottom, rgb(28,136,219) 7%, rgb(42,62,247) 65%, rgb(60,21,189) 86%);
+			background-image: -webkit-linear-gradient(bottom, rgb(28,136,219) 7%, rgb(42,62,247) 65%, rgb(60,21,189) 86%);
+			background-image: -ms-linear-gradient(bottom, rgb(28,136,219) 7%, rgb(42,62,247) 65%, rgb(60,21,189) 86%);
+
+			background-image: -webkit-gradient(
+				linear,
+				left bottom,
+				left top,
+				color-stop(0.07, rgb(28,136,219)),
+				color-stop(0.65, rgb(42,62,247)),
+				color-stop(0.86, rgb(60,21,189))
+			);
+			.thanks-dialog{
+				border: 1px solid rgb(102, 102, 102);
+		    border-radius: 10px 10px 10px 10px;
+		    margin-top: 20px;
+		    .title{
+		    	padding: 10px;
+		    	height: 16px;
+		    	border-radius: 10px 10px 0 0;
+		    	background-image: linear-gradient(bottom, rgb(82,89,94) 6%, rgb(198,201,227) 52%, rgb(122,122,122) 89%);
+					background-image: -o-linear-gradient(bottom, rgb(82,89,94) 6%, rgb(198,201,227) 52%, rgb(122,122,122) 89%);
+					background-image: -moz-linear-gradient(bottom, rgb(82,89,94) 6%, rgb(198,201,227) 52%, rgb(122,122,122) 89%);
+					background-image: -webkit-linear-gradient(bottom, rgb(82,89,94) 6%, rgb(198,201,227) 52%, rgb(122,122,122) 89%);
+					background-image: -ms-linear-gradient(bottom, rgb(82,89,94) 6%, rgb(198,201,227) 52%, rgb(122,122,122) 89%);
+
+					background-image: -webkit-gradient(
+						linear,
+						left bottom,
+						left top,
+						color-stop(0.06, rgb(82,89,94)),
+						color-stop(0.52, rgb(198,201,227)),
+						color-stop(0.89, rgb(122,122,122))
+					);
+		    }	
+		    .dialog-content{
+		    	padding: 10px;
+		    	background-color: #eee;
+		    }	  
+			}
+		}
+
+	}
+}
+
+
+
+
+
+
+.member_profile_page{
+	.first-row{
+		margin-top: 50px;
+	}
+	.left-pannel{
+		.user-info{
+			.span1{
+				margin-left: 6px;
+				width: auto;
+				input[type='text']{
+					width: 70px;
+				}
+				select{
+					width: 120px;
+				}
+			}
+		}
+		label{
+			font-size:16px;
+			font-weight:bold;
+		}
+		margin-left:0px;
+		.screen-name{			
+			text-align: center;
+		}
+		.age{
+			text-align: center;
+		}
+		.categories{
+			label{
+				text-align: center;
+			}			
+		}
+		.picture{
+			text-align: center;
+			border: solid 1px #ccc;
+			border-radius: 5px;
+			height: 350px;
+			width: 300px;			
+		}
+		.upload-box{
+			margin-top: 10px;
+			margin-bottom: 10px;
+			.fileinput-button {
+		    overflow: hidden;
+		    position: relative;
+		    input{
+			    cursor: pointer;
+			    direction: ltr;
+			    font-size: 23px;
+			    margin: 0;
+			    opacity: 0;
+			    position: absolute;
+			    right: 0;
+			    top: 0;
+			    transform: translate(-300px, 0px) scale(4);
+		    }
+			}
+
+
+			.span1{				
+				margin-left: 7px;
+			}
+			.file-input-wrapper{
+				cursor: pointer;
+				width: 100%;
+				padding: 3px;
+				margin: 0px;
+				input{
+					position: absolute;
+					top: 0;
+					right: 0;
+					margin: 0;
+					opacity: 1;
+					filter: alpha(opacity=0);
+					transform: translate(-300px, 0) scale(4);
+					font-size: 23px;
+					direction: ltr;
+					cursor: pointer;
+				}
+			}
+		}
+		
+	}
+	.center-pannel{
+		margin-right:10px;
+		margin-left:10px;
+		.row{			
+			height: 120px;
+			.user-info-title{
+				margin-top:10px;
+				margin-bottom:10px;
+				text-align: center;
+				font-size:16px;
+				font-weight: bold;
+				font-family: serif,arial,sans-serif;
+			}		
+		}		
+	}
+	.right-pannel{
+		a.btn{
+			width:65px;
+			color:white;
+			margin-top: 10px;
+		}
+		margin-left:0px;
+		.is-online{
+			color:#00ff66;
+		}
+		.block{
+			border: 1px solid #eee;
+	    border-radius: 5px 5px 5px 5px;
+	    margin-top: 30px;
+	    padding: 5px;
+	    color: #00deff;
+		}
+	}
+}

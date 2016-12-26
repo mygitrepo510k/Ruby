@@ -1,0 +1,9 @@
+.row.new-family-page
+	.container
+		- model_class = Family
+		.page-header
+			%h3 Create New Family
+		= render :partial => "new_form"
+		.page-header
+			%h3 Associated with an existing Family
+		= render :partial => "associate_form"

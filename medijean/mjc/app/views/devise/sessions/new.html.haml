@@ -1,0 +1,39 @@
+.grey-bck
+  .row.container.center-div-no-bg
+    .login-img
+      %br
+      %br
+      %br
+      .row.login-center
+        .span3
+        .span5.login-tab-bg
+          = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+            %h2.center-txt.homepg-header.bck-h2
+              = t("devise.login_title")
+            %br
+            .row.login-margin
+              = f.label :email, t("devise.email")
+              = f.email_field :email, :autofocus => true, :placeholder => "john@smith.com", :class => "login-input"
+            .row.login-margin
+              = f.label :password, t("devise.password")
+              = f.password_field :password, :placeholder => t('placeholders.password'), :class => "login-input"
+            .row.login-margin.center-txt
+              %button.btn.btn-orange{:style=>"width:80%;"}
+                =t ('general.log_in')
+            %br
+            .row
+              .span1
+              .span3
+                %p.center-txt
+                  = link_to t("devise.text4"),new_user_password_path, :class => "blue-anchor"
+              .span1
+      %br
+      .row.login-center
+        .span3
+        .span5
+          %h4.center-txt
+            = t("devise.text3")
+            = link_to t("general.sign_up"),root_url, :class => "blue-anchor"
+      %br
+      %br
+      %br

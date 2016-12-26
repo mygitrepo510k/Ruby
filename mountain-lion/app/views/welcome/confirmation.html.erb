@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to HyeDating.com | The Premier Armenian Dating Site for Hye Singles</title>
+    <%= stylesheet_link_tag 'frontpage' %>
+    <%= render 'layouts/analytics' %>
+  </head>
+
+  <body>
+    <div class="main">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center"><a href="/"><%= image_tag "main_03.png", alt: "Hye Dating", width: 331, height: 70, border: 0 %></a></td>
+        </tr>
+        <tr>
+          <td height="50">&nbsp;</td>
+        </tr>
+        <tr>
+          <td align="center"><h3>Thank you for signing up to HyeDating.com!</h3>
+            <h4>We have just sent you an activation email!</h4>
+            <p>Please click on the link in the email to activate your account and complete your online dating profile.</p>
+            <p>If you do not receive the email within a few minutes, please check your Spam/Junk Mail folder to see if it is in there and mark as not spam.<br />
+            If you cannot find an email from HyeDating.com
+            email us at <a href="mailto:support@hyedating.com">support@hyedating.com</a> to have us resend it to you.</p></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td>
+            <%= render 'application/footer' %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

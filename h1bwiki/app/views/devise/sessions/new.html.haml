@@ -1,0 +1,34 @@
+.row.sign-up-page{:style=>"height: 807px;"}
+	.container{:style=>"width: 980px;margin-top: 100px;"}
+		.row.content-row
+			.span6{:style=>"width: 550px;"}
+				%h2{:style=>"color:white;text-align:center;margin-top: 50px;"} Login
+				.sign-in-page					
+					= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :class => "form-horizontal", :style=>"margin-bottom:0px;" }) do |f|
+						.row{:style=>"margin-bottom: 10px;"}
+							= f.email_field :email, :autofocus => true, :placeholder => "Your Email", :style => "height:27px; width:97%;padding:10px;"
+						.row
+							= f.password_field :password, :placeholder => "Your Secret Password", :style => "height:27px; width:97%;padding:10px;"
+						.row
+							- if devise_mapping.rememberable?
+								%label.checkbox{:style => "height:34px;margin-top:10px;padding-top:10px;margin-left:30px;"}
+									= f.check_box :remember_me
+									= f.label :remember_me, :style=>"color: #329ff1"
+						.row
+							= f.submit "I'm ready, Let's Go!", :class => "btn btn-primary", :style =>"font-size:28px;font-weight:bold;height:60px !important;width: 100%;"
+			.span5{:style=>"width:410px;margin-left:10px;"}
+				%a.signup-link{:href=>"/signup"}
+					%h2{:style=>"text-align:center;color:white;margin-top:110px;"} Sign up
+					%label{:style=>"color:#ff8a23;font-size:16px;text-align:center"} C'mon, have no account yet, well you better hurry up!
+				.line{:style=>"border-bottom: 1px solid rgb(26, 28, 30);box-shadow: 0 1px 1px rgb(79, 89, 99);height: 2px;margin-top:10px;"}
+				%a.forgot-pswd{:href=>"/users/password/new"}
+					%h2{:style=>"text-align:center;color:white;margin-top:10px;"} Forgot Credentials
+					%label{:style=>"color:#ff8a23;font-size:16px;text-align:center"} Well, nobody has a Photographic memory
+					%label{:style=>"color:#ff8a23;font-size:16px;text-align:center"} Don't Worry, We Got You Covered.
+:css
+	a.signup-link:hover{
+		text-decoration: none;
+	}
+	a.forgot-pswd:hover{
+		text-decoration: none;
+	}

@@ -1,0 +1,449 @@
+<div class="container networks">
+
+       <!-- <div class="page-header">
+          <h1>Sticky footer with fixed navbar</h1>
+        </div>
+        <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
+        <p>Back to <a href="./sticky-footer.html">the sticky footer</a> minus the navbar.</p>
+      </div> -->
+        <div class="container-fluid1">
+        <div class="row-fluid">
+        <%=render "left_side"%>
+        <div class="span10 white-colr" style="width:79%;">
+          <!--Body content-->
+            <div id="resume00" class="content3" style="background-color:#fff;">
+              
+                <div class="content-group" style="margin-top:0px;">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Network</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                  <div class="btn-group input-prepend input-append" data-toggle="buttons-radio">
+                      <input type="button" class="btn btn-primary  btn-small pull-left" value="Network" style="font-size:19px; ">
+                      <%=form_tag connect_networks_path, :method => :post, :class => "form-horizontal pull-left" do |f|%>
+                        <%= text_field_tag "search", "", :class => "span12", :style => "height:31px;background-color:#eee;", :placeholder => "Please type your key search"%>
+                        <span class="add-on"><%= submit_tag '', :class => "icon-search submit-search"%></span>
+                      <%end%>
+                  </div>
+                  <p> Invite your contacts from your networks</p>
+                  <!-- <a href="#" style="margin-left:4px;" class="btn facebook-icon btn-primary"></a>
+                  <a  href="#" style="margin-left:4px;" class="btn google-icon btn-primary"></a>
+                  <a href="#" style="margin-left:4px;" class="btn twt-icon btn-primary"></a>
+                  <a href="#" style="margin-left:4px;" class="btn in-icon btn-primary"></a>
+                  <a href="#"  style="margin-left:4px;" class="btn yahoo-icon btn-primary"></a> -->
+                   <div class="tabbable span5" style="width:100%;  margin-left:0px;">
+                  <ul class="nav  nav-tabs" style="margin-bottom:0px; border-bottom: medium none;">
+                    <li class="active">
+                      <a href="#tabS1" style="margin-left:4px;" data-toggle="tab" class="btn facebook-icon btn-primary"></a>
+                    </li> 
+                    <li>
+                      <a href="#tabS2" style="margin-left:4px;" data-toggle="tab" class="btn google-icon btn-primary"></a>
+                    </li>
+                    <li>
+                      <a href="#tabS3" style="margin-left:4px;" data-toggle="tab" class="btn twt-icon btn-primary"></a>
+                    </li>
+                    <li>
+                      <a href="#tabS4" style="margin-left:4px;" data-toggle="tab" class="btn in-icon btn-primary"></a>
+                    </li>
+                    <li>
+                      <a href="#tabS5" style="margin-left:4px;" data-toggle="tab" class="btn yahoo-icon btn-primary"></a>
+                    </li>
+                  </ul>
+                
+                  <div class="tab-content span6 width60" style="margin-left:0px;">
+                    <div class="tab-pane active" id="tabS1">
+                       <form class="form-search">
+                            <div class="top-arrow-pos1"><i class="top-arrow"></i></div>
+                            <input type="text" class="input-large search-query" placeholder="Job title - e.g., account, sales">
+                         <button type="submit" class="btn btn-R-pos">Search</button>
+                       </form>
+                    </div>
+                    <div class="tab-pane" id="tabS2">
+                      <form class="form-search">
+                            <div class="top-arrow-pos2"><i class="top-arrow"></i></div>
+                            <input type="text" class="input-large search-query" placeholder="selecting the students.">
+                         <button type="submit" class="btn btn-R-pos">Search</button>
+                       </form>
+                    </div>
+                    <div class="tab-pane " id="tabS3">
+                       <form class="form-search">
+                            <div class="top-arrow-pos3"><i class="top-arrow"></i></div>
+                            <input type="text" class="input-large search-query" placeholder="Job title - e.g., account, sales">
+                         <button type="submit" class="btn btn-R-pos">Search</button>
+                       </form>
+                    </div>
+                    <div class="tab-pane" id="tabS4">
+                      <form class="form-search">
+                            <div class="top-arrow-pos4"><i class="top-arrow"></i></div>
+                            <input type="text" class="input-large search-query" placeholder="selecting the students.">
+                         <button type="submit" class="btn btn-R-pos">Search</button>
+                       </form>
+                    </div>
+                    <div class="tab-pane " id="tabS5">
+                       <form class="form-search">
+                            <div class="top-arrow-pos5"><i class="top-arrow"></i></div>
+                            <input type="text" class="input-large search-query" placeholder="Job title - e.g., account, sales">
+                         <button type="submit" class="btn btn-R-pos">Search</button>
+                       </form>
+                    </div>
+                  </div>
+                  
+                  <div class="span6">
+                    <i class="icon-lock"></i><strong>Your conatcts are safe with us!</strong><div style="margin-left:15px;">
+                    <small>We'll import your address book to suggest connections and help you manage your contacts. And we won't store your password or email anyone without your permission.<br>
+                    <a href="#"><p class="text-info">Learn More</p></a></small></div><small>
+                  </small></div><small>
+                  
+                  </small></div><small>
+                </small></div><small>
+            </small></div><small>
+            <div class="content3">
+              
+                <div class="content-group">
+                  <div class="controls span8 gray-colr">
+                    <div class="span11" style="margin-left: 2.5641%;">
+                    <h4 class="text-info">Network Connections</h4>
+                    </div>
+                    <div class="span11" style=" border-bottom:1px solid #ddd;">
+                    <p class="inline1"> George Michale</p><button class="btn-R-pos marginH">Message</button>
+                    </div>
+                     <div class="span11" style="border-bottom:1px solid #ddd;">
+                    <p class="inline1"> Alex</p><button class="btn-R-pos marginH">Message</button>
+                    </div>
+                     <div class="span11" style=" border-bottom:1px solid #ddd;">
+                    <p class="inline1">John Alan</p><button class="btn-R-pos marginH">Message</button>
+                    </div>
+                     <div class="span11" style=" border-bottom:1px solid #ddd;">
+                    <p class="inline1">Bambi Joy</p><button class="btn-R-pos marginH ">Message</button>
+                    </div>
+                     <div class="span11" style=" border-bottom:1px solid #ddd;">
+                    <p class="inline1">Helen Alex</p><button class="btn-R-pos marginH">Message</button>
+                    </div>
+                    <div class="span11" style=" border-bottom:1px solid #ddd;">
+                    <p class="inline1">Alan</p><button class="btn-R-pos marginH">Message</button>
+                    </div>
+                    <div class="span11" style=" border-bottom:1px solid #ddd;">
+                    <p class="inline1">Eliza Oslen</p><button class="btn-R-pos marginH">Message</button>
+                    </div>
+                  </div>
+                </div>
+                
+            </div>
+            <div id="resume02" class="content3">
+              
+                <div class="content-group">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Career Objectives</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                  <textarea class="textarea-content" rows="3" placeholder="What I am you looking for in a company..."></textarea>
+                </div>
+                <div class="content-group">
+                  <a href="#" style="line-height:43px;"><i class="pic2 lamp">&nbsp;</i>Need help?</a>
+                </div>
+              
+            </div>
+            <div id="resume04" class="content3">
+              
+                <div class="content-group">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Employment History</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                      <form class="form-horizontal">
+                      <fieldset>
+                        <div class="control-group">
+                          <label class="control-label" for="input01">Company</label>
+                          <div class="controls">
+                          <input type="text" class="input-xlarge" id="input01">
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input01">Start Date</label>
+                          <div class="controls">
+                                    <div class="input-append date bbit-dp-input" style="margin-left:0px;" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                                <input class="span2" size="16" type="text" value="12-02-2012">
+                                <span class="add-on"><i class="icon-calendar"></i></span>
+                                </div>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input01">End Date</label>
+                          <div class="controls">
+                                    <div class="input-append date bbit-dp-input" style="margin-left:0px;" id="dp1" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                                <input class="span2" size="16" type="text" value="12-02-2012">
+                                <span class="add-on"><i class="icon-calendar"></i></span>
+                                </div>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input02">Job Title</label>
+                          <div class="controls">
+                          <input type="text" class="input-xlarge" id="input02">
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input03">JobDescription</label>
+                          <div class="controls">
+                          <input type="text" class="input-xlarge" id="input03">
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <button class="btn btn-primary btn-R-pos">+ add another</button>
+                        </div>
+                      </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div id="resume05" class="content3">
+              
+                <div class="content-group">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Education History</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                   <form class="form-horizontal">
+                      <fieldset>
+                        <div class="control-group">
+                          <label class="control-label" for="input01">School Name</label>
+                          <div class="controls">
+                          <input type="text" class="input-xlarge" id="input04">
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input02">City</label>
+                          <div class="controls">
+                          <input type="text" class="input-xlarge" id="input05">
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input02">State</label>
+                          <div class="controls">
+                          <input type="text" class="input-xlarge" id="input06">
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input01">Start Date</label>
+                          <div class="controls">
+                                    <div class="input-append date bbit-dp-input" style="margin-left:0px;" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                                <input class="span2" size="16" type="text" value="12-02-2012">
+                                <span class="add-on"><i class="icon-calendar"></i></span>
+                                </div>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input01">End Date</label>
+                          <div class="controls">
+                                    <div class="input-append date bbit-dp-input" style="margin-left:0px;" id="dp1" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+                                <input class="span2" size="16" type="text" value="12-02-2012">
+                                <span class="add-on"><i class="icon-calendar"></i></span>
+                                </div>
+                          </div>
+                        </div>
+                        <div class="control-group">
+                          <label class="control-label" for="input03">Program</label>
+                          <div class="controls">
+                          <input type="text" class="input-xlarge" id="input07">
+                          </div>
+                        </div>
+                      </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div id="resume06" class="content3">
+              
+                <div class="content-group">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Skills</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                  <input id="add1" type="text"><button class="btn btn-primary">+add</button>
+                </div>
+                <div class="content-group">
+                  <button class="btn btn-primary">WebDesign<i class="icon-remove"></i></button><button class="btn btn-primary" style="margin-left:10px;">Photoshop<i class="icon-remove"></i></button>
+                </div>
+              
+            </div>
+            <div id="resume07" class="content3">
+              
+                <div class="content-group">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Cerifications</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                  <input id="add1" type="text"><button class="btn btn-primary">+add</button><button class="btn btn-primary" style="margin-left:10px;">UpLoad Files <i class=" icon-file"></i></button>
+                </div>
+              
+            </div>
+            <div id="resume08" class="content3">
+              
+                <div class="content-group">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Language</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                  <input id="add1" type="text"><button class="btn btn-primary">+add</button>
+                </div>
+                <div class="content-group">
+                  <button class="btn btn-primary">Spanish<i class="icon-remove"></i></button><button class="btn btn-primary" style="margin-left:10px;">Photoshop<i class="icon-remove"></i></button>
+                </div>
+              
+            </div>
+            <div id="resume09" class="content3">
+              
+                <div class="content-group">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Resume Satus</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                  <label class="radio">
+                    <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios"><i class="icon-user"></i>
+                    <b>Public:</b>Allow any employer to find me
+                  </label>
+                  <label class="radio">
+                     <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios"><i class="icon-lock"></i>
+                    <b>Private:</b>Only allow employers for jobs I apply to view my information.
+                  </label>
+                </div>
+              
+            </div>
+            <div id="resume10" class="content3">
+              
+                <div class="content-group">
+                  <div class="controls control-title1" style="width:100%; float:left;">
+                    <p class="text-info" style="padding-left:0px;">Availability</p>
+                  </div>
+                </div>
+                <div class="content-group" style="width:100%;">
+                  <div class="line3">
+                    
+                  </div>
+                </div>
+                <div class="content-group">
+                    <div id="calhead" style="padding-left:1px;padding-right:1px;">          
+                      <div class="cHead"><div class="ftitle">My Calendar</div>
+                      <div id="loadingpannel" class="ptogtitle loadicon" style="display: none;">Loading data...</div>
+                       <div id="errorpannel" class="ptogtitle loaderror" style="">Sorry, could not load your data, please try again later</div>
+                      </div>          
+                      
+                      <div id="caltoolbar" class="ctoolbar">
+                        <div id="faddbtn" class="fbutton">
+                        <div><span title="Click to Create New Event" class="addcal">
+
+                        New Event                
+                        </span></div>
+                      </div>
+                      <div class="btnseparator"></div>
+                       <div id="showtodaybtn" class="fbutton">
+                        <div><span title="Click to back to today " class="showtoday">
+                        Today</span></div>
+                      </div>
+                        <div class="btnseparator"></div>
+
+                      <div id="showdaybtn" class="fbutton">
+                        <div><span title="Day" class="showdayview">Day</span></div>
+                      </div>
+                        <div id="showweekbtn" class="fbutton fcurrent">
+                        <div><span title="Week" class="showweekview">Week</span></div>
+                      </div>
+                        <div id="showmonthbtn" class="fbutton">
+                        <div><span title="Month" class="showmonthview">Month</span></div>
+
+                      </div>
+                      <div class="btnseparator"></div>
+                        <div id="showreflashbtn" class="fbutton">
+                        <div><span title="Refresh view" class="showdayflash">Refresh</span></div>
+                        </div>
+                       <div class="btnseparator"></div>
+                      <div id="sfprevbtn" title="Prev" class="fbutton">
+                        <span class="fprev"></span>
+
+                      </div>
+                      <div id="sfnextbtn" title="Next" class="fbutton">
+                        <span class="fnext"></span>
+                      </div>
+                      <div class="fshowdatep fbutton">
+                          <div>
+                            <input type="hidden" name="txtshow" id="hdtxtshow" class="bbit-dp-input">
+                            <span id="txtdatetimeshow">Loading</span>
+
+                          </div>
+                      </div>
+                      
+                      <div class="clear"></div>
+                      </div>
+                    </div>
+                    <div style="padding:1px;">
+
+                    <div class="t1 chromeColor">
+                      &nbsp;</div>
+                    <div class="t2 chromeColor">
+                      &nbsp;</div>
+                    <div id="dvCalMain" class="calmain printborder">
+                      <div id="gridcontainer" style="overflow-y: visible; height: 699px;"></div>
+                    </div>
+                    <div class="t2 chromeColor">
+
+                      &nbsp;</div>
+                    <div class="t1 chromeColor">
+                      &nbsp;
+                    </div>   
+                  </div>
+                </div>
+              
+            </div>
+        </small></div><small>
+      </small></div><small>
+        
+      </small></div><small>
+
+      <div id="push"></div>
+    </small></div>

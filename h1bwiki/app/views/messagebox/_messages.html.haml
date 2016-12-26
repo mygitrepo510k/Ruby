@@ -1,0 +1,29 @@
+- style = "background-color: #eaeaea;" if unread? messages and controller.action_name == "inbox"
+- if !messages.is_trashed? current_user and (controller.action_name == "inbox" || controller.action_name == "sent")
+	%tr	
+		%td{:style => "#{style} width: 15%;"}
+			.oMCName
+				%label.user-name
+					= messages.messages.last.sender.first_name + " " + messages.messages.last.sender.last_name
+					%span.message-count (#{messages.messages.count})
+			%time=l messages.messages.last.created_at, :format => "%b %d %I:%M %p"
+		%td{:style => "#{style} width: 80%;"}
+			%a.message-title{:href => "/conversations/#{messages.id}"}= messages.subject
+			.message-body.more= messages.messages.last.body
+		%td.txtRight{:style => "#{style} width: 5%;"}
+			= link_to trash_conversation_path(messages), :method => :post, :confirm => 'Are you sure?' , :class => 'm-btn mini red' do
+				%i.icon-trash Delete
+- elsif controller.action_name == "deleted"
+	%tr	
+		%td{:style => "#{style} width: 15%;"}
+			.oMCName
+				%label.user-name
+					= messages.messages.last.sender.first_name + " " + messages.messages.last.sender.last_name
+					%span.message-count (#{messages.messages.count})
+			%time=l messages.messages.last.created_at, :format => "%b %d %I:%M %p"
+		%td{:style => "#{style} width: 80%"}
+			%a.message-title{:href => "/conversations/#{messages.id}"}= messages.subject
+			.message-body= messages.messages.last.body
+		%td.txtRight{:style => "#{style} width: 5%;"}
+			= link_to untrash_conversation_path(messages), :method => :post, :class => 'm-btn mini red' do
+				%i.icon-ok{:style => "margin-left: -40px;"} UnDelete

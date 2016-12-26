@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Upload file name:</b>
+  <%= @upload.upload_file_name %>
+</p>
+
+<p>
+  <b>Upload content type:</b>
+  <%= @upload.upload_content_type %>
+</p>
+
+<p>
+  <b>Upload file size:</b>
+  <%= @upload.upload_file_size %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @upload.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @upload.last_name %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @upload.category %>
+</p>
+
+<p>
+  <b>Gender:</b>
+  <%= @upload.gender %>
+</p>
+
+
+<%= link_to 'Edit', edit_upload_path(@upload) %> |
+<%= link_to 'Back', uploads_path %>

@@ -1,0 +1,85 @@
+- @description = @activity_outcome.blank? ? "description" : @activity_outcome.description
+- @title = @activity_outcome.blank? ? "title" : @activity_outcome.title
+.popupWindow{:style => "width: 380px; height: 400px;"}
+  .popupHead
+    .popupTitle Add a Outcome
+    .closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+    .CL
+  .popupContaint
+    .popupSmForm      
+      = form_tag "/add_child_activities_outcome?id=#{@family_member.id}&child_activity_id=#{@child_profile_activity.blank? ? '' : @child_profile_activity.id}",:id=>'child_activities_outcome', :multipart => true do
+        .formRow
+          %label Title:
+          %input#test_reports_title.inputField{:name => "test_reports[title]", :onblur => "if(this.value==''){ this.value='#{@title}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@title}'){ this.value=''; this.style.color='#000'}", :style => "width: 200px; color: rgb(151, 151, 151);", :type => "text", :value => @title}/
+          \ *
+          %p.errorMsgLeft
+          .CL
+        .formRow
+          .formRow.jqBigform
+            %label Status:
+            = succeed "*" do
+              %select#test_reports_status.inputField{:name => "test_reports[status]", :onblur => "if(this.value==''){ this.value='title'; this.style.color='#979797'}", :onclick => "if(this.value=='title'){ this.value=''; this.style.color='#000'}", :style => "width: 170px; color: rgb(151, 151, 151);"}
+                - ['Select','01','02','03'].each do |single_group|
+                  - if !@activity_outcome.blank? && single_group == @activity_outcome.status
+                    %option{:selected => "selected", :value => single_group}= single_group
+                  - else
+                    %option{:value => single_group}= single_group
+            %p.errorMsgLeft
+          .CL
+        .formRow
+          %label Description:
+          %textarea#test_reports_description.inputField{:name => "test_reports[description]", :onblur => "if(this.value=='#{@description}'){ this.value=''; this.style.color='#979797'}", :onclick => "if(this.value=='#{@description}'){ this.value=''; this.style.color='#000'}", :style => "width:200px;"}= @description
+          %p.errorMsgLeft
+          .CL
+        .formRow
+          .formRow.jqBigform
+            %label Assessment Source:
+            %select#test_reports_as_source.inputField{:name => "test_reports[assessment_source]", :onblur => "if(this.value==''){ this.value='Assessment Source'; this.style.color='#979797'}", :onclick => "if(this.value=='Assessment Source'){ this.value=''; this.style.color='#000'}", :style => "width: 170px; color: rgb(151, 151, 151);", :value => "Assessment Source"}
+              - ['Select','01','02','03'].each do |single_group|
+                - if !@activity_outcome.blank? && single_group == @activity_outcome.assessment_source
+                  %option{:selected => "selected", :value => single_group}= single_group
+                - else
+                  %option{:value => single_group}= single_group
+            \ *
+            %p.errorMsgLeft
+          .CL
+        .formRow
+          %label  
+          %input.submitBtn{:type => "submit", :value => "submit"}/
+          %input.cancelBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;", :type => "submit", :value => "cancel"}/
+          .CL
+
+:javascript
+  $("#child_activities_outcome").submit(function() {
+      if ($('#test_reports_title').val() == "" || $('#test_reports_title').val() == "title"){
+        $('#test_reports_title').next().html("can't be blank");
+        var chec_error = true;
+      }else{
+        $('#test_reports_title').next().html("");
+      }
+      var test_reports_status = $('#test_reports_status').prev().prev().children().html();
+      $('#test_reports_status').val(test_reports_status);
+      if ($('#test_reports_status').val() == "" || $('#test_reports_status').val() == "Please select one"){
+        $('#test_reports_status').parent().next().html("can't be blank");
+        var chec_error = true;
+      }else{
+        $('#test_reports_status').parent().next().html("");
+      }
+      var test_reports_as_source = $('#test_reports_as_source').prev().prev().children().html();
+      $('#test_reports_as_source').val(test_reports_as_source);
+      if ($('#test_reports_as_source').val() == "" || $('#test_reports_as_source').val() == "Please select one"){
+        $('#test_reports_as_source').parent().next().html("can't be blank");
+        var chec_error = true;
+      }else{
+        $('#test_reports_as_source').parent().next().html("");
+      }
+    if (chec_error == true){
+      return false;
+    }else{
+      return true;
+    }
+  });  
+  
+  $('.jqGreenForm').jqTransform(); 
+  $('.jqSmallform').jqTransform(); 
+  $('.jqBigform').jqTransform(); 

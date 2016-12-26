@@ -1,0 +1,45 @@
+.navbar.navbar-fixed-top
+	.navbar-inner
+		.container{:style => "margin-top: 0px;"}
+			%a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+				%span.icon-bar
+				%span.icon-bar
+				%span.icon-bar			
+			= link_to image_tag("logo.png"), "/", :class=>"brand"
+			.nav-collapse				
+				%ul.nav.nav-tabs
+					%li
+						= link_to "Home", search_home_path
+					%li{:style=>"width:144px;"}
+						= link_to( "Jobs/Trainings", user_signed_in? ? (employer? ? post_main_path : jobseeker_posts_path ) : post_main_path )
+					%li{:style=>"width:144px;"}
+						= link_to( "H1B Sponsors", search_employer_h1bemployer_path) #search_home_path
+					
+					%li{:style=>"width:60px;"}
+						= link_to "Blog", "#", :class=>"blog_btn"
+						
+					%li{:style=>"width:165px;"}
+						%a{:href=>"#"} How it Works?
+					%li{:style=>"width:188px;"}
+						.btn-group
+							- if user_signed_in?
+								- if current_user.account_type == "jobseeker"
+									= link_to "My Account", "/account_details", :class=>"btn btn-first", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
+								- else
+									= link_to "My Account", "/account_details", :class=>"btn btn-first", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
+
+								= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class=>"btn btn-second", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 65px;"
+							- else
+								= link_to "LOGIN", new_user_session_path, :class=>"btn btn-first", :style=>"padding-left: 10px;font-size:16px;padding-right: 10px;padding-top: 10px;width: 53px;"
+								= link_to "REGISTER", signup_path, :class=>"btn btn-second", :style=>"font-size: 16px;padding-left: 10px;padding-right: 10px;padding-top: 10px;width: 85px;"
+					
+								
+/					%li{:style => "width:150px"}
+/						= link_to( messagebox_inbox_path ) do
+/							Messages
+/							- if session["unread_message_count"].present? and session["unread_message_count"] > 0
+/								%span.unread-count= session["unread_message_count"]
+:javascript
+	$("a.blog_btn").click(function(){
+		document.location.href="http://h1bwiki.com/"
+	});

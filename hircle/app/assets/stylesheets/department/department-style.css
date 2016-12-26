@@ -1,0 +1,95 @@
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#department-page {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* Negative indent footer by it's height */
+  margin: 0 auto -110px;
+  background-color: #efefef;
+}
+
+#department-page .department-header {
+  height: 72px;
+  background-color: #616d79;
+  border-bottom: 1px solid #7e858b;
+}
+#department-page .department-navigation {
+  height: 55px;
+  border-top: 1px solid #ecf0f3;
+  border-bottom: 1px solid #cccccc;
+  background:url("../img/nav-bg.png") transparent repeat-x;
+  margin-bottom: 20px;
+}
+
+#department-page .department-header .row,
+#department-page .department-header .span2,
+#department-page .department-header .span10 {
+  height: 72px;
+}
+#department-page .department-header .logo {
+  height: 72px;
+  width: 114px;
+  background: url("../img/logo.png") transparent no-repeat;
+}
+#department-page .department-header .quick-menu {
+  margin-top: 10px;
+}
+
+.department-content .box {
+  border: 1px solid #b9bbbb;
+}
+
+.department-content .detail{
+    width: 684px;
+    min-height: 500px;
+}
+
+.department-content .meta,
+.department-content .left-top{
+  width: 207px;
+  min-height: 100px;
+  margin-bottom: 50px;
+}
+
+.department-content .left-top{
+  margin-top: -10px;
+}
+.department-content .box .hd  {
+  height: 35px;
+  border-bottom: 1px solid #b9bbbb;
+  text-align: center;
+  line-height: 35px;
+  background: url("../img/box-hd-bg.png") transparent repeat-x 0 0;
+}
+
+
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+  height: 110px;
+}
+#footer {
+  background-color: #055d9c;
+}
+
+.top-shadow {
+  height: 20px;
+  background-color: #00253f;
+}
+
+/* Lastly, apply responsive CSS fixes as necessary */
+@media (max-width: 767px) {
+  #footer {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

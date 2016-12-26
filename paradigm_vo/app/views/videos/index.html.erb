@@ -1,0 +1,90 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-carousel.js"></script>
+<script type="text/javascript" src="js/bootstrap-transition.js"></script>
+<link href="/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.metadata.js"></script>
+<script type="text/javascript" src="js/jquery.media.js"></script>
+<script>
+
+$(function() { 
+    $('a.media').click(function() {  
+        // get media options from the markup using metadata plugin 
+        var opts = $(this).data(); 
+        opts.src = this.href; 
+        opts.attrs = { scale: "tofit" };
+        opts.params = { scale: "tofit" };
+        opts.width = "428"
+        opts.height = "235"
+        opts.autoplay = true
+        setTimeout(function() { playMedia(opts); }, 50); 
+        return false;
+    });
+}); 
+ 
+function playMedia(opts) { 
+    // stop the current media 
+    $('object,embed', '#player').each(function() { 
+            try { this.Stop();   } catch(e) {}  // quicktime 
+            try { this.controls.stop(); } catch(e) {} // windows media player 
+            $(this).hide().remove(); 
+        }); 
+    // start the new media using opts arg 
+    $('#player').empty().media(opts); 
+}
+
+</script>
+
+<script>
+$('.carousel').carousel({
+	cycle: false
+})
+</script>
+
+<div id="playerPlaceholder">
+    <div id="player" style="">
+    <object type="video/quicktime" width="428" height="235" data="<%= Video.first.mov.url %>"><param name="src" value="<%= Video.first.mov.url %>"><param name="bgColor" value="#ffffff"><param name="scale" value="tofit"><param name="autoplay" value="false"><div><p><strong>QuickTime Required</strong></p><p>QuickTime is required to view this media. <a href="http://www.apple.com/quicktime/download/">Download Here</a>.</p></div></object>
+    </div>
+</div>
+<% if admin_signed_in? %>
+&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'New Video', new_video_path %><br>
+<% end %>
+<div class="carousel slide" id="myCarousel">
+  <div class="carousel-inner">
+    <div class="item active">
+      <ul class="thumbnails">
+			  <% @videos.limit(3).each do |video| %>
+        <li class="" style="text-align:center;">
+          <div class="thumbnail">
+            <a class="media" href="<%= video.mov.url %>"><img width="120px" height="60px" src="<%= video.thumbnail.url %>"></a>
+          </div>
+					<span style="font-size:10px;"><%= video.title %></span>
+					<% if admin_signed_in? %><br>
+		    	<%= link_to 'Change', edit_video_path(video) %>&nbsp;&nbsp;|&nbsp;
+		    	<%= link_to 'Remove', video, confirm: 'Are you sure?', method: :delete %>
+			    <% end %>
+        </li>
+				<% end %>
+      </ul>
+    </div>
+    <div class="item">
+      <ul class="thumbnails">
+        <% @videos.skip(3).limit(3).each do |video| %>
+        <li class="">
+          <div class="thumbnail">
+						<a class="media" href="<%= video.mov.url %>"><img width="120px" height="60px" src="<%= video.thumbnail.url %>"></a>
+          </div>
+					<span style="font-size:10px;"><%= video.title %></span>
+					<% if admin_signed_in? %><br>
+		    	<%= link_to 'Change', edit_video_path(video) %>&nbsp;&nbsp;|&nbsp;
+		    	<%= link_to 'Remove', video, confirm: 'Are you sure?', method: :delete %>
+			    <% end %>
+        </li>
+				<% end %>
+      </ul>
+    </div>
+  </div>
+  <% if @videos.count > 3 %>
+  <a data-slide="prev" href="#myCarousel" class="left carousel-control" style="display:relative;left:0px;">‹</a>
+  <a data-slide="next" href="#myCarousel" class="right carousel-control">›</a>
+  <% end %>
+</div>

@@ -1,0 +1,102 @@
+=form_for @assign, :as=>:assignment, :url =>'/school/edit_assignment', :method=>:put, :html=>{:class=>'edit-assignment', :id=>'edit_assignment'} do |f|	
+	= hidden_field_tag 'id', f.object.id
+	.popupWindow{:style => "width: 560px; height: 575px; z-index: 90; left: 673.5px; top: 90.5px;"}
+		.popupHead
+			.popupTitle Edit Assignment
+			.closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+			.CL
+		.popupContaint
+			%link{:href => "css/gatividhi_style.css", :rel => "stylesheet", :type => "text/css"}/
+			.popupFormBox
+				.formRow.jqBigform{:style=>"height: 36px;"}
+					%label Class:
+					=f.select :class_name, @class_names, :style => "width:175px;", :class => "inputField"
+					.CL
+				.formRow{:style=>"height: 36px;"}
+					%label Title:
+					=f.text_field :title, :onblur => "if(this.value==''){ this.value='title'; this.style.color='#979797'}", :onclick => "if(this.value=='title'){ this.value=''; this.style.color='#000'}", :type => "text", :value => f.object.title
+					.CL
+				.formRow.jqBigform.select_category{:style=>"height: 36px;"}
+					%label Category:
+					%select#category{:name => "assignment[category]", :style => "width:175px;"}
+						%option Select
+						%option Academic
+						%option Sports
+						%option Visual & performing Arts
+						%option Public speaking/Interaction
+						%option Personal/Family
+						%option Voluntary/Socail contribution
+					.CL
+				.formRow.jqBigform{:style=>"height: 36px;"}
+					%label Subject:
+					%select#subject{:name => "assignment[subject]", :style => "width:175px;"}
+						%option Select
+						%option Maths
+						%option Science
+						%option Hindi
+						%option English
+						%option Swimming
+						%option Gymnastics
+						%option Yoga
+						%option Cricket
+						%option Football
+						%option Other
+						%option Drama
+						%option Paintings
+						%option Drawing
+						%option Musicgs
+						%option Crafts
+						%option Sculpture
+						%option Other
+						%option Debate
+						%option Group
+						%option Discussion
+						%option Anchoring
+						%option Other
+						%option Holiday
+						%option Birthday
+					.CL
+				.formRow{:style=>"height: 36px;"}
+					%label Due Date:
+					.span1{:style=>"width: 115px;"}
+						%input#date2.dateBox.inputField{:name => "assignment[due_date]", :onblur => "if(this.value==''){ this.value='start date'; this.style.color='#979797'}", :onclick => "if(this.value=='start date'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "start date"}/
+					.span1{:style=>"width: 110px;"}
+						%span.formRow.jqBigform
+							%select#scale{:name => "assignment[due_time]", :style => "width:55px; margin-left:5px;"}
+								- (1..24).each do |h|
+									%option= h
+					.CL
+				.formRow
+					%label Description:
+					%textarea.inputField{:name => "assignment[description]", :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'"}= f.object.description
+					.CL
+			.popupFormBox
+				%p.greenTxt{:style => "font-size:14px; font-weight:bold; padding-top:10px;"} Advanced
+				.formRow.jqBigform
+					.checkBoxTitle To Be Graded:
+					= f.check_box :to_be_graded
+					%label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+					.CL			
+			.formRow.popActionBtn{:style => "text-align:right; padding-left:10px;"}
+				%input.submitBtn{:type => "submit", :value => "update"}/
+				%input.cancelBtn{:type => "button", :value => "cancel", :onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}/
+:javascript
+	$('.jqGreenForm').jqTransform(); 
+	$('.jqSmallform').jqTransform(); 
+	$('.jqBigform').jqTransform(); 
+
+	$("#date2").glDatePicker({
+		leftMargin:-70,
+		topMargin:-10 
+	}); 	
+	$( document ).ready(function() {
+		$("div.select_category .jqTransformSelectWrapper .jspContainer li a").each(function(){
+			console.log($(this).text());
+			$(this).click(function(){
+				
+			})
+		});
+	});
+
+
+/			 %span.errorMsg error prompt comes here

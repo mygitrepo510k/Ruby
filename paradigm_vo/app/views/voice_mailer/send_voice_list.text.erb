@@ -1,0 +1,7 @@
+<%= @list.recipient_name %>,("\r\n")
+
+<%= @list.message if @list.message.present? %>\r\n
+
+Paste this link into a web browser to view your list: <%= list_url(@list.id) %>\r\n
+
+<%= @list.signature.present? ? @list.signature : @admin.signature if @admin.signature.present? %>\r\n

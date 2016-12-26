@@ -1,0 +1,81 @@
+.row.signup-page
+	.span4
+		%h1 Register
+		%h2 Hello Parents!
+		%p Gatividhi helps you track &amp; manage your Child's growth.<br> Help us with your details &amp; jump right in...
+		= form_for('user', :url => '/users', :html=>{:method=>'post', :class=>"form-horizontal", :"data-validate" => "parsley", :id => "new_user"} ) do |f|
+			.control-group
+				%label.control-label{:for=>"user_first_name"} First Name
+				.controls
+					= f.text_field :first_name, :"data-required"=>"true", :placeholder => "first name", :"data-regexp"=>"^[a-zA-Z]+$", :autofocus=>"autofocus"
+			.control-group
+				%label.control-label{:for=>"user_last_name"} Last Name
+				.controls
+					= f.text_field :last_name, :"data-required"=>"true", :placeholder => "last name", :"data-regexp"=>"^[a-zA-Z]+$", :autofocus=>"autofocus"
+			.control-group
+				%label.control-label{:for=>"user_email"} Email
+				.controls
+					= f.text_field :email, :class=>"new-email-addr", :"data-required"=>"true", :placeholder => "example@domain.com", :"data-type"=>"email", :"data-trigger"=>"keyup", :autofocus=>"autofocus"
+			.control-group
+				%label.control-label{:for=>"confirm_email"} Confirm Email
+				.controls
+					= text_field_tag :confirm_email, nil, :placeholder => "example@domain.com", :"data-required"=>"true", :"data-type"=>"email", :"data-trigger"=>"keyup", :autofocus=>"autofocus"
+			.control-group
+				%label.control-label{:for=>"user_password"} Password
+				.controls
+					= f.password_field :password, :class=>"new-password", :"data-required"=>"true", :placeholder => "password"
+			.control-group
+				%label.contrl-label
+					.controls
+						.span1.accept-aggre.checkbox-control
+						%span I agree to the 
+						%span GATIVIDHI terms
+			.control-group
+				%label.contrl-label
+					.controls
+						= f.submit "Sign up", :class=>"submit-btn disabled"
+.row
+	= render "devise/shared/links"
+
+:javascript
+	$("input.submit-btn").attr("disabled","disabled");
+	var agree=false
+	$("div.checkbox-control").click(function(){
+		if(agree==false){
+			$("input.submit-btn").removeAttr("disabled");
+			$("input.submit-btn").removeClass("disabled");
+			$("input.submit-btn").addClass("submitBtn");
+			$("div.checkbox-control").addClass("agree-checked");
+			$("div.checkbox-control").removeClass("accept-aggre");
+			agree = true;
+		}else{
+			$("input.submit-btn").attr("disabled","disabled");
+			$("input.submit-btn").addClass("disabled");
+			$("input.submit-btn").removeClass("submitBtn");
+			$("div.checkbox-control").removeClass("agree-checked");
+			$("div.checkbox-control").addClass("accept-aggre");
+			agree = false;
+		}
+	});
+
+	$('#confirm_email').blur(function(){
+		if($('input.new-email-addr').val() == ''){
+			return false;
+		}
+		if( $('.new-email-addr').val() != $('#confirm_email').val() ){
+			alert('Please check for the confir email');
+			$('#confirm_email').focus();
+			return false;
+		}
+	});
+
+	$('.new-password').keydown(function(){
+		if($('input.new-email-addr').val() == ''){
+			return false;
+		}
+		if( $('.new-email-addr').val() != $('#confirm_email').val() ){
+			alert('Please check for the confir email');
+			$('#confirm_email').focus();
+			return false;
+		}
+	});

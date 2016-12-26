@@ -1,0 +1,131 @@
+.navigation-fix-top-bar
+	.span5.navigation-box
+		.row{:style=>"margin-left: 0px;"}
+			.span1
+				.dashboard_indiRed
+				- if parent_dashboard?
+					= link_to image_tag(current_user.profile_image(Picture::TYPE[:thumb])), parent_profile_path+"?id="+current_user.id, :class => 'proImg'
+				- else
+					= link_to image_tag(selected_member.profile_image(Picture::TYPE[:thumb])), child_profile_path+"?id="+selected_member.id, :class => 'proImg'
+			#dropInfoBox.name-bar.span3
+				- if parent_dashboard?
+					%a.selectedName{:href => parent_profile_path+"?id="+current_user.id}
+						= current_user.name
+				- else
+					%a.selectedName{:href => child_profile_path+"?id="+selected_member.id}
+						= selected_member.name
+				%a.viewStat.offStat{:href => "javascript:#"}
+					%span.txt= session[:show_variable_home]
+					%span.arrw
+				.CL
+				.dropInfo
+					- if !user_family_members.blank?
+						- current_user.families.each do |family|
+							.headRow
+								.selectedFamily= family.family_name
+								%a.addMemb{:href => "/add_new_family_member?id=#{family.id}", :rel => "facebox"}
+									Add members
+									%span
+								.CL
+							.fMembers
+								- family.family_members.each do | single_family_member_list |
+									- if single_family_member_list.status == FamilyMember::STATUS[:accepted]
+										%a.sub_mClick{:href => "#"}
+											= single_family_member_list.name.to_s
+										- if single_family_member_list.role_name == "Son" || single_family_member_list.role_name == "Daughter"
+											.fSubMembers
+												%a{:href => child_profile_path+"?id="+single_family_member_list.id} Profile
+												%a{:href => "/child_profile_health?id=#{single_family_member_list.id}"} Health												
+												%a{:href => school_general_path+"?id="+single_family_member_list.id} School
+												%a{:href => "/calendar/month?id=#{single_family_member_list.id}"} Calendar
+												%a{:href => "/child_upcoming_exam?id=#{single_family_member_list.id}"} Exams
+												%a{:href => "/child_activities_list?id=#{single_family_member_list.id}"} Activities
+												%a{:href => "/child_awards_and_honours?id=#{single_family_member_list.id}"} Awards and Honours
+												%a{:href => "#"} Photos & Docs
+										- else
+											.fSubMembers
+												%a{:href => "/dashboard"} Dashboard
+												%a{:href => calendar_parent_month_path+"?id="+single_family_member_list.user_id} Calendar
+												%a{:href => parent_profile_path+"?id="+single_family_member_list.user_id} Profile
+					.botRow
+						%a.addFamily{:href => "/add_new_family", :rel => "facebox"}
+							/ onclick="loadWindow('380','465','add_member.html','Create New Family!');"
+							Create new family
+							%span
+	.span5.options-box
+		- if params[:controller]=='calendar'
+			- if params[:action]=='parent_month' || params[:action]=='parent_week' || params[:action]=='parent_day'
+				.actionButton.viewButtons
+					- if params[:action]=="parent_day"
+						%a.leftRound.active{:href=>calendar_parent_day_path.to_s+"?id="+selected_parent.id, :title => "Day View"} Day
+					- else
+						%a.leftRound{:href=>calendar_parent_day_path.to_s+"?id="+selected_parent.id, :title => "Day View"} Day
+
+					- if params[:action]=="parent_week"
+						%a.active{:href=>calendar_parent_week_path.to_s+"?id="+selected_parent.id, :title => "Week View"} Week
+					- else
+						%a{:href=>calendar_parent_week_path.to_s+"?id="+selected_parent.id, :title => "Week View"} Week
+
+					- if params[:action]=="parent_month"
+						%a.rightRound.active{:href=>calendar_parent_month_path.to_s+"?id="+selected_parent.id, :title => "Month View"} Month
+					-else
+						%a.rightRound{:href=>calendar_parent_month_path.to_s+"?id="+selected_parent.id, :title => "Month View"} Month
+			- else
+				.actionButton
+					%a.activityBtn{:href => child_activities_list_path.to_s+"?id="+selected_member.id, :title => "List View"}
+						%span
+					%a.calenderBtn.btnSelected{:href => calendar_month_path.to_s+"?id="+selected_member.id, :title => "Calendar view"}
+						%span
+				.actionButton.viewButtons
+					- if params[:action]=="day"
+						%a.leftRound.active{:href=>calendar_day_path.to_s+"?id="+selected_member.id, :title => "Day View"} Day
+					- else
+						%a.leftRound{:href=>calendar_day_path.to_s+"?id="+selected_member.id, :title => "Day View"} Day
+					- if params[:action]=="week"
+						%a.active{:href=>calendar_week_path.to_s+"?id="+selected_member.id, :title => "Week View"} Week
+					- else
+						%a{:href=>calendar_week_path.to_s+"?id="+selected_member.id, :title => "Week View"} Week
+					- if params[:action]=="month"
+						%a.rightRound.active{:href=>calendar_month_path.to_s+"?id="+selected_member.id, :title => "Month View"} Month
+					-else
+						%a.rightRound{:href=>calendar_month_path.to_s+"?id="+selected_member.id, :title => "Month View"} Month
+
+			%a.printIcon{:style => "margin-left:18px;", :title => "Print"}
+				%span
+			.pendingActivity
+				.redBox.FL 3
+				.greenBox.FL 10
+			.CL-Fix	
+		- else
+			.wrapbox{:style=>"float: right;margin-right: 10px;margin-top: 27px;"}
+				%a{:href=>root_url}
+					.option.home				
+				%a.calendar{:href=>calendar_parent_month_path.to_s+"?id="+current_user.id}
+					.option.calendar
+				.option.mailbox
+					%a.mailbox 
+						%span#mail_count 1
+				.option.notification
+					%a.notification 
+						%span#notifications_count 2
+				.option.questions
+					%a.questions 
+						%span#questions_count 5
+:javascript
+
+	$("a.viewStat").hover(
+		function(){
+			$('.dropInfo').fadeIn('fast');
+		},function(){
+			// $('.dropInfo').fadeOut('slow');
+		}
+	);
+	$('.dropInfo').hover(
+		function(){
+			$('.dropInfo').fadeIn('fast');
+		},function(){
+			$('.dropInfo').fadeOut('slow');
+		}
+	);
+
+

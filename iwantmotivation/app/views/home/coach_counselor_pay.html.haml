@@ -1,0 +1,38 @@
+.row
+	.container.coachcounselor-payment-page.form-horizontal
+		.row.first-row
+			.span8.offset1
+				%p.page-title Coach / Counselor Payment Page
+		.row.second-row
+			.span8.offset1
+				.control-group
+					%label.control-label{:for=>"balance"} Monthly Total:
+					.controls
+						%input#balance{:placeholder=>"Input Balance"}
+		.row.third-row
+			.row.span8.offset1
+				%p Make Payment with the Following:
+			.row.span8.offset1
+				%label.radio
+					%input#payoption1{:type=>"radio", :name=>"optionsRadios", :checked=>"checked"}
+					Paypal
+				%label.radio
+					%input#payoption2{:type=>"radio", :name=>"optionsRadios"}
+					Credit Card								
+		.row.pay-info-row
+			.row
+				.span8.offset1.paypal-info
+			.row
+				.span8.offset1.credit-card-info
+					.field
+						= text_field_tag :card_number, nil, name: nil, :placeholder=>"Credit Card Number"
+						= text_field_tag :card_number, nil, name: nil, :placeholder=>"Credit Card Number"
+					.field
+						= text_field_tag :card_number, nil, name: nil, :placeholder=>"Credit Card Number"
+						= text_field_tag :card_code, nil, name: nil, :placeholder=>"CCV Number"
+					.field
+						= label_tag :card_month, "Card Expiration"
+						= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"}
+						= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, {name: nil, id: "card_year"}
+					.field
+

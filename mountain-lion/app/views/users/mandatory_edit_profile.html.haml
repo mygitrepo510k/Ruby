@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    = stylesheet_link_tag "application", media: "all"
+    = render 'layouts/head'
+    = yield :head
+    = yield :meta_tags
+    %meta{name: "viewport", content: "width=1120"}
+  %body.bodystyle
+    #container.container-fluid
+      = render "users/custom_layout/header"
+      / MAIN CONTENT AREA
+      #main.span12
+        = render 'users/custom_layout/mandatory_edit_fields'
+    #modal-container{ class: "modal hide fade", tabindex: "-1", role: "dialog", "aria-hidden" => true }
+    = render 'layouts/analytics'
+
+:coffee
+  $ ->
+    $('#skip-upload').hide()
+  
+  #{build_js_validation(current_user)}

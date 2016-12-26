@@ -1,0 +1,39 @@
+.row
+	.col-sm-4
+		h1#logo
+			- if current_user
+				- if current_user.programs.count > 1
+					.dropdown
+						a data-toggle='dropdown' href='#'
+							= current_user.current_program.name
+							span.glyphicon.glyphicon-chevron-down
+						ul class='dropdown-menu' role='menu' aria-labelledby='dLabel'
+							- current_user.programs.each do |program|
+								li role='presentation'
+									a role='menuitem' tabindex='-1' href=switch_program_path(program)
+										= program.name
+				- else
+					= link_to root_path do
+						= current_user.current_program.name
+
+			- else
+				| "login"
+
+	.col-sm-8			
+		nav#topnav
+			ul
+				li= link_to 'Dashboard', root_path
+				-if current_user.current_program.has_content
+					li= link_to 'Content', content_path
+				li= link_to 'Members', users_path
+				li= link_to 'Calendar', calendar_path
+
+				- if current_user and current_user.leader?
+					li= link_to 'Admin', admin_path
+
+				li.iconmenu
+					= link_to @current_user
+						span class='glyphicon glyphicon-user' data-toggle='tooltip' data-placement='bottom' title='User'
+				li.iconmenu
+					= link_to destroy_user_session_path(:authenticity_token => form_authenticity_token()), :method=>'delete'
+						span class='glyphicon glyphicon-log-out' data-toggle='tooltip' data-placement='bottom' title='Log out'

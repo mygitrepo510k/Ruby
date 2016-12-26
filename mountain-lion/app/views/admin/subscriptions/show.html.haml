@@ -1,0 +1,55 @@
+- model_class = Subscription
+.page_header
+  %h1=t('.title', default: "Subscription for user: #{@user.display_username}")
+
+%p
+  %strong= model_class.human_attribute_name(:member_id) + ':'
+  %br
+  = @subscription.member_id
+%p
+  %strong= model_class.human_attribute_name(:trans_id) + ':'
+  %br
+  = @subscription.trans_id
+%p
+  %strong= model_class.human_attribute_name(:auth_code) + ':'
+  %br
+  = @subscription.auth_code
+%p
+  %strong= model_class.human_attribute_name(:auth_date) + ':'
+  %br
+  = @subscription.auth_date
+%p
+  %strong= model_class.human_attribute_name(:auth_msg) + ':'
+  %br
+  = @subscription.auth_msg
+%p
+  %strong= model_class.human_attribute_name(:recurring_id) + ':'
+  %br
+  = @subscription.recurring_id
+%p
+  %strong= model_class.human_attribute_name(:avs_code) + ':'
+  %br
+  = @subscription.avs_code
+%p
+  %strong= model_class.human_attribute_name(:cvv2_code) + ':'
+  %br
+  = @subscription.cvv2_code
+%p
+  %strong= model_class.human_attribute_name(:settle_amount) + ':'
+  %br
+  = @subscription.settle_amount
+%p
+  %strong= model_class.human_attribute_name(:settle_currency) + ':'
+  %br
+  = @subscription.settle_currency
+%p
+  %strong= model_class.human_attribute_name(:processor) + ':'
+  %br
+  = @subscription.processor
+%p
+  %strong= model_class.human_attribute_name(:active) + ':'
+  %br
+  = @subscription.active
+
+.form-actions
+  = link_to 'Back', admin_user_path(@user)

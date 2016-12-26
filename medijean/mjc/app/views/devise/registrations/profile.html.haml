@@ -1,0 +1,61 @@
+.wrapper
+  .row.container.center-div-no-bg
+    .row.oh-page-container
+      .row.center-txt
+        %h3
+          = t("patient_flow.complete_profile.title")
+      .row.center-txt
+        %p{:style=>"color: gray;font-size: 17px;"}
+          = t("patient_flow.complete_profile.text1")
+      .row
+        %hr
+      .row
+        .span10 &nbsp;
+      = simple_form_for "profile",:url => "/users/registrations/complete_profile", :html => { :id => "complete-profile",:multipart=>true }  do |f|
+        .row
+          .span2
+            %h3.homepg-header
+              = t("patient_flow.complete_profile.account")
+        .row
+          .span4
+            = f.input :health_card_number,:class=>"input-large", :required => true
+        .row
+          .span3.error-margin
+            = errors_for @profile, :health_card_number
+        .row
+          %hr
+        .row
+          .span4
+            %h3.homepg-header
+              = t("patient_flow.complete_profile.profile")
+        .row
+          .span4
+            =f.input :first_name,:class=>"input-large", :required => true
+          .span4
+            =f.input :last_name, :class=>"input-large", :required => true
+        .row
+          .span4.error-margin
+            = errors_for @profile, :first_name
+          .span4.error-margin
+            = errors_for @profile, :last_name
+        %br
+        .row
+          .span4
+            =f.input :gender,:collection => ([ :male, :female ]).map {|v| [v.capitalize,v]}, :selected => :male
+            /=f.collection_select :gender, [[:male, 'Male'] ,[:female, 'Female']], :first, :last
+          .span4
+            %p
+              = t("patient_flow.complete_profile.phone_no")
+            %p
+              = text_field_tag "profile[phone][p1]",@phone[0],:class=>"input-mini",:placeholder=>"123",:maxlength=>"3", :required => true
+              = text_field_tag "profile[phone][p2]",@phone[1],:class=>"input-mini",:placeholder=>"123",:maxlength=>"3", :required => true
+              = text_field_tag "profile[phone][p3]",@phone[2],:class=>"input-mini",:placeholder=>"1234",:maxlength=>"4", :required => true
+        .row
+          .span3.error-margin 
+            = errors_for @profile, :phone
+        .row
+          %hr
+          %br
+        .row
+          .span4
+            =f.submit t("patient_flow.complete_profile.next_button"),:class=>"btn btn-block gb-btn"

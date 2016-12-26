@@ -1,0 +1,18 @@
+= form_for @family, :html => { :class => 'form-horizontal', :"data-validate" => "parsley" } do |f|
+	.control-group
+		%label.control-label{:for=>"user_last_name"} Family ID:
+		.controls
+			%label{:style=>"color: blue; font-size: 16px; margin-top: 4px;"}= f.object.family_id
+			= f.hidden_field :family_id
+	.control-group
+		%label.control-label{:for=>"family_family_name"} Family Name:
+		.controls
+			= f.text_field :family_name, :"data-required"=>"true", :placeholder => "Family Name", :"data-regexp"=>"^[a-zA-Z]+$", :autofocus=>"autofocus"
+	.control-group
+		%label.control-label{:for=>"family_role_name"} Your Role:
+		.controls	
+			= f.select :role_name, Family::ROLES
+	.form-actions
+		= f.button :submit, :class => 'submitBtn'
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), '/families', :class => 'cancelBtn'
+

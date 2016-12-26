@@ -1,0 +1,48 @@
+.row
+	.span5{:style=>"margin-left: 0px;"}
+		= link_to image_tag("home_icons/iwantmotivation_logo.png"), root_path, :class => 'brand'
+	.span4{:style=>"margin-left: 0px; float: right;"}
+		.row
+			%ul.nav
+				- if user_signed_in?
+					-if get_mail_count>0
+						%li
+							= link_to("#")	do
+								Unread eMail
+								%span.unread-count 
+									#{get_mail_count}
+					%li
+						- if current_user.has_role? :full
+							= link_to 'Profile', profile_user_path(current_user)
+						-else
+							= link_to 'Edit Account', edit_user_registration_path
+					- if current_user.has_role? :admin
+						%li
+							= link_to 'Admin', :admin_home
+				- else
+					%li
+						= link_to 'Join Free', '/signup'
+				- if user_signed_in?
+					%li
+						= link_to 'Logout', destroy_user_session_path, :method=>'delete'
+				- else
+					%li
+						= link_to 'Member Login', new_user_session_path
+		.row{:style=>"margin-top:20px;"}
+			.social-container{:style=>"float:right; margin-right: 0px;"}
+				%a{:href=>"#{get_option(:facebook_link_url)}", :target => "_blank"}
+					=image_tag("home_icons/facebook_24x24.png")
+				%a{:href=>"#{get_option(:twitter_link_url)}", :target => "_blank"}
+					=image_tag("home_icons/twitter.png")
+				%a{:href=>"#{get_option(:tumblur_link_url)}", :rel=>"publisher", :target => "_blank"}	
+					=image_tag("home_icons/tumblr.png")
+				%a{:href=>"#{get_option(:youtube_link_url)}", :target => "_blank"}
+					=image_tag("home_icons/youtube_24x24.png")
+				%a{:href=>"#{get_option(:pinterest_link_url)}", :target => "_blank"}
+					=image_tag("home_icons/pinterest.png")
+				%a{:href=>"#{get_option(:blogtalkradio_link_url)}", :target => "_blank"}
+					=image_tag("home_icons/blogtalkradio.png")
+				%a{:href=>"#{get_option(:linkedin_link_url)}", :target => "_blank"}
+					=image_tag("home_icons/linkedin.png")
+				%a{:href=>"#{get_option(:instagram_link_url)}", :target => "_blank"}					
+					=image_tag("home_icons/instagram_24x24.png")

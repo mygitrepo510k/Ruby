@@ -1,0 +1,86 @@
+/ SLIDER
+.carousel-container
+  #carousel
+    .carousel-feature
+      %a{:href => "#"}= image_tag("banner/sample1.jpg", :class=>"carousel-image", :alt=>"Image Caption")
+      .carousel-caption
+        %p
+          This area is typically used to display captions associated with the images. They are set to hide and fade in on rotation.
+    .carousel-feature
+      %a{:href => "#"}= image_tag("banner/sample2.jpg", :class=>"carousel-image", :alt=>"Image Caption")
+      .carousel-caption
+        %p
+          The background will expand up or down to fit the caption.
+    .carousel-feature
+      %a{:href => "#"}= image_tag("banner/sample3.jpg", :class=>"carousel-image", :alt=>"Image Caption")
+      .carousel-caption
+        %p
+          Images can be placed here as well.
+    .carousel-feature
+      %a{:href => "#"}= image_tag("banner/sample4.jpg", :class=>"carousel-image", :alt=>"Image Caption")
+    .carousel-feature
+      %a{:href => "#"}= image_tag("banner/sample5.jpg", :class=>"carousel-image", :alt=>"Image Caption")
+      .carousel-caption
+        %p
+          The background color of the caption area can be changed using CSS. The opacity can be changed in the options, but it will also change the opacity of the text.
+  #carousel-left= image_tag("banner/arrow-left.png", :alt=>"Left")
+  #carousel-right= image_tag("banner/arrow-right.png", :alt=>"Right")
+/ ABOUT TAGS
+.row
+  ﻿
+  .about
+    .double_bordered
+    %span About
+    .double_bordered
+  .span6.left_bar
+    %h2 How it works:
+    .feature
+      %a{:href => "/lawyers"}
+        = image_tag("browse.png")
+      .feature_description
+        %p
+          1.
+          %a{:href => "/lawyers"} Browse lawyers
+          or submit your question
+    .feature
+      %a{:href => "/lawyers"}
+        = image_tag("phone.png")
+      .feature_description
+        %p 2. Talk immediately or schedule consultation
+    .feature
+      %a{:href => "/lawyers"}
+        = image_tag("time.png")
+      .feature_description
+        %p 3. Pay for services or extended consultations
+  .span5.right_bar
+    .testimonials
+      %h2 Testimonials:
+      .testimonial_description
+        %p
+          %span.open_quotes
+          %span.desc Easiest way to talk to a lawyer...
+      .testimonial_description
+        %p
+          %span.open_quotes
+          %span.desc Best way to meet clients outside my hometown...
+      .testimonial_description
+        %p
+          %span.open_quotes
+          %span.desc Never stepping foot in a law office again...
+      .testimonial_description
+        %p
+          %span.open_quotes
+          %span.desc Wait, this is amazing...
+      .testimonial_description
+        %p
+          %span.open_quotes
+          %span.desc Virtual lawyering gone mainstream...
+:javascript
+  $(document).ready(function() {
+    var carousel = $("#carousel").featureCarousel({
+      // include options like this:
+      // (use quotes only for string values, and no trailing comma after last option)
+      // option: value,
+      // option: value
+    });
+  });

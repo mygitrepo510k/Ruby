@@ -1,0 +1,20 @@
+!!!
+%html
+  %head
+    %title Web
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = tag :meta, :name=>"stripe-key",:content=> STRIPE_PUBLIC_KEY
+    %meta{:name=>"viewport", :content=>"width=device-width, initial-scale=1.0"}
+    = favicon_link_tag image_path("favicon.ico")
+  %body
+    .container.outer_container
+      =render "shared/header"
+      - flash.each do |name, msg|
+        - if msg.is_a?(String)
+          %div{:class => "alert alert-#{name == :notice ? "success" : "error"}"}
+            %a.close{"data-dismiss" => "alert"} ×
+            = content_tag :div, msg.html_safe, :id => "flash_#{name}"
+      = yield
+      = render "shared/footer"

@@ -1,0 +1,30 @@
+.experience_frame.post
+	.img_ctn
+		= link_to (image_tag exp.created_for.avatar.post.url), user_path(exp.created_for)
+
+	.news_item_body
+		.profile_name
+			= link_to exp.created_for.name, user_path(exp.created_for)
+			|  submitted a frame 
+			.timeago[raw='true'] = exp.frame.created_at.to_formatted_s(:iso8601)
+
+		.news_item_cnt
+			.post_body.experience_frame_body
+				blockquote
+					= simple_format truncate(exp.frame.description, length: 1000)
+			.experience_name
+				| ... for the experience 
+				= link_to exp.name, exp
+				|  on 
+				= exp.executed_at.to_date.to_formatted_s(:long_ordinal)
+
+	.like_comment
+		= like_count(exp)
+		a href='#' class='like_link' data-likeable=JSON.generate({likeable_id: exp.id, likeable_type: exp.class.name})
+			= like_link(exp)
+		
+		= comment_count(exp)
+		a href='#' class='comment_link'
+			| Comment
+
+	= render partial: 'comments/commentfeed', locals: { commentable: exp, scope: 'public' }

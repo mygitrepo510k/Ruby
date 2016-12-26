@@ -1,0 +1,11 @@
+.search-results.section.single
+	.col-xs-12
+		h3 Search Results
+
+	-@results.each do |result|
+		.col-sm-6.col-lg-4.search-result
+			= render partial: 'dashboard/search_result', locals: { result: result }
+
+	-if @results.empty?
+		.col-xs-4
+			h6 No results 

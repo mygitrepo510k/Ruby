@@ -1,0 +1,13 @@
+= form_for [:admin, @challenge] do |f|
+  = f.hidden_field :filepicker_url, class: 'filepicker_full'
+  = f.hidden_field :thumbnail_url, class: 'filepicker_thumb'
+  .field
+    = f.text_field :name, placeholder: 'Name'
+  .field
+    = f.text_area :description, placeholder: 'Description'
+	.add-footer
+		.add-picture
+			a class='filepicker' href='#'
+				| Picture
+  .submit
+    = f.submit 'Submit'

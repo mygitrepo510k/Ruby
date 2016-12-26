@@ -1,0 +1,46 @@
+= form_for @user, url: signup_two_users_path, remote: true, method: :post, id: 'signup-form' do |f|
+  = f.hidden_field :gender
+  = f.hidden_field :password
+  = f.hidden_field :username
+  = f.hidden_field :email
+  = f.hidden_field :date_of_birth
+  %table#signup-two{border: "0", cellpadding: "0", cellspacing: "4", width: "356"}
+    %tr
+      %td{align: "right", width: 86, class: :lbl}
+        = f.label :firstname, t('active_record.attributes.user.firstname')
+      %td{align: "left"}
+        = f.text_field :firstname, size: 30, placeholder: 'Your First Name'
+    %tr
+      %td{align: "right", class: :lbl}
+        = f.label :lastname, t('active_record.attributes.user.lastname')
+      %td{align: "left"}
+        = f.text_field :lastname, size: 30, placeholder: 'Your Last Name'
+    %tr
+      %td{align: "right", class: :lbl}
+        = f.label :country, t('active_record.attributes.user.country')
+      %td{align: "left"}
+        = f.country_select :country_code, ['us', 'am', 'fr', 'ca', 'ir', 'lb'], { iso_codes: true }, style: 'width: 206px; margin-bottom: 2px;'
+    %tr
+      %td{align: "right", class: :lbl}
+        = f.label :city, t('active_record.attributes.user.city')
+      %td{align: "left"}
+        = f.text_field :city, size: 30, placeholder: t('active_record.attributes.user.city')
+    %tr
+      %td{align: "right", class: :lbl}
+        = f.label :zip_code, t('active_record.attributes.user.zip_code')
+      %td{align: "left"}
+        = f.text_field :zip_code, size: 30, placeholder: t('active_record.attributes.user.zip_code')
+    %tr
+      %td{align: "right", class: :lbl}
+        = f.label :password, I18n.t('active_record.attributes.user.password')
+      %td{align: "left"}
+        = f.password_field :password, autocomplete: :off, placeholder: 'Password for HyeDating'
+    %tr
+      %td{align: "right", class: :lbl}
+        = f.label :password_confirmation, 'Confirm Password'
+      %td{align: "left"}
+        = f.password_field :password_confirmation, autocomplete: :off, placeholder: 'Confirm Password'
+    %tr
+      %td{align: "center", colspan: "2"}
+        = f.submit "Continue", class: "btn", disable_with: 'Continuing...'
+

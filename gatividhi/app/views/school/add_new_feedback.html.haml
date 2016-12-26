@@ -1,0 +1,96 @@
+=form_for @feedback, :as=>:feedback, :url =>'/school/add_new_feedback', :method=>:post, :html=>{:class=>'new-feedback', :id=>'new_feedback', :"data-validate" => "parsley"} do |f|
+	.popupWindow{:style => "width: 560px; height: 475px; z-index: 90; left: 673.5px; top: 90.5px;"}
+		.popupHead
+			.popupTitle Add a New FeedBack
+			.closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+			.CL
+		.popupContaint
+			.popupFormBox
+				.formRow.jqBigform
+					%label Class:
+					=f.select :class_name, @class_names, :style => "width:175px;", :class => "inputField"
+					.CL
+				.formRow.jqBigform
+					%label Feedback Date: *
+					%input#date2.showDate.inputField{:type=>"text", :name=>'feedback[feedback_date]'}
+					.CL
+				.formRow.jqBigform
+					%label Type:
+					= succeed "*" do
+						%select#select_type{:name => "feedback[type]", :style => "width:175px;"}
+							%option Select
+							%option Appreciation
+							%option Complaint
+							%option General
+					%p.errorMsgLeft.select_type
+					.CL
+				.formRow.jqBigform
+					%label From:
+					= succeed "*" do
+						%select#select_from{:name => "feedback[from]", :style => "width:175px;"}
+							%option Select
+							%option School
+							%option Teacher
+							%option Other
+					%p.errorMsgLeft.select_from
+					.CL
+				.formRow
+					%label Description:
+					= f.text_area :your_notes, :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style=>"width:390px;max-height:80px;", :"data-required"=>"true", :id=>"your_note"
+					%p.errorMsgLeft.your_note
+					.CL
+				.formRow.jqBigform
+					%div{:style => "width:115px; float:left; text-align:right; padding-right:10px;"} Important:
+					= f.check_box :important
+					%label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+					.CL
+			.formRow.popActionBtn{:style => "text-align:right; padding-left:10px;"}
+				%input.submitBtn{:type => "submit", :value => "save"}/
+				%input.cancelBtn{:type => "button", :value => "save & add new feedback",:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}/
+				%input.cancelBtn{:type => "button", :value => "cancel",:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}/
+
+
+:javascript
+	$(function() {
+		$("#date2").glDatePicker({
+		leftMargin: 150,
+		topMargin: -10
+		});	
+	})
+	$('.jqGreenForm').jqTransform(); 
+	$('.jqSmallform').jqTransform(); 
+	$('.jqBigform').jqTransform(); 	
+
+	$("#new_feedback").submit(function() {
+		var checked = false;
+		if($('#select_type').val()=="Select"){
+			$('p.select_type').html('Please select');
+			checked = false;
+		}else{
+			$('p.select_type').html('');
+			checked = true;
+		}
+
+		if($('#select_from').val()=="Select"){
+			$('p.select_from').html('Please select');
+			checked = false;
+		}else{
+			$('p.select_from').html('');
+			checked = true;
+		}
+		if($('#your_note').val()==""){
+			$('p.your_note').html('Please Input');
+			checked = false;
+		}else{
+			$('p.your_note').html('');
+			checked = true;
+		}	
+
+
+		if(checked == false){
+			return false;
+		}else{
+			return true;		
+		}
+	});	
+

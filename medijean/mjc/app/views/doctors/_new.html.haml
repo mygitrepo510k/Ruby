@@ -1,0 +1,11 @@
+.modal.hide.fade#new-doctor-patient
+  = simple_form_for DoctorPatient.new, validate: true do |f|
+    .modal-header
+      %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+      %h3= t('doctor_flow.patients.invite_new')
+    .modal-body
+      = f.input :email, required: :required, validate: true
+      = f.input :health_card_number, required: :required, validate: true
+    .modal-footer
+      = f.submit t('doctor_flow.patients.invitation_submit'), class: 'btn gb-btn'
+      %a.btn.gb-btn-gray{:href => "#", "data-dismiss" => "modal"}= t('doctor_flow.patients.cancel_submit')

@@ -1,0 +1,90 @@
+.popupWindow{:style => "width: 380px; height: 465px;"}
+	.popupHead
+		.popupTitle
+			Add a New Family Member to #{@family.family_name}
+		.closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+		.CL
+	.popupContaint
+		%p.pageSubTitle Create New Family
+		.popupSmForm
+			= form_tag "/add_new_family_member?id=#{@family.id}",:id=>'add_member_form', :multipart => true do
+				.formRow
+					.formRow.jqBigform
+						%label From:
+						%select#select6.inputField{:name => "family_member[role_name]", :style => "width: 160px; color: rgb(151, 151, 151);"}
+							- ['Father','Mother','Son','Daughter'].each do |single_group|
+								%option{:value => single_group}= single_group
+						%p.errorMsgLeft
+					.CL
+				.formRow
+					%label Email:
+					%input#family_member_email.inputField{:name => "family_member[email]", :onblur => "if(this.value==''){ this.value='example@domain.com'; this.style.color='#979797'}", :onclick => "if(this.value=='example@domain.com'){ this.value=''; this.style.color='#000'}", :style => "width: 190px; color: rgb(151, 151, 151);", :type => "email", :value => "example@domain.com"}/
+					%p.errorMsgLeft
+					.CL
+				.formRow.jqSmallform
+					%label Confirm Email:
+					%span.formRow
+						%input#family_member_confirm_email.inputField{:name => "family_member[confirm_email]", :onblur => "if(this.value==''){ this.value='example@domain.com'; this.style.color='#979797'}", :onclick => "if(this.value=='example@domain.com'){ this.value=''; this.style.color='#000'}", :style => "width: 190px; color: rgb(151, 151, 151);", :type => "email", :value => "example@domain.com"}>/
+						*
+					%p.errorMsgLeft
+					.CL
+				.formRow.jqSmallform
+					%label First Name:
+					%span.formRow
+						%input#family_member_first_name.inputField{:maxlength => "15", :minlength => "1", :name => "family_member[first_name]", :onblur => "if(this.value==''){ this.value='first name'; this.style.color='#979797'}", :onclick => "if(this.value=='first name'){ this.value=''; this.style.color='#000'}", :style => "width: 190px; color: rgb(151, 151, 151);", :type => "text", :value => "first name"}/
+					%p.errorMsgLeft
+					.CL
+				.formRow.jqSmallform
+					%label Last Name:
+					%span.formRow
+						%input#family_member_last_name.inputField{:maxlength => "15", :minlength => "1", :name => "family_member[last_name]", :onblur => "if(this.value==''){ this.value='last name'; this.style.color='#979797'}", :onclick => "if(this.value=='last name'){ this.value=''; this.style.color='#000'}", :style => "width: 190px; color: rgb(151, 151, 151);", :type => "text", :value => "last name"}/
+					%p.errorMsgLeft
+					.CL
+				.formRow
+					%label	
+					%input.submitBtn{:type => "submit", :value => "submit"}/
+					%input.cancelBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;", :type => "submit", :value => "cancel"}/
+					.CL
+:javascript
+	$("#add_member_form").submit(function() {
+		var chec_error = true;
+		if ($('#family_member_first_name').val() == "" || $('#family_member_first_name').val() == "first name"){
+			chec_error = true;
+		}else{
+			chec_error = false;
+		}
+		if ($('#family_member_last_name').val() == "" || $('#family_member_last_name').val() == "last name"){
+			chec_error = true;
+		}else{
+			chec_error = false;
+		}
+		if($('#select6').val() == "Father" || $('#select6').val() == "Mother" || $('#select6').val() == "Grandparent"){
+			if ($('#family_member_confirm_email').val() == "" || $('#family_member_confirm_email').val() == "example@domain.com"){
+				chec_error = true;
+			}else{
+				chec_error = false;
+			}
+			if ($('#family_member_email').val() == "" || $('#family_member_email').val() == "example@domain.com"){
+				chec_error = true;
+			}else{
+				chec_error = false;
+			}
+		}else{
+			$('#family_member_email').val("") ;
+			$('#family_member_confirm_email').val("");
+		 }
+		
+		if($('#family_member_email').val() != $('#family_member_confirm_email').val()){
+			check_error = false;
+			return false;
+		}
+
+		if (chec_error == true){
+			return false;
+		}else{
+			return true;
+		}
+	});	
+
+	$('.jqBigform').jqTransform();
+	

@@ -1,0 +1,192 @@
+<% @title_text = @medication.blank? ? "title" : @medication.title_text
+   @description = @medication.blank? ? "description" : @medication.description %>
+
+<div class="popupWindow" style="width: 750px; height: 575px;">
+  <div class="popupHead">
+    <div class="popupTitle">Vaccination/ Medications details</div>
+      <div onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;" class="closeBtn"></div>
+      <div class="CL"></div>
+    </div>
+    <div class="popupContaint">
+  <div class="popupFormBox">
+  <%= form_tag "/add_child_profile_health_vaccination_medication?id=#{@family_member.id}&test_report_id=#{@medication.blank? ? '' : @medication.id}",:id=>'child_health_vaccination_medication', :multipart => true do %>
+  <div class="halfBox FL">
+    <div class="formRow">
+      <label>Title:</label>
+      <span class="formRow jqBigform">
+        <select name="test_reports[title]" id="test_reports_title" style="width:175px;">
+          <% ['Select','MMR','Polio','Diptheria'].each do |single_group| %>
+        <% if !@medication.blank? && single_group == @medication.title %>
+          <option value = '<%=single_group%>' selected="selected"><%=single_group %></option>
+        <% else %>
+          <option value = '<%=single_group%>'><%=single_group %></option>
+        <% end %>
+      <% end %>
+      </select>&nbsp;*  
+     </span>
+     <p class="errorMsgLeft"></p>
+     <div class="CL"></div>
+    </div>
+      <!--  <div style="float:right; width:250px; text-align:center;"> 
+             or
+       </div>
+       <div class="formRow jqBigform">
+           <label>&nbsp;</label>
+           <span class="formRow">
+            <input type="text" name="test_reports[title_text]" class="inputField" style=" margin-left:10px;" value="<%= @title_text %>" onClick="if(this.value=='<%= @title_text %>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%= @title_text %>'; this.style.color='#979797'}" />
+          </span>
+           <div class="CL"></div>
+       </div> -->
+    <div class="formRow">
+      <label>Dose/Job Number:</label>
+      <span class="formRow jqBigform">
+      <select name="test_reports[job_number]" id="select2" style="width:175px;">
+        <% ['Select','I','II','III'].each do |single_group| %>
+        <% if !@medication.blank? && single_group == @medication.job_number %>
+          <option value = '<%=single_group%>' selected="selected"><%=single_group %></option>
+        <% else %>
+          <option value = '<%=single_group%>'><%=single_group %></option>
+        <% end %>
+      <% end %>
+      </select>
+      <p class="errorMsgLeft"></p>
+      </span><span class="errorMsg"></span>
+      <div class="CL"></div>
+    </div>
+    <div class="formRow jqBigform">
+      <label>Description:</label>
+      <input type="text" class="inputField" id="description" name="test_reports[description]" style=" margin-left:10px;" value="<%= @description %>" onClick="if(this.value=='<%= @description %>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%= @description %>'; this.style.color='#979797'}" />
+      <p class="errorMsgLeft"></p>
+      <div class="CL"></div>
+    </div>
+    <div class="formRow">
+      <label>Due Date:</label>
+      <span class="formRow jqBigform">
+      <input type="text" id="dueDate" name="test_reports[due_date]" class="dateBox inputField"  value="<%= @due_date %>" />
+      </span>
+      <div class="CL"></div>
+    </div>
+      <div class="formRow">
+      <label>Date Finalised:</label>
+      <span class="formRow jqBigform">
+        <% if !@medication.blank? %>
+          <% if @medication.date_finalised == true %>
+            <input type="checkbox" id="dueDate_fnl" value='true' name="test_reports[date_finalised]" class="inputField"  checked="checked" />
+          <% else %>
+           <input type="checkbox" id="dueDate_fnl" value='true' name="test_reports[date_finalised]" class="inputField" />
+          <%end %>
+        <% else %>
+          <input type="checkbox" id="dueDate_fnl" value='true' name="test_reports[date_finalised]" class="inputField"  checked="checked" />
+        <% end %>
+      </span>
+      <div class="CL"></div>
+    </div>
+    <div class="formRow">
+      <label>From:</label>
+      <span class="formRow jqBigform">
+      <select name="test_reports[from]" id="select4" style="width:175px;">
+        <% ['Select','Doctor','Mid-wife','School'].each do |single_group| %>
+        <% if !@medication.blank? && single_group == @medication.from %>
+          <option value = '<%=single_group%>' selected="selected"><%=single_group %></option>
+        <% else %>
+          <option value = '<%=single_group%>'><%=single_group %></option>
+        <% end %>
+      <% end %>
+      </select>
+      </span>
+      <div class="CL"></div>
+    </div>
+       <div class="formRow">
+      <label>Parent Responsible:</label>
+      <span class="formRow jqBigform">
+      <select name="test_reports[parent_res]" id="select4" style="width:175px;">
+        <% @parent_list.each do |single_group| %>
+        <% if !@medication.blank? && single_group.name == @medication.parent_res %>
+          <option value = '<%=single_group.name%>' selected="selected"><%=single_group.name %></option>
+        <% else %>
+          <option value = '<%=single_group.name%>'><%=single_group.name %></option>
+        <% end %>
+      <% end %>
+      </select>
+      </span>
+      <div class="CL"></div>
+    </div>
+      <div class="formRow">
+      <label>Reminder :</label>
+      <span class="formRow jqBigform">
+      <select name="test_reports[reminder]" id="select4" style="width:175px;">
+        <% ['Select','1 hour','1 day','1 week'].each do |single_group| %>
+        <% if !@medication.blank? && single_group == @medication.reminder %>
+          <option value = '<%=single_group%>' selected="selected"><%=single_group %></option>
+        <% else %>
+          <option value = '<%=single_group%>'><%=single_group %></option>
+        <% end %>
+      <% end %>
+      </select>
+      </span>
+      <div class="CL"></div>
+    </div>
+      <div class="formRow" style="float:right;">
+    <input type="submit" value="submit" class="submitBtn" style="width:120px;color: #FFFFFF;">
+    <input type="submit" onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;" value="cancel" class="cancelBtn" style="width:120px;">
+    <div class="CL"></div>
+  </div>
+  </div>
+  <div  class="CL"></div>
+</div>
+
+<% end %>
+</div>
+
+<script type="text/javascript">
+  $(function() {
+    // Basic date picker with default settings 
+    $("#dueDate").glDatePicker({
+        leftMargin: 64,
+        topMargin: -10
+    });
+    $("#date2").glDatePicker({
+        leftMargin: 64,
+        topMargin: -10
+    });
+    $('.jqBigform').jqTransform({imgPath:''}); 
+  });
+</script>
+<script>
+  $("#child_health_vaccination_medication").submit(function() {
+    var chec_error = false;
+    if ($('#test_reports_title').val() == "" || $('#test_reports_title').val() == "Select"){
+      $('#test_reports_title').parent().parent().next().html("can't be blank");
+      chec_error = true;
+    }else{
+      $('#test_reports_title').parent().parent().next().html("");
+    }
+    
+    if($('#select2').val() == "" || $('#select2').val() == "Select"){
+      $('#select2').parent().parent().next().html("can't be blank");
+      chec_error = true;
+    }else{
+      $('#select2').parent().parent().next().html("");
+    }
+
+    if($('#description').val() == "" || $('#description').val() == "description"){
+      $('#description').parent().parent().next().html("can't be blank");
+      chec_error = true;
+    }else{
+      $('#description').parent().parent().next().html("");
+    }
+
+    if($('#select4').val() == "" || $('#select4').val() == "Select"){
+      $('#select4').parent().parent().next().html("can't be blank");
+      chec_error = true;
+    }else{
+      $('#select4').parent().parent().next().html("");
+    }
+
+    if (chec_error == true){
+      return false;
+    }else{
+      return true;
+    }
+  }); 
+</script>

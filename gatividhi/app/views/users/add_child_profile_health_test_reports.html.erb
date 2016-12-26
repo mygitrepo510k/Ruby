@@ -1,0 +1,199 @@
+<% @title = @child_profile_health_test_report.blank? ? "title" : @child_profile_health_test_report.title %>
+ <%= form_tag "/add_child_profile_health_test_reports?id=#{@family_member.id}&test_report_id=#{@child_profile_health_test_report.blank? ? '' : @child_profile_health_test_report.id}",:id=>'add_child_profile_health_test_report', :multipart => true do %>
+<div class="popupWindow" style="width: 500px; height: 535px;">
+  <div class="popupHead">
+    <div class="popupTitle">Test & Report</div>
+      <div onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;" class="closeBtn"></div>
+      <div class="CL"></div>
+    </div>
+<div class="popupFormBox">
+  <div>
+   
+    <div class="formRow jqBigform" style="height: 35px;">
+      <label>Title:</label>
+      <span class="formRow">
+        <input type="text" name = "test_reports[title]" id="test_reports_title" class="inputField" style=" margin-left:10px;" value="<%= @title  %>" onClick="if(this.value=='<%= @title %>'){ this.value=''; this.style.color='#000'}" onBlur="if(this.value==''){ this.value='<%= @title %>'; this.style.color='#979797'}" />&nbsp;*
+      </span>
+      
+      <div class="CL"></div>
+    </div>
+    
+    <div class="formRow jqBigform" style="height: 35px;">
+      <label style="margin-right:10px;">Type:</label>
+      <select name="test_reports[type]" id="report_type" style="width:175px;">
+        <% ['Select','Annual check up','Other'].each do |single_group| %>
+          <% if !@child_profile_health_test_report.blank? && single_group ==  @child_profile_health_test_report.type %>
+            <option value = '<%=single_group%>' selected="selected"><%=single_group %></option>
+          <% else %>
+            <option value = '<%=single_group%>'><%=single_group %></option>
+          <% end %>
+        <% end %>
+      </select>
+      <div class="CL"></div>
+    </div>
+      
+    <div class="formRow jqBigform" style="height: 35px;">
+      <label>From:</label>
+      <select name = "test_reports[from]" id="report_from" style="width:175px; margin-left:10px;">
+        <% ['Select','Doctor','Mid-wife','Self','School','Other'].each do |single_group| %>
+          <% if !@child_profile_health_test_report.blank? && single_group ==  @child_profile_health_test_report.from %>
+            <option value = '<%=single_group%>' selected="selected"><%=single_group %></option>
+          <% else %>
+            <option value = '<%=single_group%>'><%=single_group %></option>
+          <% end %>
+        <% end %>
+      </select>
+      <div class="CL"></div>
+    </div>
+      
+    <div class="formRow jqBigform" style="height: 35px;">
+      <label>Test date:</label>
+      <span class="formRow">
+        <input type="text" name = "test_reports[test_date]" class="showDate inputField" style="width:100px; margin-left:10px;" id="testDate" />
+      </span>
+      <div class="CL"></div>
+    </div>
+      
+    <div class="formRow jqBigform" style="height: 35px;">
+      <label>Report date:</label>
+       <span class="formRow">
+        <input type="text" name = "test_reports[report_date]" class="showDate inputField" style="width:100px;  margin-left:10px;" id="reportDate" />
+       </span>
+      <div class="CL"></div>
+    </div>
+      
+    <div class="formRow jqBigform" style="height: 35px;">
+      <label style = "margin-right: 10px;">Health issue:</label>
+      <select name = "test_reports[health_issue]" id="helth_issue" style="width:175px;">
+        <% ['Select','Cold','Ear Infection','Fever','Chicken Pox','Measles','Stomach infection'].each do |single_group| %>
+          <% if !@child_profile_health_test_report.blank? && single_group ==  @child_profile_health_test_report.health_issue %>
+            <option value = '<%=single_group%>' selected="selected"><%=single_group %></option>
+          <% else %>
+            <option value = '<%=single_group%>'><%=single_group %></option>
+          <% end %>
+        <% end %>
+      </select>  
+      <div class="CL"></div>
+    </div>
+
+    <div class="formRow" style="height: 35px;">
+      <label>Parent responsible :</label>
+      <span class="formRow jqBigform">
+      <select name = "test_reports[parent_res]" id="select4" style="width:175px;">
+        <% #['Select','Self','Other','Mark parent calendar'].each do |single_group| %>
+        <% @parent_list.each do |single_group| %>
+          <% if !@child_profile_health_test_report.blank? && single_group.name ==  @child_profile_health_test_report.parent_res %>
+            <option value = '<%= single_group.name%>' selected="selected"><%= single_group.name %></option>
+          <% else %>
+            <option value = '<%= single_group.name%>'><%= single_group.name %></option>
+          <% end %>
+        <% end %>
+      </select>
+      </span>
+      <div class="CL"></div>
+    </div>
+      <div class="formRow">
+      <label>Reminder :</label>
+      <span class="formRow jqBigform">
+      <select name = "test_reports[reminder]" id="select4" style="width:175px;">
+        <% ['Select','1 hour','1 day','1 week'].each do |single_group| %>
+          <% if !@child_profile_health_test_report.blank? && single_group ==  @child_profile_health_test_report.reminder %>
+            <option value = '<%=single_group%>' selected="selected"><%=single_group %></option>
+          <% else %>
+            <option value = '<%=single_group%>'><%=single_group %></option>
+          <% end %>
+        <% end %>
+      </select>
+      </span>
+      <div class="CL"></div>
+    </div>
+      <div class="formRow">
+      <label>Document :</label>
+      <span class="formRow jqBigform">
+        <input type="file" name = "test_reports[photo]" id="fileField">
+      </span>
+      <div class="CL"></div>
+    </div>
+  </div>
+
+  <div class="CL"></div>
+</div>
+ <div class="CL"></div>
+<div class="formRow popActionBtn" style="text-align:right;">
+  <input type="submit" class="submitBtn" value="submit">
+<!--  <input type="submit" class="cancelBtn" value="save &amp; add outcome" /> -->
+  <input type="submit" class="cancelBtn" value="cancel" onclick="$('#facebox').hide();$('#facebox_overlay').hide();return false;">
+</div>
+
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+    // Basic date picker with default settings 
+    $("#testDate").glDatePicker({
+      leftMargin: 64,
+      topMargin: -10
+    });
+      
+    $("#reportDate").glDatePicker({
+      leftMargin: 64,
+      topMargin: -10
+    });
+    $('.jqBigform').jqTransform({imgPath:''}); 
+  })
+
+  $("#add_child_profile_health_test_report").submit(function() {
+    var chec_error = false;
+    $('p.errorMsgLeft').remove();
+
+    if ($('#test_reports_title').val() == "" || $('#test_reports_title').val() == "title"){
+      $('#test_reports_title').css('margin-bottom', '0px');
+      $("<p class='errorMsgLeft'>Please input</p>").insertAfter($('#test_reports_title'))
+      chec_error = false;
+    }else{
+      var title = $('#test_reports_title').val();
+      var pattern = /^[a-zA-Z]{2,30}$/
+      if(pattern.test(title)){
+        $('#test_reports_title').next().remove();
+        chec_error = true;          
+      }else{
+        $('#test_reports_title').css('margin-bottom', '0px');
+        $("<p class='errorMsgLeft'>Input Only letters allowed</p>").insertAfter($('#test_reports_title'))
+      }     
+    }
+
+    if($('#report_type').val()=="Select"){
+      $('#report_type').css('margin-bottom', '0px');
+      $("<p class='errorMsgLeft'>Please select</p>").insertAfter($('#report_type').parent().next())
+      chec_error = false;
+    }else{
+      $('#report_type').next().remove();
+      chec_error = true;
+    }
+
+    if($('#report_from').val()=="Select"){
+      $('#report_from').css('margin-bottom', '0px');
+      $("<p class='errorMsgLeft'>Please select</p>").insertAfter($('#report_from').parent().next())
+      chec_error = false;
+    }else{
+      $('#report_from').next().remove();
+      chec_error = true;
+    }
+
+    if($('#helth_issue').val()=="Select"){
+      $('#helth_issue').css('margin-bottom', '0px');
+      $("<p class='errorMsgLeft'>Please select</p>").insertAfter($('#helth_issue').parent().next())
+      chec_error = false;
+    }else{
+      $('#helth_issue').next().remove();
+      chec_error = true;
+    }
+
+
+    if (chec_error == false){
+      return false;
+    }else{
+      return true;
+    }
+  });  
+</script>

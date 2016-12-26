@@ -1,0 +1,60 @@
+
+<div class = "header">
+	<div class = "logo">
+		<%= link_to(image_tag('logo.png'), root_path)%>
+		<ul class="head-link">
+			<li class="btn header-btn"><a href="#">Profile</a></li>
+            <%- if @is_job_seeker %>
+			    <li class="btn header-btn"><a href="#">Inbox</a><span class="badge badge1">3</span></li>
+            <%- end %>
+			<li class="btn header-btn"><a href="#">Notification</a><span class="badge badge2 badge-info">5</span></li>
+			<li class="btn header-btn"><%= link_to "Logout",destroy_user_session_path,:method => :get %></li>
+		</ul>
+	</div>
+</div>
+
+<div class="navbar">
+  <div class="navbar-inner" id="head-menu">
+    <div class="container">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+     <!-- <a class="brand" href="#">Project name</a> -->
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <li class="#"><%= link_to(image_tag('home.png'), "#")%></li>
+            <li><%= link_to "Dashboard",dashboard_index_path %><!-- <a href="dashboard">Dashboard</a> --></li>
+  							<li><a href="#jobs">Jobs</a></li>
+ 						
+							<li><a href="<%=networks_path%>">Network</a></li>
+							<li><a href="#groups">Groups</a></li>
+							
+							<li><%= link_to "Settings", company_setting_path%></li>
+            <!--  <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li class="divider"></li>
+                  <li class="nav-header">Nav header</li>
+                  <li><a href="#">Separated link</a></li>
+                  <li><a href="#">One more separated link</a></li>
+                </ul>
+              </li> --> <!-- dropdown   -->
+          </ul>
+        </div><!--/.nav-collapse -->
+					<div class="nav-search-box">
+						<form class="navbar-search pull-left">
+							<input type="text" class="search-query" id="search-input" placeholder="Search"/>
+							<button type="submit" class="btn " id="search-button"></button>
+						</form>
+					</div>
+
+    </div>
+  </div>
+</div>
+

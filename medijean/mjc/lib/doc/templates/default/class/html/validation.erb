@@ -1,0 +1,14 @@
+<% puts object[:validation] if object[:validation] %>
+<% if object[:validation] %>
+  <div class="tags">
+    <h4>Validation:</h4>
+    <% if object[:validation][:required_fields] %>
+      <h5>Required fields</h5>
+      <ul class="see">
+        <% object[:validation][:required_fields].each do |field| %>
+          <li><%=field %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+<% end %>

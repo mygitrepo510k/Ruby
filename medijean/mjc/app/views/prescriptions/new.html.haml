@@ -1,0 +1,62 @@
+= form_for "prescription",:url => "/prescriptions/review",:method=>"get", :html => { :id => "complete-profile",:multipart=>true }  do |f|
+  .row
+    .span12.black-box-form
+      .row.main-row
+        .span4
+          %h4
+            = t("doctor_flow.new_prescription.heading")
+      %hr
+      .row
+        .span2.offset1
+          %p
+            = t("doctor_flow.new_prescription.reason")
+      .row
+        .span3.offset1
+          =f.select :reason,options_for_select(["Stress"],"Stress")
+      %hr/
+      .row
+        .span3.offset1
+          %p
+            = t("doctor_flow.new_prescription.current_use")
+      .row
+        .span3.offset1
+          =f.select :reason,options_for_select(["5g/day"],"5g/day")
+      %hr/
+      .row
+        .span2.offset1
+          %p
+            = t("doctor_flow.new_prescription.medijean_type")
+      .row
+        .span3.offset1
+          =f.select :reason,options_for_select(["MediJean Pain #1"],"MediJean Pain #1")
+      %hr/
+      .row
+        .span2.offset1
+          %p
+            = t("doctor_flow.new_prescription.amount")
+      .row
+        .span3.offset1
+          =f.select :reason,options_for_select(["10g/day"],"10g/day")
+      %hr/
+      .row
+        .span2.offset1
+          %p
+            = t("doctor_flow.new_prescription.method")
+      .row
+        .span3.offset1
+          =f.select :reason,options_for_select(["Vaporization"],"Vaporization")
+      %hr/
+      .row
+        .span2.offset1
+          %p
+            = t("doctor_flow.new_prescription.valid_for")
+      .row
+        .span3.offset1
+          =f.select :reason,options_for_select(["12 Months"],"12 Months")
+      %hr/
+  .row.empty-row
+  .row
+    .span1         
+      =link_to t("general.back"), patient_profile_doctors_path, :class=>"btn btn-inverse"
+    .span1
+      = f.submit t("doctor_flow.new_prescription.next_review"), :class=>"btn btn-inverse"

@@ -1,0 +1,92 @@
+.home-page
+	.row.first-row
+		.content
+			.row
+				%a.btn.btn-primary{:href=>new_jobseeker_path, :style=>"margin-right: 80px;padding-top:14px;"} Job Seekers Sign Up			
+				%a.btn{:href=>new_employer_path, :style=>"padding-top:14px;"} Employers Sign Up
+	.row.second-row
+		.content{:style=>"width:1100px;"}
+			= render "static_pages/search_form"
+	.row.third-row
+		.content
+			.title
+			.row.content-row
+				.span6
+					.row.f-row
+						.mac-img
+					.row.s-row
+						%a{:href=>"/search_employer/h1bemployer"}
+							.span1.search-h1b-jobs
+							.span8{:style=>"margin-left:0px;"}
+								%label.strong Search H-1B Jobs and Employers
+								%label{:style=>"font-style: italic"} Connect with H-1B Employers and Apply
+
+				.span4
+					.row.fs-row
+						%a{:href=>"#"}
+							.span1.fs-img
+							.span9
+								%label.strong H-1B Job/Sponsorship Wanted Ads
+								%label{:style=>"font-style: italic"} Looking for H-1B Job or Spnsorship? Post classifields in the portal.
+					.row.sc-row
+						%a{:href=>"#"}
+							.span1.sc-img
+							.span9
+								%label.strong Extensive H-1B Employer Database
+								%label{:style=>"font-style: italic"} Free access to 500,000+ H-1B Employers
+								%label{:style=>"font-style: italic"} Database, with detailed employer information.
+					.row.th-row
+						%a{:href=>"#"}
+							.span1.th-img
+							.span9
+								%label.strong Employer Reviews/Background Check
+								%label{:style=>"font-style: italic"} Check the reviews and background of employers using our tool suite.
+					.row.fr-row
+						%a{:href=>"#"}
+							.span1.fr-img
+							.span9
+								%label.strong Explore Ratings, Top Salaries & Job Titles
+								%label{:style=>"font-style: italic"} Obtain employer ratings, top salary positions and top job titles to better know the employer.
+
+	.row.fourth-row
+		.content
+			.title
+			.row.content-row{:style=>"margin-top:0px;"}
+				.row.fs-row
+					.span5.offset1
+						%a{:href=>"/static_pages/post_main"}
+							.span1.fs-img
+							.span8
+								%label.strong Post your H-1B Jobs for Candidates
+								%label{:style=>"font-style: italic"} Find suitable employees through job posting in our portal.
+					.span5
+						%a{:href=>"#"}
+							.span1.sc-img
+							.span8
+								%label.strong Create customized Employer Profile
+								%label{:style=>"font-style: italic"} Employer can create their own profile, providing more details useful for the job seekers.
+				.row.sc-row
+					.span5.offset1
+						%a{:href=>"#"}
+							.span1.th-img
+							.span8
+								%label.strong Interact & Access Job Seeker Profiles
+								%label{:style=>"font-style: italic"} You can get access to job seeker's profiles and interact with the candidates.
+					.span5
+						%a{:href=>"#"}
+							.span1.fr-img
+							.span8
+								%label.strong Get Access to H-1b & OPT Network
+								%label{:style=>"font-style: italic"} Obtain easy access to H-1B and OPT student network through our portal.
+						
+
+/	.row.fifth-row
+/		.content
+/			.content-box
+/				.span4{:style=>"width: 280px;"}
+/					%h3 NEWSLETTER SIGN UP
+/				.span5{:style=>"width: 460px;"}
+/					%input{:type=>"email", :placeholder=>"Enter your Email", :style=>"border-radius:10px;font-size: 30px;height: 40px;width: 450px;padding-left:15px;"}
+/				.span3{:style=>"width: 200px;"}
+/					%a.btn.btn-primary{:href=>"#",:style=>"border-radius: 10px;font-size: 26px;height: 30px;padding-top: 12px;width: 170px;"} YES
+	

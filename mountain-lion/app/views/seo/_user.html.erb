@@ -1,0 +1,25 @@
+<div class="media">
+  <%= user.seo_photo %>
+  <div class="media-body">
+    <p>
+      <%= user.seo_username_and_age %>
+      <em>from</em>
+      <%= user.location %>
+    </p>
+    <%= user.profile_title %>
+    <p>About me... <em><%= user.profile_description %></em>&nbsp;</br>
+    I'm Looking For... <em><%= user.looking_for  %></em></p>
+    <p class="text-warning">
+    <%= link_to signup_path(who: user.username), class: 'btn-small btn btn-info' do %>
+      <i class='icon-envelope icon-white'></i> Message
+    <% end %>
+    <%= link_to signup_path(who: user.username), class: 'btn-small btn btn-info' do %>
+      <i class="icon-comment icon-white"></i> Flirt
+    <% end %>
+    <%= link_to signup_path(who: user.username), class: 'btn-small btn btn-info' do %>
+      <i class="icon-user icon-white"></i> View Profile
+    <% end %>
+    </p>
+  </div>
+</div>
+<hr><!-- repeats here -->

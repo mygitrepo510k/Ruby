@@ -1,0 +1,487 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+en:
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+  notifications:
+    welcome: "Welcome to MediJean"
+    incoming_prescription: "{sender_name} sent you a prescription"
+  datetime:
+    distance_in_words:
+      half_a_minute: "half a minute ago"
+      less_than_x_seconds:
+        one:   "less than 1 second ago"
+        other: "less than %{count} seconds ago"
+      x_seconds:
+        one:   "1 second ago"
+        other: "%{count} seconds ago"
+      less_than_x_minutes:
+        one:   "less than a minute ago"
+        other: "less than %{count} minutes ago"
+      x_minutes:
+        one:   "1 minute ago"
+        other: "%{count} minutes ago"
+      about_x_hours:
+        one:   "about 1 hour ago"
+        other: "about %{count} hours ago"
+      x_days:
+        one:   "1 day ago"
+        other: "%{count} days ago"
+      about_x_months:
+        one:   "about 1 month ago"
+        other: "about %{count} months ago"
+      x_months:
+        one:   "1 month ago"
+        other: "%{count} months ago"
+      about_x_years:
+        one:   "about 1 year ago"
+        other: "about %{count} years ago"
+      over_x_years:
+        one:   "over 1 year ago"
+        other: "over %{count} years ago"
+      almost_x_years:
+        one:   "almost 1 year ago"
+        other: "almost %{count} years ago"
+  general:
+    next: "Next"
+    back: Back
+    search: Search
+    description: Description
+    symptom: Symptom
+    lastname: "Last Name"
+    firstname: "First Name"
+    for_doctors: "For Doctors"
+    street: Street
+    apartment: "Apartment/Suite/Other"
+    city: City
+    province: Province
+    postal_code: "Postal Code"
+    shipping_address: "Shipping Address"
+    billing_address: "Billing Address"
+    fullname: "Full Name"
+    privacy_policy: "Privacy Policy"
+    terms_of_use: "Terms of Use"
+    sign_up: "Sign Up"
+    log_in: "Sign In"
+    user_required: "Please Sign-in to continue.."
+    doctor : "Doctor"
+    issue_date: "Issue Date"
+    cancel: "Cancel"
+    save_change: "Save Changes"
+    allowed_once: "This action cannot be completed twice"
+    no_access: "Your permission level is insufficient to access this page"
+  placeholders:
+    email: "john@smith.com"
+    password: "Must be at least 8 characters long"
+  patient_flow:
+    welcome_screen:
+      title: "Welcome to MediJean!"
+      text1: "We've sent you a welcome package to your email. Give this to your doctor, and you will be notified via email when your doctor has signed on and you will be ready to place your order for medical marijuana."
+      next_button: "Complete Your Profile"
+    complete_profile:
+      title: "You are on your way to getting medicine!"
+      text1: "Complete registration below and get started with placing your order."
+      text2: "Profile Picture (Optional)"
+      text3: "Health Card Number"
+      text4: "Phone Number"
+      text5: "What is your reason for using medical marijuana?"
+      text6: "Date of Birth"
+      text7: "Phone Number"
+      notice: "Your profile is updated."
+      error: "Validation error, you can't leave a field blank."
+      update_required: "Please complete your profile first."
+      phone_no: "*Phone Number"
+      next_button: "Complete Registration"
+      account: "Account"
+      profile: "Profile"
+    find_your_doctor:
+      title: "Find Your Doctor"
+      text1: "Profile 40% complete"
+      text2: "Enter your doctor's name"
+      text3: "Enter City your doctor is located at"
+      next_button: "Next - Upload Prescription"
+    upload_prescription:
+      title: "Upload Prescription"
+      text1: "Lorem ipsum dolor sit amet risus. Morbi. Magnis laoreet fermentum."
+      prescription_image: "Prescription Image"
+      prescribing_doctor: "Prescribing Doctor"
+      presc_doctor: "Doctor"
+      prescription_number: "Prescription Number"
+      issue_date : "Issue Date"
+      expiry_date: "Expiry Date"
+      reason: "Primary Reason"
+      habits: "Current Usage Habits"
+      notes: "Additional Notes"
+      next_button: "Next >"
+    prescription:
+      singular:            "Prescription"
+      plural:              "Prescriptions"
+      doctor:              "DOCTOR"
+      prescription_no:     "PRESCRIPTION NO"
+      issue_date:          "ISSUE DATE"
+      expiry_date:         "EXPIRY DATE"
+      status:              "STATUS"
+      action:              "ACTION"
+      upload_prescription: "Upload New Prescription"
+      upload: "Upload Prescription"
+      change: "Change"
+      remove: "Remove"
+      text1: "You don't have any prescriptions"
+      presc_no: "Prescription No. "
+      # model attributes [prescription]
+      prescribing_doctor_attr:              "Doctor"
+      prescription_no_attr:                 "Prescription Number"
+      issue_date_attr:                      "Issue Date"
+      expiry_date_attr:                     "Expiration Date"
+      expiration_attr:                      "Expiration Date"
+      symptom_attr:                         "Primary Reason"
+      current_usage_habits_attr:            "Current Usage Habits"
+      description_attr:                     "Additional Notes"
+    review:
+      title: "Review Prescription"
+      text1: "Lorem ipsum dolor sit amet risus. Morbi. Magnis laoreet fermentum."
+      strain: "Strain"
+      quantity: "Quantity"
+      recommended_method: "Recommended Ingestion Method"
+    place_your_order:
+      title: "Place Your Order"
+      text1: "Profile 80% complete"
+      text2: "Review Order"
+      text3: "Payment Information"
+      text4: "We accept Master Card, Visa, and American Express."
+      text5: "Card Number"
+      text6: "CVC or CVS (Last 3 digits on back of card. Amex: 4 digit code on front)"
+      text7: "Expiration (MM/YYYY)"
+      text8: "Save your payment method for any future transactions"
+      text9: "Same as billing address"
+      text10: "Automatic Billing enabled until prescription expires"
+      text11: "Billing information"
+      text12: "Please fill out your billing information"
+      next_button: "Place Your Order!"
+  devise:
+    password_length: "Must be at least 8 characters long"
+    confirm_password: "re-enter password"
+    signup: "Get Started"
+    sign_up_patient: "Sign up as a Patient"
+    email: "E-mail Address"
+    password: Password
+    password_confirmation: "Password Confirmation"
+    login_title: "Sign In to MediJean"
+    doctor_signup: "Sign up as a Doctor"
+    text1: "I agree to the"
+    text2: "and"
+    text3: "Don't have an account?"
+    text4: "Forgot your password?"
+    new:
+      patient:
+        title: "Getting medicine shouldn't be painful."
+        text1: "Lorem ipsum dolor sit amet habitant. Donec litora Sed sem urna lobortis Conum. Pellentesque mus. Adipiscing mattis euismod, natoque et."
+        text2: "By clicking 'Sign Up with Your E-Mail Address' you confirm that you accept our Terms of Service"
+      doctor:
+        title: "Learn how to prescribe medical cannabis to your patients."
+        text1: "We are building an interactive resource tool that will help you learn more about medical cannabis and how to choosethe correct medicine"
+        text2: "I agree to the Terms of Use and Privacy Policy."
+        text3: "We are building an interactive resource tool that will help you learn more about medical cannabis"
+        text4: "By signing up you confirm that you accept our Terms and Services"
+        text5: "MediJean understands the challenges for medical professionals under the new medical marijuana regulations."
+        text6: "Don't wait any longer, get MediJean"
+        provide_better: "Provide better patient care"
+        provide_better_desc: "Informing, educating and guiding patients through the process of selecting the right medicine products is our core focus. With a new regulatory environment that enables factory quality control, we can help fulfill the government's mandate for patient safety"
+        engage_patients: "Engage with your patients"
+        engage_patients_desc: "Educating physicians in the use of medical cannabis through live and online education, coupled with an IT-based prescribing engine based on clinical pathways designed by medical professionals, allows us to help address the concerns of the medical community."
+        get_news: "Get news and updates from our Knowledge Center"
+        get_news_desc: "Creating a modern IT system utilizing standardized electronic health records, anonymous profiles and active clinical research initiatives means that together we can help further the knowledge around medical cannabis and continuously improve our products."
+  footer:
+    about: About
+    blog: Blog
+    careers: Careers
+    company: Company
+    #copyrights: "Copyright (c) 2013 MediJean"
+    copyrights: "(c) 2013 MediJean. All Rights Reserved. Made in Canada."
+    facebook: Facebook
+    get_in_touch: "Get In Touch"
+    how_it_works: "How It Works"
+    linkedin: "Linked In"
+    #newsletter: "Subscribe to our Newsletter"
+    newsletter: "Join Our Newsletter"
+    resources: Resources
+    terms_of_service: "Terms of Service"
+    twitter: Twitter
+    back_top: "Back to Top"
+  homepage:
+    homepage_text1: "Finding relief has never been so easy"
+    homepage_text2: "Sign up to connect to your doctor and manage your health"
+    homepage_text3: "We are creating a new Medical Cannabis industry in Canada and accross the globe."
+    homepage_text4: "MediJean is building a world-class “bio-pharma”-style medical cannabis company that will transform the way the medical profession, governments and public thinks about and uses this historic medicine."
+    homepage_text5: "Don't wait any longer, get the help you need."
+    ongoing_clinical_research: "Ongoing Clinical Research"
+    ongoing_clinical_research_desc: "Creating a modern IT system utilizing standardized electronic health records, anonymous profiles and active clinical research initiatives means that together we can help further the knowledge around."
+    patient_care: "Patient Care "
+    patient_care_desc: "Informing, educating and guiding paitents through the process of selecting the right medicine products is our focus. With a new regulatory environment that enables factory quality control, we."
+    prescription: Prescription
+    prescription_desc: "Educating physicians in the use of medical cannabis through live and online education, coupled with an IT-based prescribing engine based on clinical pathways designed by medical professionals, allows us to."
+    signup_text: "By signing up you confirm that you accept our Terms of Service."
+  navbar:
+    #for_patients: "For Patients"
+    #contact: "Contact"
+    about: "About"
+    how_it_works: "How It Works"
+    blog: "Blog"
+    login: "Sign In"
+    signup: "Signup"
+    logout: "Sign Out"
+    i_am_doctor: "I'm a Doctor"
+    dashboard: "Dashboard"
+  doctor_flow:
+    welcome_screen:
+      title: "Welcome to MediJean!"
+      text1: "We've sent you a verification email, please use link provided inside to confirm your account."
+    profile_update:
+      thank_you: "Thank you Mr. %{name} for submitting your professional credentials. Our MediJean staff will call you shortly to complete the verification process."
+    prescribe:
+      title: "Prescribe"
+      text1: "Lorem ipsum dolor sit amet risus. Morbi. Magnis laoreet fermentum."
+      prescribing_doctor: "Prescribing Doctor"
+      prescription_number: "Prescription Number"
+      issue_date : "Issue Date"
+      expiry_date: "Expiry Date"
+      reason: "Primary Reason"
+      habits: "Current Usage Habits"
+      notes: "Additional Notes"
+      prescription_saved: "Your prescription has been saved!"
+      next_button: "Next >"
+    index:
+      heading: "Connect with your patients."
+      claim_profile_heading: "Claim Your Profile"
+      claim_profile_content: "MediJean has hundreds of doctors listed, all submitted by their very own patients. Your profile is probably on MediJean! Sign up to claim your listing and make sure it's accurate and complete."
+      login_heading: "Sign In"
+      login_content: "Lorem ipsum dolor sit amet Nunc Etiam luctus est! Curabitur, vestibulum. Phasellus sollicitudin quis bibendum Curabitur congue fringilla feugiat Maecenas Praesent scelerisque. Aptent scelerisque eget."
+      get_info_heading: "Get Information"
+      get_info_content: "Lorem ipsum dolor sit amet Nunc Etiam luctus est! Curabitur, vestibulum. Phasellus sollicitudin quis bibendum Curabitur congue fringilla feugiat Maecenas Praesent scelerisque. Aptent scelerisque eget."
+      get_started: "Get Started"
+    claim_profile:
+      heading: "Claim Your Profile"
+      text: "Thousands of patients already use MediJean. Sign up in order to manage your patients profiles and provide them the care they need. Start by searching for your profile – your patients have probably listed it already!"
+    pending_claim:
+      heading: "Thank you for claiming your profile."
+      text1: "We've just sent you an email with a verification link. Please following the instructions of how to verify once we've contacted your clinic. Dictum. Magna. Accumsan In Nulla volutpat aliquet dapibus condimentum vehicula fringilla natoque. Quisque ipsum. Lacus ultricies. Adipiscing fames ligula. Volutpat. Elementum. Adipiscing ipsum sodales fames quis eleifend risus. Sodales vehicula."
+      text2: "In the mean time feel free to learn more about Medijean"
+      text3: "here."
+    dashboard:
+      heading1: "Patients"
+      heading2: "Total"
+      patient_name: "Patient Name"
+      status: "Status"
+      invite_patient: "+ Invite New Patient"
+      view_profile: "View Profile"
+    patients:
+      plural: "Patients"
+      invite_patients: "Invite Patients"
+      patient: "Patient"
+      health_card_no: "Health Card No."
+      patient_email: "Patient Email"
+      action: "Action"
+      add_your_patients: "Add your patients"
+      no_patients_html: "Currently you have no patients. %{link} and begin prescribing."
+      cancel_submit: "Cancel"
+      invitation_submit: "Invite"
+      invite_new: "Invite New Patient"
+      patient_added: "New patient added!"
+    patient_profile:
+      heading: "Profile"
+      prescribe: "Prescribe"
+      past_prescriptions: "Past Prescriptions"
+      pathway: "Pathway"
+      age: "Age"
+      gender: "Gender"
+      address: "Address"
+      email: "Email"
+      phone: "Phone"
+      current_plan: "Current Plan"
+      prescription_no: "Prescription No."
+      date: "Date"
+      reason: "Reason for visit"
+      current_use: "Currently using Marijuana?"
+      type: "Type"
+      amount: "Amount"
+      method: "Method"
+      valid_for: "Prescription Valid for"
+      issue_date: "Issue Date"
+      expiry_date: "Expiry Date"
+      status: "Status"
+      action: "Action"
+      no_prescriptions: "No prescriptions yet."
+      view: "View"
+    prescription:
+      singular:            "Prescription"
+      plural:              "Prescriptions"
+      doctor:              "DOCTOR"
+      prescription_no:     "PRESCRIPTION NO"
+      issue_date:          "ISSUE DATE"
+      expiry_date:         "EXPIRY DATE"
+      status:              "STATUS"
+      action:              "ACTION"
+      upload_prescription: "Upload New Prescription"
+      # model attributes [prescription]
+      prescribing_doctor_attr:              "Doctor"
+      prescription_no_attr:                 "Prescription Number"
+      issue_date_attr:                      "Issue Date"
+      expiry_date_attr:                     "Expiry Date"
+      expiry_date_attr:                     "Expiry Date"
+      symptom_attr:                         "Primary Reason"
+      current_usage_habits_attr:            "Current Usage Habits"
+      description_attr:                     "Additional Notes"
+    new_prescription:
+      heading: "New Prescription"
+      reason: "Reason for Visit"
+      current_use: "Currently using Marijuana?"
+      medijean_type: "Medijean Type"
+      amount: "Amount"
+      method: "Method"
+      valid_for: "Prescription valid for"
+      next_review: "Next - Review"
+    review_prescription:
+      heading: "Review Prescription"
+      text1: "You prescribed"
+      text2: "the following:"
+      reason: "Reason for Visit"
+      current_use: "Currently using Marijuana?"
+      type: "Type"
+      amount: "Amount"
+      method: "Method"
+      valid_for: "Prescription Valid for"
+      prescribe: "Prescribe"
+    invite_patient:
+      heading: "Invite New Patient"
+      text1: "Search for your patients by name and city and quickly connect to begin engaging and prescribing MediJean."
+      new_search: "New Search"
+    complete_profile:
+      title: "You are on your way to prescribing MediJean!"
+      text1: "Complete registration below and get started."
+      submit_btn: "Complete Registration"
+      header1: "Account"
+      header2: "Profile"
+      doctor_phone: "Phone Number"
+      clinic_phone: "Clinic Phone Number"
+      update_required: "Please complete your profile first."
+  order:
+    index:
+      heading: "Order History"
+      new_order: "Place New Order"
+      order_no: "Order Number"
+      order_date: "Order Date"
+      amount: "Amount"
+      status: "Status"
+      action: "Action"
+      view: "View"
+      text1: "You haven't placed any orders yet"
+    show:
+      order_no: "Order No"
+      medicine_name: "Medicine Name"
+      quantity: "Quantity"
+      price: "Price"
+      total: "Total"
+      tax: "Taxes"
+      shipping: "Shipping"
+      sub_total: "SUBTOTAL"
+      cancel_order: "Cancel Order"
+    new:
+      text1: "Lorem ipsum dolor sit amet habitant. Donec litora Sed sem urna lobortis."
+      tax: "Taxes"
+      total: "Total"
+    complete:
+      text1: "Thank You"
+      text2: "Your order will ship in the next 24 hours."
+      heading: "Thank You"
+      text: "Your order will ship in the next 24 hours."
+      btn_txt: "Track Prescription Orders"
+  dashboard:
+    tabs:
+      prescription: "Prescriptions"
+      order_history: "Order History"
+      notifications: "Notifications"
+      knowledge_center: "Knowledge Center"
+      doctor_patients: "Patients"
+  activerecord:
+    attributes:
+      doctor:
+        phisician_id: "Health Canada Phisician Number"
+  settings:
+    title:  Settings
+    profile:
+      successfully_updated:   Your profile was successfully updated
+      doctors:      
+        clinic_address:       "143 Greenbush Crescent, Toronto, CA L8J M7H"
+    account:
+      change_password:        Change Password
+      save_changes:           Save Changes
+      close:                  Close
+      javascript_link:        'javascript://'
+      successfully_updated:   Your account was successfully updated
+      check_again:            Please check again your account information and retry
+      check_again_old_paswd:  Please check again the old password
+      successfully_changed:   Password was succesfully changed
+    payment:
+      title:                  Payment
+      title1:                 Edit Payment Information
+      title2:                 Edit Billing Information
+      title3:                 Payment Information
+      title4:                 Billing Information
+      comment1:               "We accept Mastercard, Visa and American Express."
+      name_on_card:           Name on Card
+      first_name:             First Name*
+      last_name:              Last Name*
+      street_address:         Street Address
+      apartment:              Apartment/Suite/Other
+      city:                   City
+      province:               Province
+      postal_code:            Postal Code
+      card_number:            "Card Number ( the 16 digits on the front of the card)"
+      card_id:                Card ID
+      cvc_number:             "CVC or CVS(Last 3 digits on back of card. Amex: 4 digit code on front)"
+      exp_date:               Expiry date
+      checkbox_1:             You will be billed automatically until your prescription expires
+      checkbox_2:             Save your payment method for any future transactions
+      checkbox_3:             Same as billing address
+      successfully_saved:     Payment method data was successfully created
+      successfully_updated:   Payment method was successfully updated
+      retry_input:            Please check agian your card number
+    notifications:
+      option_title:           Send me emails when
+      receive_message:        I receive a message from a doctor on Medijean
+      has_news:               MediJean has news about MedicaL Marijuana
+      has_tagged_me:          A doctor on MediJean has tagged me
+      receive_prescription:   I receive a prescription
+      succesfully_updated:    Notification settings were succesfully updated
+  # activerecord:
+  #   errors:
+  #     models:
+  #       prescription:
+  #         attributes:
+  #           doctor_name:
+  #             blank: "Doctor Name can't be blank"
+  #           symptom:
+  #             blank: "Symptom can't be blank"
+  #           current_usage_habits:
+  #             blank: "Current Usage Habits can't be blank"
+  #           description:
+  #             blank: "Additional Notes can't be blank"
+  #           medicine_id:
+  #             blank: "Strain can't be blank"
+  #           administration_method:
+  #             blank: "Recommended Method can't be blank"
+  #           prescription_image:
+  #             blank: "Please upload Prescription Image"
+  #       profile:
+  #         attributes:
+  #           health_card_number:
+  #             blank: "Health Card Number can't be blank"
+  #           first_name:
+  #             blank: "First Name can't be blank"
+  #           last_name:
+  #             blank: "Last Name can't be blank"
+  #           phone:
+  #             blank: "Phone Number can't be blank"

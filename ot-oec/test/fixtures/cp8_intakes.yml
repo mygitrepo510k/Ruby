@@ -1,0 +1,81 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  users_id: 
+  birthdate: MyText
+  live: MyText
+  book_stranger: MyText
+  stranger_adventure: MyText
+  desires: MyText
+  top_desires: MyText
+  top_fears: MyText
+  kidness: MyText
+  phobias: MyText
+  therapist: MyText
+  sex_life: 1
+  purpose: 1
+  emotional: 1
+  honesty: 1
+  love: 1
+  speaking: 1
+  enjoy_challenge: 1
+  trust: 1
+  dark_side: 1
+  gain_trust: MyText
+  young_old: MyText
+  what_triggers: MyText
+  trigger_response: MyText
+  get_you_once_triggered: MyText
+  food: MyText
+  color: MyText
+  movie: MyText
+  song: MyText
+  law: MyText
+  dream: MyText
+  knowledgable: MyText
+  edges: MyText
+  hard_nos: MyText
+  people_adversion: MyText
+  people_trust: MyText
+  bring_to_game: MyText
+  anything_else: MyText
+
+two:
+  users_id: 
+  birthdate: MyText
+  live: MyText
+  book_stranger: MyText
+  stranger_adventure: MyText
+  desires: MyText
+  top_desires: MyText
+  top_fears: MyText
+  kidness: MyText
+  phobias: MyText
+  therapist: MyText
+  sex_life: 1
+  purpose: 1
+  emotional: 1
+  honesty: 1
+  love: 1
+  speaking: 1
+  enjoy_challenge: 1
+  trust: 1
+  dark_side: 1
+  gain_trust: MyText
+  young_old: MyText
+  what_triggers: MyText
+  trigger_response: MyText
+  get_you_once_triggered: MyText
+  food: MyText
+  color: MyText
+  movie: MyText
+  song: MyText
+  law: MyText
+  dream: MyText
+  knowledgable: MyText
+  edges: MyText
+  hard_nos: MyText
+  people_adversion: MyText
+  people_trust: MyText
+  bring_to_game: MyText
+  anything_else: MyText

@@ -1,0 +1,20 @@
+= render 'header'
+#messages
+  %ul{class: "nav nav-pills"}
+    %li.active= link_to I18n.t('links.messages.inbox'), inbox_admin_user_messages_path(@user)
+    %li= link_to I18n.t('links.messages.sent'), sent_admin_user_messages_path(@user)
+  %table.table.table-bordered.table-hover
+    %thead
+      %th= I18n.t('views.messages.sender')
+      = render partial: 'thead'
+    %tbody
+      - @received_messages.each do |message|
+        %tr{class: "#{"strong" unless message.read?}", id: "message_#{message.id}", "data-id" => message.id }
+          %td= link_to message.sender.username, admin_user_path(message.sender.username)
+          = render partial: "message", locals: {message: message}
+  = paginate @received_messages
+
+:coffeescript
+  $('tr[id*=message_]').click ->
+    id = $(this).data('id')
+    $.get('/messages/'+ id + '.js')

@@ -1,0 +1,28 @@
+.admin-users.section.single
+  h3 Users
+
+  ol.breadcrumb
+    li= link_to 'Admin', admin_path
+    li.active= 'Users'
+
+  = link_to 'Add New', new_admin_user_path
+
+  table.table.table-striped
+    tr
+      th= 'Name'
+      th= 'Email'
+      th= 'Created at'
+      th= 'Role'
+      th= 'View'
+      th= 'Edit'
+
+    - @users.each do |u|
+      tr
+        td= u.name
+        td= u.email
+        td= u.created_at.to_formatted_s(:short)
+        td= u.role(current_user).sub(/_/, ' ').capitalize
+        td= link_to 'View', user_path(u)
+        td= link_to 'Edit', edit_admin_user_path(u)
+
+  = will_paginate @users, renderer: BootstrapPagination::Rails

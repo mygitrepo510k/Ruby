@@ -1,0 +1,14 @@
+<div id="content_wrap" class="container">
+  <div id="left_side">
+    <%= render :partial => "left_side" %>
+  </div>
+  <div id="main_area">
+    <%= render :partial => "main_area" %>
+  </div>
+  <div id="right_side">
+    <%= render :partial => "right_side" %>
+  </div>
+  <% if current_user %>
+      <%= render 'partials/share/pusher_chat_widget' %>
+  <% end %>
+</div>

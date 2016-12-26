@@ -1,0 +1,19 @@
+= simple_form_for @message do |f|
+  .modal-header
+    %button{type: "button", class: "close", "data-dismiss" => "modal", "aria-hidden" => true}x
+    %h3 Flirt with #{@message.recipient.display_username}!
+  .modal-body
+    = user_photo('media-object img-polaroid pull-right', 'thumb', 'thumb', @message.recipient )
+    = f.hidden_field :recipient_id
+    = label_tag "flirt_id", I18n.t('views.flirts.choose')
+    = select_tag "flirt_id", options_for_select(Flirt.all.map {|f| [f.message, f.id]} ), class: "span4"
+  .modal-footer
+    %button.btn{ "data-dismiss" => "modal", "aria-hidden" => true}Close
+    = f.submit I18n.t('views.flirts.create'), id: 'flirt-send', class: "btn btn-danger", data: { disable_with: 'Sending...' }
+-#
+  :javascript
+    $('#flirt-send').click(function() {
+      $('#modal-container').modal('hide');
+      noty({text: 'Sending flirt...', value: 'notice'});
+      return true;
+    });

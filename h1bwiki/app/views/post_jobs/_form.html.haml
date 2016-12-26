@@ -1,0 +1,189 @@
+:css
+	#token-input-skill_input_box{
+		height:20px;
+		padding:4px;
+	}
+= form_for @post_job, :html => { :class => 'form-horizontal', "data-validate" => "parsley", :id => "job_post_form", :style=>"margin-bottom: 0px;" } do |f|
+	-if @post_job.errors.any?
+		#error_explanation
+			%h2= "#{pluralize(@post_job.errors.count, "error")} prohibited this post_job from being saved:"
+			%ul
+				- @post_job.errors.full_messages.each do |msg|
+					%li= msg
+	= f.hidden_field :user_id, :class => 'number_field', :value=>current_user.id
+	.control-group
+		= f.label :job_title, "Title",:class => 'control-label'
+		.controls
+			= f.text_field :job_title, :class => 'text_field large-field', "data-required"=>"true", "data-rangelength"=>"[5,50]"
+
+	.control-group
+		= f.label :job_type, "Type", :class => 'control-label custom-select'
+		.controls
+			.span3{:style=>"margin-left: 0px;"}
+				%label.radio{:style=>"padding-left: 0px;"}
+					= f.radio_button :job_type, 0, :name=>"option1", :class=>"post-type", :id=>"radio-1"
+					%label{:for => "radio-1", :class => "first-label checked type-full-time"} Full Time
+			.span2{:style=>"margin-left: 0px;"}
+				%label.radio{:style=>"padding-left: 0px;"}
+					= f.radio_button :job_type, 0, :name=>"option1", :class=>"post-type", :id=>"radio-2"
+					%label{:for => "radio-2", :class=>"type-contract"} Contract
+			=f.hidden_field :job_type, :value=>0
+
+	.control-group.duration-box{:style=>"display:none;"}
+		%label.integer.control-label{:for => "job_duration"}
+			Duration
+		.controls
+			.input-append				
+				= f.text_field :job_duration, :class => 'text_field', :placeholder=>"Please input duration", :style=>"width: 130px;"
+				.btn-group
+					%button.btn.dropdown-toggle{"data-toggle" => "dropdown", :style=>"padding: 8px 8px"}
+						%span#display_duration_type Hours
+						%span.caret
+					%ul.dropdown-menu
+						%li
+							%a.duration_type{"data-hours" => "1", "data-type" => "Hours", :href => "#"} Hours
+						%li
+							%a.duration_type{"data-hours" => "40", "data-type" => "Weeks", :href => "#"} Weeks
+						%li
+							%a.duration_type{"data-hours" => "160", "data-type" => "Months", :href => "#"} Months
+			= f.hidden_field :duration_type, :value=>0
+	.control-group.hourly-rate-box{:style=>"display:none;"}
+		= f.label :hourly_rate, "Hourly Rate:($)", :class => 'control-label'
+		.controls
+			= f.text_field :hourly_rate, :class => 'text_field', :placeholder=>""
+
+	.control-group.salary-box
+		= f.label :salary,"Salary:($)", :class => 'control-label'
+		.controls
+			= f.text_field :salary, :class => 'text_field', :placeholder=>""
+
+	.control-group
+		= f.label :job_city, "City",:class => 'control-label'
+		.controls
+			= f.text_field :job_city, :class => 'text_field', "data-required"=>"true"
+	.control-group
+		= f.label :job_state, "State",:class => 'control-label'
+		.controls
+			= f.text_field :job_state, :class => 'text_field', "data-required"=>"true"
+	
+	.control-group.authorization-check-box
+		%label.control-label Work Authorization
+		=f.fields_for :work_authorizations, WorkAuthorization.available_consts, :builder => CustomFormBuilder do |autho|
+			.controls.span2
+				%label.checkbox
+					= autho.check_box :workauthorization_index, {:saved_values => [f.object.work_authorizations, ["workauthorization_index", "desc"]]}, autho.object.workauthorization_index, '-1'
+					= autho.object.desc
+	.control-group
+		= f.label :job_description,"Description", :class => 'control-label'
+		.controls
+			= f.text_area :job_description, :class => 'text_area', :rows=>3, "data-required"=>"true", "data-rangelength"=>"[5,2500]"
+	.control-group
+		= f.label :skill_tokens, "Require Skills",:class => 'control-label'
+		.controls
+			= f.text_field :skill_tokens, :class => 'text_field large-field', :id => "skill_input_box", "data-pre" => @post_job.skill_lists.map(&:attributes).to_json, "data-required"=>"true"
+			%input#input_new_skill{:type=>"text", :placeholder=>"new skill", :style=>"margin-top: -26px;padding-bottom: 6px;padding-top: 6px;width: 118px;"}
+	.control-group.referral-amount-box
+		= f.label :referral_amount,"Referral Amount:($)", :class => 'control-label', :id=>"referral_amount_label"
+		.controls
+			= f.text_field :referral_amount, :class => 'text_field', :placeholder=>""
+	
+	= f.submit 'Continue', :class => 'm-btn blue', :id => "btn_post_create", :style=>"font-size: 30px;height: 58px;width: 100%;"
+	.form-actions{:style=>"padding:20px 0"}
+		= link_to( 'Back ', post_main_path, :class => "btn", :style=>"color: rgb(170, 170, 170);font-size: 30px;height: 40px;padding-top: 20px;width: 245px;")
+		= f.submit 'Preview', :class => 'm-btn blue', :id=>"btn_post_preview", :style=>"font-size: 30px;height: 60px;margin-left: 70px;margin-right: 70px;width: 245px;"
+		= link_to t('.cancel', :default => t("helpers.links.cancel")), posts_view_path, :class => 'btn', :style=>"color: rgb(170, 170, 170);font-size: 30px;height: 40px;padding-top: 20px;width: 245px;"
+
+:javascript 
+	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
+	$('input.post-type').customInput();
+
+	$( "#post_job_job_city" ).autocomplete({
+		source: function (request, response) {
+			$.ajax({
+				url: "http://ws.geonames.org/searchJSON?country=US",
+				dataType: "jsonp",
+				data: {
+					featureClass: "P",
+					style: "full",
+					maxRows: 12,
+					name_startsWith: request.term
+				},
+				success: function (data) {
+					response($.map(data.geonames, function (item) {
+						return {
+							label: item.name + (item.adminName1 ? ", " + item.adminName1 : ""),
+							value: item.name,
+							code: item.adminCode1
+						}
+					}));
+				}
+			});
+		},
+		minLength: 2,
+		select: function (event, ui) {
+			$("#post_job_job_state").val(ui.item.code);
+			$("#post_job_job_duration").focus();
+		}
+		
+	});	
+	$("div.authorization-check-box .controls").eq(1).width("80");
+	$("div.authorization-check-box .controls").eq(2).width("80");
+	$("div.authorization-check-box .controls").eq(3).width("80");
+	$("div.authorization-check-box .controls").eq(4).width("150");
+
+
+	$("label.type-full-time").click(function(){
+		$('div.duration-box').hide();
+		$('div.hourly-rate-box').hide();
+		$('div.salary-box').show();
+		$('#post_job_job_type').val("0");		
+	});
+
+	$("label.type-contract").click(function(){
+		$('div.duration-box').show();
+		$('div.hourly-rate-box').show();
+		$('div.salary-box').hide();
+		$('#post_job_job_type').val("1");
+	});
+
+	$('ul.dropdown-menu a.duration_type').each(function(index){
+		$(this).click(function(){
+			$("#post_job_duration_type").val(index);
+			$("#display_duration_type").text($(this).text());
+		});
+	});
+
+	$(function(){		
+		var job_type = "#{@post_job.job_type}";
+		var last_skill_id = #{SkillList.last.id.to_i}
+		if(job_type=="1"){
+			$('div.duration-box').show();
+			$('div.hourly-rate-box').show();
+			$('div.salary-box').hide();
+			$('#post_job_job_type').val("1");
+
+			$("#radio-1").prop('checked',false);
+			$("#radio-2").prop('checked',true);
+
+			$("#radio-1").next().removeClass('checked');
+			$("#radio-2").next().addClass('checked');
+
+		}
+
+		$("#input_new_skill").keydown(function(event){
+			if(event.keyCode == 13){
+				var add_flag = confirm("Are you ok?");
+				var skill = $(this).val();
+				if( add_flag == true ){
+					$.ajax({
+						url: "/add_skill?skill="+skill
+					}).done(function(data) {
+						last_skill_id = data
+						console.log(last_skill_id);	
+						$("#skill_input_box").tokenInput("add", {id:last_skill_id, name:skill});
+					});					
+				}				
+			}
+		});
+	})
+	

@@ -1,0 +1,17 @@
+.unapproved-photo{id: "photo_#{photo.id}"}
+  .photo
+    = link_to(image_tag(photo.image.url(:preview_thumb), class: "img-polaroid"), photo.image(:original), title: photo.description, class: 'fancybox')
+  .actions
+    = link_to "User profile", admin_user_path(photo.user)
+    %br
+    = content_tag :label,  class: "checkbox inline" do
+      = check_box_tag("user_photos[]", photo.id)
+      Approve
+    %br
+    = link_to "NOT APPROVED", destroy_photo_admin_user_path(photo.id), data: { disable_with: 'Deleting...', method: :delete, confirm: "Are you sure you want to delete this photo?", remote: true }, class: "btn btn-danger"
+
+:javascript
+  $('a.fancybox').fancybox({
+    openEffect: 'elastic',
+    cyclic: 'true',
+    titlePosition: 'over'});

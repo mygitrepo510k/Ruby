@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  h1bemp: 
+  employerTitle: MyString
+  totalCount: MyString
+  avgSalary: MyString
+  flag: MyString
+  rn: MyString
+
+two:
+  h1bemp: 
+  employerTitle: MyString
+  totalCount: MyString
+  avgSalary: MyString
+  flag: MyString
+  rn: MyString

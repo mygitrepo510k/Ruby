@@ -1,0 +1,10 @@
+.result_user 
+	= link_to user_path(result[:user_id])
+		= result[:name]
+
+.timeago
+	= result[:created_at]
+
+.result_body
+	= link_to post_path(result[:id]) do		
+		= truncate(result[:body], length: 40)

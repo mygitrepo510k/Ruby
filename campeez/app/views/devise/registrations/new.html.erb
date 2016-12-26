@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div class="cont_inner">
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification %>
+      <div class="lft_frm signup_frm">
+        <label class="sgnup_hd"><b>Sign up</b></label>
+        <%= f.input :first_name, required: true, autofocus: true, input_html:{class:"mytextbox2"} %>
+        <%= f.input :last_name, required: true, input_html:{class:"mytextbox2"} %>
+        <%= f.input :email, required: true, input_html:{class:"mytextbox2"} %>
+        <%= f.input :password, required: true, input_html:{class:"mytextbox2"} %>
+        <%= f.input :password_confirmation, required: true, input_html:{class:"mytextbox2"} %>
+      </div>
+      <div class="subm_tbtn">
+        <label>I agree with <a href="#">Terms & Conditions</a></label>
+        <input name="" type="submit" value="Sign Up" />
+        <label>Already have an account? <a href="#">Sign In</a></label>
+      </div>
+    <% end %>
+  </div>
+</div>

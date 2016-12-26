@@ -1,0 +1,33 @@
+.row.signup-page
+	.container
+		%h1 Listing stores
+
+		%table
+			%tr
+				%th Category
+				%th Title
+				%th Author
+				%th Price
+				%th Sell price
+				%th Content
+				%th Affiliate code
+				%th
+				%th
+				%th
+
+			- @stores.each do |store|
+				%tr
+					%td= store.category
+					%td= store.title
+					%td= store.author
+					%td= store.price
+					%td= store.sell_price
+					%td= store.content
+					%td= store.affiliate_code
+					%td= link_to 'Show', store
+					%td= link_to 'Edit', edit_store_path(store)
+					%td= link_to 'Destroy', store, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+		%br
+
+		= link_to 'New Store', new_store_path

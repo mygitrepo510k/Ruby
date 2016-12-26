@@ -1,0 +1,2 @@
+module MessageboxHelper
+end

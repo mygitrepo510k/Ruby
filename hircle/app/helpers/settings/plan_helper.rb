@@ -1,0 +1,2 @@
+module Settings::PlanHelper
+end

@@ -1,0 +1,28 @@
+.container-fluid{:style=>"width: 1000px;"}
+	.row.post-main-page{:style => "min-height:200px;"}
+		=render "layouts/nav-link-secondary"
+		.row.content-row
+			.row.first-row{:style=>"margin-top:10px;"}
+				%h2{:style=>"text-align:center"} What type of Posting is this
+				.row.line{:style=>"box-shadow: 0 1px 1px #ccc;height:1px;margin-top:0;"}
+				.span6.offset2
+					.row
+						%label.radio
+							%input#radio-1.post-type{:name => "opinions", :type => "radio", :value => "/jobseeker_jobs/new"}/
+							%label{:for => "radio-1", :class => "first-label checked"} Job / H-1B Sponsorship Wanted
+					.row
+						%label.radio
+							%input#radio-2.post-type{:name => "opinions", :type => "radio", :value => "/jobseeker_trainings/new"}/
+							%label{:for => "radio-2"}  Training / Placement Wanted
+
+					/.row
+					/	%label.radio
+					/		%input#radio-3.post-type{:name => "opinions", :type => "radio", :value => "/jobseeker_mentors/new"}/
+					/		%label{:for => "radio-3"}  Mentor Assistance / Job Support Wanted
+			.row.second-row
+				.span12{:style=>"padding: 10px 30px;"}
+					%form#post-type-form{:action => new_jobseeker_job_path}
+						%input{:type => "submit", :value => "Continue >", :class => "m-btn blue", :style=>"font-size: 26px;font-weight: bold;height: 50px;margin-top: 0;width: 100%;"}/
+:javascript 
+	$('ul.nav-tabs li').eq(2).addClass('isCurrent');
+	$('input.post-type').customInput();

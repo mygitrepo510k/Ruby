@@ -1,0 +1,64 @@
+.rightSection{
+	.widgetBox{
+		.coloum3Divider{
+			.pocketPoint{
+				h3{
+					font-size: 12px;
+				}
+			}
+		}
+	}
+}
+
+/* icon css */
+.widgetBox{
+	.helthIcon,.mindIcon, .dphotoIcon,.calIcon,.actiIcon,.assigIcon,.examIcon,.reportIcon,.awardIcon,.schoolIcon,.diarIcon,.teachIcon{
+		position:relative; 
+		width:72px; 
+		float:left; 
+		text-align:center; 
+		text-transform:uppercase; 
+		padding-bottom:7px;
+		a{
+			background:url(stripe_l.png) no-repeat left top;
+			width:68px; 
+			height:68px; 
+			display:block; 
+			box-shadow:1px 1px 2px #c4c6c5; 
+			margin:0 auto 5px auto;
+			&:hover{
+				box-shadow:1px 2px 3px #999;
+			}
+		}
+	}
+	.schoolIcon,.diarIcon,.teachIcon{ padding-bottom:0px;}
+	.awardIcon,.assigIcon,.dphotoIcon{ padding-bottom:0px;}
+	.actiIcon,.reportIcon,.diarIcon{padding:0px;}
+	.mindIcon, .examIcon, .assigIcon{
+		padding:0 17px;
+	}	
+	
+	
+
+	.helthIcon a{background-position:-5px -5px;}
+	.helthIcon a:hover{ background-position:-327px -5px; }
+	.mindIcon a{ background-position:-98px -5px;}
+	.mindIcon a:hover{ background-position:-418px -5px; }
+	.schoolIcon a{background-position:-185px -5px;}
+	.schoolIcon a:hover{background-position:-507px -5px;}
+
+	.calIcon a{background-position:-5px -101px;}
+	.calIcon a:hover{ background-position:-327px -101px; }
+	.examIcon a{background-position:-98px -101px;}
+	.examIcon a:hover{background-position:-418px -101px;}
+	.actiIcon a{background-position:-185px -101px;}
+	.actiIcon a:hover{background-position:-507px -101px;}
+
+	.awardIcon a{background-position:-5px -204px;}
+	.awardIcon a:hover{background-position:-327px -204px;}	
+	.assigIcon a{background-position:-98px -204px;}
+	.assigIcon a:hover{background-position:-418px -204px;}
+	.dphotoIcon a{background-position:-185px -204px;}
+	.dphotoIcon a:hover{ background-position:-507px -204px; }	
+
+}

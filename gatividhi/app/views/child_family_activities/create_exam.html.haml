@@ -1,0 +1,144 @@
+- @title = @child_upcoming_exam.blank? ? "title" : @child_upcoming_exam.title
+- @description = @child_upcoming_exam.blank? ? "description" : @child_upcoming_exam.description
+- @end_date = @child_upcoming_exam.blank? ? Time.now.to_date : @child_upcoming_exam.end_date
+- @start_date = @child_upcoming_exam.blank? ? Time.now.to_date : @child_upcoming_exam.start_date
+- # @start_time = @childprofileactivity.blank? ? Time.now.to_time : @childprofileactivity.start_time
+- # @end_time = @childprofileactivity.blank? ? Time.now.to_time : @childprofileactivity.end_time
+ 
+.popupWindow{:style => "width: 600px; height: 565px;"}
+  .popupHead
+    .popupTitle{:style => "font-size:12px; line-height:1.2; padding-top:11px; padding-bottom:11px;"} You can start by adding a New Exam Schedule, or continue adding a schedule to an exam you\'ve created.
+    .closeBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;"}
+    .CL
+  .popupContaint
+    .popupSmForm      
+      = form_tag "/create_exam?id=#{@family_member.id}&child_exam_id=#{@child_upcoming_exam.blank? ? '' : @child_upcoming_exam.id}",:id=>'child_exam_form', :multipart => true do
+        .popupTab
+          .popScroll
+            .formRow.jqBigform
+              %label Class:
+              %select.inputField{:name => "test_reports[current_class]", :style => "width:175px;"}
+                - @class_names.each do |single_group|
+                  - if !@child_upcoming_exam.blank? && single_group == @child_upcoming_exam.current_class
+                    %option{:selected => "selected", :value => single_group}= single_group
+                  - else
+                    %option{:value => single_group}= single_group
+              %p.errorMsg
+              .CL
+            .formRow
+              %label Title: *
+              %input#test_reports_title.inputField{:name => "test_reports[title]", :onblur => "if(this.value==''){ this.value='#{@title}'; this.style.color='#979797'}", :onclick => "if(this.value=='#{@title}'){ this.value=''; this.style.color='#000'}", :style => "width:200px;", :type => "text", :value => "title"}/
+              %p.errorMsg
+              .CL
+            .formRow.jqBigform
+              %label Description:
+              %textarea#test_reports_description.inputField{:name => "test_reports[description]", :onblur => "this.style.color='#979797'", :onclick => "this.style.color='#000'", :style => "width:200px;"}= @description
+              %p.errorMsg
+              .CL
+            .formRow
+              .formRow.jqBigform
+                .checkBoxTitle School Exam:
+                - if !@child_upcoming_exam.blank?
+                  - if @child_upcoming_exam.school_exam == true
+                    %input#checkbox2{:checked => "", :name => "test_reports[school_exam]", :type => "checkbox", :value => "true"}/
+                  - else
+                    %input#checkbox2{:name => "test_reports[school_exam]", :type => "checkbox", :value => "true"}/
+                - else
+                  %input#checkbox2{:name => "test_reports[school_exam]", :type => "checkbox", :value => "true"}/
+                %label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+                .CL
+            .formRow
+              %label Start Date: *
+              %input#startDate.dateBox.inputField{:name => "test_reports[start_date]", :onblur => "if(this.value==''){ this.value='start date'; this.style.color='#979797'}", :onclick => "if(this.value=='start date'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "start date"}/
+              .CL
+            .formRow
+              %label End Date:
+              %input#endDate.dateBox.inputField{:name => "test_reports[end_date]", :onblur => "if(this.value==''){ this.value='end date'; this.style.color='#979797'}", :onclick => "if(this.value=='end date'){ this.value=''; this.style.color='#000'}", :type => "text", :value => "end date"}/
+              .CL
+            .formRow.jqBigform
+              %label Exam Category: *
+              %select#test_reports_category{:name => "test_reports[exam_category]", :style => "width:175px;"}
+                - ['Select','Unit tests','Annual Exams','Olympiad'].each do |single_group|
+                  - if !@child_upcoming_exam.blank? && single_group == @child_upcoming_exam.exam_category
+                    %option{:selected => "selected", :value => single_group}= single_group
+                  - else
+                    %option{:value => single_group}= single_group
+              %p.errorMsg
+              .CL
+            .formRow.jqBigform
+              .checkBoxTitle Scholarship:
+              - if !@child_upcoming_exam.blank?
+                - if @child_upcoming_exam.scholarship == true
+                  %input#checkbox2{:checked => "", :name => "test_reports[scholarship]", :type => "checkbox", :value => "true"}/
+                - else
+                  %input#checkbox2{:name => "test_reports[scholarship]", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox2{:name => "test_reports[scholarship]", :type => "checkbox", :value => "true"}/
+              %label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+              .CL
+            .formRow.jqBigform
+              .checkBoxTitle Dates Finalised:
+              - if !@child_upcoming_exam.blank?
+                - if @child_upcoming_exam.date_finalised == true
+                  %input#checkbox2{:checked => "", :name => "test_reports[date_finalised]", :type => "checkbox", :value => "true"}/
+                - else
+                  %input#checkbox2{:name => "test_reports[date_finalised]", :type => "checkbox", :value => "true"}/
+              - else
+                %input#checkbox2{:name => "test_reports[date_finalised]", :type => "checkbox", :value => "true"}/
+              %label{:style => "text-align:left; line-height:1.8; padding-left:5px;"} Yes
+              .CL
+            .formRow.popActionBtn{:style => "text-align:right; padding-left:10px;"}
+              %input.submitBtn{:type => "submit", :value => "save"}/
+              %input.cancelBtn{:onclick => "$('#facebox').hide();$('#facebox_overlay').hide();return false;", :type => "submit", :value => "cancel"}/
+:javascript
+  $("#child_exam_form").submit(function() {
+    if ($('#test_reports_title').val() == "" || $('#test_reports_title').val() == "title"){
+      $('#test_reports_title').next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#test_reports_title').next().html("");
+    }
+
+    if ($('#test_reports_category').val() == "" || $('#test_reports_category').val() == "Select"){
+      $('#test_reports_category').next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#test_reports_category').next().html("");
+    }
+
+    if ($('#test_reports_classd').val() == "" || $('#test_reports_classd').val() == "Current Class"){
+      $('#test_reports_classd').prev().next().html("can't be blank");
+      var chec_error = true;
+    }else{
+      $('#test_reports_classd').next().html("");
+    }
+
+    if ($('#test_reports_description').val() == "" || $('#test_reports_description').val() == "description"){
+    $('#test_reports_description').next().html("can't be blank");
+    var chec_error = true;
+    }else{
+      $('#test_reports_description').next().html("");
+    }
+
+    if (chec_error == true){
+      return false;
+    }else{
+      return true;
+    }
+  }); 
+  $(function() {
+    // Basic date picker with default settings 
+    $("#startDate").glDatePicker({
+      leftMargin: 60,
+      topMargin: -10
+    });
+
+    $("#endDate").glDatePicker({
+      leftMargin: 60,
+      topMargin: -10
+    });    
+  });
+  $('.jqGreenForm').jqTransform({imgPath:'images/'}); 
+  $('.jqSmallform').jqTransform({imgPath:'images/'}); 
+  $('.jqBigform').jqTransform({imgPath:'images/'}); 
+  

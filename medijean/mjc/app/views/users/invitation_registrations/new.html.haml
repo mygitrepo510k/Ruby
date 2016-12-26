@@ -1,0 +1,63 @@
+.row
+  .span12.wrapper
+    .row
+      .span10.offset1.wrap
+        .row
+          .span2 &nbsp;
+        .row
+          .span2
+          .span6
+            %h3 You are on your way to getting medicine!
+          .span2
+        .row
+          .span2
+          .span6
+            %p{:style=>"color: gray;font-size: 17px;"} Complete registration below and get started with placing your order.
+          .span2
+        .row
+          .span10 &nbsp;
+        = form_for "profile",:url => "/users/registrations/complete_profile", :html => { :id => "complete-profile" }  do |f|
+          = hidden_field_tag :token, params[:token]
+          .row
+            .span1
+            .span8
+              %br
+              %h3 Account
+              %br
+              .row
+                - unless current_user
+                  .span3
+                    %p Password
+                    = password_field_tag 'user[password]', nil, :class=>"input-large", :required => true
+                .span3
+                  %p Health Card Number*
+                  = f.text_field :health_card_number, :class=>"input-large", :required => true
+              %hr
+              %h3 Profile
+              %br
+              .row
+                .span3
+                  %p First Name*
+                  %p
+                    = f.text_field :first_name, :class=>"input-large", :required => true
+                .span3
+                  %p Last Name*
+                  %p
+                    = f.text_field :last_name, :class=>"input-large", :required => true
+              .row
+                .span3
+                  %p Gender*
+                  %p
+                    = f.select :gender, options_for_select([ :male, :female ], :male)
+                .span5
+                  %p Phone Number*
+                  %p
+                    = text_field_tag "profile[phone][p1]", nil,:class=>"phone-number-small",:placeholder=>"123",:maxlength=>"3", :required => true
+                    = text_field_tag "profile[phone][p2]", nil,:class=>"phone-number-small",:placeholder=>"123",:maxlength=>"3", :required => true
+                    = text_field_tag "profile[phone][p3]", nil,:class=>"phone-number-big",:placeholder=>"1234",:maxlength=>"4", :required => true
+              %hr
+              %br
+          .row
+            .span1
+            .span8
+              =f.submit t("patient_flow.complete_profile.next_button"),:class=>"btn btn-inverse im-doctor-btn"

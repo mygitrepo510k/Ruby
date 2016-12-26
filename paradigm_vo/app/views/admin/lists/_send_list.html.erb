@@ -1,0 +1,12 @@
+<div id="facebox">
+	<div class="main_div">
+		<%= form_for(@list, url: { controller: 'admin/lists', action: 'update' }, method: :put, remote: true) do |f| %>	
+			<%= f.label 'Subject' %><br>
+			<%= f.text_field :subject %><br><br>
+			<%= f.label 'Message' %>&nbsp;
+			<%= f.text_area :message, style: 'width:350px;height:180px;' %>
+			
+			<%= f.submit 'Send Message' %>
+		<% end %>
+	</div>	
+</div>

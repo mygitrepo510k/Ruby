@@ -1,0 +1,23 @@
+.grey-bck
+  .row.container.center-div-no-bg
+    .login-img
+      %br
+      %br
+      %br
+      .row.login-center
+        .span3
+        .span5.login-tab-bg
+          %h2.center-txt.homepg-header.bck-h2 Forgot your password?
+          = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+            = devise_error_messages!
+            %br
+            .row.login-margin
+              = f.label :email
+              = f.email_field :email, :autofocus => true, :class => "login-input"
+            %br
+            .row.login-margin.center-txt
+              = f.submit "Send me reset password instructions", :class => "btn btn-orange"
+            .row.empty-row
+              %br
+      .row.empty-row
+        %br

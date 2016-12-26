@@ -1,0 +1,7 @@
+'spec/**/*_spec.rb'
+'lib/**/*.rb'
+'app/**/*.rb'
+'db/schema.rb'
+
+--plugin activerecord
+

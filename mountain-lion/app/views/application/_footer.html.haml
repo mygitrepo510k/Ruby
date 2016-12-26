@@ -1,0 +1,26 @@
+.footer
+  %hr
+  %p{align: "center"}
+    = link_to "Dating Safety Tips", static_page_path('dating_safety_tips')
+    = separator
+    = link_to "About Us", static_page_path('about')
+    = separator
+    - unless current_user.present?
+      = link_to "Signup", signup_path
+      = separator
+      = link_to "Login", login_path
+      = separator
+    = link_to "Contact Us", static_page_path('contact')
+    = separator
+    = link_to "Help", static_page_path('help')
+  %p.footer-legal{align: "center"}
+    &copy;#{Date.today.year} HyeDating.com. All Rights Reserved.
+    = link_to "Armenian Men", seo_men_path
+    = separator
+    = link_to "Armenian Women", seo_women_path
+    = separator
+    = link_to "Terms and Conditions", static_page_path('terms_and_conditions')
+    = separator
+    = link_to "Privacy", static_page_path('privacy')
+    = separator
+    = link_to "DMCA", static_page_path('dmca')
